@@ -36,3 +36,8 @@ module.exports = createConfig([
 - [index.js](./index.js)
 - [lib/babel6.js](./lib/babel6.js)
 - [lib/dev-server.js](./lib/dev-server.js)
+
+
+## Feedback?
+
+You are welcome! Feel free to open an 👉 [issue](https://github.com/andywer/webpack-blocks/issues).
