@@ -1,0 +1,11 @@
+{
+  "name": "webpack-blocks",
+  "version": "0.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^8.1.0"
+  },
+  "dependencies": {
+    "webpack-merge": "^0.14.1"
+  }
+}
