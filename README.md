@@ -1,6 +1,6 @@
 # webpack-blocks - The building blocks for your frontend
 
-A functional approach to tame your webpack config.
+A functional approach to tame your webpack config. Composing the webpack config of middlewares like *babel*, *hmr*, ...
 
 **- Attention: This is just a draft right now -**
 
