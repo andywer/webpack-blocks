@@ -14,6 +14,8 @@ npm install --save-dev https://github.com/andywer/webpack-blocks.git
 
 ## Usage
 
+Create a development config with Babel support, dev server and HMR:
+
 ```js
 const { createConfig, baseConfig, setOutput } = require('webpack-blocks')
 const babel = require('webpack-blocks/lib/babel6')
