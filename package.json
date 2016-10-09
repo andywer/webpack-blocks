@@ -7,9 +7,13 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "standard": "^8.1.0"
+    "standard": "^8.1.0",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
     "webpack-merge": "^0.14.1"
+  },
+  "peerDepedencies": {
+    "webpack": "^1.13.2"
   }
 }
