@@ -1,6 +1,6 @@
 import test from 'ava'
 import { createConfig } from '../'
-import { entryPoint, setOutput } from '../lib/webpack'
+import { entryPoint, setOutput, sourceMaps } from '../lib/webpack'
 import babel from '../lib/babel6'
 import devServer from '../lib/dev-server'
 
@@ -9,6 +9,7 @@ test('complete webpack config creation', (t) => {
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js'),
     babel(),
+    sourceMaps(),
     devServer(),
     devServer.proxy({
       '/api/*': { target: 'http://localhost:8080' }
@@ -47,5 +48,7 @@ test('complete webpack config creation', (t) => {
     path: './build'
   })
 
-  t.deepEqual(Object.keys(webpackConfig).sort(), [ 'devServer', 'entry', 'module', 'output' ])
+  t.is(webpackConfig.devtool, 'cheap-module-source-map')
+
+  t.deepEqual(Object.keys(webpackConfig).sort(), [ 'devServer', 'devtool', 'entry', 'module', 'output' ])
 })
