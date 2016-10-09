@@ -2,7 +2,11 @@
   "name": "webpack-blocks",
   "version": "0.0.0",
   "license": "MIT",
+  "scripts": {
+    "test": "standard && ava"
+  },
   "devDependencies": {
+    "ava": "^0.16.0",
     "standard": "^8.1.0"
   },
   "dependencies": {

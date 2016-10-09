@@ -1,68 +1,88 @@
-const path = require('path')
 const merge = require('webpack-merge')
+const { createBaseConfig } = require('./lib/webpack')
 
 exports.createConfig = createConfig
-exports.baseConfig = baseConfig
-exports.addPlugins = addPlugins
-exports.customConfig = customConfig
-exports.resolveAliases = resolveAliases
-exports.setDevTool = setDevTool
-exports.setOutput = setOutput
 
-function createConfig (configSetters) {
-  return configSetters.reduce((config, setter) => merge.smart(config, setter(config)), {})
+const defaultFileTypeMatchers = {
+  'application/font': /\.eot$|\.ttf$|\.woff$|\.svg$|\.png$/,
+  'application/javascript': /\.jsx?$/,
+  'application/json': /\.json$/,
+  'text/css': /\.css$/,
+  'text/x-sass': /\.sass$|\.scss$/
 }
 
-function baseConfig (entry, options = {}) {
-  const { devtool = null, output } = options
+const isFunction = (value) => typeof value === 'function'
 
-  return () => merge(
-    {
-      entry,
-      module: {
-        loaders: [
-          {
-            test: /\.eot$|\.ttf$|\.woff$|\.svg$|\.png$/,
-            loader: 'file'
-          }, {
-            test: /\.json/,
-            loader: 'json'
-          }
-        ]
-      }
-    },
-    output && setOutput(output)(),
-    devtool && setDevTool(devtool)()
+function createConfig (configSetters) {
+  if (!Array.isArray(configSetters) || !configSetters.every(isFunction)) {
+    throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
+  }
+
+  const fileTypes = createFileTypesMapping(defaultFileTypeMatchers)
+  const baseConfig = createBaseConfig(fileTypes)
+
+  return configSetters.reduce(
+    (config, setter) => merge.smart(config, setter(fileTypes, config)),
+    baseConfig
   )
 }
 
-function addPlugins (plugins) {
-  return () => ({ plugins })
-}
+function createFileTypesMapping (initialMapping) {
+  let currentMapping = initialMapping
 
-function customConfig (wpConfig) {
-  return () => wpConfig
-}
+  const mapperMethods = {
+    all () {
+      return currentMapping
+    },
 
-function resolveAliases (aliases) {
-  return () => ({
-    resolve: {
-      alias: aliases
+    /**
+     * @param {string} type   MIME type.
+     * @return {RegExp|Function|string|array}
+     */
+    get (type) {
+      if (!(type in currentMapping)) {
+        throw new Error(`FileTypes:get(): Type is not registered: ${type}`)
+      }
+      return currentMapping[ type ]
+    },
+
+    /**
+     * @param {string|object} type
+     * @param {RegExp|Function|string|array} [condition]  Only used if param `type` is a string.
+     *                                                    @see https://webpack.github.io/docs/configuration.html#module-loaders
+     * @return {FileTypesMapping} this
+     * @example `fileTypes.add('application/javascript', /\.jsx?$/)`
+     * @example `fileTypes.add({ 'application/javascript': [ /\.js$/, /\.jsx$/ ] })`
+     */
+    add (type, condition) {
+      if (typeof type === 'string') {
+        currentMapping = addOne(type, condition)
+      } else if (typeof type === 'object') {
+        currentMapping = addMultiple(type)
+      } else {
+        throw new Error(`FileTypes:add(): Expected 1st param to be a string or object, but got: ${typeof type}`)
+      }
+      return mapper
     }
-  })
-}
+  }
 
-function setDevTool (devtool) {
-  return () => ({ devtool })
-}
+  function FileTypeMapping (type) {
+    return mapper.get(type)
+  }
 
-function setOutput (output) {
-  if (typeof output === 'string') {
-    return setOutput({
-      filename: path.basename(output) || 'bundle.js',
-      path: path.dirname(output) || './build'
+  function addOne (type, condition) {
+    if (!condition) {
+      throw new Error(`FileTypes:add(): Expected a 'condition' as 2nd param if 1st param is a string.`)
+    }
+    return Object.assign({}, currentMapping, {
+      [ type ]: condition
     })
   }
 
-  return () => ({ output })
+  function addMultiple (types) {
+    return Object.assign({}, currentMapping, types)
+  }
+
+  const mapper = Object.assign(FileTypeMapping, mapperMethods)
+  return mapper
 }

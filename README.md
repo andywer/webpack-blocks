@@ -17,18 +17,18 @@ npm install --save-dev https://github.com/andywer/webpack-blocks.git
 Create a development config with Babel support, dev server and HMR:
 
 ```js
-const { createConfig, baseConfig, setOutput } = require('webpack-blocks')
+const { createConfig } = require('webpack-blocks')
+const { entryPoint, setOutput } = require('webpack-blocks/lib/webpack')
 const babel = require('webpack-blocks/lib/babel6')
 const devServer = require('webpack-blocks/lib/dev-server')
 
 module.exports = createConfig([
-  baseConfig('./src/main.js'),
+  entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  devServer({
-    proxy: {
-      '/api/*': { target: 'http://localhost:8080' }
-    }
+  devServer(),
+  devServer.proxy({
+    '/api/*': { target: 'http://localhost:8080' }
   })
 ])
 ```
