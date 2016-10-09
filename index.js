@@ -4,11 +4,14 @@ const { createBaseConfig } = require('./lib/webpack')
 exports.createConfig = createConfig
 
 const defaultFileTypeMatchers = {
-  'application/font': /\.eot$|\.ttf$|\.woff$|\.svg$|\.png$/,
-  'application/javascript': /\.jsx?$/,
+  'application/font': /\.(eot|ttf|woff|woff2)(\?.*)?$/,
+  'application/javascript': /\.(js|jsx)$/,
   'application/json': /\.json$/,
+  'audio': /\.(aac|m4a|mp3|oga|ogg|wav)$/,
+  'image': /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
   'text/css': /\.css$/,
-  'text/x-sass': /\.sass$|\.scss$/
+  'text/x-sass': /\.(sass|scss)$/,
+  'video': /\.(mp4|webm)$/
 }
 
 const isFunction = (value) => typeof value === 'function'
