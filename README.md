@@ -18,7 +18,7 @@ Create a development config with Babel support, dev server and HMR:
 
 ```js
 const { createConfig } = require('webpack-blocks')
-const { entryPoint, setOutput } = require('webpack-blocks/lib/webpack')
+const { entryPoint, setOutput, sourceMaps } = require('webpack-blocks/lib/webpack')
 const babel = require('webpack-blocks/lib/babel6')
 const devServer = require('webpack-blocks/lib/dev-server')
 
@@ -26,9 +26,10 @@ module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
+  sourceMaps(),
   devServer(),
   devServer.proxy({
-    '/api/*': { target: 'http://localhost:8080' }
+    '/api/*': { target: 'http://localhost:3000' }
   })
 ])
 ```
