@@ -20,7 +20,7 @@ test('complete webpack config creation', (t) => {
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.(js|jsx)$/,
     exclude: [ /node_modules/ ],
-    loaders: [ 'react-hot', 'babel?cacheDirectory' ]
+    loaders: [ 'babel?cacheDirectory&plugins[]=react-hot-loader/babel' ]
   })
   t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.css$/,
@@ -47,14 +47,12 @@ test('complete webpack config creation', (t) => {
     loaders: [ 'url' ]
   })
 
-  t.deepEqual(webpackConfig.entry, {
-    app: './src/main.js',
-    devServer: [ 'webpack/hot/dev-server', 'webpack/hot/only-dev-server' ]
-  })
+  t.deepEqual(webpackConfig.entry, [ './src/main.js', 'webpack/hot/dev-server' ])
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
     historyApiFallback: true,
+    inline: true,
     proxy: {
       '/api/*': { target: 'http://localhost:8080' }
     }
@@ -67,5 +65,7 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
-  t.deepEqual(Object.keys(webpackConfig).sort(), [ 'devServer', 'devtool', 'entry', 'module', 'output' ])
+  t.deepEqual(Object.keys(webpackConfig).sort(), [
+    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'
+  ])
 })
