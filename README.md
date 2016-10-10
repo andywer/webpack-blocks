@@ -1,6 +1,6 @@
 # webpack-blocks - The building blocks for your frontend
 
-A functional approach to tame your webpack config. Composing the webpack config of middlewares like *babel*, *hmr*, ...
+A functional approach to tame your webpack config. Composing the webpack config of feature middlewares like *Babel*, *PostCSS*, *HMR*, ...
 
 **- Still working the details out. Not yet published to npm. -**
 
@@ -14,19 +14,24 @@ npm install --save-dev https://github.com/andywer/webpack-blocks.git
 
 ## Usage
 
-Create a development config with Babel support, dev server and HMR:
+Create a development config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
 const { createConfig } = require('webpack-blocks')
 const { entryPoint, setOutput, sourceMaps } = require('webpack-blocks/lib/webpack')
+const autoprefixer = require('autoprefixer')
 const babel = require('webpack-blocks/lib/babel6')
 const devServer = require('webpack-blocks/lib/dev-server')
+const postcss = require('webpack-blocks/lib/postcss')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
   sourceMaps(),
+  postcss([
+    autoprefixer({ browsers: ['last 2 versions'] })
+  ]),
   devServer(),
   devServer.proxy({
     '/api': { target: 'http://localhost:3000' }
@@ -56,7 +61,7 @@ module.exports = createConfig([
 - [postcss](./lib/postcss.js)
 - [webpack](./lib/webpack.js) *(Webpack base config)*
 
-You can find usage documentation in these files.
+You can find usage documentation in these files. Feel free to write and publish your own webpack blocks!
 
 
 ## Feedback?
