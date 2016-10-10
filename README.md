@@ -25,17 +25,17 @@ const devServer = require('webpack-blocks/lib/dev-server')
 const postcss = require('webpack-blocks/lib/postcss')
 
 module.exports = createConfig([
+  devServer(),
+  devServer.proxy({
+    '/api': { target: 'http://localhost:3000' }
+  }),
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
   sourceMaps(),
   postcss([
     autoprefixer({ browsers: ['last 2 versions'] })
-  ]),
-  devServer(),
-  devServer.proxy({
-    '/api': { target: 'http://localhost:3000' }
-  })
+  ])
 ])
 ```
 
