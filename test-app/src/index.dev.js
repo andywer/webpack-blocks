@@ -13,8 +13,8 @@ if (module.hot) {
     const NewApp = require('./App').default
 
     ReactDOM.render(
-        <AppContainer><NewApp /></AppContainer>,
-        mountPoint
-    );
-  });
+      <AppContainer><NewApp /></AppContainer>,
+      mountPoint
+    )
+  })
 }

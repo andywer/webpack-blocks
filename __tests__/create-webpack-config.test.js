@@ -20,7 +20,7 @@ test('complete webpack config creation', (t) => {
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.(js|jsx)$/,
     exclude: [ /node_modules/ ],
-    loaders: [ 'babel?cacheDirectory&plugins[]=react-hot-loader/babel' ]
+    loaders: [ 'babel?cacheDirectory' ]
   })
   t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.css$/,
@@ -47,7 +47,7 @@ test('complete webpack config creation', (t) => {
     loaders: [ 'url' ]
   })
 
-  t.deepEqual(webpackConfig.entry, [ './src/main.js', 'webpack/hot/dev-server' ])
+  t.deepEqual(webpackConfig.entry, [ './src/main.js', 'webpack/hot/only-dev-server' ])
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
