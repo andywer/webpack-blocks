@@ -2,6 +2,7 @@ import test from 'ava'
 import { createConfig } from '../'
 import { entryPoint, setOutput, sourceMaps } from '../lib/webpack'
 import babel from '../lib/babel6'
+import cssModules from '../lib/css-modules'
 import devServer from '../lib/dev-server'
 
 test('complete webpack config creation', (t) => {
@@ -10,6 +11,9 @@ test('complete webpack config creation', (t) => {
     setOutput('./build/bundle.js'),
     babel(),
     sourceMaps(),
+    cssModules({
+      localIdentName: '[name]--[local]--[hash:base64:5]'
+    }),
     devServer(),
     devServer.proxy({
       '/api/*': { target: 'http://localhost:8080' }
@@ -18,13 +22,14 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.module.loaders.length, 7)
   t.deepEqual(webpackConfig.module.loaders[0], {
-    test: /\.(js|jsx)$/,
-    exclude: [ /node_modules/ ],
-    loaders: [ 'babel?cacheDirectory' ]
+    test: /\.css$/,
+    exclude: [ /\/node_modules\// ],
+    loaders: [ 'style', 'css?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
   })
   t.deepEqual(webpackConfig.module.loaders[1], {
-    test: /\.css$/,
-    loaders: [ 'style', 'css' ]
+    test: /\.(js|jsx)$/,
+    exclude: [ /\/node_modules\// ],
+    loaders: [ 'babel?cacheDirectory' ]
   })
   t.deepEqual(webpackConfig.module.loaders[2], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
