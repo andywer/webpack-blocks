@@ -2,7 +2,7 @@
 
 A functional approach to tame your webpack config. Composing the webpack config of middlewares like *babel*, *hmr*, ...
 
-**- Attention: This is just a draft right now -**
+**- Still working the details out. Not yet published to npm. -**
 
 
 ## Installation
@@ -46,6 +46,7 @@ module.exports = createConfig([
   cssModules()
 ])
 ```
+
 
 ## Available webpack blocks
 
