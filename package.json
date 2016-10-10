@@ -1,7 +1,15 @@
 {
   "name": "webpack-blocks",
   "version": "0.0.0",
+  "description": "Composing the webpack config of feature middlewares",
+  "keywords": [
+    "webpack",
+    "block",
+    "feature",
+    "functional"
+  ],
   "license": "MIT",
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "test": "standard && ava"
   },
