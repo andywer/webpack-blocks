@@ -47,7 +47,7 @@ const cssModules = require('webpack-blocks/lib/css-modules')
 ...
 
 module.exports = createConfig([
-  ...,
+  ...
   cssModules()
 ])
 ```
