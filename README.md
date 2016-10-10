@@ -29,7 +29,7 @@ module.exports = createConfig([
   sourceMaps(),
   devServer(),
   devServer.proxy({
-    '/api/*': { target: 'http://localhost:3000' }
+    '/api': { target: 'http://localhost:3000' }
   })
 ])
 ```
@@ -47,11 +47,15 @@ module.exports = createConfig([
 ])
 ```
 
-## Have a look at
+## Available webpack blocks
 
-- [index.js](./index.js)
-- [lib/babel6.js](./lib/babel6.js)
-- [lib/dev-server.js](./lib/dev-server.js)
+- [babel6](./lib/babel6.js)
+- [css-modules](./lib/css-modules.js)
+- [dev-server](./lib/dev-server.js)
+- [postcss](./lib/postcss.js)
+- [webpack](./lib/webpack.js) *(Webpack base config)*
+
+You can find usage documentation in these files.
 
 
 ## Feedback?
