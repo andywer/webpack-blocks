@@ -17,7 +17,7 @@ npm install --save-dev https://github.com/andywer/webpack-blocks.git
 Create a development config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
-const { createConfig } = require('webpack-blocks')
+const { createConfig, env } = require('webpack-blocks')
 const { entryPoint, setOutput, sourceMaps } = require('webpack-blocks/lib/webpack')
 const autoprefixer = require('autoprefixer')
 const babel = require('webpack-blocks/lib/babel6')
@@ -25,16 +25,18 @@ const devServer = require('webpack-blocks/lib/dev-server')
 const postcss = require('webpack-blocks/lib/postcss')
 
 module.exports = createConfig([
-  devServer(),
-  devServer.proxy({
-    '/api': { target: 'http://localhost:3000' }
-  }),
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  sourceMaps(),
   postcss([
     autoprefixer({ browsers: ['last 2 versions'] })
+  ]),
+  env('development', [
+    devServer(),
+    devServer.proxy({
+      '/api': { target: 'http://localhost:3000' }
+    }),
+    sourceMaps()
   ])
 ])
 ```
