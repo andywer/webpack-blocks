@@ -66,6 +66,71 @@ module.exports = createConfig([
 You can find usage documentation in these files. Feel free to write and publish your own webpack blocks!
 
 
+## How does a webpack block look like from the inside?
+
+A webpack block is **just a function and requires no dependencies at all**, thus making it easy to write your own blocks and share them with the community.
+
+Take `babel6` webpack block for instance:
+
+```js
+/**
+ * @param {object} [options]
+ * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
+ * @return {Function}
+ */
+function babel (options) {
+  const { exclude = /\/node_modules\// } = options || {}
+
+  return (fileTypes) => ({
+    module: {
+      loaders: [
+        {
+          // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
+          test: fileTypes('application/javascript'),
+          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
+          loaders: [ 'babel?cacheDirectory' ]
+        }
+      ]
+    }
+  })
+}
+```
+
+
+## I want to use some custom webpack config snippet!
+
+No problem. If you don't want to write your own webpack block you can just use `customConfig()`:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { addPlugins, customConfig } = require('webpack-blocks/lib/webpack')
+
+...
+
+module.exports = createConfig([
+  ...
+  addPlugins([
+    // Add a custom webpack plugin
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: './index.html'
+    })
+  ]),
+  customConfig({
+    // Add some custom webpack config snippet
+    resolve: {
+      extensions: [ '', '.js', '.es6' ]
+    }
+  })
+])
+```
+
+The object you pass to `customConfig` will be merged into the webpack config using
+[webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
+block's partial config.
+
+
 ## Feedback?
 
 You are welcome! Feel free to open an 👉 [issue](https://github.com/andywer/webpack-blocks/issues).
