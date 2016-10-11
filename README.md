@@ -68,7 +68,7 @@ You can find usage documentation in these files. Feel free to write and publish 
 
 ## How does a webpack block look like from the inside?
 
-A webpack block is **just a function and requires no dependencies at all**, thus making it easy to write your own blocks and share them with the community.
+A webpack block is *just a function and requires no dependencies at all* (🎉🎉), thus making it easy to write your own blocks and share them with the community.
 
 Take `babel6` webpack block for instance:
 
@@ -97,7 +97,7 @@ function babel (options) {
 ```
 
 
-## I want to use some custom webpack config snippet!
+## I need some custom webpack config snippet!
 
 No problem. If you don't want to write your own webpack block you can just use `customConfig()`:
 
@@ -126,7 +126,7 @@ module.exports = createConfig([
 ])
 ```
 
-The object you pass to `customConfig` will be merged into the webpack config using
+The object you pass to `customConfig()` will be merged into the webpack config using
 [webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
 block's partial config.
 
