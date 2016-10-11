@@ -61,9 +61,12 @@ module.exports = createConfig([
 - [css-modules](./lib/css-modules.js)
 - [dev-server](./lib/dev-server.js)
 - [postcss](./lib/postcss.js)
+- [sass](./lib/sass.js)
 - [webpack](./lib/webpack.js) *(Webpack base config)*
 
-You can find usage documentation in these files. Feel free to write and publish your own webpack blocks!
+You can find usage documentation in these files.
+
+Missing something? Feel free to write and publish your own webpack blocks!
 
 
 ## How does a webpack block look like from the inside?
