@@ -2,6 +2,8 @@
 
 A functional approach to tame your webpack config. Composing the webpack config of feature middlewares like *Babel*, *PostCSS*, *HMR*, ...
 
+**Early release - Keep your seatbelt fastened.**
+
 
 ## Installation
 
