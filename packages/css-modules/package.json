@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/css-modules",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Webpack block for CSS modules.",
   "main": "lib/index",
   "license": "MIT",

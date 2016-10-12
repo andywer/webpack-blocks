@@ -2,13 +2,11 @@
 
 A functional approach to tame your webpack config. Composing the webpack config of feature middlewares like *Babel*, *PostCSS*, *HMR*, ...
 
-**- Still working the details out. Not yet published to npm. -**
-
 
 ## Installation
 
 ```sh
-npm install --save-dev https://github.com/andywer/webpack-blocks.git
+npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
 ```
 
 
