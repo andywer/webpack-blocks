@@ -11,6 +11,7 @@
     "react-dom": "^15.3.2",
     "react-hot-loader": "^3.0.0-beta.5",
     "@webpack-blocks/babel6": "^0.1.0",
+    "@webpack-blocks/css-modules": "^0.1.0",
     "@webpack-blocks/dev-server": "^0.1.0",
     "@webpack-blocks/webpack": "^0.1.0"
   }
