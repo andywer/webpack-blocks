@@ -2,27 +2,14 @@
  * Webpack base config block.
  *
  * @see https://webpack.github.io/docs/configuration.html
- * @example
- * const HtmlWebpackPlugin = require('html-webpack-plugin')
- * const { createConfig } = require('webpack-blocks')
- * const { addPlugins, entryPoint, setOutput, sourceMaps } = require('webpack-blocks/lib/webpack')
- *
- * module.exports = createConfig([
- *   entryPoint('./src/main.js'),
- *   setOutput('./build/bundle.js'),
- *   sourceMaps(),
- *   addPlugins([
- *     new HtmlWebpackPlugin({
- *       inject: true,
- *       template: './index.html'
- *     })
- *   ])
- * ])
  */
 
 const path = require('path')
+const core = require('@webpack-blocks/core')
 
-exports.createBaseConfig = createBaseConfig
+exports.createConfig = createConfig
+exports.env = core.env
+
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
 exports.entryPoint = entryPoint
@@ -31,6 +18,17 @@ exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
 exports.sourceMaps = sourceMaps
+
+/**
+ * Wraps @webpack-blocks/core's `createConfig` to provide some sane default
+ * configuration first.
+ *
+ * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
+ * @return {object}                   Webpack config object.
+ */
+function createConfig (configSetters) {
+  return core.createConfig([ createBaseConfig ].concat(configSetters))
+}
 
 function createBaseConfig (fileTypes) {
   return {

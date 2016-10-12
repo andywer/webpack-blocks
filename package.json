@@ -1,27 +1,5 @@
 {
-  "name": "webpack-blocks",
-  "version": "0.0.0",
-  "description": "Composing the webpack config of feature middlewares",
-  "keywords": [
-    "webpack",
-    "block",
-    "feature",
-    "functional"
-  ],
-  "license": "MIT",
-  "author": "Andy Wermke <andy@dev.next-step-software.com>",
-  "scripts": {
-    "test": "standard && ava"
-  },
   "devDependencies": {
-    "ava": "^0.16.0",
-    "standard": "^8.1.0",
-    "webpack": "^1.13.2"
-  },
-  "dependencies": {
-    "webpack-merge": "^0.14.1"
-  },
-  "peerDepedencies": {
-    "webpack": "^1.13.2"
+    "lerna": "2.0.0-beta.30"
   }
 }

@@ -2,17 +2,6 @@
  * Webpack dev-server block.
  *
  * @see https://github.com/webpack/webpack-dev-server
- * @example
- * const { createConfig } = require('webpack-blocks')
- * const devServer = require('webpack-blocks/lib/dev-server')
- *
- * module.exports = createConfig([
- *   devServer(),
- *   // if you need to proxy API requests:
- *   devServer.proxy({
- *     '/api': { target: 'http://localhost:3000' }
- *   })
- * ])
  */
 
 const webpack = require('webpack')

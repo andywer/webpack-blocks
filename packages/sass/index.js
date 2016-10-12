@@ -2,13 +2,6 @@
  * SASS webpack block.
  *
  * @see https://github.com/jtangelder/sass-loader
- * @example
- * const { createConfig } = require('webpack-blocks')
- * const sass = require('webpack-blocks/lib/sass')
- *
- * module.exports = createConfig([
- *   sass()
- * ])
  */
 
 module.exports = sass

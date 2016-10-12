@@ -2,13 +2,6 @@
  * CSS Modules webpack block.
  *
  * @see https://github.com/webpack/css-loader
- * @example
- * const { createConfig } = require('webpack-blocks')
- * const cssModules = require('webpack-blocks/lib/css-modules')
- *
- * module.exports = createConfig([
- *   cssModules()
- * ])
  */
 
 module.exports = cssModules

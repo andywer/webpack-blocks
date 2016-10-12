@@ -17,12 +17,11 @@ npm install --save-dev https://github.com/andywer/webpack-blocks.git
 Create a development config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
-const { createConfig, env } = require('webpack-blocks')
-const { entryPoint, setOutput, sourceMaps } = require('webpack-blocks/lib/webpack')
+const { createConfig, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const babel = require('@webpack-blocks/babel6')
+const devServer = require('@webpack-blocks/dev-server')
+const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
-const babel = require('webpack-blocks/lib/babel6')
-const devServer = require('webpack-blocks/lib/dev-server')
-const postcss = require('webpack-blocks/lib/postcss')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
@@ -44,7 +43,7 @@ module.exports = createConfig([
 Wanna use CSS modules? No problem!
 
 ```js
-const cssModules = require('webpack-blocks/lib/css-modules')
+const cssModules = require('@webpack-blocks/css-modules')
 
 ...
 
@@ -57,12 +56,12 @@ module.exports = createConfig([
 
 ## Available webpack blocks
 
-- [babel6](./lib/babel6.js)
-- [css-modules](./lib/css-modules.js)
-- [dev-server](./lib/dev-server.js)
-- [postcss](./lib/postcss.js)
-- [sass](./lib/sass.js)
-- [webpack](./lib/webpack.js) *(Webpack base config)*
+- [babel6](./packages/babel6)
+- [css-modules](./packages/css-modules)
+- [dev-server](./packages/dev-server)
+- [postcss](./packages/postcss)
+- [sass](./packages/sass)
+- [webpack](./packages/webpack) *(Webpack base config)*
 
 You can find usage documentation in these files.
 
@@ -107,7 +106,7 @@ No problem. If you don't want to write your own webpack block you can just use `
 ```js
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, customConfig } = require('webpack-blocks/lib/webpack')
+const { addPlugins, customConfig } = require('@webpack-blocks/webpack')
 
 ...
 
@@ -132,6 +131,11 @@ module.exports = createConfig([
 The object you pass to `customConfig()` will be merged into the webpack config using
 [webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
 block's partial config.
+
+
+## Like what you see?
+
+Support webpack-blocks by giving some [feedback](#feedback), publishing new webpack blocks or just by 🌟 starring the project!
 
 
 ## Feedback?

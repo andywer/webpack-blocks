@@ -2,16 +2,6 @@
  * PostCSS webpack block.
  *
  * @see https://github.com/postcss/postcss-loader
- * @example
- * const { createConfig } = require('webpack-blocks')
- * const autoprefixer = require('autoprefixer')
- * const postcss = require('webpack-blocks/lib/postcss')
- *
- * module.exports = createConfig([
- *   postcss([
- *     autoprefixer({ browsers: ['last 2 versions'] })
- *   ])
- * ])
  */
 
 module.exports = postcss
