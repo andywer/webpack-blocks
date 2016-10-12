@@ -8,15 +8,21 @@ This is the `dev-server` block providing webpack dev server configuration.
 ## Usage
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
+const { createConfig, env } = require('@webpack-blocks/webpack')
 const devServer = require('@webpack-blocks/dev-server')
 
 module.exports = createConfig([
-  devServer(),
-  // if you need to proxy API requests:
-  devServer.proxy({
-    '/api': { target: 'http://localhost:3000' }
-  })
+  // use only if `NODE_ENV === 'development'`:
+  env('development', [
+    devServer(),
+    // if you need to proxy API requests:
+    devServer.proxy({
+      '/api': { target: 'http://localhost:3000' }
+    }),
+    // in case you are using react-hot-loader 2.x:
+    // (need to install `react-hot-loader` package manually, though)
+    devServer.reactHot()
+  ])
 ])
 ```
 

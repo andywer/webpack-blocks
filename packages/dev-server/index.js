@@ -9,22 +9,31 @@ const webpack = require('webpack')
 module.exports = devServer
 
 devServer.proxy = proxy
+devServer.reactHot = reactHot
 
 /**
  * @param {object} [options]    See https://webpack.github.io/docs/configuration.html#devserver
  * @param {bool}   [options.historyApiFallback]
  * @param {bool}   [options.hot]
  * @param {bool}   [options.inline]
+ * @param {string|string[]} [entry]   Defaults to 'webpack/hot/only-dev-server'
  * @return {Function}
  */
-function devServer (options) {
+function devServer (options, entry) {
+  if (options && (typeof options === 'string' || Array.isArray(options))) {
+    entry = options
+    options = {}
+  } else {
+    entry = entry || 'webpack/hot/only-dev-server'
+  }
+
   return (fileTypes) => ({
     devServer: Object.assign({
       hot: true,
       historyApiFallback: true,
       inline: true
     }, options),
-    entry: [ 'webpack/hot/only-dev-server' ],
+    entry: Array.isArray(entry) ? entry : [ entry ],
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
@@ -40,6 +49,28 @@ function proxy (proxyRoutes) {
   return () => ({
     devServer: {
       proxy: proxyRoutes
+    }
+  })
+}
+
+/**
+ * For adding the react-hot-loader to the JS loaders. Only when using
+ * react-hot-loader before version 3.
+ * @param {object} [options]
+ * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
+ * @return {Function}
+ */
+function reactHot (options) {
+  options = options || {}
+  const exclude = options.exclude || /\/node_modules\//
+
+  return (fileTypes) => ({
+    module: {
+      loaders: [{
+        test: fileTypes('application/javascript'),
+        exclude: Array.isArray(exclude) ? exclude : [ exclude ],
+        loaders: [ 'react-hot' ]
+      }]
     }
   })
 }
