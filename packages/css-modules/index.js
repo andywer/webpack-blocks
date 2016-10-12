@@ -14,11 +14,15 @@ module.exports = cssModules
  * @return {Function}
  */
 function cssModules (options) {
+  options = options || {}
+
   const localIdentDefault = String(process.env.NODE_ENV) === 'production'
     ? '[hash:base64:10]'
     : '[name]--[local]--[hash:base64:5]'
 
-  const { exclude = /\/node_modules\//, importLoaders = 1, localIdentName = localIdentDefault } = options || {}
+  const exclude = options.exclude || /\/node_modules\//
+  const importLoaders = options.importLoaders || 1
+  const localIdentName = options.localIdentName || localIdentDefault
 
   return (fileTypes) => ({
     module: {

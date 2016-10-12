@@ -13,7 +13,8 @@ module.exports = postcss
  * @return {Function}
  */
 function postcss (plugins, options) {
-  const { exclude = /\/node_modules\// } = options || {}
+  options = options || {}
+  const exclude = options.exclude || /\/node_modules\//
 
   return (fileTypes) => ({
     module: {
