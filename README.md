@@ -1,6 +1,7 @@
 # webpack-blocks [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 
-Functional building blocks for the webpack config. Composing the webpack config of feature middlewares like *Babel*, *PostCSS*, *HMR*, ...
+Functional building blocks for the webpack config. Composing the webpack config of feature middlewares like
+*Babel*, *PostCSS*, *HMR*, ...
 
 **Early release - Keep your seatbelt fastened.**
 
@@ -152,4 +153,4 @@ block's partial config.
 
 ## Like what you see?
 
-Support webpack-blocks by giving some [feedback](https://github.com/andywer/webpack-blocks/issues), publishing new webpack blocks or just by 🌟 starring the project!
+Support webpack-blocks by giving [feedback](https://github.com/andywer/webpack-blocks/issues), publishing new webpack blocks or just by 🌟 starring the project!
