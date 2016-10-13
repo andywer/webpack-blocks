@@ -53,9 +53,24 @@ module.exports = createConfig([
 ])
 ```
 
-### env()
+Check out the [sample app](./test-app) to see a small webpack config in action.
 
-You might wonder how `env('development', [ ... ])` works? Simple. It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
+
+## Available webpack blocks
+
+- [babel6](./packages/babel6)
+- [css-modules](./packages/css-modules)
+- [dev-server](./packages/dev-server)
+- [postcss](./packages/postcss)
+- [sass](./packages/sass)
+- [webpack](./packages/webpack) *(Webpack base config)*
+
+Missing something? Write and publish your own webpack blocks!
+
+
+## env()
+
+You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
 
 So make sure you set the NODE_ENV accordingly:
 
@@ -68,20 +83,6 @@ So make sure you set the NODE_ENV accordingly:
 ```
 
 If there is no NODE_ENV set then it will just treat NODE_ENV as if it was `development`.
-
-
-## Available webpack blocks
-
-- [babel6](./packages/babel6)
-- [css-modules](./packages/css-modules)
-- [dev-server](./packages/dev-server)
-- [postcss](./packages/postcss)
-- [sass](./packages/sass)
-- [webpack](./packages/webpack) *(Webpack base config)*
-
-You can find usage documentation in these files.
-
-Missing something? Feel free to write and publish your own webpack blocks!
 
 
 ## How does a webpack block look like from the inside?
@@ -147,11 +148,6 @@ module.exports = createConfig([
 The object you pass to `customConfig()` will be merged into the webpack config using
 [webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
 block's partial config.
-
-
-## Show me a small working sample
-
-Have a look at the [sample app](./test-app). It features a small webpack config based on webpack-blocks for launching a React app with Babel and HMR.
 
 
 ## Like what you see?
