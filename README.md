@@ -53,6 +53,22 @@ module.exports = createConfig([
 ])
 ```
 
+### env()
+
+You might wonder how `env('development', [ ... ])` works? Simple. It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
+
+So make sure you set the NODE_ENV accordingly:
+
+```js
+// your package.json
+"scripts": {
+  "build": "NODE_ENV=production webpack --config webpack.config.js",
+  "start": "NODE_ENV=development webpack-dev-server --config webpack.config.js"
+}
+```
+
+If there is no NODE_ENV set then it will just treat NODE_ENV as if it was `development`.
+
 
 ## Available webpack blocks
 
