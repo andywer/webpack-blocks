@@ -149,11 +149,11 @@ The object you pass to `customConfig()` will be merged into the webpack config u
 block's partial config.
 
 
+## Show me a small working sample
+
+Have a look at the [sample app](./test-app). It features a small webpack config based on webpack-blocks for launching a React app with Babel and HMR.
+
+
 ## Like what you see?
 
-Support webpack-blocks by giving some [feedback](#feedback), publishing new webpack blocks or just by 🌟 starring the project!
-
-
-## Feedback?
-
-Found a bug? Wrote some webpack block you want to share? You are welcome! Feel free to open an 👉 [issue](https://github.com/andywer/webpack-blocks/issues).
+Support webpack-blocks by giving some [feedback](https://github.com/andywer/webpack-blocks/issues), publishing new webpack blocks or just by 🌟 starring the project!
