@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "test": "lerna run test",
+    "postinstall": "lerna bootstrap"
+  },
   "devDependencies": {
     "lerna": "2.0.0-beta.30"
   }
