@@ -11,6 +11,8 @@
   "engines": {
     "node": ">= 4.0"
   },
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",

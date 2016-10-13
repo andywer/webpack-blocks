@@ -12,6 +12,8 @@
   "engines": {
     "node": ">= 4.0"
   },
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "postcss-loader": "^0.13.0"
   },
