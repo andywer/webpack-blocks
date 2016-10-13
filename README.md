@@ -1,4 +1,4 @@
-# webpack-blocks - The building blocks for your frontend
+# webpack-blocks [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 
 A functional approach to tame your webpack config. Composing the webpack config of feature middlewares like *Babel*, *PostCSS*, *HMR*, ...
 
@@ -140,4 +140,4 @@ Support webpack-blocks by giving some [feedback](#feedback), publishing new webp
 
 ## Feedback?
 
-You are welcome! Feel free to open an 👉 [issue](https://github.com/andywer/webpack-blocks/issues).
+Found a bug? Wrote some webpack block you want to share? You are welcome! Feel free to open an 👉 [issue](https://github.com/andywer/webpack-blocks/issues).
