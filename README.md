@@ -55,7 +55,7 @@ module.exports = createConfig([
 ])
 ```
 
-Check out the [sample app](./test-app) to see a small webpack config in action.
+Check out the [sample app](./test-app) to see a [webpack config](./test-app/webpack.config.js) in action.
 
 
 ## Available webpack blocks
@@ -63,6 +63,7 @@ Check out the [sample app](./test-app) to see a small webpack config in action.
 - [babel6](./packages/babel6)
 - [css-modules](./packages/css-modules)
 - [dev-server](./packages/dev-server)
+- [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
 - [webpack](./packages/webpack) *(Webpack base config)*
