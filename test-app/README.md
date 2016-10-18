@@ -1,6 +1,6 @@
 # webpack-blocks - Test app
 
-A very basic React app featuring Babel and HMR. Check out how clean a [webpack config](./webpack.config.js) can look like.
+A very basic React app featuring Babel and HMR. Performs all the nifty optimizations on the production build. Check out how clean a [webpack config](./webpack.config.js) can look like.
 
 
 ## Installation

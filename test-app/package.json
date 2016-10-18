@@ -13,6 +13,7 @@
     "@webpack-blocks/babel6": "^0.1.0",
     "@webpack-blocks/css-modules": "^0.1.0",
     "@webpack-blocks/dev-server": "^0.1.0",
-    "@webpack-blocks/webpack": "^0.1.0"
+    "@webpack-blocks/extract-text": "^0.1.0",
+    "@webpack-blocks/webpack": "^0.1.1"
   }
 }
