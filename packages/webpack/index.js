@@ -6,11 +6,13 @@
 
 const path = require('path')
 const core = require('@webpack-blocks/core')
+const webpack = require('webpack')
 
-exports.createConfig = createConfig
 exports.env = core.env
+exports.webpack = webpack
 
 exports.addPlugins = addPlugins
+exports.createConfig = createConfig
 exports.customConfig = customConfig
 exports.entryPoint = entryPoint
 exports.resolveAliases = resolveAliases

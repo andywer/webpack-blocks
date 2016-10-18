@@ -9,7 +9,7 @@ This is the `webpack` block providing webpack 1.x core functionality. Also provi
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack } = require('@webpack-blocks/webpack')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
@@ -18,6 +18,9 @@ module.exports = createConfig([
     new HtmlWebpackPlugin({
       inject: true,
       template: './index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env || 'development')
     })
   ]),
   env('development', [
