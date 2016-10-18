@@ -23,7 +23,7 @@ function createConfig (configSetters) {
 
   const fileTypes = createFileTypesMapping(defaultFileTypes)
 
-  return invokeConfigSetters(fileTypes, configSetters)
+  return invokeConfigSetters(configSetters, fileTypes)
 }
 
 /**
@@ -38,13 +38,13 @@ function env (envName, configSetters) {
   const currentEnv = process.env.NODE_ENV || 'development'
 
   return currentEnv === envName
-    ? (fileTypes) => invokeConfigSetters(fileTypes, configSetters)
+    ? (fileTypes, config) => invokeConfigSetters(configSetters, fileTypes, config)
     : () => ({})
 }
 
-function invokeConfigSetters (fileTypes, configSetters) {
+function invokeConfigSetters (configSetters, fileTypes, baseConfig = {}) {
   return configSetters.reduce(
     (config, setter) => merge.smart(config, setter(fileTypes, config)),
-    {}
+    baseConfig
   )
 }
