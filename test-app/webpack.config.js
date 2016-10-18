@@ -1,9 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack } = require('@webpack-blocks/webpack')
+const {
+  addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack
+} = require('@webpack-blocks/webpack')
+
 const babel = require('@webpack-blocks/babel6')
 const cssModules = require('@webpack-blocks/css-modules')
 const devServer = require('@webpack-blocks/dev-server')
 const extractText = require('@webpack-blocks/extract-text')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const basePlugins = [
   new HtmlWebpackPlugin({
