@@ -71,6 +71,14 @@ Check out the [sample app](./test-app) to see a [webpack config](./test-app/webp
 Missing something? Write and publish your own webpack blocks!
 
 
+## Design principles
+
+- Extensibility first
+- Uniformity for easy composition
+- Keep everything configurable
+- But provide sane defaults
+
+
 ## env()
 
 You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
