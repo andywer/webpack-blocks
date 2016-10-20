@@ -12,7 +12,8 @@ const { createConfig } = require('@webpack-blocks/webpack')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
-  extractText()
+  ...,
+  extractText('css/[name].css')   // or just `extractText()`
 ])
 ```
 
