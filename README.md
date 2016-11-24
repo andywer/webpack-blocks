@@ -126,6 +126,8 @@ function babel (options) {
 }
 ```
 
+You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
+
 
 ## I need some custom webpack config snippet!
 
