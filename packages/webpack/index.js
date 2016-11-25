@@ -78,7 +78,9 @@ function entryPoint (entry) {
  * @see https://webpack.github.io/docs/configuration.html#plugins
  */
 function addPlugins (plugins) {
-  return () => ({ plugins })
+  return plugins.length > 0
+    ? () => ({ plugins })
+    : () => ({})          // since webpack-merge would otherwise clear the plugins array
 }
 
 function customConfig (wpConfig) {
