@@ -2,7 +2,7 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-This is the `sass` block providing SASS configuration.
+This is the `sass` block providing SASS/SCSS support for webpack. Uses `node-sass` via `sass-loader`.
 
 
 ## Usage
