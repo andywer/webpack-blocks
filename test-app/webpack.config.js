@@ -1,47 +1,30 @@
 const {
   addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack
-} = require('@webpack-blocks/webpack')
+} = require('@webpack-blocks/webpack2')
 
 const babel = require('@webpack-blocks/babel6')
 const cssModules = require('@webpack-blocks/css-modules')
-const devServer = require('@webpack-blocks/dev-server')
-const extractText = require('@webpack-blocks/extract-text')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const basePlugins = [
-  new HtmlWebpackPlugin({
-    inject: true,
-    template: './index.html'
-  }),
-  new webpack.DefinePlugin({
-    'process.env': JSON.stringify(process.env || 'development')
-  })
-]
-
-const productionPlugins = [
-  new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: { warnings: true },
-    screwIe8: true
-  })
-]
+const devServer = require('@webpack-blocks/dev-server2')
+const extractText = require('@webpack-blocks/extract-text2')
+const plugins = require('./webpack.plugins')
 
 module.exports = createConfig([
-  entryPoint('./src/index.dev.js'),
   setOutput('./build/bundle.js'),
   babel(),
   cssModules(),
-  addPlugins(basePlugins),
+  addPlugins(plugins.basePlugins),
   env('development', [
+    entryPoint('./src/index.dev.js'),
     sourceMaps(),
     devServer(),
     devServer.proxy({
-      '/api/*': { target: 'http://localhost:8080' }
-    })
+      '/api/*': { target: 'http://localhost:4000' }
+    }),
+    addPlugins(plugins.devPlugins)
   ]),
   env('production', [
+    entryPoint('./src/index.js'),
     extractText(),
-    addPlugins(productionPlugins)
+    addPlugins(plugins.productionPlugins)
   ])
 ])

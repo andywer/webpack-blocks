@@ -1,0 +1,24 @@
+{
+  "name": "@webpack-blocks/dev-server2",
+  "version": "0.1.0",
+  "description": "Webpack block for the webpack dev server.",
+  "main": "lib/index",
+  "license": "MIT",
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "scripts": {
+    "test": "standard",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.11"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  }
+}
