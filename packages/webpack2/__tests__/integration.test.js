@@ -2,7 +2,7 @@ import test from 'ava'
 import { createConfig, entryPoint, setOutput, sourceMaps } from '../index'
 import babel from '@webpack-blocks/babel6'
 import cssModules from '@webpack-blocks/css-modules'
-import devServer from '@webpack-blocks/dev-server'
+import devServer from '@webpack-blocks/dev-server2'
 import sass from '@webpack-blocks/sass'
 
 test('complete webpack config creation', (t) => {
