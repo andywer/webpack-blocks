@@ -21,7 +21,7 @@ function babel (options) {
         {
           test: fileTypes('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'babel?cacheDirectory' ]
+          loaders: [ 'babel-loader?cacheDirectory' ]
         }
       ]
     }

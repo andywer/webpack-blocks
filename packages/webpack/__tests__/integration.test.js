@@ -25,37 +25,37 @@ test('complete webpack config creation', (t) => {
   t.is(webpackConfig.module.loaders.length, 8)
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.(sass|scss)$/,
-    loaders: [ 'style', 'css', 'sass' ]
+    loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.css$/,
     exclude: [ /\/node_modules\// ],
-    loaders: [ 'style', 'css?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
+    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
   })
   t.deepEqual(webpackConfig.module.loaders[2], {
     test: /\.(js|jsx)$/,
     exclude: [ /\/node_modules\// ],
-    loaders: [ 'babel?cacheDirectory' ]
+    loaders: [ 'babel-loader?cacheDirectory' ]
   })
   t.deepEqual(webpackConfig.module.loaders[3], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
-    loaders: [ 'file' ]
+    loaders: [ 'file-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[4], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
-    loaders: [ 'file' ]
+    loaders: [ 'file-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.json$/,
-    loaders: [ 'json' ]
+    loaders: [ 'json-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[6], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-    loaders: [ 'url' ]
+    loaders: [ 'url-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[7], {
     test: /\.(mp4|webm)$/,
-    loaders: [ 'url' ]
+    loaders: [ 'url-loader' ]
   })
 
   t.deepEqual(webpackConfig.entry, [ './src/main.js', 'webpack/hot/only-dev-server' ])
@@ -75,6 +75,8 @@ test('complete webpack config creation', (t) => {
   })
 
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
+
+  t.deepEqual(webpackConfig.resolve.extensions.sort(), [ '.js', '.json', '.jsx' ])
 
   t.deepEqual(Object.keys(webpackConfig).sort(), [
     'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'

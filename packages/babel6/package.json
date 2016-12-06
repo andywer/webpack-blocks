@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/babel6",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Webpack block for babel 6+.",
   "main": "lib/index",
   "license": "MIT",

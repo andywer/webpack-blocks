@@ -15,7 +15,7 @@ function sass () {
       loaders: [
         {
           test: fileTypes('text/x-sass'),
-          loaders: [ 'style', 'css', 'sass' ]
+          loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
         }
       ]
     }

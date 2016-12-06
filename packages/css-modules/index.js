@@ -30,7 +30,7 @@ function cssModules (options) {
         {
           test: fileTypes('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'style', 'css?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]
+          loaders: [ 'style-loader', 'css-loader?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]
         }
       ]
     }
