@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## 0.1.4
+
+- Use explicit `-loader` suffix
+
 ## 0.1.3
 
 - Bugfix: `context` and `output.path` paths are now absolute as they are supposed to be

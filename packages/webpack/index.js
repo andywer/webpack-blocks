@@ -39,22 +39,22 @@ function createBaseConfig (fileTypes) {
         {
           test: fileTypes('text/css'),
           exclude: [ /\/node_modules\// ],
-          loaders: [ 'style', 'css' ]
+          loaders: [ 'style-loader', 'css-loader' ]
         }, {
           test: fileTypes('image'),
-          loaders: [ 'file' ]
+          loaders: [ 'file-loader' ]
         }, {
           test: fileTypes('application/font'),
-          loaders: [ 'file' ]
+          loaders: [ 'file-loader' ]
         }, {
           test: fileTypes('application/json'),
-          loaders: [ 'json' ]
+          loaders: [ 'json-loader' ]
         }, {
           test: fileTypes('audio'),
-          loaders: [ 'url' ]
+          loaders: [ 'url-loader' ]
         }, {
           test: fileTypes('video'),
-          loaders: [ 'url' ]
+          loaders: [ 'url-loader' ]
         }
       ]
     },

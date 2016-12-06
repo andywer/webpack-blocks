@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/sass",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Webpack block for SASS.",
   "main": "lib/index",
   "license": "MIT",

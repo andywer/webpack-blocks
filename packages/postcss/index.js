@@ -22,7 +22,7 @@ function postcss (plugins, options) {
         {
           test: fileTypes('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'postcss' ]
+          loaders: [ 'postcss-loader' ]
         }
       ]
     },
