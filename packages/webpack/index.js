@@ -39,28 +39,28 @@ function createBaseConfig (fileTypes) {
         {
           test: fileTypes('text/css'),
           exclude: [ /\/node_modules\// ],
-          loaders: [ 'style', 'css' ]
+          loaders: [ 'style-loader', 'css-loader' ]
         }, {
           test: fileTypes('image'),
-          loaders: [ 'file' ]
+          loaders: [ 'file-loader' ]
         }, {
           test: fileTypes('application/font'),
-          loaders: [ 'file' ]
+          loaders: [ 'file-loader' ]
         }, {
           test: fileTypes('application/json'),
-          loaders: [ 'json' ]
+          loaders: [ 'json-loader' ]
         }, {
           test: fileTypes('audio'),
-          loaders: [ 'url' ]
+          loaders: [ 'url-loader' ]
         }, {
           test: fileTypes('video'),
-          loaders: [ 'url' ]
+          loaders: [ 'url-loader' ]
         }
       ]
     },
 
     resolve: {
-      extensions: [ '.js', '.jsx', '.json', '' ]
+      extensions: [ '.js', '.jsx', '.json' ]
     }
   }
 }
@@ -103,7 +103,7 @@ function resolveAliases (aliases) {
  */
 function setContext (contextPath) {
   return () => ({
-    context: contextPath
+    context: path.resolve(contextPath)
   })
 }
 
@@ -119,10 +119,10 @@ function setDevTool (devtool) {
  */
 function setOutput (output) {
   if (typeof output === 'string') {
-    return setOutput({
+    output = {
       filename: path.basename(output) || 'bundle.js',
-      path: path.dirname(output) || './build'
-    })
+      path: path.resolve(path.dirname(output) || './build')
+    }
   }
 
   return () => ({ output })
