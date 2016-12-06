@@ -60,7 +60,7 @@ function createBaseConfig (fileTypes) {
     },
 
     resolve: {
-      extensions: [ '.js', '.jsx', '.json', '' ]
+      extensions: [ '.js', '.jsx', '.json' ]
     }
   }
 }
