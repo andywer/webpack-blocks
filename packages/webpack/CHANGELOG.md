@@ -3,6 +3,7 @@
 ## 0.1.4
 
 - Use explicit `-loader` suffix
+- Remove empty string from `resolve.extensions`
 
 ## 0.1.3
 
