@@ -1,4 +1,5 @@
 import test from 'ava'
+import path from 'path'
 import { createConfig, entryPoint, setOutput, sourceMaps } from '../index'
 import babel from '@webpack-blocks/babel6'
 import cssModules from '@webpack-blocks/css-modules'
@@ -70,7 +71,7 @@ test('complete webpack config creation', (t) => {
 
   t.deepEqual(webpackConfig.output, {
     filename: 'bundle.js',
-    path: './build'
+    path: path.resolve('./build')
   })
 
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
