@@ -32,12 +32,12 @@ npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
 
 ## Usage
 
-Create a development config with Babel support, dev server, HMR and PostCSS autoprefixer:
+Create a webpack 2 config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
-const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack2')
 const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
+const devServer = require('@webpack-blocks/dev-server2')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
@@ -82,10 +82,13 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [babel6](./packages/babel6)
 - [css-modules](./packages/css-modules)
 - [dev-server](./packages/dev-server)
+- [dev-server2](./packages/dev-server2) *(for Webpack 2)*
 - [extract-text](./packages/extract-text)
+- [extract-text2](./packages/extract-text2) *(for Webpack 2)*
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
-- [webpack](./packages/webpack) *(Webpack base config)*
+- [webpack](./packages/webpack) *(Webpack 1 base config)*
+- [webpack2](./packages/webpack2) *(Webpack 2 base config)*
 
 Missing something? Write and publish your own webpack blocks!
 
