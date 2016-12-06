@@ -1,6 +1,7 @@
 # Webpack blocks - Webpack Dev Server for Webpack 2
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/dev-server2.svg)](https://www.npmjs.com/package/@webpack-blocks/dev-server2)
 
 This is the `dev-server` block providing webpack dev server configuration.
 
