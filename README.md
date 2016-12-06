@@ -197,7 +197,7 @@ function babel (options) {
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
           test: context.fileType('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'babel?cacheDirectory' ]
+          loaders: [ 'babel-loader?cacheDirectory' ]
         }
       ]
     }
@@ -234,7 +234,7 @@ module.exports = createConfig([
   customConfig({
     // Add some custom webpack config snippet
     resolve: {
-      extensions: [ '', '.js', '.es6' ]
+      extensions: [ '.js', '.es6' ]
     }
   })
 ])
