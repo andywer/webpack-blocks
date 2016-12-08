@@ -128,6 +128,7 @@ function babel (options) {
 
 You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
 
+Add a README and a package.json indicating the loader dependency and you are ready to ship.
 
 ## I need some custom webpack config snippet!
 
