@@ -40,39 +40,39 @@ function devServer (options, entry) {
   })
 }
 
-function addDevEntry(devServerEntry, config) {
+function addDevEntry (devServerEntry, config) {
   if (typeof devServerEntry === 'string') {
-    devServerEntry = [devServerEntry];
+    devServerEntry = [devServerEntry]
   }
 
   if (!config.entry) {
-    config.entry = [];
+    config.entry = []
   } else if (typeof config.entry === 'string') {
-    config.entry = [config.entry];
+    config.entry = [config.entry]
   }
 
   if (typeof config.entry === 'object') {
     if (Array.isArray(config.entry)) {
-      return devServerEntry.concat(config.entry);
+      return devServerEntry.concat(config.entry)
     } else {
-      var entry = {};
+      var entry = {}
 
       // Adding dev server to all entries
       for (let chunkName in config.entry) {
-        var chunkEntry = config.entry[chunkName];
+        var chunkEntry = config.entry[chunkName]
 
         if (typeof chunkEntry === 'string') {
-          chunkEntry = [chunkEntry];
+          chunkEntry = [chunkEntry]
         }
 
-        entry[chunkName] = devServerEntry.concat(chunkEntry);
+        entry[chunkName] = devServerEntry.concat(chunkEntry)
       }
 
-      return entry;
+      return entry
     }
   }
 
-  return devServerEntry;
+  return devServerEntry
 }
 
 /**
