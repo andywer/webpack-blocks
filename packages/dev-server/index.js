@@ -41,39 +41,18 @@ function devServer (options, entry) {
 }
 
 function addDevEntry (devServerEntry, config) {
-  if (typeof devServerEntry === 'string') {
+  if (!Array.isArray(devServerEntry)) {
     devServerEntry = [devServerEntry]
   }
 
-  var configEntry = config.entry
-  if (!configEntry) {
-    configEntry = []
-  } else if (typeof configEntry === 'string') {
-    configEntry = [configEntry]
+  var entry = {}
+
+  // We need dev-server on every entry
+  for (var chunkName in config.entry) {
+    entry[chunkName] = devServerEntry
   }
 
-  if (typeof configEntry === 'object') {
-    if (Array.isArray(configEntry)) {
-      return devServerEntry
-    } else {
-      var entry = {}
-
-      // Merging has to be done manually when using multiple entry points
-      for (let chunkName in configEntry) {
-        var chunkEntry = configEntry[chunkName]
-
-        if (typeof chunkEntry === 'string') {
-          chunkEntry = [chunkEntry]
-        }
-
-        entry[chunkName] = chunkEntry.concat(devServerEntry)
-      }
-
-      return entry
-    }
-  }
-
-  return devServerEntry
+  return entry
 }
 
 /**
