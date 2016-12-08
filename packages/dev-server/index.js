@@ -27,17 +27,52 @@ function devServer (options, entry) {
     entry = entry || 'webpack/hot/only-dev-server'
   }
 
-  return (fileTypes) => ({
+  return (fileTypes, config) => ({
     devServer: Object.assign({
       hot: true,
       historyApiFallback: true,
       inline: true
     }, options),
-    entry: Array.isArray(entry) ? entry : [ entry ],
+    entry: addDevEntry(entry, config),
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
   })
+}
+
+function addDevEntry(devServerEntry, config) {
+  if (typeof devServerEntry === 'string') {
+    devServerEntry = [devServerEntry];
+  }
+
+  if (!config.entry) {
+    config.entry = [];
+  } else if (typeof config.entry === 'string') {
+    config.entry = [config.entry];
+  }
+
+  if (typeof config.entry === 'object') {
+    if (Array.isArray(config.entry)) {
+      return devServerEntry.concat(config.entry);
+    } else {
+      var entry = {};
+
+      // Adding dev server to all entries
+      for (let chunkName in config.entry) {
+        var chunkEntry = config.entry[chunkName];
+
+        if (typeof chunkEntry === 'string') {
+          chunkEntry = [chunkEntry];
+        }
+
+        entry[chunkName] = devServerEntry.concat(chunkEntry);
+      }
+
+      return entry;
+    }
+  }
+
+  return devServerEntry;
 }
 
 /**
