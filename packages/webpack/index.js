@@ -88,9 +88,9 @@ function normalizeEntry (entry) {
       main: [ entry ]
     }
   } else if (typeof entry === 'object') {
-    Object.keys(entry).forEach(function normalizeNamedEntry (entryName) {
+    Object.keys(entry).forEach((entryName) => {
       if (!Array.isArray(entry[entryName])) {
-        entry[entryName] = [entry[entryName]]
+        entry[entryName] = [ entry[entryName] ]
       }
     })
     return entry
