@@ -27,32 +27,32 @@ function devServer (options, entry) {
     entry = entry || 'webpack/hot/only-dev-server'
   }
 
+  entry = Array.isArray(entry) ? entry : [ entry ]
+
   return (fileTypes, config) => ({
     devServer: Object.assign({
       hot: true,
       historyApiFallback: true,
       inline: true
     }, options),
-    entry: addDevEntry(entry, config),
+    entry: addDevEntryToAll(config.entry || {}, entry),
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
   })
 }
 
-function addDevEntry (devServerEntry, config) {
-  if (!Array.isArray(devServerEntry)) {
-    devServerEntry = [devServerEntry]
-  }
+function addDevEntryToAll (presentEntryPoints, devServerEntry) {
+  const newEntryPoints = {}
 
-  var entry = {}
+  // Add dev-server to every entry point
+  Object.keys(presentEntryPoints).forEach((chunkName) => {
+    // It's fine to just set the `devServerEntry`, instead of concat()-ing the present ones.
+    // Will be concat()-ed by webpack-merge (see `createConfig()`)
+    newEntryPoints[ chunkName ] = devServerEntry
+  })
 
-  // We need dev-server on every entry
-  for (var chunkName in config.entry) {
-    entry[chunkName] = devServerEntry
-  }
-
-  return entry
+  return newEntryPoints
 }
 
 /**
