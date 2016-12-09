@@ -23,11 +23,20 @@
     "@webpack-blocks/core": "^0.1.1"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
-    "standard": "^8.1.0",
-    "@webpack-blocks/babel6": "^0.1.0",
-    "@webpack-blocks/css-modules": "^0.1.0",
+    "@webpack-blocks/babel6": "^0.1.1",
+    "@webpack-blocks/css-modules": "^0.1.1",
     "@webpack-blocks/dev-server2": "^0.1.0",
-    "@webpack-blocks/sass": "^0.1.0"
+    "@webpack-blocks/extract-text2": "^0.1.0",
+    "@webpack-blocks/postcss": "^0.1.1",
+    "@webpack-blocks/sass": "^0.1.1",
+    "ava": "^0.16.0",
+    "babel-loader": "^6.2.9",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "mz": "^2.6.0",
+    "postcss-loader": "^1.2.0",
+    "precss": "^1.4.0",
+    "standard": "^8.1.0",
+    "style-loader": "^0.13.1"
   }
 }
