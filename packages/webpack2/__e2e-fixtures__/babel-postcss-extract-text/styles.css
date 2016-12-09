@@ -1,0 +1,5 @@
+$MARGIN: 40px;
+
+.app {
+  margin: $MARGIN;
+}
