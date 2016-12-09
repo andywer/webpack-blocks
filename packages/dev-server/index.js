@@ -27,17 +27,32 @@ function devServer (options, entry) {
     entry = entry || 'webpack/hot/only-dev-server'
   }
 
-  return (fileTypes) => ({
+  return (fileTypes, config) => ({
     devServer: Object.assign({
       hot: true,
       historyApiFallback: true,
       inline: true
     }, options),
-    entry: Array.isArray(entry) ? entry : [ entry ],
+    entry: addDevEntry(entry, config),
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
   })
+}
+
+function addDevEntry (devServerEntry, config) {
+  if (!Array.isArray(devServerEntry)) {
+    devServerEntry = [devServerEntry]
+  }
+
+  var entry = {}
+
+  // We need dev-server on every entry
+  for (var chunkName in config.entry) {
+    entry[chunkName] = devServerEntry
+  }
+
+  return entry
 }
 
 /**

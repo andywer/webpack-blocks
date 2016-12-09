@@ -70,8 +70,25 @@ function createBaseConfig (fileTypes) {
  */
 function entryPoint (entry) {
   return () => ({
-    entry: typeof entry === 'string' ? [ entry ] : entry
+    entry: normalizeEntry(entry)
   })
+}
+
+function normalizeEntry (entry) {
+  if (typeof entry === 'object') {
+    if (Array.isArray(entry)) {
+      return { main: entry }
+    } else {
+      Object.keys(entry).forEach(function normalizeNamedEntry (entryName) {
+        if (!Array.isArray(entry[entryName])) {
+          entry[entryName] = [entry[entryName]]
+        }
+      })
+      return entry
+    }
+  }
+
+  return { main: [entry] }
 }
 
 /**
