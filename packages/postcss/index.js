@@ -7,25 +7,26 @@
 module.exports = postcss
 
 /**
- * @param {PostCSSPlugin[]} plugins
+ * @param {PostCSSPlugin[]} [plugins]                     Will read `postcss.config.js` file if not supplied.
  * @param {object}          [options]
- * @param {RegExp, Function, string}  [options.exclude]         Directories to exclude.
+ * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
 function postcss (plugins, options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => ({
+  return (fileTypes) => Object.assign({
     module: {
       loaders: [
         {
           test: fileTypes('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'postcss-loader' ]
+          loaders: [ 'style-loader', 'css-loader', 'postcss-loader' ]
         }
       ]
-    },
+    }
+  }, plugins ? {
     postcss: plugins
-  })
+  } : {})
 }
