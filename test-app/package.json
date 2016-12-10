@@ -15,5 +15,6 @@
     "@webpack-blocks/dev-server": "^0.1.0",
     "@webpack-blocks/extract-text": "^0.1.0",
     "@webpack-blocks/webpack": "^0.1.1"
-  }
+  },
+  "engines": { "node": ">= 5.0" }
 }
