@@ -16,6 +16,9 @@
     "feature",
     "functional"
   ],
+  "ava": {
+    "require": ["babel-register"]
+  },
   "babel": {
     "presets": [
       "es2015"
