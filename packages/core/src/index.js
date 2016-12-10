@@ -43,8 +43,15 @@ function env (envName, configSetters) {
 }
 
 function invokeConfigSetters (configSetters, fileTypes, baseConfig = {}) {
+  const getCompleteConfig = Object.keys(baseConfig).length > 0
+    ? (mergedConfig) => merge.smart(baseConfig, mergedConfig)
+    : (mergedConfig) => mergedConfig
+
   return configSetters.reduce(
-    (config, setter) => merge.smart(config, setter(fileTypes, config)),
-    baseConfig
+    (mergedConfig, setter) => {
+      const configPartial = setter(fileTypes, getCompleteConfig(mergedConfig))
+      return merge.smart(mergedConfig, configPartial)
+    },
+    {}
   )
 }
