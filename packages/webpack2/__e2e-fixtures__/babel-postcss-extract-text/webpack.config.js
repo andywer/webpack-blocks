@@ -1,6 +1,11 @@
-const {
-  addPlugins, createConfig, entryPoint, setOutput, webpack
-} = require('../../index')
+const webpack2 = require('../../index')
+
+// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
+const addPlugins = webpack2.addPlugins
+const createConfig = webpack2.createConfig
+const entryPoint = webpack2.entryPoint
+const setOutput = webpack2.setOutput
+const webpack = webpack2.webpack
 
 const babel = require('@webpack-blocks/babel6')
 const postcss = require('@webpack-blocks/postcss')

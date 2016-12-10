@@ -1,5 +1,12 @@
+const webpack2 = require('../../index')
+
+// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
+const createConfig = webpack2.createConfig
+const customConfig = webpack2.customConfig
+const entryPoint = webpack2.entryPoint
+const setOutput = webpack2.setOutput
+
 const path = require('path')
-const { createConfig, customConfig, entryPoint, setOutput } = require('../../index')
 
 module.exports = createConfig([
   entryPoint(
