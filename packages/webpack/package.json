@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Webpack block for the webpack 1.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -27,7 +27,7 @@
     "standard": "^8.1.0",
     "@webpack-blocks/babel6": "^0.1.0",
     "@webpack-blocks/css-modules": "^0.1.0",
-    "@webpack-blocks/dev-server": "^0.1.0",
+    "@webpack-blocks/dev-server": "^0.2.0",
     "@webpack-blocks/sass": "^0.1.0"
   }
 }
