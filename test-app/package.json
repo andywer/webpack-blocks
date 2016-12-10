@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
+    "build:dll": "webpack --display-chunks --color --config webpack.dll.babel.js",
     "start": "NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
   },
   "engines": {
