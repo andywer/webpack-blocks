@@ -15,11 +15,11 @@ function babel (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [
         {
-          test: fileTypes('application/javascript'),
+          test: context.fileTypes('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'babel-loader?cacheDirectory' ]
         }

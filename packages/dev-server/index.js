@@ -5,11 +5,30 @@
  */
 
 const webpack = require('webpack')
+const webpackBlocks = require('@webpack-blocks/core')
 
 module.exports = devServer
 
 devServer.proxy = proxy
 devServer.reactHot = reactHot
+
+webpackBlocks.addPostHook(function devServerPostHook (context, config) {
+  if (!context.devServer) {
+    return
+  }
+
+  return {
+    devServer: Object.assign({
+      hot: true,
+      historyApiFallback: true,
+      inline: true
+    }, context.devServer.options),
+    entry: addDevEntryToAll(config.entry || {}, context.devServer.entry),
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ]
+  }
+})
 
 /**
  * @param {object} [options]    See https://webpack.github.io/docs/configuration.html#devserver
@@ -29,17 +48,10 @@ function devServer (options, entry) {
 
   entry = Array.isArray(entry) ? entry : [ entry ]
 
-  return (fileTypes, config) => ({
-    devServer: Object.assign({
-      hot: true,
-      historyApiFallback: true,
-      inline: true
-    }, options),
-    entry: addDevEntryToAll(config.entry || {}, entry),
-    plugins: [
-      new webpack.HotModuleReplacementPlugin()
-    ]
-  })
+  return (context, config) => {
+    context.devServer = { options, entry }
+    return {}
+  }
 }
 
 function addDevEntryToAll (presentEntryPoints, devServerEntry) {
@@ -79,10 +91,10 @@ function reactHot (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [{
-        test: fileTypes('application/javascript'),
+        test: context.fileTypes('application/javascript'),
         exclude: Array.isArray(exclude) ? exclude : [ exclude ],
         loaders: [ 'react-hot' ]
       }]

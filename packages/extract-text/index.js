@@ -15,8 +15,8 @@ module.exports = extractText
 function extractText (outputFilePattern) {
   outputFilePattern = outputFilePattern || 'css/[name].[contenthash:8].css'
 
-  return (fileTypes, webpackConfig) => {
-    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === fileTypes('text/css'))
+  return (context, webpackConfig) => {
+    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === context.fileTypes('text/css'))
 
     if (!cssLoader) {
       throw new Error(`CSS loader could not be found in webpack config.`)
@@ -26,7 +26,7 @@ function extractText (outputFilePattern) {
       module: {
         loaders: [
           {
-            test: fileTypes('text/css'),
+            test: context.fileTypes('text/css'),
             exclude: cssLoader.exclude,
             loader: ExtractTextPlugin.extract.apply(null, cssLoader.loaders),
             loaders: undefined
