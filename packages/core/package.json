@@ -7,7 +7,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "build": "babel src/ -d lib/ --source-maps",
-    "test": "standard",
+    "test": "standard && ava src/**/__tests__",
     "prepublish": "npm run build && npm test"
   },
   "keywords": [
@@ -24,8 +24,10 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "devDependencies": {
+    "ava": "^0.17.0",
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
+    "sinon": "^1.17.6",
     "standard": "^8.1.0",
     "webpack": "^1.13.2"
   },
