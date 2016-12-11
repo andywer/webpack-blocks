@@ -37,6 +37,7 @@
     "node-sass": "^3.4.2",
     "postcss-loader": "^1.2.0",
     "precss": "^1.4.0",
+    "sass-loader": "^4.0.2",
     "standard": "^8.1.0",
     "style-loader": "^0.13.1"
   }
