@@ -58,7 +58,9 @@ test('complete webpack config creation', (t) => {
     loaders: [ 'url-loader' ]
   })
 
-  t.deepEqual(webpackConfig.entry, [ './src/main.js', 'webpack/hot/only-dev-server' ])
+  t.deepEqual(webpackConfig.entry, {
+    main: [ './src/main.js', 'webpack/hot/only-dev-server' ]
+  })
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
