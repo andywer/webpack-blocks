@@ -1,7 +1,10 @@
 {
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "start": "NODE_ENV=development webpack-dev-server --config webpack.config.js"
+    "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
+    "start": "NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
+  },
+  "engines": {
+    "node": ">= 5.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.16.0",

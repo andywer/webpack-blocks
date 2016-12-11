@@ -28,6 +28,13 @@ module.exports = createConfig([
 ```
 
 
+## Pitfalls
+
+Make sure you use this `dev-server` block after your `entryPoint()` blocks. The dev server will extend all of them with the `'webpack/hot/only-dev-server'` entry point by default.
+
+If you sense that this might be a major problem for you, feel free to engage in the [pre/post-processing discussion](https://github.com/andywer/webpack-blocks/issues/25).
+
+
 ## Webpack blocks
 
 Check out the
