@@ -1,12 +1,12 @@
 {
   "name": "@webpack-blocks/dev-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Webpack block for the webpack dev server.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard",
+    "test": "standard && ava",
     "prepublish": "npm test"
   },
   "engines": {
@@ -19,6 +19,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "standard": "^8.1.0"
   }
 }
