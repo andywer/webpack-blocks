@@ -34,6 +34,7 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "mz": "^2.6.0",
+    "node-sass": "^3.4.2",
     "postcss-loader": "^1.2.0",
     "precss": "^1.4.0",
     "standard": "^8.1.0",
