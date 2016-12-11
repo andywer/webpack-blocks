@@ -71,6 +71,21 @@ Check out the [sample app](./test-app) to see a [webpack config](./test-app/webp
 Missing something? Write and publish your own webpack blocks!
 
 
+## Webpack 2
+
+Looking for webpack 2 support? It's currently in beta. One of the nice gimmicks of using webpack-blocks is that you can switch between webpack versions in an instant!
+
+Just use the webpack 2 versions of the following blocks:
+
+```
+@webpack-blocks/webpack -> @webpack-blocks/webpack2
+@webpack-blocks/dev-server -> @webpack-blocks/dev-server2
+@webpack-blocks/extract-text -> @webpack-blocks/extract-text2
+```
+
+That's it! You can also have a look at the [end-to-end test projects](https://github.com/andywer/webpack-blocks/tree/feature/webpack2/packages/webpack2/__e2e-fixtures__) to see an example.
+
+
 ## Design principles
 
 - Extensibility first
