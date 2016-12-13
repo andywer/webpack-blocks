@@ -31,7 +31,14 @@ function devServer (options, entry) {
 
   const devServerBlock = (context) => {
     context.devServer = true
-    return {}
+    
+    return {
+      devServer: Object.assign({
+        hot: true,
+        historyApiFallback: true,
+        inline: true
+      }, options),
+    }
   }
 
   devServerBlock.post = (context, config) => {
@@ -40,11 +47,6 @@ function devServer (options, entry) {
     }
 
     return {
-      devServer: Object.assign({
-        hot: true,
-        historyApiFallback: true,
-        inline: true
-      }, options),
       entry: addDevEntryToAll(config.entry || {}, entry),
       plugins: [
         new webpack.HotModuleReplacementPlugin()

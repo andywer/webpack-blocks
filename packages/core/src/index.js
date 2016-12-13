@@ -49,7 +49,7 @@ function getHooks (configSetters, type) {
 
   // Keep each hooks only once
   return hooks.filter((hook, index) =>
-    hooks.findIndex(findingHook => hook.toString() == findingHook.toString()) === index
+    hooks.findIndex(findingHook => hook.toString() === findingHook.toString()) === index
   )
 }
 
