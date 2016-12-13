@@ -31,13 +31,13 @@ function devServer (options, entry) {
 
   const devServerBlock = (context) => {
     context.devServer = true
-    
+
     return {
       devServer: Object.assign({
         hot: true,
         historyApiFallback: true,
         inline: true
-      }, options),
+      }, options)
     }
   }
 
