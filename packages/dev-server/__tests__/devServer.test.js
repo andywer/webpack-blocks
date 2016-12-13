@@ -1,29 +1,33 @@
 import test from 'ava'
-import { createConfig, entryPoint } from '../../webpack'
 import devServer from '../index'
 
 test('devServer() add himself to every entries', (t) => {
-  const config = createConfig([
-    entryPoint({
-      main: [ './test.js' ],
-      second: [ './second.js' ]
-    }),
-    devServer('entry')
-  ])
+  const currentConfig = {
+    entry: {
+      main: ['./test.js'],
+      second: ['./second.js']
+    }
+  }
 
-  t.deepEqual(config.entry, {
-    main: [ './test.js', 'entry' ],
-    second: [ './second.js', 'entry' ]
-  })
+  const context = {}
+  const block = devServer('entry')
+  block(context, currentConfig)
+
+  const config = block.post(context, currentConfig)
+  t.deepEqual(config.entry, { main: ['entry'], second: ['entry'] })
 })
 
 test('devServer() use webpack/hot/only-dev-server as default', (t) => {
-  const config = createConfig([
-    entryPoint({
-      main: [ './test.js' ]
-    }),
-    devServer()
-  ])
+  const currentConfig = {
+    entry: {
+      main: ['./test.js']
+    }
+  }
 
-  t.deepEqual(config.entry.main, [ './test.js', 'webpack/hot/only-dev-server' ])
+  const context = {}
+  const block = devServer()
+  block(context, currentConfig)
+
+  const config = block.post(context, currentConfig)
+  t.deepEqual(config.entry.main, ['webpack/hot/only-dev-server'])
 })

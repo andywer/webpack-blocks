@@ -4,41 +4,8 @@ const defaultFileTypes = require('./defaultFileTypes')
 
 exports.createConfig = createConfig
 exports.env = env
-exports.addPreHook = addPreHook
-exports.addPostHook = addPostHook
 
 const isFunction = (value) => typeof value === 'function'
-
-const preHooks = []
-const postHooks = []
-
-/**
- * Allow you to do some pre-processing before the configuration
- * is being built with blocks.
- *
- * @param {Function[]} callback  Function called before the blocks are set
- */
-function addPreHook (callback) {
-  if (!isFunction(callback)) {
-    throw new Error(`Expected parameter 'callback' to be a function.`)
-  }
-
-  preHooks.push(callback)
-}
-
-/**
- * Allow you to do some post-processing after the configuration
- * has been built with blocks.
- *
- * @param {Function[]} callback  Function called after the blocks are set
- */
-function addPostHook (callback) {
-  if (!isFunction(callback)) {
-    throw new Error(`Expected parameter 'callback' to be a function.`)
-  }
-
-  postHooks.push(callback)
-}
 
 /**
  * Takes an array of webpack blocks and creates a webpack config out of them.
@@ -57,11 +24,33 @@ function createConfig (configSetters) {
   const fileTypes = createFileTypesMapping(defaultFileTypes)
   const context = { fileTypes }
 
-  let config = invokeConfigSetters(preHooks, context)
+  const preSetters = getHooks(configSetters, 'pre')
+  const postSetters = getHooks(configSetters, 'post')
+
+  let config = invokeConfigSetters(preSetters, context)
   config = invokeConfigSetters(configSetters, context, {}, config)
-  config = invokeConfigSetters(postHooks, context, {}, config)
+  config = invokeConfigSetters(postSetters, context, {}, config)
 
   return config
+}
+
+function getHooks (configSetters, type) {
+  // Get all the hooks with the block
+  let hooks = configSetters
+    .filter(setter => setter[type])
+    .map(setter => setter[type])
+
+  // Get the hooks within the sub-blocks
+  configSetters
+    .filter(setter => setter.subSetters)
+    .forEach(setter => {
+      hooks = hooks.concat(getHooks(setter.subSetters, type))
+    })
+
+  // Keep each hooks only once
+  return hooks.filter((hook, index) =>
+    hooks.findIndex(findingHook => hook.toString() == findingHook.toString()) === index
+  )
 }
 
 /**
@@ -75,9 +64,14 @@ function createConfig (configSetters) {
 function env (envName, configSetters) {
   const currentEnv = process.env.NODE_ENV || 'development'
 
-  return currentEnv === envName
-    ? (context, config) => invokeConfigSetters(configSetters, context, config)
-    : () => ({})
+  if (currentEnv !== envName) {
+    return () => ({})
+  }
+
+  const envBlock = (context, config) => invokeConfigSetters(configSetters, context, config)
+  envBlock.subSetters = configSetters
+
+  return envBlock
 }
 
 function invokeConfigSetters (configSetters, context, baseConfig = {}, initialConfig = {}) {
