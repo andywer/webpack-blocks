@@ -30,7 +30,7 @@ function devServer (options, entry) {
   entry = Array.isArray(entry) ? entry : [ entry ]
 
   const devServerBlock = (context) => {
-    context.devServer = true
+    context.devServer = { entry }
 
     return {
       devServer: Object.assign({
@@ -41,20 +41,20 @@ function devServer (options, entry) {
     }
   }
 
-  devServerBlock.post = (context, config) => {
-    if (!context.devServer) {
-      return {}
-    }
+  return Object.assign(devServerBlock, { post: devServerPost })
+}
 
-    return {
-      entry: addDevEntryToAll(config.entry || {}, entry),
-      plugins: [
-        new webpack.HotModuleReplacementPlugin()
-      ]
-    }
+function devServerPost (context, config) {
+  if (!context.devServer) {
+    return {}
   }
 
-  return devServerBlock
+  return {
+    entry: addDevEntryToAll(config.entry || {}, context.devServer.entry),
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ]
+  }
 }
 
 function addDevEntryToAll (presentEntryPoints, devServerEntry) {
