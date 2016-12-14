@@ -41,10 +41,10 @@ function devServer (options, entry) {
     }
   }
 
-  return Object.assign(devServerBlock, { post: devServerPost })
+  return Object.assign(devServerBlock, { post: postConfig })
 }
 
-function devServerPost (context, config) {
+function postConfig (context, config) {
   if (!context.devServer) {
     return {}
   }
