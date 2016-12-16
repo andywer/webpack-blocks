@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/sass",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Webpack block for SASS.",
   "main": "lib/index",
   "license": "MIT",
@@ -16,6 +16,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "css-loader": "^0.25.0",
+    "node-sass": "^3.4.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1"
   },
