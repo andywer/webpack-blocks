@@ -36,19 +36,28 @@ function createConfig (configSetters) {
 
 function getHooks (configSetters, type) {
   // Get all the hooks with the block
-  let hooks = configSetters
+  const hooks = configSetters
     .filter(setter => setter[type])
     .map(setter => setter[type])
 
-  // Get the hooks within the sub-blocks
-  configSetters
-    .filter(setter => setter.subSetters)
-    .forEach(setter => {
-      hooks = hooks.concat(getHooks(setter.subSetters, type))
-    })
+  let flattenHooks = []
+  hooks.forEach(hook => {
+    if (Array.isArray(hook)) {
+      flattenHooks = flattenHooks.concat(hook)
+    } else {
+      flattenHooks.push(hook)
+    }
+  })
 
   // Keep each hooks only once
-  return hooks.filter((hook, index) => hooks.indexOf(hook) === index)
+  return flattenHooks.filter((hook, index) => flattenHooks.indexOf(hook) === index)
+}
+
+function groupHooks (block, configSetters) {
+  const pre = getHooks(configSetters, 'pre')
+  const post = getHooks(configSetters, 'post')
+
+  return Object.assign(block, { pre, post })
 }
 
 /**
@@ -67,9 +76,8 @@ function env (envName, configSetters) {
   }
 
   const envBlock = (context, config) => invokeConfigSetters(configSetters, context, config)
-  envBlock.subSetters = configSetters
 
-  return envBlock
+  return groupHooks(envBlock, configSetters)
 }
 
 function invokeConfigSetters (configSetters, context, baseConfig = {}, initialConfig = {}) {
