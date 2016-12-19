@@ -9,6 +9,7 @@ const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
 
 exports.env = core.env
+exports.group = core.group
 exports.webpack = webpack
 
 exports.addPlugins = addPlugins
