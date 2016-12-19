@@ -3,6 +3,7 @@ const createFileTypesMapping = require('./createFileTypesMapping')
 const defaultFileTypes = require('./defaultFileTypes')
 
 exports.createConfig = createConfig
+exports.group = group
 exports.env = env
 
 const isFunction = (value) => typeof value === 'function'
@@ -24,40 +25,11 @@ function createConfig (configSetters) {
   const fileTypes = createFileTypesMapping(defaultFileTypes)
   const context = { fileTypes }
 
-  const preSetters = getHooks(configSetters, 'pre')
-  const postSetters = getHooks(configSetters, 'post')
+  invokePreHooks(configSetters, context)
+  const config = invokeConfigSetters(configSetters, context, {}, config)
+  const postProcessedConfig = invokePostHooks(configSetters, context, config)
 
-  let config = invokeConfigSetters(preSetters, context)
-  config = invokeConfigSetters(configSetters, context, {}, config)
-  config = invokeConfigSetters(postSetters, context, {}, config)
-
-  return config
-}
-
-function getHooks (configSetters, type) {
-  // Get all the hooks with the block
-  const hooks = configSetters
-    .filter(setter => setter[type])
-    .map(setter => setter[type])
-
-  let flattenHooks = []
-  hooks.forEach(hook => {
-    if (Array.isArray(hook)) {
-      flattenHooks = flattenHooks.concat(hook)
-    } else {
-      flattenHooks.push(hook)
-    }
-  })
-
-  // Keep each hooks only once
-  return flattenHooks.filter((hook, index) => flattenHooks.indexOf(hook) === index)
-}
-
-function groupHooks (block, configSetters) {
-  const pre = getHooks(configSetters, 'pre')
-  const post = getHooks(configSetters, 'post')
-
-  return Object.assign(block, { pre, post })
+  return postProcessedConfig
 }
 
 /**
@@ -73,11 +45,39 @@ function env (envName, configSetters) {
 
   if (currentEnv !== envName) {
     return () => ({})
+  } else {
+    return group(configSetters)
   }
+}
 
-  const envBlock = (context, config) => invokeConfigSetters(configSetters, context, config)
+/**
+ * Combines an array of blocks to a new joined block. Running this single block
+ * has the same effect as running all source blocks.
+ *
+ * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
+ * @return {Function}
+ */
+function group (configSetters) {
+  const pre = getHooks(configSetters, 'pre')
+  const post = getHooks(configSetters, 'post')
 
-  return groupHooks(envBlock, configSetters)
+  const groupBlock = (context, config) => invokeConfigSetters(configSetters, context, config)
+
+  return Object.assign(groupBlock, { pre, post })
+}
+
+function getHooks (configSetters, type) {
+  // Get all the blocks' pre/post hooks
+  const hooks = configSetters
+    .filter(setter => Boolean(setter[type]))
+    .map(setter => setter[type])
+
+  // Flatten the array (since each item might be an array as well)
+  const flattenedHooks = hooks
+    .map((hook) => Array.isArray(hook) ? hook : [ hook ])
+    .reduce((allHooks, someHooks) => allHooks.concat(someHooks), [])
+
+  return filterDuplicates(flattenedHooks)
 }
 
 function invokeConfigSetters (configSetters, context, baseConfig = {}, initialConfig = {}) {
@@ -92,4 +92,18 @@ function invokeConfigSetters (configSetters, context, baseConfig = {}, initialCo
     },
     initialConfig
   )
+}
+
+function invokePreHooks (configSetters, context) {
+  const preHooks = getHooks(configSetters, 'pre')
+  preHooks.forEach((hook) => hook(context))
+}
+
+function invokePostHooks (configSetters, context, config) {
+  const postHooks = getHooks(configSetters, 'post')
+  return invokeConfigSetters(postHooks, context, config, config)
+}
+
+function filterDuplicates (array) {
+  return array.filter((item, index) => array.indexOf(item) === index)
 }
