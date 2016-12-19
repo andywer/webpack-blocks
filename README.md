@@ -55,7 +55,7 @@ module.exports = createConfig([
 ])
 ```
 
-Check out the [sample app](./test-app) to see a [webpack config](./test-app/webpack.config.js) in action.
+Check out the [sample app](./test-app) to see a [webpack config](./test-app/webpack.config.babel.js) in action.
 
 
 ## Available webpack blocks
