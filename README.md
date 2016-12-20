@@ -4,7 +4,16 @@ Functional building blocks for the webpack config. Compose it using feature midd
 
 Missing anything? Write your own and share them!
 
-**Early release - Keep your seatbelt fastened.**
+**Beta release**
+
+
+## v0.3 Update note
+
+**v0.3 of webpack-blocks ships with a bunch of new features, but also with a major breaking change under the hood.**
+
+*Every* block has been updated, but you have to make sure **all webpack-blocks packages you use are version >= 0.3.0** or otherwise **all packages are < 0.3.0**.
+
+On the upside we don't consider it an early release anymore and the next major release you see might very well be `v1.0` 👌
 
 
 ## Installation
