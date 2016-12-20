@@ -4,7 +4,9 @@ Functional building blocks for the webpack config. Compose it using feature midd
 
 Missing anything? Write your own and share them!
 
-**Beta release**
+>"Finally, webpack config done right. (...) Webpack clearly wants to stay low-level. So it makes total sense to outsource configuring it to well designed blocks instead of copy-paste."
+>
+>[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
 
 ## v0.3 Update note
