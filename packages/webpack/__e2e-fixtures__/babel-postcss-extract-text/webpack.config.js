@@ -1,11 +1,10 @@
 const webpackBlock = require('../../index')
 
 // Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const addPlugins = webpackBlock.addPlugins
 const createConfig = webpackBlock.createConfig
+const defineConstants = webpackBlock.defineConstants
 const entryPoint = webpackBlock.entryPoint
 const setOutput = webpackBlock.setOutput
-const webpack = webpackBlock.webpack
 
 const babel = require('@webpack-blocks/babel6')
 const postcss = require('@webpack-blocks/postcss')
@@ -27,9 +26,7 @@ module.exports = createConfig([
   extractText(
     path.join('styles.css')
   ),
-  addPlugins([
-    new webpack.DefinePlugin({
-      'process.env': { TEST: '"This is the injected process.env.TEST!"' }
-    })
-  ])
+  defineConstants({
+    'process.env': { TEST: '"This is the injected process.env.TEST!"' }
+  })
 ])
