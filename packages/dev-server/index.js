@@ -29,17 +29,32 @@ function devServer (options, entry) {
 
   entry = Array.isArray(entry) ? entry : [ entry ]
 
-  return (fileTypes, config) => ({
-    devServer: Object.assign({
-      hot: true,
-      historyApiFallback: true,
-      inline: true
-    }, options),
-    entry: addDevEntryToAll(config.entry || {}, entry),
+  const devServerBlock = (context) => {
+    context.devServer = { entry }
+
+    return {
+      devServer: Object.assign({
+        hot: true,
+        historyApiFallback: true,
+        inline: true
+      }, options)
+    }
+  }
+
+  return Object.assign(devServerBlock, { post: postConfig })
+}
+
+function postConfig (context, config) {
+  if (!context.devServer) {
+    return {}
+  }
+
+  return {
+    entry: addDevEntryToAll(config.entry || {}, context.devServer.entry),
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
-  })
+  }
 }
 
 function addDevEntryToAll (presentEntryPoints, devServerEntry) {
@@ -79,10 +94,10 @@ function reactHot (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [{
-        test: fileTypes('application/javascript'),
+        test: context.fileTypes('application/javascript'),
         exclude: Array.isArray(exclude) ? exclude : [ exclude ],
         loaders: [ 'react-hot' ]
       }]

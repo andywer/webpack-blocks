@@ -13,9 +13,13 @@ const { createConfig } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
-  sass()
+  sass(/* node-sass options */)
 ])
 ```
+
+## Options
+
+You can pass random `sass-loader` options as an object to the `sass` block. Those options are basically identical with [node-sass' options](https://github.com/sass/node-sass#options).
 
 
 ## Webpack blocks

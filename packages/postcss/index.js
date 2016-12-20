@@ -16,11 +16,11 @@ function postcss (plugins, options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => Object.assign({
+  return (context) => Object.assign({
     module: {
       loaders: [
         {
-          test: fileTypes('text/css'),
+          test: context.fileTypes('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'style-loader', 'css-loader', 'postcss-loader' ]
         }

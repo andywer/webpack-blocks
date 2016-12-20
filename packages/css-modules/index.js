@@ -24,11 +24,11 @@ function cssModules (options) {
   const importLoaders = options.importLoaders || 1
   const localIdentName = options.localIdentName || localIdentDefault
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [
         {
-          test: fileTypes('text/css'),
+          test: context.fileTypes('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'style-loader', 'css-loader?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]
         }

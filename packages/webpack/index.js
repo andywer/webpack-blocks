@@ -9,6 +9,7 @@ const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
 
 exports.env = core.env
+exports.group = core.group
 exports.webpack = webpack
 
 exports.addPlugins = addPlugins
@@ -32,28 +33,28 @@ function createConfig (configSetters) {
   return core.createConfig([ createBaseConfig ].concat(configSetters))
 }
 
-function createBaseConfig (fileTypes) {
+function createBaseConfig (context) {
   return {
     module: {
       loaders: [
         {
-          test: fileTypes('text/css'),
+          test: context.fileTypes('text/css'),
           exclude: [ /\/node_modules\// ],
           loaders: [ 'style-loader', 'css-loader' ]
         }, {
-          test: fileTypes('image'),
+          test: context.fileTypes('image'),
           loaders: [ 'file-loader' ]
         }, {
-          test: fileTypes('application/font'),
+          test: context.fileTypes('application/font'),
           loaders: [ 'file-loader' ]
         }, {
-          test: fileTypes('application/json'),
+          test: context.fileTypes('application/json'),
           loaders: [ 'json-loader' ]
         }, {
-          test: fileTypes('audio'),
+          test: context.fileTypes('audio'),
           loaders: [ 'url-loader' ]
         }, {
-          test: fileTypes('video'),
+          test: context.fileTypes('video'),
           loaders: [ 'url-loader' ]
         }
       ]
