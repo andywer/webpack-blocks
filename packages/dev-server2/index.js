@@ -29,7 +29,7 @@ function devServer (options, entry) {
 
   entry = Array.isArray(entry) ? entry : [ entry ]
 
-  return (fileTypes, config) => ({
+  return (context, config) => ({
     devServer: Object.assign({
       hot: true,
       historyApiFallback: true,
@@ -79,10 +79,10 @@ function reactHot (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [{
-        test: fileTypes('application/javascript'),
+        test: context.fileType('application/javascript'),
         exclude: Array.isArray(exclude) ? exclude : [ exclude ],
         loaders: [ 'react-hot' ]
       }]

@@ -32,28 +32,28 @@ function createConfig (configSetters) {
   return core.createConfig([ createBaseConfig ].concat(configSetters))
 }
 
-function createBaseConfig (fileTypes) {
+function createBaseConfig (context) {
   return {
     module: {
       loaders: [
         {
-          test: fileTypes('text/css'),
+          test: context.fileType('text/css'),
           exclude: [ /\/node_modules\// ],
           loaders: [ 'style-loader', 'css-loader' ]
         }, {
-          test: fileTypes('image'),
+          test: context.fileType('image'),
           loaders: [ 'file-loader' ]
         }, {
-          test: fileTypes('application/font'),
+          test: context.fileType('application/font'),
           loaders: [ 'file-loader' ]
         }, {
-          test: fileTypes('application/json'),
+          test: context.fileType('application/json'),
           loaders: [ 'json-loader' ]
         }, {
-          test: fileTypes('audio'),
+          test: context.fileType('audio'),
           loaders: [ 'url-loader' ]
         }, {
-          test: fileTypes('video'),
+          test: context.fileType('video'),
           loaders: [ 'url-loader' ]
         }
       ]

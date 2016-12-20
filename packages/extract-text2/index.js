@@ -17,8 +17,8 @@ function extractText (outputFilePattern) {
 
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
-  return (fileTypes, webpackConfig) => {
-    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === fileTypes('text/css'))
+  return (context, webpackConfig) => {
+    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === context.fileType('text/css'))
 
     if (!cssLoader) {
       throw new Error(`CSS loader could not be found in webpack config.`)
@@ -28,7 +28,7 @@ function extractText (outputFilePattern) {
       module: {
         loaders: [
           {
-            test: fileTypes('text/css'),
+            test: context.fileType('text/css'),
             exclude: cssLoader.exclude,
             loader: plugin.extract({
               before: 'style',
