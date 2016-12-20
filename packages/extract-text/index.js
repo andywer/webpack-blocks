@@ -18,7 +18,7 @@ function extractText (outputFilePattern, fileType) {
   fileType = fileType || 'text/css'
 
   return (context, webpackConfig) => {
-    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === context.fileTypes(fileType))
+    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === context.fileType(fileType))
 
     if (!cssLoader) {
       throw new Error(`${fileType} loader could not be found in webpack config.`)
@@ -39,7 +39,7 @@ function extractText (outputFilePattern, fileType) {
       module: {
         loaders: [
           {
-            test: context.fileTypes(fileType),
+            test: context.fileType(fileType),
             exclude: cssLoader.exclude,
             loader: ExtractTextPlugin.extract('style-loader', nonStyleLoaders),
             loaders: undefined

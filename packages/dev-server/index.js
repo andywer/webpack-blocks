@@ -97,7 +97,7 @@ function reactHot (options) {
   return (context) => ({
     module: {
       loaders: [{
-        test: context.fileTypes('application/javascript'),
+        test: context.fileType('application/javascript'),
         exclude: Array.isArray(exclude) ? exclude : [ exclude ],
         loaders: [ 'react-hot' ]
       }]
