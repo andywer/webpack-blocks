@@ -15,6 +15,7 @@ exports.webpack = webpack
 exports.addPlugins = addPlugins
 exports.createConfig = createConfig
 exports.customConfig = customConfig
+exports.defineConstants = defineConstants
 exports.entryPoint = entryPoint
 exports.resolveAliases = resolveAliases
 exports.setContext = setContext
@@ -165,4 +166,29 @@ function setOutput (output) {
  */
 function sourceMaps (devtool) {
   return setDevTool(devtool || 'cheap-module-source-map')
+}
+
+/**
+ * Replaces constants in your source code with a value (`process.env.NODE_ENV`
+ * for example) using the `webpack.DefinePlugin`.
+ *
+ * Special feature: Using `defineConstants` multiple times results in a single
+ * DefinePlugin instance configured to do all the replacements.
+ *
+ * @param {object} constants  { [constantName: string]: * }
+ * @return {Function}
+ */
+function defineConstants (constants) {
+  return Object.assign((context) => {
+    context.defineConstants = Object.assign({}, context.defineConstants, constants)
+    return {}       // return empty webpack config snippet
+  }, { post: postDefineConstants })
+}
+
+function postDefineConstants (context) {
+  return {
+    plugins: [
+      new webpack.DefinePlugin(context.defineConstants)
+    ]
+  }
 }
