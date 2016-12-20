@@ -27,6 +27,6 @@ module.exports = createConfig([
     path.join('styles.css')
   ),
   defineConstants({
-    'process.env': { TEST: '"This is the injected process.env.TEST!"' }
+    'process.env.TEST': 'This is the injected process.env.TEST!'
   })
 ])

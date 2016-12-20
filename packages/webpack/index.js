@@ -170,7 +170,8 @@ function sourceMaps (devtool) {
 
 /**
  * Replaces constants in your source code with a value (`process.env.NODE_ENV`
- * for example) using the `webpack.DefinePlugin`.
+ * for example) using the `webpack.DefinePlugin`. Every constant's value is
+ * `JSON.stringify()`-ed first, so you don't have to remember.
  *
  * Special feature: Using `defineConstants` multiple times results in a single
  * DefinePlugin instance configured to do all the replacements.
@@ -186,9 +187,18 @@ function defineConstants (constants) {
 }
 
 function postDefineConstants (context) {
+  const stringify = (value) => JSON.stringify(value, null, 2)
+  const stringifiedConstants = mapProps(context.defineConstants, stringify)
+
   return {
     plugins: [
-      new webpack.DefinePlugin(context.defineConstants)
+      new webpack.DefinePlugin(stringifiedConstants)
     ]
   }
+}
+
+function mapProps (object, valueMapper) {
+  return Object.keys(object)
+    .map((propKey) => ({ [propKey]: valueMapper(object[propKey]) }))
+    .reduce((newObject, partial) => Object.assign(newObject, partial), {})
 }

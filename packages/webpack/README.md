@@ -45,6 +45,8 @@ Combines an array of blocks to a new joined block. Running this single block has
 
 Replaces constants in your source code with a value (`process.env.NODE_ENV` for example) using the [webpack.DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). Pass an object containing your constant definitions: `{ [constantName: string]: <constantValue: any> }`.
 
+Every constant's value is `JSON.stringify()`-ed first, so you don't have to remember.
+
 Special feature: Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
 
 #### env(envName: string, configSetters: Function[]): Function
