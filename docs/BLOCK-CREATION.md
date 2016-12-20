@@ -25,7 +25,7 @@ function babel (options) {
       loaders: [
         {
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-          test: context.fileTypes('application/javascript'),
+          test: context.fileType('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'babel?cacheDirectory' ]
         }
@@ -42,9 +42,9 @@ Thus it is also super easy to unit test and generic enough to share it with the 
 
 The context object is an additional metadata object that is passed to every block. It is meant to contain any kind of data that is needed for webpack config creation, but not part of the webpack config itself.
 
-Initially it will only contain the `fileTypes` mapping. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook. If you are not using hooks you do not have to care about the context object, except for the `fileTypes`.
+Initially it will only contain the `fileType` mapping. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook. If you are not using hooks you do not have to care about the context object, except for the `fileType`.
 
-The `fileTypes` are a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
+The `fileType` are a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
 
 
 ## Hooks
