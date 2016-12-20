@@ -8,15 +8,17 @@ Missing anything? Write your own and share them!
 >
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
+<br />
 
 ## v0.3 Update note
 
-**v0.3 of webpack-blocks ships with a bunch of new features, but also with a major breaking change under the hood.**
+**Version 0.3.x of webpack-blocks contains a bunch of new features, but also with a major breaking change under the hood.**
 
 *Every* block has been updated, but you have to make sure **all webpack-blocks packages you use are version >= 0.3.0** or otherwise **all packages are < 0.3.0**.
 
 On the upside we don't consider it an early release anymore and the next major release you see might very well be `v1.0` 👌
 
+<br />
 
 ## Installation
 
@@ -30,7 +32,7 @@ npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
 Create a development config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
-const { createConfig, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel6')
 const devServer = require('@webpack-blocks/dev-server')
 const postcss = require('@webpack-blocks/postcss')
@@ -43,6 +45,9 @@ module.exports = createConfig([
   postcss([
     autoprefixer({ browsers: ['last 2 versions'] })
   ]),
+  defineConstants({
+    'process.env.NODE_ENV': process.env.NODE_ENV
+  }),
   env('development', [
     devServer(),
     devServer.proxy({
