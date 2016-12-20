@@ -55,7 +55,7 @@ module.exports = createConfig([
 ])
 ```
 
-Check out the [sample app](./test-app) to see a [webpack config](./test-app/webpack.config.babel.js) in action.
+Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
 
 ## Available webpack blocks
@@ -94,7 +94,48 @@ That's it! You can also have a look at the [end-to-end test projects](https://gi
 - But provide sane defaults
 
 
-## env()
+## group() (*presets*)
+
+You have got some projects with a similar, yet not identical webpack configuration? Seems like you are looking for something preset-ish!
+
+Fortunately, this is also very simple:
+
+```js
+const { env, group } = require('@webpack-blocks/webpack')
+const babel = require('@webpack-blocks/babel6')
+const devServer = require('@webpack-blocks/dev-server')
+
+function myPreset (proxyConfig) {
+  return group([
+    babel(),
+    env('development', [
+      devServer(),
+      devServer.proxy(proxyConfig)
+    ])
+  ])
+}
+```
+
+The key feature is the `group()` method which takes a set of blocks and returns a new block that combines all their functionality.
+
+Then use your preset like this:
+
+```js
+const { createConfig } = require('@webpack-blocks/webpack')
+
+module.exports = createConfig([
+  myPreset({
+    '/api': { target: 'http://localhost:3000' }
+  }),
+  ...   // add more blocks here
+])
+```
+
+
+## You might want to know
+
+<details>
+<summary>How does env() work?</summary>
 
 You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
 
@@ -109,29 +150,30 @@ So make sure you set the NODE_ENV accordingly:
 ```
 
 If there is no NODE_ENV set then it will just treat NODE_ENV as if it was `development`.
+</details>
 
-
-## How does a webpack block look like from the inside?
+<details>
+<summary>What does a block look like from the inside?</summary>
 
 A webpack block is *just a function and requires no dependencies at all* (🎉🎉), thus making it easy to write your own blocks and share them with the community.
 
-Take `babel6` webpack block for instance:
+Take the `babel6` webpack block for instance:
 
 ```js
 /**
  * @param {object} [options]
- * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
+ * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
 function babel (options) {
   const { exclude = /\/node_modules\// } = options || {}
 
-  return (fileTypes) => ({
+  return (context) => ({
     module: {
       loaders: [
         {
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-          test: fileTypes('application/javascript'),
+          test: context.fileTypes('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'babel?cacheDirectory' ]
         }
@@ -141,11 +183,13 @@ function babel (options) {
 }
 ```
 
-You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
+Add a README and a package.json and you are ready to ship.
 
-Add a README and a package.json indicating the loader dependency and you are ready to ship.
+For more details see [How to write a block](./docs/BLOCK-CREATION.md).
+</details>
 
-## I need some custom webpack config snippet!
+<details>
+<summary>I need some custom webpack config snippet!</summary>
 
 No problem. If you don't want to write your own webpack block you can just use `customConfig()`:
 
@@ -177,7 +221,7 @@ module.exports = createConfig([
 The object you pass to `customConfig()` will be merged into the webpack config using
 [webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
 block's partial config.
-
+</details>
 
 ## Like what you see?
 
