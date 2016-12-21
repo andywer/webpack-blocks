@@ -22,8 +22,8 @@ function createConfig (configSetters) {
     throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
   }
 
-  const fileTypes = createFileTypesMapping(defaultFileTypes)
-  const context = { fileTypes }
+  const fileType = createFileTypesMapping(defaultFileTypes)
+  const context = { fileType }
 
   invokePreHooks(configSetters, context)
   const config = invokeConfigSetters(configSetters, context, {}, config)

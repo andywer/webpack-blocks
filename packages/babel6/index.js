@@ -19,7 +19,7 @@ function babel (options) {
     module: {
       loaders: [
         {
-          test: context.fileTypes('application/javascript'),
+          test: context.fileType('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'babel-loader?cacheDirectory' ]
         }

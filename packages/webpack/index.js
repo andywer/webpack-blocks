@@ -39,23 +39,23 @@ function createBaseConfig (context) {
     module: {
       loaders: [
         {
-          test: context.fileTypes('text/css'),
+          test: context.fileType('text/css'),
           exclude: [ /\/node_modules\// ],
           loaders: [ 'style-loader', 'css-loader' ]
         }, {
-          test: context.fileTypes('image'),
+          test: context.fileType('image'),
           loaders: [ 'file-loader' ]
         }, {
-          test: context.fileTypes('application/font'),
+          test: context.fileType('application/font'),
           loaders: [ 'file-loader' ]
         }, {
-          test: context.fileTypes('application/json'),
+          test: context.fileType('application/json'),
           loaders: [ 'json-loader' ]
         }, {
-          test: context.fileTypes('audio'),
+          test: context.fileType('audio'),
           loaders: [ 'url-loader' ]
         }, {
-          test: context.fileTypes('video'),
+          test: context.fileType('video'),
           loaders: [ 'url-loader' ]
         }
       ]

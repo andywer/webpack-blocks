@@ -20,7 +20,7 @@ function postcss (plugins, options) {
     module: {
       loaders: [
         {
-          test: context.fileTypes('text/css'),
+          test: context.fileType('text/css'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'style-loader', 'css-loader', 'postcss-loader' ]
         }
