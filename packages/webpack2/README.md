@@ -47,9 +47,21 @@ Make sure you use the appropriate webpack blocks:
 
 Takes an array of config setters (the functions returned by invoked webpack blocks), invokes them and returns the resulting webpack config object.
 
+#### group(configSetters: Function[]): Function
+
+Combines an array of blocks to a new joined block. Running this single block has the same effect as running all source blocks.
+
 #### env(envName: string, configSetters: Function[]): Function
 
 Applies an array of webpack blocks only if `process.env.NODE_ENV` matches the given `envName`. If no `NODE_ENV` is set, it will be treated as 'development'.
+
+#### defineConstants(constants: object): Function
+
+Replaces constants in your source code with a value (`process.env.NODE_ENV` for example) using the [webpack.DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). Pass an object containing your constant definitions: `{ [constantName: string]: <constantValue: any> }`.
+
+Every constant's value is `JSON.stringify()`-ed first, so you don't have to remember.
+
+Special feature: Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
 
 #### webpack: object
 
