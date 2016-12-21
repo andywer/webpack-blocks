@@ -1,5 +1,6 @@
 import test from 'ava'
 import fs from 'mz/fs'
+import jsdom from 'jsdom'
 import path from 'path'
 import webpack from 'webpack'
 
@@ -41,6 +42,8 @@ test('building the sass/extract-text2 project works', async (t) => {
   const config = require(path.join(projectPath, 'webpack.config.js'))
   await runWebpack(config)
 
+  global.window = await setUpJsdomEnv()
+  global.document = global.window.document
   require(path.join(buildPath, 'bundle.js'))
 
   // Check if CSS file contains correct content
@@ -58,6 +61,18 @@ function runWebpack (config) {
         reject(new Error('Webpack soft error occured. See stderr output.'))
       } else {
         resolve(stats)
+      }
+    })
+  })
+}
+
+function setUpJsdomEnv () {
+  return new Promise((resolve, reject) => {
+    jsdom.env('<html><body></body></html>', (error, window) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(window)
       }
     })
   })
