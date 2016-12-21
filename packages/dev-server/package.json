@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard && ava",
+    "test": "standard",
     "prepublish": "npm test"
   },
   "engines": {
@@ -16,10 +16,10 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "@webpack-blocks/webpack-common": "^0.3.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
     "standard": "^8.1.0"
   }
 }
