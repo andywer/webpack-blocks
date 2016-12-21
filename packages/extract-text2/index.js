@@ -28,10 +28,10 @@ function extractText (outputFilePattern, fileType) {
       module: {
         loaders: [
           {
-            test: context.fileType('text/css'),
+            test: context.fileType(fileType),
             exclude: loaderConfig.exclude,
             loader: plugin.extract({
-              before: 'style-loader',
+              fallbackLoader: 'style-loader',
               loader: nonStyleLoaders
             }),
             loaders: undefined
