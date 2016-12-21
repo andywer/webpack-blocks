@@ -14,16 +14,20 @@ const isFunction = (value) => typeof value === 'function'
  * partial webpack config. These partial configs are merged to create the
  * final, complete webpack config that will be returned.
  *
+ * @param {object}     webpack        Webpack instance
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {object}                   Webpack config object.
  */
-function createConfig (configSetters) {
+function createConfig (webpack, configSetters) {
+  if (!webpack) {
+    throw new Error(`No webpack instance passed.`)
+  }
   if (!Array.isArray(configSetters) || !configSetters.every(isFunction)) {
     throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
   }
 
   const fileType = createFileTypesMapping(defaultFileTypes)
-  const context = { fileType }
+  const context = { fileType, webpack }
 
   invokePreHooks(configSetters, context)
   const config = invokeConfigSetters(configSetters, context, {}, config)

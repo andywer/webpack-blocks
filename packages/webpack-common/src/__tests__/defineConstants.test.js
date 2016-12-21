@@ -2,8 +2,14 @@ import test from 'ava'
 import { createConfig } from '@webpack-blocks/core'
 import { defineConstants } from '../index'
 
+const webpack = {
+  DefinePlugin: function DefinePluginMock (definitions) {
+    this.definitions = definitions
+  }
+}
+
 test('defineConstants() creates a single DefinePlugin instance only', (t) => {
-  const config = createConfig([
+  const config = createConfig(webpack, [
     defineConstants({ a: 'a' }),
     defineConstants({ b: 'b' })
   ])
@@ -13,7 +19,7 @@ test('defineConstants() creates a single DefinePlugin instance only', (t) => {
 })
 
 test('defineConstants() encodes the values', (t) => {
-  const config = createConfig([
+  const config = createConfig(webpack, [
     defineConstants({
       foo: 'foo',
       bar: {
