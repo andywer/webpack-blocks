@@ -24,18 +24,18 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.module.loaders.length, 8)
   t.deepEqual(webpackConfig.module.loaders[0], {
+    test: /\.(js|jsx)$/,
+    exclude: [ /\/node_modules\// ],
+    loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
+  })
+  t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.(sass|scss)$/,
     loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[1], {
+  t.deepEqual(webpackConfig.module.loaders[2], {
     test: /\.css$/,
     exclude: [ /\/node_modules\// ],
     loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
-  })
-  t.deepEqual(webpackConfig.module.loaders[2], {
-    test: /\.(js|jsx)$/,
-    exclude: [ /\/node_modules\// ],
-    loaders: [ 'babel-loader?cacheDirectory' ]
   })
   t.deepEqual(webpackConfig.module.loaders[3], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
