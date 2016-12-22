@@ -66,9 +66,8 @@ function normalizeEntry (entry) {
 /**
  * @param {object} performanceBudget
  * @param {number} performanceBudget.maxAssetSize
- * @param {number} performanceBudget.maxInitialChunkSize
- * @param {boolean} performanceBudget.hints
- * @param {boolean} performanceBudget.errorOnHint
+ * @param {number} performanceBudget.maxEntrypointSize
+ * @param {string} performanceBudget.hints              'warning' or 'error'
  */
 function performance (performanceBudget) {
   return () => ({
