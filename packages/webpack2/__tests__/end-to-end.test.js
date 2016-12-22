@@ -1,5 +1,6 @@
 import test from 'ava'
 import fs from 'mz/fs'
+import jsdom from 'jsdom'
 import path from 'path'
 import webpack from 'webpack'
 
@@ -16,7 +17,7 @@ test('building a minimal webpack2 project works', async (t) => {
   t.is(bundleExports, 'I am the minimal test export')
 })
 
-test('building the babel/postcss/extract-text project works', async (t) => {
+test('building the babel/postcss/extract-text2 project works', async (t) => {
   const projectPath = path.join(fixturesPath, 'babel-postcss-extract-text')
   const buildPath = path.join(projectPath, 'build')
 
@@ -34,6 +35,22 @@ test('building the babel/postcss/extract-text project works', async (t) => {
   t.true(removeWhitespaces(styleContents).indexOf(removeWhitespaces('.app { margin: 40px; }')) > -1)
 })
 
+test('building the sass/extract-text2 project works', async (t) => {
+  const projectPath = path.join(fixturesPath, 'sass-extract-text')
+  const buildPath = path.join(projectPath, 'build')
+
+  const config = require(path.join(projectPath, 'webpack.config.js'))
+  await runWebpack(config)
+
+  global.window = await setUpJsdomEnv()
+  global.document = global.window.document
+  require(path.join(buildPath, 'bundle.js'))
+
+  // Check if CSS file contains correct content
+  const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
+  t.true(removeWhitespaces(styleContents).indexOf(removeWhitespaces('body { padding: 25px; }')) > -1)
+})
+
 function runWebpack (config) {
   return new Promise((resolve, reject) => {
     webpack(config, (error, stats) => {
@@ -44,6 +61,18 @@ function runWebpack (config) {
         reject(new Error('Webpack soft error occured. See stderr output.'))
       } else {
         resolve(stats)
+      }
+    })
+  })
+}
+
+function setUpJsdomEnv () {
+  return new Promise((resolve, reject) => {
+    jsdom.env('<html><body></body></html>', (error, window) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(window)
       }
     })
   })

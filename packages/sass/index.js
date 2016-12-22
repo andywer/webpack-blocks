@@ -23,7 +23,7 @@ function sass (options) {
     module: {
       loaders: [
         {
-          test: context.fileTypes('text/x-sass'),
+          test: context.fileType('text/x-sass'),
           loaders: [
             'style-loader',
             options.sourceMap ? 'css-loader?sourceMap' : 'css-loader',

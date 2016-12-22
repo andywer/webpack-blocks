@@ -5,6 +5,7 @@
  */
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const common = require('@webpack-blocks/webpack-common')
 
 module.exports = extractText
 
@@ -18,29 +19,15 @@ function extractText (outputFilePattern, fileType) {
   fileType = fileType || 'text/css'
 
   return (context, webpackConfig) => {
-    const cssLoader = webpackConfig.module.loaders.find((loader) => loader.test === context.fileTypes(fileType))
-
-    if (!cssLoader) {
-      throw new Error(`${fileType} loader could not be found in webpack config.`)
-    }
-
-    if (!cssLoader.loaders || cssLoader.loaders.length === 0) {
-      throw new Error(`No ${fileType} file loaders found.`)
-    }
-    if (!/^style(-loader)?$/.test(cssLoader.loaders[0])) {
-      throw new Error(`Expected "style-loader" to be first loader of .css files. Instead got: ${cssLoader.loaders[0]}`)
-    }
-
-    // `cssLoader.loaders` without the leading 'style-loader'
-    const nonStyleLoaders = [].concat(cssLoader.loaders)
-    nonStyleLoaders.shift()
+    const loaderConfig = common.getLoaderConfigByType(context, webpackConfig, fileType)
+    const nonStyleLoaders = common.getNonStyleLoaders(loaderConfig, fileType)
 
     return {
       module: {
         loaders: [
           {
-            test: context.fileTypes(fileType),
-            exclude: cssLoader.exclude,
+            test: context.fileType(fileType),
+            exclude: loaderConfig.exclude,
             loader: ExtractTextPlugin.extract('style-loader', nonStyleLoaders),
             loaders: undefined
           }
