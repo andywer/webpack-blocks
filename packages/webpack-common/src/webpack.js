@@ -8,6 +8,7 @@ export {
   addPlugins,
   customConfig,
   entryPoint,
+  performance,
   resolveAliases,
   setContext,
   setDevTool,
@@ -60,6 +61,19 @@ function normalizeEntry (entry) {
   } else {
     throw new Error(`Expected entry point to be object, array or string. Instead got: ${entry}`)
   }
+}
+
+/**
+ * @param {object} performanceBudget
+ * @param {number} performanceBudget.maxAssetSize
+ * @param {number} performanceBudget.maxInitialChunkSize
+ * @param {boolean} performanceBudget.hints
+ * @param {boolean} performanceBudget.errorOnHint
+ */
+function performance (performanceBudget) {
+  return () => ({
+    performance: performanceBudget
+  })
 }
 
 /**
