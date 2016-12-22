@@ -19,10 +19,10 @@
     "@webpack-blocks/webpack-common": "^0.3.0"
   },
   "peerDependencies": {
-    "webpack": "^2.1.0-beta.19"
+    "webpack": "^2.2.0-rc.1"
   },
   "devDependencies": {
     "standard": "^8.1.0",
-    "webpack": "^2.1.0-beta.19"
+    "webpack": "^2.2.0-rc.1"
   }
 }
