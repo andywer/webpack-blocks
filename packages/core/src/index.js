@@ -30,7 +30,7 @@ function createConfig (webpack, configSetters) {
   const context = { fileType, webpack }
 
   invokePreHooks(configSetters, context)
-  const config = invokeConfigSetters(configSetters, context, {}, config)
+  const config = invokeConfigSetters(configSetters, context, {}, {})
   const postProcessedConfig = invokePostHooks(configSetters, context, config)
 
   return postProcessedConfig
