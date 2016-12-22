@@ -21,15 +21,15 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0-rc.1",
     "@webpack-blocks/webpack-common": "^0.3.0",
-    "@webpack-blocks/core": "^0.1.2"
+    "@webpack-blocks/core": "^0.3.0"
   },
   "devDependencies": {
-    "@webpack-blocks/babel6": "^0.1.1",
-    "@webpack-blocks/css-modules": "^0.1.1",
+    "@webpack-blocks/babel6": "^0.3.0",
+    "@webpack-blocks/css-modules": "^0.3.0",
     "@webpack-blocks/dev-server2": "^0.3.0",
     "@webpack-blocks/extract-text2": "^0.3.0",
-    "@webpack-blocks/postcss": "^0.2.0",
-    "@webpack-blocks/sass": "^0.1.1",
+    "@webpack-blocks/postcss": "^0.3.0",
+    "@webpack-blocks/sass": "^0.3.0",
     "ava": "^0.16.0",
     "babel-loader": "^6.2.9",
     "css-loader": "^0.25.0",
