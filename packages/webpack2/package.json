@@ -26,8 +26,8 @@
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.1.1",
     "@webpack-blocks/css-modules": "^0.1.1",
-    "@webpack-blocks/dev-server2": "^0.1.0-beta",
-    "@webpack-blocks/extract-text2": "^0.1.0-beta",
+    "@webpack-blocks/dev-server2": "^0.3.0",
+    "@webpack-blocks/extract-text2": "^0.3.0",
     "@webpack-blocks/postcss": "^0.2.0",
     "@webpack-blocks/sass": "^0.1.1",
     "ava": "^0.16.0",
