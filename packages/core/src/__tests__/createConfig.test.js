@@ -2,6 +2,8 @@ import test from 'ava'
 import sinon from 'sinon'
 import { createConfig } from '../index'
 
+const webpack = {}
+
 test('createConfig() invokes blocks (config setters)', (t) => {
   const block1 = () => ({
     distinct1: 'distinct1',
@@ -16,7 +18,7 @@ test('createConfig() invokes blocks (config setters)', (t) => {
     shared: 'shared3'
   })
 
-  const resultingConfig = createConfig([ block1, block2, block3 ])
+  const resultingConfig = createConfig(webpack, [ block1, block2, block3 ])
 
   t.deepEqual(resultingConfig, {
     distinct1: 'distinct1',
@@ -37,7 +39,7 @@ test('createConfig() invokes pre hooks', (t) => {
     pre: sinon.spy(() => {})
   })
 
-  createConfig([ block1, block2, block3 ])
+  createConfig(webpack, [ block1, block2, block3 ])
 
   t.is(block1.pre.callCount, 1)
   t.is(block2.pre.callCount, 1)
@@ -74,7 +76,7 @@ test('createConfig() invokes post hooks', (t) => {
     }))
   })
 
-  const resultingConfig = createConfig([ block1, block2, block3 ])
+  const resultingConfig = createConfig(webpack, [ block1, block2, block3 ])
   t.deepEqual(resultingConfig, {
     distinct1: 'distinct1',
     distinct2: 'distinct2',
@@ -116,7 +118,7 @@ test('createConfig() invokes hooks and setters in the right order', (t) => {
     post: sinon.spy(() => ({}))
   })
 
-  createConfig([ block1, block2, block3 ])
+  createConfig(webpack, [ block1, block2, block3 ])
 
   t.true(block1.pre.called)
   t.true(block1.pre.calledBefore(block2.pre[0]))
@@ -157,7 +159,7 @@ test('createConfig() ignores duplicate hooks', (t) => {
     post: block1.post
   })
 
-  createConfig([ block1, block2, block3 ])
+  createConfig(webpack, [ block1, block2, block3 ])
 
   t.is(block1.pre.callCount, 1)
   t.is(block1.post.callCount, 1)

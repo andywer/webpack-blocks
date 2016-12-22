@@ -1,7 +1,7 @@
 {
-  "name": "@webpack-blocks/webpack",
+  "name": "@webpack-blocks/webpack2",
   "version": "0.3.0",
-  "description": "Webpack block for the webpack 1.x base configuration.",
+  "description": "Webpack block for the webpack 2.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
@@ -19,21 +19,22 @@
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
-    "@webpack-blocks/core": "^0.3.0",
-    "@webpack-blocks/webpack-common": "^0.3.0"
+    "webpack": "^2.2.0-rc.1",
+    "@webpack-blocks/webpack-common": "^0.3.0",
+    "@webpack-blocks/core": "^0.3.0"
   },
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.3.0",
     "@webpack-blocks/css-modules": "^0.3.0",
-    "@webpack-blocks/dev-server": "^0.3.0",
-    "@webpack-blocks/extract-text": "^0.3.0",
+    "@webpack-blocks/dev-server2": "^0.3.0",
+    "@webpack-blocks/extract-text2": "^0.3.0",
     "@webpack-blocks/postcss": "^0.3.0",
     "@webpack-blocks/sass": "^0.3.0",
     "ava": "^0.16.0",
     "babel-loader": "^6.2.9",
     "css-loader": "^0.25.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "jsdom": "^9.9.1",
     "mz": "^2.6.0",
     "node-sass": "^3.4.2",
     "postcss-loader": "^1.2.0",

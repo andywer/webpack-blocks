@@ -1,5 +1,9 @@
 import test from 'ava'
-import devServer from '../index'
+import devServer from '../devServer'
+
+const webpack = {
+  HotModuleReplacementPlugin: function HotModuleReplacementPluginMock () {}
+}
 
 test('devServer() add himself to every entries', (t) => {
   const currentConfig = {
@@ -9,7 +13,7 @@ test('devServer() add himself to every entries', (t) => {
     }
   }
 
-  const context = {}
+  const context = { webpack }
   const block = devServer('entry')
   block(context, currentConfig)
 
@@ -24,7 +28,7 @@ test('devServer() use webpack/hot/only-dev-server as default', (t) => {
     }
   }
 
-  const context = {}
+  const context = { webpack }
   const block = devServer()
   block(context, currentConfig)
 

@@ -1,16 +1,16 @@
-# Webpack blocks - Webpack base configuration
+# Webpack blocks - Webpack 2 base configuration
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/webpack.svg)](https://www.npmjs.com/package/@webpack-blocks/webpack)
+[![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/webpack2.svg)](https://www.npmjs.com/package/@webpack-blocks/webpack2)
 
-This is the `webpack` block providing webpack 1.x core functionality. Also provides all `@webpack-blocks/core` exports for convenience.
+This is the `webpack2` block providing webpack 2 core functionality. Also provides all `@webpack-blocks/core` exports for convenience.
 
 
 ## Usage
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack } = require('@webpack-blocks/webpack')
+const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack } = require('@webpack-blocks/webpack2')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
@@ -30,6 +30,16 @@ module.exports = createConfig([
   ])
 ])
 ```
+
+
+## Webpack 2 compatible blocks
+
+There are some webpack loaders and plugins that are only compatible with webpack 2 in a certain version.
+Make sure you use the appropriate webpack blocks:
+
+* [dev-server2](https://www.npmjs.com/package/@webpack-blocks/dev-server2)
+* [extract-text2](https://www.npmjs.com/package/@webpack-blocks/extract-text2)
+
 
 ## Exports
 
