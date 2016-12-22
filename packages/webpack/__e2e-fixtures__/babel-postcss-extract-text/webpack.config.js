@@ -30,6 +30,3 @@ module.exports = createConfig([
     'process.env.TEST': 'This is the injected process.env.TEST!'
   })
 ])
-    })
-  ])
-])

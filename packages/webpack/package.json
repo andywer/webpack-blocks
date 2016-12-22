@@ -20,7 +20,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "@webpack-blocks/core": "^0.3.0"
+    "@webpack-blocks/core": "^0.3.0",
     "@webpack-blocks/webpack-common": "^0.3.0"
   },
   "devDependencies": {
