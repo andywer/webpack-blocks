@@ -1,5 +1,9 @@
 # @webpack-blocks/extract-text - Changelog
 
+## 0.3.0
+
+- Adapted to new API: Using `context` now
+
 ## 0.1.1
 
 - Fixed ExtractTextPlugin usage (failed before if > 2 webpack loaders were assigned to the file type)

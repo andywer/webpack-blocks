@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## 0.3.0
+
+- Adapted to new API: Using `context` now
+
 ## 0.2.0
 
 - Fix loader order issue

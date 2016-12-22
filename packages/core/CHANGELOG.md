@@ -1,5 +1,10 @@
 # @webpack-blocks/core - Changelog
 
+## 0.3.0
+
+- Breaking API change: Added `context` object
+- Implement `group()` for creating presets
+
 ## 0.1.2
 
 - Fixes `env()` merging already everything, resulting in duplicate config props (see [#29](https://github.com/andywer/webpack-blocks/issues/29))
