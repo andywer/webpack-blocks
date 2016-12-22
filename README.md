@@ -13,9 +13,9 @@ Missing anything? Write your own and share them!
 
 <br />
 
-## v0.3 Update note
+## v0.3 Update
 
-**Version 0.3.x of webpack-blocks contains a bunch of new features, but also with a major breaking change under the hood.**
+**Version 0.3.x of webpack-blocks comes with a bunch of new features, but also with a major breaking change under the hood.**
 
 *Every* block has been updated, but you have to make sure **all webpack-blocks packages you use are version >= 0.3.0** or otherwise **all packages are < 0.3.0**.
 
