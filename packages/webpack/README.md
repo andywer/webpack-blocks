@@ -60,6 +60,7 @@ Same as `require('webpack')`.
 #### addPlugins(plugins: WebpackPlugin[])
 #### customConfig(webpackConfigSnippet: object)
 #### entryPoint(entryPoint: string|string[]|object)
+#### performance(perfBudgetOptions: object)
 #### resolveAliases(aliases: object)
 #### setContext(path: string)
 #### setDevTool(devtool: string)
