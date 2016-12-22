@@ -1,4 +1,4 @@
-# @webpack-blocks/webpack2 - Changelog
+# @webpack-blocks/extract-text2 - Changelog
 
 ## 0.3.0
 

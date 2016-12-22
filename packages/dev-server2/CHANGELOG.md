@@ -1,4 +1,4 @@
-# @webpack-blocks/webpack2 - Changelog
+# @webpack-blocks/dev-server2 - Changelog
 
 ## 0.3.0
 
