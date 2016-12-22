@@ -4,6 +4,7 @@ const webpack2 = require('../../index')
 const addPlugins = webpack2.addPlugins
 const createConfig = webpack2.createConfig
 const entryPoint = webpack2.entryPoint
+const performance = webpack2.performance
 const setOutput = webpack2.setOutput
 const webpack = webpack2.webpack
 
@@ -24,6 +25,11 @@ module.exports = createConfig([
   extractText(
     path.join('styles.css')
   ),
+  performance({
+    maxAssetSize: 100000,
+    maxEntrypointSize: 500000,
+    hints: 'error'
+  }),
   addPlugins([
     new webpack.DefinePlugin({
       'process.env': { TEST: '"This is the injected process.env.TEST!"' }
