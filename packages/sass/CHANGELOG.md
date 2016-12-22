@@ -1,5 +1,9 @@
 # @webpack-blocks/sass - Changelog
 
+## 0.3.0
+
+- Adapted to new API: Using `context` now
+
 ## 0.1.2
 
 - Allow setting custom `node-sass` options (see [#15](https://github.com/andywer/webpack-blocks/issues/15))

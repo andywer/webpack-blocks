@@ -1,5 +1,10 @@
 # @webpack-blocks/webpack - Changelog
 
+## 0.3.0
+
+- Provide `group()` for creating presets
+- Provide `performance()` for webpack performance budgeting
+
 ## 0.2.0
 
 - Normalize entry points to object syntax to fix entry point merging issues (see [#21](https://github.com/andywer/webpack-blocks/pull/21))
