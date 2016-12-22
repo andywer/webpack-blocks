@@ -1,5 +1,5 @@
 const {
-  addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack
+  addPlugins, createConfig, defineConstants, entryPoint, env, performance, setOutput, sourceMaps, webpack
 } = require('@webpack-blocks/webpack2')
 
 const babel = require('@webpack-blocks/babel6')
@@ -13,6 +13,9 @@ module.exports = createConfig([
   babel(),
   cssModules(),
   addPlugins(plugins.basePlugins),
+  defineConstants({
+    'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
+  }),
   env('development', [
     entryPoint('./src/index.dev.js'),
     sourceMaps(),
@@ -20,7 +23,11 @@ module.exports = createConfig([
     devServer.proxy({
       '/api/*': { target: 'http://localhost:4000' }
     }),
-    addPlugins(plugins.devPlugins)
+    performance({
+      // Increase performance budget thresholds for development mode
+      maxAssetSize: 1500000,
+      maxEntrypointSize: 1500000
+    })
   ]),
   env('production', [
     entryPoint('./src/index.js'),
