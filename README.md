@@ -21,6 +21,8 @@ Missing anything? Write your own and share them!
 
 On the upside we don't consider it an early release anymore and the next major release you see might very well be `v1.0` 👌
 
+Read the release notes [here](https://github.com/andywer/webpack-blocks/releases/tag/v0.3.0).
+
 <br />
 
 ## Installation
