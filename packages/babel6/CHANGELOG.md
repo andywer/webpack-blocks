@@ -4,6 +4,7 @@
 
 - Use `context`
 - Allow passing `presets`/`plugins` to block
+- May set `include` (white-list file matching), not just `exclude`
 
 ## 0.1.1
 
