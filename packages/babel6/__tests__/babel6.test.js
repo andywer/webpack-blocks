@@ -38,3 +38,23 @@ test('Babel options and exclude work', (t) => {
     }
   ])
 })
+
+test('Babel `include` option works', (t) => {
+  const block = babel6({
+    exclude: null,
+    include: 'src/**/*.js'
+  })
+
+  const context = {
+    fileType: () => '*.js'
+  }
+
+  t.deepEqual(block(context), {})
+  t.deepEqual(block.post(context).module.loaders, [
+    {
+      test: '*.js',
+      include: [ 'src/**/*.js' ],
+      loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
+    }
+  ])
+})

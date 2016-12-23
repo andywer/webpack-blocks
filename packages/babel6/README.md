@@ -23,6 +23,9 @@ module.exports = createConfig([
 #### exclude *(optional)*
 Regular expression, string or function describing which files/directories to exclude from the babeling. Defaults to `/\/node_modules\//` regex, like all JS loaders.
 
+#### include *(optional)*
+Regular expression, string or function used to white-list which files/directories should be babeled. By default `exclude` is set only.
+
 #### plugins *(optional)*
 Array of Babel plugins to use. Babel will read them from `.babelrc` or `package.json` if omitted.
 

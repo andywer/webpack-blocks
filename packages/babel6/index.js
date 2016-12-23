@@ -8,9 +8,10 @@ module.exports = babel
 
 /**
  * @param {object} [options]
- * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
- * @param {string[]}                  [options.plugins]   Babel plugins to use.
- * @param {string[]}                  [options.presets]   Babel presets to use.
+ * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
+ * @param {RegExp|Function|string}  [options.include]   Directories to include.
+ * @param {string[]}                [options.plugins]   Babel plugins to use.
+ * @param {string[]}                [options.presets]   Babel presets to use.
  * @return {Function}
  */
 function babel (options) {
@@ -31,6 +32,9 @@ function babel (options) {
     if ('exclude' in options) {
       context.babel.exclude = options.exclude
     }
+    if ('include' in options) {
+      context.babel.include = options.include
+    }
     if ('plugins' in options) {
       context.babel.plugins = (context.babel.plugins || []).concat(options.plugins)
     }
@@ -45,19 +49,24 @@ function babel (options) {
 
 function postConfig (context) {
   const exclude = context.babel.exclude
+  const include = context.babel.include
 
   const babelOptions = Object.assign({}, context.babel)
   delete babelOptions.exclude
+  delete babelOptions.include
+
+  const loaderConfig = Object.assign({
+    test: context.fileType('application/javascript'),
+    loaders: [ 'babel-loader?' + JSON.stringify(babelOptions) ]
+  }, exclude && {
+    exclude: Array.isArray(exclude) ? exclude : [ exclude ]
+  }, include && {
+    include: Array.isArray(include) ? include : [ include ]
+  })
 
   return {
     module: {
-      loaders: [
-        {
-          test: context.fileType('application/javascript'),
-          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'babel-loader?' + JSON.stringify(babelOptions) ]
-        }
-      ]
+      loaders: [ loaderConfig ]
     }
   }
 }
