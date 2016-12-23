@@ -1,5 +1,5 @@
 import test from 'ava'
-import { entryPoint } from '../index'
+import { entryPoint } from '../webpack'
 
 test('entryPoint() should normalize string to object entry', (t) => {
   let config = {}
