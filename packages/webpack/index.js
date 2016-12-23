@@ -69,7 +69,8 @@ function createBaseConfig (context) {
     },
 
     resolve: {
-      extensions: [ '', '.js', '.jsx', '.json' ]
+      extensions: [ '', '.js', '.jsx', '.json' ],
+      mainFields: ['browser', 'js:next', 'module', 'main']
     }
   }
 }
