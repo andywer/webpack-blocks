@@ -22,7 +22,7 @@ function createFileTypesMapping (initialMapping) {
     /**
      * @param {string|object} type
      * @param {RegExp|Function|string|array} [condition]  Only used if param `type` is a string.
-     *                                                    @see https://webpack.github.io/docs/configuration.html#module-loaders
+     * @see https://webpack.github.io/docs/configuration.html#module-loaders
      * @return {FileTypesMapping} this
      * @example `fileType.add('application/javascript', /\.jsx?$/)`
      * @example `fileType.add({ 'application/javascript': [ /\.js$/, /\.jsx$/ ] })`
