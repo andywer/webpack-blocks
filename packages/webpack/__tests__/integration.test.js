@@ -24,15 +24,6 @@ test('complete webpack config creation', (t) => {
   ])
 
   t.is(webpackConfig.module.loaders.length, 8)
-  t.deepEqual(webpackConfig.module.loaders[7], {
-    test: /\.(js|jsx)$/,
-    exclude: [ /\/node_modules\// ],
-    loaders: [ 'react-hot', 'babel-loader?{"cacheDirectory":true}' ]
-  })
-  t.deepEqual(webpackConfig.module.loaders[6], {
-    test: /\.(sass|scss)$/,
-    loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
-  })
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.css$/,
     exclude: [ /\/node_modules\// ],
@@ -57,6 +48,15 @@ test('complete webpack config creation', (t) => {
   t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.(mp4|webm)$/,
     loaders: [ 'url-loader' ]
+  })
+  t.deepEqual(webpackConfig.module.loaders[6], {
+    test: /\.(sass|scss)$/,
+    loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
+  })
+  t.deepEqual(webpackConfig.module.loaders[7], {
+    test: /\.(js|jsx)$/,
+    exclude: [ /\/node_modules\// ],
+    loaders: [ 'react-hot', 'babel-loader?{"cacheDirectory":true}' ]
   })
 
   t.deepEqual(webpackConfig.entry, { main: [ './src/main.js', 'webpack/hot/only-dev-server' ] })
