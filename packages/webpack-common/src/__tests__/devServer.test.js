@@ -35,3 +35,22 @@ test('devServer() use webpack/hot/only-dev-server as default', (t) => {
   const config = block.post(context, currentConfig)
   t.deepEqual(config.entry.main, ['webpack/hot/only-dev-server'])
 })
+
+test('devServer.reactHot() prepend the loader', (t) => {
+  const currentConfig = {
+    module: {
+      loaders: [
+        {
+          test: '*.js',
+          loaders: [ 'babel-loader' ]
+        }
+      ]
+    }
+  }
+
+  const context = { webpack, fileType: () => '*.js' }
+  const block = devServer.reactHot()
+  const config = block(context, currentConfig)
+
+  t.deepEqual(config.module.loaders[0].loaders, [ 'react-hot' ])
+})
