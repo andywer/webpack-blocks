@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@webpack-blocks/babel6@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@webpack-blocks/babel6/-/babel6-0.1.1.tgz#516b16d419ec1c173ed91fb5dd75844c0c67c9e7"
+"@webpack-blocks/babel6@^0.x":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@webpack-blocks/babel6/-/babel6-0.3.0.tgz#98589db066bc6003dd209cf64fd5ae90d9b23e45"
   dependencies:
     babel-core "^6.17.0"
     babel-loader "^6.2.5"
@@ -15,9 +15,9 @@
   dependencies:
     webpack-merge "^0.14.1"
 
-"@webpack-blocks/css-modules@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@webpack-blocks/css-modules/-/css-modules-0.1.1.tgz#e59f8c58e1e37392c789ee59cbdd1d0a31e144ed"
+"@webpack-blocks/css-modules@^0.x":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@webpack-blocks/css-modules/-/css-modules-0.3.0.tgz#9a847ff9af3fc6b71523cc6687f3f2f4e046ecf8"
   dependencies:
     css-loader "^0.25.0"
     style-loader "^0.13.1"
@@ -1233,13 +1233,7 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@^2.1.1, debug@^2.2.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.0.tgz#bc596bcabe7617f11d9fa15361eded5608b8499b"
-  dependencies:
-    ms "0.7.2"
-
-debug@~2.2.0:
+debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -2508,10 +2502,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
-
-ms@0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
 nan@^2.3.0:
   version "2.5.0"
