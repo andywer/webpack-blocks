@@ -1,0 +1,23 @@
+{
+  "name": "@webpack-blocks/postcss2",
+  "version": "0.1.0",
+  "description": "Webpack block for PostCSS.",
+  "main": "lib/index",
+  "license": "MIT",
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "scripts": {
+    "test": "standard",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "postcss-loader": "^1.2.0"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  }
+}
