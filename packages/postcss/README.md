@@ -16,9 +16,21 @@ const autoprefixer = require('autoprefixer')
 module.exports = createConfig([
   postcss([
     autoprefixer({ browsers: ['last 2 versions'] })
-  ])
+  ], { /* custom PostCSS options */ })
 ])
 ```
+
+
+## Options
+
+#### parser *(optional)*
+Package name of a custom PostCSS parser to use. Pass for instance `'sugarss'` to be able to write indent-based CSS.
+
+#### stringifier *(optional)*
+Package name of a custom PostCSS stringifier to use.
+
+#### syntax *(optional)*
+Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
 
 
 ## Webpack blocks
