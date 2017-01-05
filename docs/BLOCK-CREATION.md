@@ -103,6 +103,8 @@ function post (context) {
 
 `createConfig()` will *deduplicate all hooks*, so our post hook is run once only and we end up having exactly one DefinePlugin instance containing all constant definitions.
 
+In case you wonder, the `return Object.assign(blockFunction, { pre, post })` syntax is just syntactic sugar and semantically the same as `blockFunction.pre = pre; blockFunction.post = post; return blockFunction`.
+
 ### Lifecycle
 
 So this is what happens under the hood when `createConfig()` processes the blocks:
