@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack2 - Changelog
 
+## 0.3.1
+
+- Remove the `json-loader` config & depedency, since webpack 2 comes with a default json-loader config (#63)
+
 ## 0.3.0
 
 Initial non-beta release. Aligned with the v0.3 release changes.
