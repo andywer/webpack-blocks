@@ -56,9 +56,6 @@ function createBaseConfig (context) {
           test: context.fileType('application/font'),
           loaders: [ 'file-loader' ]
         }, {
-          test: context.fileType('application/json'),
-          loaders: [ 'json-loader' ]
-        }, {
           test: context.fileType('audio'),
           loaders: [ 'url-loader' ]
         }, {

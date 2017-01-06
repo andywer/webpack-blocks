@@ -22,7 +22,7 @@ test('complete webpack config creation', (t) => {
     })
   ])
 
-  t.is(webpackConfig.module.loaders.length, 8)
+  t.is(webpackConfig.module.loaders.length, 7)
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.css$/,
     exclude: [ /\/node_modules\// ],
@@ -37,22 +37,18 @@ test('complete webpack config creation', (t) => {
     loaders: [ 'file-loader' ]
   })
   t.deepEqual(webpackConfig.module.loaders[3], {
-    test: /\.json$/,
-    loaders: [ 'json-loader' ]
-  })
-  t.deepEqual(webpackConfig.module.loaders[4], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
     loaders: [ 'url-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[5], {
+  t.deepEqual(webpackConfig.module.loaders[4], {
     test: /\.(mp4|webm)$/,
     loaders: [ 'url-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[6], {
+  t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.(sass|scss)$/,
     loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[7], {
+  t.deepEqual(webpackConfig.module.loaders[6], {
     test: /\.(js|jsx)$/,
     exclude: [ /\/node_modules\// ],
     loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
