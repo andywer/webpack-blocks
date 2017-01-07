@@ -18,7 +18,7 @@ export {
  */
 function getLoaderConfigByType (context, webpackConfig, fileType) {
   const loaderConfig = webpackConfig.module.loaders.find(
-    (loader) => regexEqual(loader.test, context.fileType(fileType))
+    (loader) => loader.test === context.fileType(fileType)
   )
 
   if (loaderConfig) {
@@ -26,12 +26,6 @@ function getLoaderConfigByType (context, webpackConfig, fileType) {
   } else {
     throw new Error(`${fileType} loader could not be found in webpack config.`)
   }
-}
-
-function regexEqual (x, y) {
-  return (x instanceof RegExp) && (y instanceof RegExp) &&
-   (x.source === y.source) && (x.global === y.global) &&
-   (x.ignoreCase === y.ignoreCase) && (x.multiline === y.multiline)
 }
 
 /**
