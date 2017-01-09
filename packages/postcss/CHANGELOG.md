@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## 0.3.2
+
+- Bug fix: PostCSS plugin configuration now works with webpack 2 ([#68](https://github.com/andywer/webpack-blocks/issues/68))
+
 ## 0.3.1
 
 - Supporting custom PostCSS options now (`parser`, `stringifier`, `syntax`)

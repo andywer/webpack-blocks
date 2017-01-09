@@ -27,17 +27,36 @@ function postcss (plugins, options) {
     options.syntax && { syntax: options.syntax }
   )
 
-  return (context) => Object.assign({
-    module: {
-      loaders: [
-        {
-          test: context.fileType('text/css'),
-          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
-        }
+  return (context) => Object.assign(
+    {
+      module: {
+        loaders: [
+          {
+            test: context.fileType('text/css'),
+            exclude: Array.isArray(exclude) ? exclude : [ exclude ],
+            loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
+          }
+        ]
+      }
+    },
+    plugins ? createPostcssPluginsConfig(context.webpack, plugins) : {}
+  )
+}
+
+function createPostcssPluginsConfig (webpack, plugins) {
+  const isWebpack2 = typeof webpack.validateSchema !== 'undefined'
+
+  if (isWebpack2) {
+    return {
+      plugins: [
+        new webpack.LoaderOptionsPlugin({
+          options: { postcss: plugins }
+        })
       ]
     }
-  }, plugins ? {
-    postcss: plugins
-  } : {})
+  } else {
+    return {
+      postcss: plugins
+    }
+  }
 }
