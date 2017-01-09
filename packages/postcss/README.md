@@ -20,6 +20,17 @@ module.exports = createConfig([
 ])
 ```
 
+Instead of passing the PostCSS plugins as an array you can also create a `postcss.config.js` file containing the plugin configuration (see [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [
+    require('precss')
+  ]
+}
+```
+
 
 ## Options
 
