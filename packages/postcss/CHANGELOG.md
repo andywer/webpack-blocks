@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## 0.3.1
+
+- Supporting custom PostCSS options now (`parser`, `stringifier`, `syntax`)
+
 ## 0.3.0
 
 - Adapted to new API: Using `context` now
