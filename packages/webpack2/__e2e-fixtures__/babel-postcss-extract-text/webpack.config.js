@@ -12,6 +12,7 @@ const babel = require('@webpack-blocks/babel6')
 const postcss = require('@webpack-blocks/postcss')
 const extractText = require('@webpack-blocks/extract-text2')
 const path = require('path')
+const precss = require('precss')
 
 module.exports = createConfig([
   entryPoint(
@@ -21,7 +22,9 @@ module.exports = createConfig([
     path.join(__dirname, 'build/bundle.js')
   ),
   babel(),
-  postcss(),
+  postcss([
+    precss
+  ]),
   extractText(
     path.join('styles.css')
   ),
