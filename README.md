@@ -175,6 +175,16 @@ If there is no NODE_ENV set then it will just treat NODE_ENV as if it was `devel
 </details>
 
 <details>
+<summary>What does defineConstants() do?</summary>
+
+`defineConstants()` is just a small convenience wrapper around webpack's [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). It is composable and automatically encodes the values.
+
+So having a `defineConstants({ 'process.env.FOO': 'foo' })` and a `defineConstants({ 'process.env.BAR': 'bar' })` in your config means the resulting webpack config will finally contain a single `new webpack.DefinePlugin({ 'process.env.FOO': '"FOO"', 'process.env.BAR': '"BAR"' })`.
+
+How many times did I have to debug some webpack config, just because of a missing `JSON.encode()` in my `DefinePlugin` before there was `defineConstants()`... 🙄
+</details>
+
+<details>
 <summary>What does a block look like from the inside?</summary>
 
 A webpack block is *just a function and requires no dependencies at all* (🎉🎉), thus making it easy to write your own blocks and share them with the community.
