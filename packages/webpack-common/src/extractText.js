@@ -18,7 +18,8 @@ export {
  */
 function getLoaderConfigByType (context, webpackConfig, fileType) {
   const loaderConfig = webpackConfig.module.loaders.find(
-    (loader) => loader.test === context.fileType(fileType)
+    // using string-based comparison here, since webpack-merge tends to deep-cloning things
+    (loader) => String(loader.test) === String(context.fileType(fileType))
   )
 
   if (loaderConfig) {
