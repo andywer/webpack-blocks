@@ -38,6 +38,6 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^2.3.1"
   }
 }
