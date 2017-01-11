@@ -17,30 +17,37 @@ devServer.reactHot = reactHot
  * @param {string|string[]} [entry]   Defaults to 'webpack/hot/only-dev-server'
  * @return {Function}
  */
-function devServer (options, entry = 'webpack/hot/only-dev-server') {
+function devServer (options = {}, entry = null) {
   if (options && (typeof options === 'string' || Array.isArray(options))) {
     entry = options
     options = {}
   }
 
-  entry = Array.isArray(entry) ? entry : [ entry ]
+  if (!Array.isArray(entry)) {
+    entry = entry ? [ entry ] : []
+  }
 
   return Object.assign((context) => {
-    context.devServer = { entry }
+    context.devServer = context.devServer || { entry: [], options: {} }
+    context.devServer.entry = context.devServer.entry.concat(entry)
+    context.devServer.options = Object.assign({}, context.devServer.options, options)
 
-    return {
-      devServer: Object.assign({
-        hot: true,
-        historyApiFallback: true,
-        inline: true
-      }, options)
-    }
+    return {}
   }, { post: postConfig })
 }
 
 function postConfig (context, config) {
+  const entryPointsToAdd = context.devServer.entry.length > 0
+    ? context.devServer.entry
+    : [ 'webpack/hot/only-dev-server' ]
+
   return {
-    entry: addDevEntryToAll(config.entry || {}, context.devServer.entry),
+    devServer: Object.assign({
+      hot: true,
+      historyApiFallback: true,
+      inline: true
+    }, context.devServer.options),
+    entry: addDevEntryToAll(config.entry || {}, entryPointsToAdd),
     plugins: [
       new context.webpack.HotModuleReplacementPlugin()
     ]
