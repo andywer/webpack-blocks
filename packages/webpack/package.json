@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack",
-  "version": "0.4.0-rc",
+  "version": "0.4.0-rc.1",
   "description": "Webpack block for the webpack 1.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
