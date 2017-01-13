@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/extract-text",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Webpack block for the Extract-text plugin.",
   "main": "lib/index",
   "license": "MIT",
@@ -16,7 +16,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "extract-text-webpack-plugin": "^1.0.1",
-    "@webpack-blocks/webpack-common": "^0.3.0"
+    "@webpack-blocks/webpack-common": "^0.4.0"
   },
   "devDependencies": {
     "standard": "^8.1.0",

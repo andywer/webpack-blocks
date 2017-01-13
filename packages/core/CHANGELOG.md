@@ -1,7 +1,9 @@
 # @webpack-blocks/core - Changelog
 
-## Next release
+## 0.4.0
 
+- Upgraded `webpack-merge` to v2.3
+- Fixed a bug where the config passed to blocks as parameter might contain duplicate values (see [#79](https://github.com/andywer/webpack-blocks/pull/79))
 - Added `text/x-less` file type
 
 ## 0.3.0

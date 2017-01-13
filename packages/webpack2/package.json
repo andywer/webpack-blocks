@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack2",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Webpack block for the webpack 2.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -19,14 +19,14 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0-rc.1",
-    "@webpack-blocks/webpack-common": "^0.3.0",
-    "@webpack-blocks/core": "^0.3.0"
+    "@webpack-blocks/webpack-common": "^0.4.0",
+    "@webpack-blocks/core": "^0.4.0"
   },
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.3.0",
     "@webpack-blocks/css-modules": "^0.3.0",
-    "@webpack-blocks/dev-server2": "^0.3.0",
-    "@webpack-blocks/extract-text2": "^0.3.0",
+    "@webpack-blocks/dev-server2": "^0.4.0",
+    "@webpack-blocks/extract-text2": "^0.4.0",
     "@webpack-blocks/postcss": "^0.3.0",
     "@webpack-blocks/sass": "^0.3.0",
     "ava": "^0.16.0",

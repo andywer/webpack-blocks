@@ -1,9 +1,11 @@
 # @webpack-blocks/webpack - Changelog
 
-## Next release
+## 0.4.0
 
 - Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
 - Breaking change: Removed `node_modules/` exclusion from default css-loader
+- Using updated `@webpack-blocks/core`, `@webpack-blocks/webpack-common` and updated blocks
+- Comes with updated `webpack-merge` version
 
 ## 0.3.0
 
