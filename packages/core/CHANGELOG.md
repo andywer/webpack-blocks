@@ -1,5 +1,9 @@
 # @webpack-blocks/core - Changelog
 
+## Next release
+
+- Added `text/x-less` file type
+
 ## 0.3.0
 
 - Breaking API change: Added `context` object

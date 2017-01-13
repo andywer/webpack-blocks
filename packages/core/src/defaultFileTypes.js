@@ -5,6 +5,7 @@ module.exports = {
   'audio': /\.(aac|m4a|mp3|oga|ogg|wav)$/,
   'image': /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
   'text/css': /\.css$/,
+  'text/x-less': /\.less$/,
   'text/x-sass': /\.(sass|scss)$/,
   'video': /\.(mp4|webm)$/
 }
