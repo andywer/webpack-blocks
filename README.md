@@ -157,6 +157,12 @@ module.exports = createConfig([
 ## You might want to know
 
 <details>
+<summary>Can I get rid of the default loaders?</summary>
+
+The `createConfig()` function sets some generic default loaders. This should not be a problem. If does happen to be a problem you can also create a "vanilla" configuration (without the defaults) by using `createConfig.vanilla()` instead.
+</details>
+
+<details>
 <summary>How does env() work?</summary>
 
 You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.

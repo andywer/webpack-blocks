@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack2 - Changelog
 
+## Next release
+
+- Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
+
 ## 0.3.1
 
 - Remove the `json-loader` config & depedency, since webpack 2 comes with a default json-loader config (#63)
