@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack",
-  "version": "0.4.0",
+  "version": "0.4.0-rc",
   "description": "Webpack block for the webpack 1.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -20,15 +20,15 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "@webpack-blocks/core": "^0.4.0",
-    "@webpack-blocks/webpack-common": "^0.4.0"
+    "@webpack-blocks/core": "^0.4.0-rc",
+    "@webpack-blocks/webpack-common": "^0.4.0-rc"
   },
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.3.0",
     "@webpack-blocks/css-modules": "^0.3.0",
-    "@webpack-blocks/dev-server": "^0.4.0",
-    "@webpack-blocks/extract-text": "^0.4.0",
-    "@webpack-blocks/postcss": "^0.3.0",
+    "@webpack-blocks/dev-server": "^0.4.0-rc",
+    "@webpack-blocks/extract-text": "^0.4.0-rc",
+    "@webpack-blocks/postcss": "^0.4.0-rc",
     "@webpack-blocks/sass": "^0.3.0",
     "ava": "^0.16.0",
     "babel-loader": "^6.2.9",
