@@ -30,7 +30,7 @@ function createConfig (webpack, configSetters) {
   const context = { fileType, webpack }
 
   invokePreHooks(configSetters, context)
-  const config = invokeConfigSetters(configSetters, context, {}, config)
+  const config = invokeConfigSetters(configSetters, context)
   const postProcessedConfig = invokePostHooks(configSetters, context, config)
 
   return postProcessedConfig
@@ -65,7 +65,15 @@ function group (configSetters) {
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
-  const groupBlock = (context, config) => invokeConfigSetters(configSetters, context, config)
+  const groupBlock = (context, config) => {
+    // `baseConfig` must be {}, so `invokeConfigSetters()` returns a config
+    // diff, not the whole merged config
+    const baseConfig = {}
+    // `getCompleteConfig` will make sure the whole config is passed as 2nd param when
+    // the config setters are invoked, even though the baseConfig is `{}`, not `config`
+    const getCompleteConfig = (incompleteConfig) => merge.smart(config, incompleteConfig)
+    return invokeConfigSetters(configSetters, context, baseConfig, getCompleteConfig)
+  }
 
   return Object.assign(groupBlock, { pre, post })
 }
@@ -84,17 +92,13 @@ function getHooks (configSetters, type) {
   return filterDuplicates(flattenedHooks)
 }
 
-function invokeConfigSetters (configSetters, context, baseConfig = {}, initialConfig = {}) {
-  const getCompleteConfig = Object.keys(baseConfig).length > 0
-    ? (mergedConfig) => merge.smart(baseConfig, mergedConfig)
-    : (mergedConfig) => mergedConfig
-
+function invokeConfigSetters (configSetters, context, baseConfig = {}, getCompleteConfig = (config) => config) {
   return configSetters.reduce(
     (mergedConfig, setter) => {
       const configPartial = setter(context, getCompleteConfig(mergedConfig))
       return merge.smart(mergedConfig, configPartial)
     },
-    initialConfig
+    baseConfig
   )
 }
 
@@ -105,7 +109,7 @@ function invokePreHooks (configSetters, context) {
 
 function invokePostHooks (configSetters, context, config) {
   const postHooks = getHooks(configSetters, 'post')
-  return invokeConfigSetters(postHooks, context, config, config)
+  return invokeConfigSetters(postHooks, context, config)
 }
 
 function filterDuplicates (array) {
