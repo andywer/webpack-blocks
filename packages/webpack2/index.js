@@ -13,6 +13,7 @@ exports.group = core.group
 exports.webpack = webpack
 
 exports.createConfig = createConfig
+exports.createConfig.vanilla = createVanillaConfig
 
 exports.addPlugins = common.addPlugins
 exports.customConfig = common.customConfig
@@ -24,6 +25,22 @@ exports.setContext = common.setContext
 exports.setDevTool = common.setDevTool
 exports.setOutput = common.setOutput
 exports.sourceMaps = common.sourceMaps
+
+/**
+ * Takes an array of webpack blocks and creates a webpack config out of them.
+ * Each webpack block is a callback function which will be invoked to return a
+ * partial webpack config. These partial configs are merged to create the
+ * final, complete webpack config that will be returned.
+ *
+ * Wraps @webpack-blocks/core's `createConfig` without `createConfig()`'s usual
+ * default config.
+ *
+ * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
+ * @return {object}                   Webpack config object.
+ */
+function createVanillaConfig (configSetters) {
+  return core.createConfig(webpack, configSetters)
+}
 
 /**
  * Takes an array of webpack blocks and creates a webpack config out of them.

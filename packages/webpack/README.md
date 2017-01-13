@@ -35,7 +35,11 @@ module.exports = createConfig([
 
 #### createConfig(configSetter: Function[]): object
 
-Takes an array of config setters (the functions returned by invoked webpack blocks), invokes them and returns the resulting webpack config object.
+Takes an array of config setters (the functions returned by invoked webpack blocks), invokes them and returns the resulting webpack config object. Already sets some generic default config, like default CSS, font and image file loaders.
+
+#### createConfig.vanilla(configSetter: Function[]): object
+
+Works just like `createConfig()`, but provides no default configuration whatsoever. Use it only if you want to get rid of the default loaders for some reason.
 
 #### group(configSetters: Function[]): Function
 

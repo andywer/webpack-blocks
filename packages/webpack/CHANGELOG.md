@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
+
 ## 0.3.0
 
 - Provide `group()` for creating presets

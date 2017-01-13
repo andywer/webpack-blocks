@@ -82,3 +82,20 @@ test('complete webpack config creation', (t) => {
     'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'
   ])
 })
+
+test('createConfig.vanilla() creates configurations without defaults', (t) => {
+  const webpackConfig = createConfig.vanilla([
+    entryPoint('./src/main.js'),
+    setOutput('./build/bundle.js')
+  ])
+
+  t.deepEqual(webpackConfig, {
+    entry: {
+      main: [ './src/main.js' ]
+    },
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve('./build')
+    }
+  })
+})
