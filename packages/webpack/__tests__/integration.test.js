@@ -25,7 +25,6 @@ test('complete webpack config creation', (t) => {
   t.is(webpackConfig.module.loaders.length, 8)
   t.deepEqual(webpackConfig.module.loaders[0], {
     test: /\.css$/,
-    exclude: [ /\/node_modules\// ],
     loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
   })
   t.deepEqual(webpackConfig.module.loaders[1], {
