@@ -20,18 +20,18 @@ function cssModules (options) {
     ? '[hash:base64:10]'
     : '[name]--[local]--[hash:base64:5]'
 
-  const exclude = options.exclude || /\/node_modules\//
   const importLoaders = options.importLoaders || 1
   const localIdentName = options.localIdentName || localIdentDefault
 
   return (context) => ({
     module: {
       loaders: [
-        {
+        Object.assign({
           test: context.fileType('text/css'),
-          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'style-loader', 'css-loader?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]
-        }
+        }, options.exclude ? {
+          exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
+        } : {})
       ]
     }
   })

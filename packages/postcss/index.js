@@ -17,7 +17,6 @@ module.exports = postcss
  */
 function postcss (plugins, options) {
   options = options || {}
-  const exclude = options.exclude || /\/node_modules\//
 
   // https://github.com/postcss/postcss-loader#options
   const postcssOptions = Object.assign(
@@ -31,11 +30,12 @@ function postcss (plugins, options) {
     {
       module: {
         loaders: [
-          {
+          Object.assign({
             test: context.fileType('text/css'),
-            exclude: Array.isArray(exclude) ? exclude : [ exclude ],
             loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
-          }
+          }, options.exclude ? {
+            exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
+          } : {})
         ]
       }
     },
