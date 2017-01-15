@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/postcss",
-  "version": "0.4.0-rc",
+  "version": "0.4.0-rc.1",
   "description": "Webpack block for PostCSS.",
   "main": "lib/index",
   "license": "MIT",
