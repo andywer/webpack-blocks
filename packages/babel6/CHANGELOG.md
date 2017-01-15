@@ -1,5 +1,9 @@
 # @webpack-blocks/babel6 - Changelog
 
+## 0.4.0
+
+- No changes, just keeping the version numbers in sync (all other packages have been updated)
+
 ## 0.3.0
 
 - Use `context`
