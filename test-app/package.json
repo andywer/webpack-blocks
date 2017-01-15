@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.3.0",
-    "@webpack-blocks/css-modules": "^0.3.0",
+    "@webpack-blocks/css-modules": "^0.4.0",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/extract-text2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
