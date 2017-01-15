@@ -64,7 +64,6 @@ function createBaseConfig (context) {
       loaders: [
         {
           test: context.fileType('text/css'),
-          exclude: [ /\/node_modules\// ],
           loaders: [ 'style-loader', 'css-loader' ]
         }, {
           test: context.fileType('image'),

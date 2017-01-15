@@ -3,6 +3,7 @@
 ## Next release
 
 - Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
+- Breaking change: Removed `node_modules/` exclusion from default css-loader
 
 ## 0.3.0
 
