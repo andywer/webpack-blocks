@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## Next release
+
+- Breaking change: Dropped the default `node_modules/` exclusion
+
 ## 0.3.2
 
 - Bug fix: PostCSS plugin configuration now works with webpack 2 ([#68](https://github.com/andywer/webpack-blocks/issues/68))

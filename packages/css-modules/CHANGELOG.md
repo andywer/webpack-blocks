@@ -1,5 +1,9 @@
 # @webpack-blocks/css-modules - Changelog
 
+## Next release
+
+- Breaking change: Dropped the default `node_modules/` exclusion
+
 ## 0.3.0
 
 - Adapted to new API: Using `context` now
