@@ -42,9 +42,8 @@ function typescript (options) {
 }
 
 function pre (context) {
-  if ('application/x-typescript' in context.fileType.all()) {
-    // file type is already there
-  } else {
+  const registeredTypes = context.fileType.all()
+  if (!('application/x-typescript' in registeredTypes)) {
     context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
   }
 }
