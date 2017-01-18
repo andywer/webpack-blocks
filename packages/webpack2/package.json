@@ -29,7 +29,9 @@
     "@webpack-blocks/extract-text2": "^0.3.0",
     "@webpack-blocks/postcss": "^0.3.0",
     "@webpack-blocks/sass": "^0.3.0",
+    "@webpack-blocks/typescript": "^0.1.0",
     "ava": "^0.16.0",
+    "awesome-typescript-loader": "^3.0.0-beta.18",
     "babel-loader": "^6.2.9",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
@@ -40,6 +42,7 @@
     "precss": "^1.4.0",
     "sass-loader": "^4.0.2",
     "standard": "^8.1.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "typescript": "^2.1.5"
   }
 }
