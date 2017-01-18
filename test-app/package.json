@@ -7,6 +7,8 @@
     "node": ">= 5.0"
   },
   "devDependencies": {
+    "@types/node": "^7.0.0",
+    "@types/react": "^15.0.0",
     "@webpack-blocks/babel6": "^0.x",
     "@webpack-blocks/css-modules": "^0.x",
     "@webpack-blocks/dev-server2": "^0.3.0",
