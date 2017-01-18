@@ -37,7 +37,7 @@ function typescript (options) {
       ] : []
     )
   })
-  
+
   return Object.assign(setter, { pre })
 }
 
