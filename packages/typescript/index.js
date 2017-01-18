@@ -4,7 +4,8 @@
  * @see https://github.com/s-panferov/awesome-typescript-loader
  */
 
-const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
+const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin
 
 module.exports = typescript
 
