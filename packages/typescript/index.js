@@ -9,13 +9,13 @@ const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loade
 module.exports = typescript
 
 /**
- * @param {object}   [advancedPathResolution]                  See https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
+ * @param {object} [advancedPathResolution]                  See https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
  * @param {object} [options.tsconfig]
  * @param {object} [options.compiler]
  * @return {Function}
  */
 function typescript (options) {
-  return (context) => ({
+  const setter = (context) => ({
     resolve: {
       extensions: ['.ts', '.tsx']
     },
@@ -29,6 +29,22 @@ function typescript (options) {
         }
       ]
     },
-    plugins: options ? [new CheckerPlugin(), new TsConfigPathsPlugin({ tsconfig: options.tsconfig, compiler: options.compiler })] : [new CheckerPlugin()]
+    plugins: [
+      new CheckerPlugin()
+    ].concat(
+      options ? [
+        new TsConfigPathsPlugin({ tsconfig: options.tsconfig, compiler: options.compiler })
+      ] : []
+    )
   })
+  
+  return Object.assign(setter, { pre })
+}
+
+function pre (context) {
+  if ('application/x-typescript' in context.fileType.all()) {
+    // file type is already there
+  } else {
+    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
+  }
 }
