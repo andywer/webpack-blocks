@@ -11,7 +11,7 @@
     "@types/react": "^15.0.0",
     "@webpack-blocks/babel6": "^0.x",
     "@webpack-blocks/css-modules": "^0.x",
-    "@webpack-blocks/typescript": "^0.x",
+    "@webpack-blocks/typescript": "^0.1.0",
     "@webpack-blocks/dev-server2": "^0.3.0",
     "@webpack-blocks/extract-text2": "^0.3.0",
     "@webpack-blocks/webpack2": "^0.3.0",
