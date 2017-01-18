@@ -91,6 +91,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [sass](./packages/sass)
 - [webpack](./packages/webpack) *(Webpack 1 base config)*
 - [webpack2](./packages/webpack2) *(Webpack 2 base config)*
+- [typescript](./packages/typescript)
 
 Missing something? Write and publish your own webpack blocks!
 
