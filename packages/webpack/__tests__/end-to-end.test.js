@@ -48,6 +48,20 @@ test('building the sass/extract-text project works', async (t) => {
   t.true(removeWhitespaces(styleContents).indexOf(removeWhitespaces('body { padding: 25px; }')) > -1)
 })
 
+test('building the typescript project works', async (t) => {
+  const projectPath = path.join(fixturesPath, 'typescript')
+  const buildPath = path.join(projectPath, 'build')
+
+  const config = require(path.join(projectPath, 'webpack.config.js'))
+  await runWebpack(config)
+
+  require(path.join(buildPath, 'bundle.js'))
+
+  // Check if bundle contains injected process.env.TEST
+  const bundleContents = await fs.readFile(path.join(buildPath, 'bundle.js'), { encoding: 'utf8' })
+  t.true(bundleContents.indexOf('module.exports = ("This is the injected process.env.TEST!")') > -1)
+})
+
 function runWebpack (config) {
   return new Promise((resolve, reject) => {
     webpack(config, (error, stats) => {
