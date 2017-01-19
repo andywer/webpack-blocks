@@ -1,8 +1,8 @@
-# Webpack blocks - SASS
+# Webpack blocks - TypeScript
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-This is the `typescript` block providing Typescript support for webpack. Uses `awesome-typescript-loader`.
+This is the `typescript` block providing TypeScript support for webpack. Uses `awesome-typescript-loader`.
 
 
 ## Usage
