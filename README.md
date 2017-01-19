@@ -89,9 +89,9 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [extract-text2](./packages/extract-text2) *(for Webpack 2)*
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
+- [typescript](./packages/typescript)
 - [webpack](./packages/webpack) *(Webpack 1 base config)*
 - [webpack2](./packages/webpack2) *(Webpack 2 base config)*
-- [typescript](./packages/typescript)
 
 Missing something? Write and publish your own webpack blocks!
 
