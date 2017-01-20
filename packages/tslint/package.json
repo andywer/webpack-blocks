@@ -15,7 +15,9 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "tslint-loader": "^3.2.1"
+    "tslint": "^4.3.1",
+    "tslint-loader": "^3.2.1",
+    "typescript": "^2.1.5"
   },
   "devDependencies": {
     "standard": "^8.1.0"

@@ -7,6 +7,7 @@ const entryPoint = webpackBlock.entryPoint
 const setOutput = webpackBlock.setOutput
 
 const typescript = require('@webpack-blocks/typescript')
+const tslint = require('@webpack-blocks/tslint')
 const path = require('path')
 
 module.exports = createConfig([
@@ -17,6 +18,9 @@ module.exports = createConfig([
     path.join(__dirname, 'build/bundle.js')
   ),
   typescript(),
+  tslint({
+    emitErrors: true
+  }),
   defineConstants({
     'process.env.TEST': 'This is the injected process.env.TEST!'
   })

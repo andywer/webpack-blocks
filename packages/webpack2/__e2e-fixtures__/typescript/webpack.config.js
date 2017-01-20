@@ -8,6 +8,7 @@ const performance = webpack2.performance
 const setOutput = webpack2.setOutput
 
 const typescript = require('@webpack-blocks/typescript')
+const tslint = require('@webpack-blocks/tslint')
 const path = require('path')
 
 module.exports = createConfig([
@@ -18,6 +19,9 @@ module.exports = createConfig([
     path.join(__dirname, 'build/bundle.js')
   ),
   typescript(),
+  tslint({
+    emitErrors: true
+  }),
   performance({
     maxAssetSize: 100000,
     maxEntrypointSize: 500000,
