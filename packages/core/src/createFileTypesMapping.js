@@ -20,6 +20,14 @@ function createFileTypesMapping (initialMapping) {
     },
 
     /**
+     * @param {string} type   MIME type.
+     * @return {boolean}
+     */
+    has (type) {
+      return type in currentMapping
+    },
+
+    /**
      * @param {string|object} type
      * @param {RegExp|Function|string|array} [condition]  Only used if param `type` is a string.
      * @return {FileTypesMapping} this
