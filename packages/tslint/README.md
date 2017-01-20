@@ -1,8 +1,8 @@
-# Webpack blocks - SASS
+# Webpack blocks - TSLint
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-This is the `tslint` block providing typescript linting support for webpack. Uses `tslint` via `tslint-loader`.
+This is the `tslint` block providing TypeScript linting support for webpack. Uses `tslint` via `tslint-loader`.
 
 
 ## Usage
@@ -12,7 +12,7 @@ const { createConfig } = require('@webpack-blocks/webpack')
 const tslint = require('@webpack-blocks/tslint')
 
 module.exports = createConfig([
-  sass(/* tslint options */)
+  tslint(/* tslint options */)
 ])
 ```
 
