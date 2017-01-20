@@ -6,7 +6,7 @@
 
 const common = require('@webpack-blocks/webpack-common')
 const core = require('@webpack-blocks/core')
-const webpack = require('webpack')
+const webpack = Object.assign(require('webpack'), { version: 2 })
 
 exports.env = core.env
 exports.group = core.group
