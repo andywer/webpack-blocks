@@ -1,6 +1,7 @@
 # Webpack blocks - TSLint
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/tslint.svg)](https://www.npmjs.com/package/@webpack-blocks/tslint)
 
 This is the `tslint` block providing TypeScript linting support for webpack. Uses `tslint` via `tslint-loader`.
 
