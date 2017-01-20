@@ -39,7 +39,16 @@ exports.sourceMaps = common.sourceMaps
  * @return {object}                   Webpack config object.
  */
 function createVanillaConfig (configSetters) {
-  return core.createConfig(webpack, configSetters)
+  return core.createConfig(webpack, [ createEmptyConfig ].concat(configSetters))
+}
+
+function createEmptyConfig () {
+  return {
+    module: {
+      loaders: []
+    },
+    plugins: []
+  }
 }
 
 /**
@@ -83,7 +92,7 @@ function createBaseConfig (context) {
         }
       ]
     },
-
+    plugins: [],
     resolve: {
       extensions: [ '', '.js', '.jsx', '.json' ]
     }
