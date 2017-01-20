@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "standard": "^8.1.0"
+  },
+  "peerDependencies": {
+    "@webpack-blocks/core": ">= 0.4.0"
   }
 }
