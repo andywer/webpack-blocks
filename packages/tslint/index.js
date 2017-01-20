@@ -5,7 +5,6 @@
  */
 
 module.exports = tslint
-const webpack = require('webpack')
 
 /**
  * @param {object}   [options]                  See https://github.com/wbuchwalter/tslint-loader#usage
@@ -25,7 +24,7 @@ function tslint (options) {
       ]
     },
     plugins: [
-      new webpack.LoaderOptionsPlugin({
+      new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options
         }
