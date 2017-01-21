@@ -92,9 +92,13 @@ test('createConfig.vanilla() creates configurations without defaults', (t) => {
     entry: {
       main: [ './src/main.js' ]
     },
+    module: {
+      loaders: []
+    },
     output: {
       filename: 'bundle.js',
       path: path.resolve('./build')
-    }
+    },
+    plugins: []
   })
 })
