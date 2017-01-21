@@ -61,15 +61,62 @@ Special feature: Using `defineConstants` multiple times results in a single Defi
 
 Same as `require('webpack')`.
 
+---
+
 #### addPlugins(plugins: WebpackPlugin[])
+
+Add custom [plugins](https://webpack.github.io/docs/configuration.html#plugins) to the webpack configuration.
+
+Example usage: `addPlugins([ new HtmlWebpackPlugin() ])`
+
 #### customConfig(webpackConfigSnippet: object)
+
+Add some custom configuration to the webpack configuration. The object you pass will be merged into the webpack configuration object.
+
 #### entryPoint(entryPoint: string|string[]|object)
+
+Adds one or multiple entry points. If the parameter is not an object the entry point(s) will be added to the default chunk named `main`. This way we make sure that the resulting [https://webpack.github.io/docs/configuration.html#entry](entry) configuration property will always be an object.
+
 #### performance(perfBudgetOptions: object)
+
+Set a performance budget. Performance budgets are custom limits (like max bundle size) you can set to make webpack warn you or throw an error if the application exceeds those limits.
+
+Options object:
+```js
+{
+  maxAssetSize: number,         // File size limit in bytes
+  maxEntrypointSize: number,    // Total size (of an entry point) limit in bytes
+  hints: string                 // "warning" or "error"
+}
+```
+
 #### resolveAliases(aliases: object)
+
+Sets [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias). Use it to manually override module resolving.
+
+Example usage: `resolveAliases({ foo: path.resolve('./bar.js') })` will make `require('foo')` resolve to `bar.js`.
+
 #### setContext(path: string)
+
+Sets the webpack [context](https://webpack.github.io/docs/configuration.html#context). Not to be confused with the webpack-block's `context` object.
+
 #### setDevTool(devtool: string)
+
+Use it to manually set the webpack [devtool](https://webpack.github.io/docs/configuration.html#devtool) property, like `'eval'`, `'source-map'` and such.
+
 #### setOutput(output: string|object)
-#### sourceMaps()
+
+Sets the webpack [output](https://webpack.github.io/docs/configuration.html#output) property. Use it to tell webpack where to save the output bundle(s).
+
+You can either pass an object that complies to the format described in the [webpack docs](https://webpack.github.io/docs/configuration.html#output) or just pass the destination file path.
+
+Instead of passing the destination file path you can also
+* Just pass a filename (not the complete path): The directory will default to `./build/`.
+* Just pass the path to a directory (trailing `/`): The filename will default to `bundle.js`.
+
+#### sourceMaps(devtool: ?string)
+
+Just a convenience wrapper to enable sourcemaps in an easier-to-read fashion than `setDevTool()`. Will set webpack's `devtool` to `'cheap-module-source-map'` if no explicit `devtool` is passed as parameter.
 
 
 ## Webpack blocks
