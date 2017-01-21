@@ -6,7 +6,8 @@
 
 const common = require('@webpack-blocks/webpack-common')
 const core = require('@webpack-blocks/core')
-const webpack = Object.assign(require('webpack'), { version: 2 })
+const webpack = require('webpack')
+const webpackVersion = require('./package.json').dependencies.webpack
 
 exports.env = core.env
 exports.group = core.group
@@ -39,7 +40,7 @@ exports.sourceMaps = common.sourceMaps
  * @return {object}                   Webpack config object.
  */
 function createVanillaConfig (configSetters) {
-  return core.createConfig(webpack, configSetters)
+  return core.createConfig(webpack, webpackVersion, configSetters)
 }
 
 /**
@@ -55,7 +56,7 @@ function createVanillaConfig (configSetters) {
  * @return {object}                   Webpack config object.
  */
 function createConfig (configSetters) {
-  return core.createConfig(webpack, [ createBaseConfig ].concat(configSetters))
+  return core.createConfig(webpack, webpackVersion, [ createBaseConfig ].concat(configSetters))
 }
 
 function createBaseConfig (context) {

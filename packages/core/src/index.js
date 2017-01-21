@@ -18,7 +18,7 @@ const isFunction = (value) => typeof value === 'function'
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {object}                   Webpack config object.
  */
-function createConfig (webpack, configSetters) {
+function createConfig (webpack, versionString, configSetters) {
   if (!webpack) {
     throw new Error(`No webpack instance passed.`)
   }
@@ -26,14 +26,37 @@ function createConfig (webpack, configSetters) {
     throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
   }
 
+  const webpackVersion = parseVersionString(versionString)
+
   const fileType = createFileTypesMapping(defaultFileTypes)
-  const context = { fileType, webpack }
+  const context = { fileType, webpackVersion, webpack }
 
   invokePreHooks(configSetters, context)
   const config = invokeConfigSetters(configSetters, context)
   const postProcessedConfig = invokePostHooks(configSetters, context, config)
 
   return postProcessedConfig
+}
+
+/**
+ * Parses a semver string into an object
+ * @param {string} string
+ * @return {object}
+ */
+function parseVersionString (string) {
+  const semver = string.split('-')
+  const versions = semver[0]
+    .replace(/[^0-9.]/g, '')
+    .split('.')
+    .map(parseInt)
+
+  return {
+    major: versions[0],
+    minor: versions[1],
+    patch: versions[2],
+    suffix: semver[1],
+    string: string
+  }
 }
 
 /**
