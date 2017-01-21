@@ -46,6 +46,19 @@ Initially it will only contain the `fileType` mapping. If you are using [hooks](
 
 The `fileType` are a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
 
+To add a new `fileType` you can use the `fileType.add()` function. See its usage in the `typescript` block:
+```
+function pre (context) {
+  const registeredTypes = context.fileType.all()
+  if (!('application/x-typescript' in registeredTypes)) {
+    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
+  }
+}
+```
+__Every__ block using mime types that are not already in `core/src/defaultFileTypes.js` is __required__ to have a similar [Hook](#Hooks). If it is a rather common file type, you can add it to the `defaultFileTypes` *too*. That way, you are not required to update `@webpack-blocks/core` to use new blocks.
+
+Additionally the `context` has a webpack object, so you do not have to `require('webpack')`, you can use `context.webpack`.
+
 
 ## Hooks
 
