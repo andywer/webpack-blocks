@@ -5,22 +5,7 @@
 
 📦 Functional approach to compose your webpack config.
 
-This is the core library.
-
-
-## Exported functions
-
-#### createConfig(configSetter: Function[]): object
-
-Takes an array of config setters (the functions returned by invoked webpack blocks), invokes them and returns the resulting webpack config object.
-
-#### group(configSetters: Function[]): Function
-
-Combines an array of blocks to a new joined block. Running this single block has the same effect as running all source blocks.
-
-#### env(envName: string, configSetters: Function[]): Function
-
-Applies an array of webpack blocks only if `process.env.NODE_ENV` matches the given `envName`. If no `NODE_ENV` is set, it will be treated as 'development'.
+This is the core library. Not meant to be used manually.
 
 
 ## Webpack blocks
