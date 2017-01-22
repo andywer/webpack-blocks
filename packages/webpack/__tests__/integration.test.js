@@ -102,3 +102,28 @@ test('createConfig.vanilla() creates configurations without defaults', (t) => {
     plugins: []
   })
 })
+
+test('context contains necessary properties', (t) => {
+  t.plan(10)
+
+  createConfig.vanilla([
+    (context) => {
+      // context.fileType
+      t.is(typeof context.fileType, 'function')
+      t.is(typeof context.fileType.add, 'function')
+      t.is(typeof context.fileType.all, 'function')
+      t.is(typeof context.fileType.get, 'function')
+      t.is(typeof context.fileType.has, 'function')
+
+      // context.webpack
+      t.is(typeof context.webpack, 'function')
+      t.is(typeof context.webpack.EnvironmentPlugin, 'function')
+
+      // context.webpackVersion
+      t.is(typeof context.webpackVersion, 'object')
+      t.is(typeof context.webpackVersion.major, 'number')
+      t.is(typeof context.webpackVersion.minor, 'number')
+      return {}
+    }
+  ])
+})
