@@ -42,9 +42,26 @@ Thus it is also super easy to unit test and generic enough to share it with the 
 
 The context object is an additional metadata object that is passed to every block. It is meant to contain any kind of data that is needed for webpack config creation, but not part of the webpack config itself.
 
-Initially it will only contain the `fileType` mapping. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook. If you are not using hooks you do not have to care about the context object, except for the `fileType`.
+Initially it will contain the `fileType` mapping and a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
 
-The `fileType` are a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
+The `context.fileType` is a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/src/defaultFileTypes.js).
+
+The `context.webpack` property is the webpack instance, so you do not have to `require('webpack')` in your blocks. Use `context.webpack` instead.
+
+### Adding custom file types
+
+To add a new `fileType` you can use the `fileType.add(mimeType: string, regex: RegExp)` function. See its usage in the `typescript` block:
+
+```
+function preHook (context) {
+  const registeredTypes = context.fileType.all()
+  if (!('application/x-typescript' in registeredTypes)) {
+    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
+  }
+}
+```
+
+Every block using MIME types that are not already defined in `core/src/defaultFileTypes.js` needs to have a similar pre [hook](#Hooks) to register its custom types. If it is a rather common file type feel free to open a pull request for adding it to the `defaultFileTypes` as well.
 
 
 ## Hooks
