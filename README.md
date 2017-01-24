@@ -19,8 +19,6 @@ Missing anything? Write your own and share them!
 
 *Every* block has been updated, but you have to make sure **all webpack-blocks packages you use are version >= 0.3.0** or otherwise **all packages are < 0.3.0**.
 
-On the upside we don't consider it an early release anymore and the next major release you see might very well be `v1.0` 👌
-
 Read the release notes [here](https://github.com/andywer/webpack-blocks/releases/tag/v0.3.0).
 
 <br />
@@ -76,6 +74,29 @@ module.exports = createConfig([
 ])
 ```
 
+Need a custom block? Easy, since a block is just a function returning a function:
+
+```js
+module.exports = createConfig([
+  ...
+  myCssLoader([ './styles' ])
+])
+
+function myCssLoader (include) {
+  return (context) => ({
+    module: {
+      loaders: [
+        {
+          test: context.fileType('text/css'),
+          loaders: [ 'style-loader', 'my-css-loader' ],
+          include
+        }
+      ]
+    }
+  })
+}
+```
+
 Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
 
@@ -115,44 +136,6 @@ Just use the webpack 2 versions of the following blocks:
 - Uniformity for easy composition
 - Keep everything configurable
 - But provide sane defaults
-
-
-## group() (*presets*)
-
-You have got some projects with a similar, yet not identical webpack configuration? Seems like you are looking for something preset-ish!
-
-Fortunately, this is also very simple:
-
-```js
-const { env, group } = require('@webpack-blocks/webpack')
-const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
-
-function myPreset (proxyConfig) {
-  return group([
-    babel(),
-    env('development', [
-      devServer(),
-      devServer.proxy(proxyConfig)
-    ])
-  ])
-}
-```
-
-The key feature is the `group()` method which takes a set of blocks and returns a new block that combines all their functionality.
-
-Then use your preset like this:
-
-```js
-const { createConfig } = require('@webpack-blocks/webpack')
-
-module.exports = createConfig([
-  myPreset({
-    '/api': { target: 'http://localhost:3000' }
-  }),
-  ...   // add more blocks here
-])
-```
 
 
 ## You might want to know
@@ -259,6 +242,38 @@ The object you pass to `customConfig()` will be merged into the webpack config u
 [webpack-merge](https://github.com/survivejs/webpack-merge) like any other webpack
 block's partial config.
 </details>
+
+<details>
+<summary>How to compose blocks? (a.k.a. building presets)</summary>
+
+Got some projects with a similar, yet not identical webpack configuration? Seems like you could use a preset:
+
+```js
+const { createConfig, env, group } = require('@webpack-blocks/webpack')
+const babel = require('@webpack-blocks/babel6')
+const devServer = require('@webpack-blocks/dev-server')
+
+function myPreset (proxyConfig) {
+  return group([
+    babel(),
+    env('development', [
+      devServer(),
+      devServer.proxy(proxyConfig)
+    ])
+  ])
+}
+
+module.exports = createConfig([
+  myPreset({
+    '/api': { target: 'http://localhost:3000' }
+  }),
+  ...   // add more blocks here
+])
+```
+
+The key feature is the `group()` method which takes a set of blocks and returns a new block that combines all their functionality.
+</details>
+
 
 ## Like what you see?
 
