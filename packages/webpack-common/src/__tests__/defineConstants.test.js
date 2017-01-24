@@ -9,7 +9,7 @@ const webpack = {
 }
 
 test('defineConstants() creates a single DefinePlugin instance only', (t) => {
-  const config = createConfig(webpack, [
+  const config = createConfig({ webpack }, [
     defineConstants({ a: 'a' }),
     defineConstants({ b: 'b' })
   ])
@@ -19,7 +19,7 @@ test('defineConstants() creates a single DefinePlugin instance only', (t) => {
 })
 
 test('defineConstants() encodes the values', (t) => {
-  const config = createConfig(webpack, [
+  const config = createConfig({ webpack }, [
     defineConstants({
       foo: 'foo',
       bar: {

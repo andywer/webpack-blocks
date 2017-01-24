@@ -8,7 +8,7 @@ const webpack = {
 }
 
 test('devServer() without options provides expected defaults', (t) => {
-  const config = createConfig(webpack, [
+  const config = createConfig({ webpack }, [
     entryPoint({
       main: ['./test.js']
     }),
@@ -32,7 +32,7 @@ test('devServer() without options provides expected defaults', (t) => {
 })
 
 test('devServer() uses custom options and can be composed', (t) => {
-  const config = createConfig(webpack, [
+  const config = createConfig({ webpack }, [
     entryPoint({
       main: ['./test.js'],
       second: ['./second.js']
@@ -62,7 +62,7 @@ test('devServer() uses custom options and can be composed', (t) => {
 
 // Regression test for https://github.com/andywer/webpack-blocks/issues/76
 test('devServer block extends multiple entry points correctly', (t) => {
-  const config = createConfig(webpack, [
+  const config = createConfig({ webpack }, [
     entryPoint({
       a: './a',
       b: ['./b']

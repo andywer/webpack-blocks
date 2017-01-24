@@ -2,6 +2,7 @@
 
 ## Next release
 
+- Changed signature of `createConfig()` to allow passing `context.webpackVersion`
 - Added `text/x-less` file type
 
 ## 0.3.0
