@@ -1,0 +1,28 @@
+{
+  "name": "@webpack-blocks/tslint",
+  "version": "0.1.0",
+  "description": "Webpack block for typescript linting.",
+  "main": "lib/index",
+  "license": "MIT",
+  "author": "Jan van Brügge <supermanitu@gmail.com>",
+  "scripts": {
+    "test": "standard",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "tslint": "^4.3.1",
+    "tslint-loader": "^3.2.1",
+    "typescript": "^2.1.5"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  },
+  "peerDependencies": {
+    "@webpack-blocks/core": ">= 0.4.0"
+  }
+}
