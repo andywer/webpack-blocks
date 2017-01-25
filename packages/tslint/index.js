@@ -13,17 +13,15 @@ module.exports = tslint
 function tslint (options) {
   options = options || {}
 
-  const loader = context => ({
+  const loader = (context, extra) => Object.assign({
     test: context.fileType('application/x-typescript'),
     loaders: [ 'tslint-loader' ]
-  })
+  }, extra)
 
   const module = context => (context.webpackVersion.major === 1 ? {
     preLoaders: [ loader(context) ]
   } : {
-    loaders: [ Object.assign({}, loader(context), {
-      enforce: 'pre'
-    })]
+    loaders: [ loader(context, { enforce: 'pre' }) ]
   })
 
   const setter = (context) => Object.assign({
