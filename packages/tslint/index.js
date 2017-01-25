@@ -18,7 +18,7 @@ function tslint (options) {
     loaders: [ 'tslint-loader' ]
   }, extra)
 
-  const module = context => (context.webpackVersion.major === 1 ? {
+  const module = (context) => (context.webpackVersion.major === 1 ? {
     preLoaders: [ loader(context) ]
   } : {
     loaders: [ loader(context, { enforce: 'pre' }) ]
