@@ -32,12 +32,20 @@ npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
 
 ## Usage
 
-Create a webpack 2 config with Babel support, dev server, HMR and PostCSS autoprefixer:
+Create a webpack config with Babel support, dev server, HMR and PostCSS autoprefixer:
 
 ```js
-const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack2')
+// webpack.config.js
+
+const { 
+  createConfig, 
+  entryPoint, 
+  setOutput, 
+  defineConstants, 
+  env, 
+  sourceMaps } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server2')
+const devServer = require('@webpack-blocks/dev-server')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
@@ -51,6 +59,8 @@ module.exports = createConfig([
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
+
+  // use only if `NODE_ENV === 'development'`:
   env('development', [
     devServer(),
     devServer.proxy({
@@ -60,6 +70,7 @@ module.exports = createConfig([
   ])
 ])
 ```
+Now simply run `webpack` or `webpack-dev-server`.
 
 Wanna use CSS modules? No problem!
 
