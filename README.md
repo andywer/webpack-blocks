@@ -11,17 +11,6 @@ Missing anything? Write your own and share them!
 >
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
-<br />
-
-## v0.3 Update
-
-**Version 0.3.x of webpack-blocks comes with a bunch of new features, but also with a major breaking change under the hood.**
-
-*Every* block has been updated, but you have to make sure **all webpack-blocks packages you use are version >= 0.3.0** or otherwise **all packages are < 0.3.0**.
-
-Read the release notes [here](https://github.com/andywer/webpack-blocks/releases/tag/v0.3.0).
-
-<br />
 
 ## Installation
 
@@ -32,7 +21,7 @@ npm install --save-dev @webpack-blocks/webpack2 @webpack-blocks/babel6 ...
 
 ## Usage
 
-Create a webpack 2 config with Babel support, dev server, HMR and PostCSS autoprefixer:
+Create a webpack 2 config with Babel support, dev server and PostCSS autoprefixer:
 
 ```js
 const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack2')
