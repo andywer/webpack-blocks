@@ -26,7 +26,7 @@ Read the release notes [here](https://github.com/andywer/webpack-blocks/releases
 ## Installation
 
 ```sh
-npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
+npm install --save-dev @webpack-blocks/webpack2 @webpack-blocks/babel6 ...
 ```
 
 
@@ -118,11 +118,11 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 Missing something? Write and publish your own webpack blocks!
 
 
-## Switching to Webpack 2
+## Upgrading from webpack 1.x to webpack 2.x
 
 One of the nice gimmicks of using webpack-blocks is that you can switch between webpack versions in an instant!
 
-Just use the webpack 2 versions of the following blocks:
+Just use the webpack 2.x versions of the following blocks:
 
 ```
 @webpack-blocks/webpack -> @webpack-blocks/webpack2
@@ -217,7 +217,7 @@ No problem. If you don't want to write your own webpack block you can just use `
 ```js
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, customConfig } = require('@webpack-blocks/webpack')
+const { addPlugins, customConfig } = require('@webpack-blocks/webpack2')
 
 ...
 
@@ -250,9 +250,9 @@ block's partial config.
 Got some projects with a similar, yet not identical webpack configuration? Seems like you could use a preset:
 
 ```js
-const { createConfig, env, group } = require('@webpack-blocks/webpack')
+const { createConfig, env, group } = require('@webpack-blocks/webpack2')
 const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
+const devServer = require('@webpack-blocks/dev-server2')
 
 function myPreset (proxyConfig) {
   return group([
