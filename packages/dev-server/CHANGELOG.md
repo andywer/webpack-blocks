@@ -1,5 +1,9 @@
 # @webpack-blocks/dev-server - Changelog
 
+## 0.4.0
+
+- Make `dev-server` composable (calling it multiple times in a single config works as expected; see [#78](https://github.com/andywer/webpack-blocks/pull/78))
+
 ## 0.3.0
 
 - Adapted to new API: Using `context` now

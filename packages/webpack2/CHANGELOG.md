@@ -1,10 +1,12 @@
 # @webpack-blocks/webpack2 - Changelog
 
-## Next release
+## 0.4.0
 
 - Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
 - Added `webpackVersion` to context
 - Breaking change: Removed `node_modules/` exclusion from default css-loader
+- Using `webpack-merge` v2.3 instead of v0.14
+- Using `webpack` v2.2 instead of its RC
 
 ## 0.3.1
 

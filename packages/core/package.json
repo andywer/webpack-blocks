@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Functional approach to compose your webpack config.",
   "main": "lib/index",
   "license": "MIT",
