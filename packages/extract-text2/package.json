@@ -15,7 +15,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "extract-text-webpack-plugin": "^2.0.0-rc.0",
     "@webpack-blocks/webpack-common": "^0.4.0"
   },
   "peerDependencies": {
