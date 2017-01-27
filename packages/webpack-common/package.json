@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack-common",
-  "version": "0.4.0-rc",
+  "version": "0.4.0",
   "description": "Code that can be shared between different webpack versions' webpack-block packages.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
