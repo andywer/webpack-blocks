@@ -5,6 +5,7 @@
 - Changed signature of `createConfig()` to allow passing `context.webpackVersion`
 - Using `webpack-merge` v2.3 instead of v0.14
 - Fixed a bug where the config passed to blocks as parameter might contain duplicate values (see [#79](https://github.com/andywer/webpack-blocks/pull/79))
+- Added `application/x-typescript` file type
 - Added `text/x-less` file type
 
 ## 0.3.0
