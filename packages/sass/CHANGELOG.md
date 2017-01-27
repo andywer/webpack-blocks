@@ -1,5 +1,9 @@
 # @webpack-blocks/sass - Changelog
 
+## 0.4.0
+
+- No changes, just keeping the version numbers in sync
+
 ## 0.3.0
 
 - Adapted to new API: Using `context` now

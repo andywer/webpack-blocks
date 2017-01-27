@@ -2,7 +2,7 @@
 
 ## 0.4.0
 
-- No changes, just keeping the version numbers in sync (all other packages have been updated)
+- No changes, just keeping the version numbers in sync
 
 ## 0.3.0
 
