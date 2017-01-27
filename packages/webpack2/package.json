@@ -23,14 +23,14 @@
     "@webpack-blocks/core": "^0.4.0-rc"
   },
   "devDependencies": {
-    "@webpack-blocks/babel6": "^0.3.0",
+    "@webpack-blocks/babel6": "^0.4.0-rc",
     "@webpack-blocks/css-modules": "^0.4.0-rc",
     "@webpack-blocks/dev-server2": "^0.4.0-rc",
     "@webpack-blocks/extract-text2": "^0.4.0-rc",
     "@webpack-blocks/postcss": "^0.4.0-rc.1",
-    "@webpack-blocks/sass": "^0.3.0",
-    "@webpack-blocks/tslint": "^0.1.0",
-    "@webpack-blocks/typescript": "^0.1.0",
+    "@webpack-blocks/sass": "^0.4.0-rc",
+    "@webpack-blocks/tslint": "^0.4.0-rc",
+    "@webpack-blocks/typescript": "^0.4.0-rc",
     "ava": "^0.16.0",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "babel-loader": "^6.2.9",
