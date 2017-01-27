@@ -1,5 +1,9 @@
 # @webpack-blocks/extract-text - Changelog
 
+## 0.4.0
+
+- Using updated `@webpack-blocks/webpack-common` to work with updated `webpack-merge`
+
 ## 0.3.0
 
 - Adapted to new API: Using `context` now

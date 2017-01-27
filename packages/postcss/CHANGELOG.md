@@ -1,6 +1,6 @@
 # @webpack-blocks/postcss - Changelog
 
-## Next release
+## 0.4.0
 
 - Breaking change: Dropped the default `node_modules/` exclusion
 
