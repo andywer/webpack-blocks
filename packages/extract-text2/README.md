@@ -10,7 +10,7 @@ This is the block providing configuration for the [extract-text-webpack-plugin](
 
 ```js
 const { createConfig } = require('@webpack-blocks/webpack')
-const extractText = require('@webpack-blocks/extract-text')
+const extractText = require('@webpack-blocks/extract-text2')
 
 module.exports = createConfig([
   ...,
