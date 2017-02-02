@@ -4,7 +4,8 @@ import devServer from '../devServer'
 import { entryPoint } from '../webpack'
 
 const webpack = {
-  HotModuleReplacementPlugin () {}
+  // Cannot use shorthand notation, since this would cause an 'is not a constructor' error
+  HotModuleReplacementPlugin: function HotModuleReplacementPlugin () {}
 }
 
 test('devServer() without options provides expected defaults', (t) => {
@@ -25,7 +26,7 @@ test('devServer() without options provides expected defaults', (t) => {
       inline: true
     },
     plugins: [
-      {}
+      new webpack.HotModuleReplacementPlugin()
     ]
   })
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
@@ -54,7 +55,7 @@ test('devServer() uses custom options and can be composed', (t) => {
       inline: false
     },
     plugins: [
-      {}
+      new webpack.HotModuleReplacementPlugin()
     ]
   })
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
