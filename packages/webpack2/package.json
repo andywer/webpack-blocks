@@ -31,7 +31,7 @@
     "@webpack-blocks/sass": "^0.4.0",
     "@webpack-blocks/tslint": "^0.4.0",
     "@webpack-blocks/typescript": "^0.4.0",
-    "ava": "^0.16.0",
+    "ava": "^0.18.0",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "babel-loader": "^6.2.9",
     "css-loader": "^0.25.0",

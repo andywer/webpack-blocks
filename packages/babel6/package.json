@@ -19,7 +19,7 @@
     "babel-loader": "^6.2.5"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
+    "ava": "^0.18.0",
     "standard": "^8.1.0"
   }
 }
