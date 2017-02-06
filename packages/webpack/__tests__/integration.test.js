@@ -53,7 +53,7 @@ test('complete webpack config creation', (t) => {
   })
   t.deepEqual(webpackConfig.module.loaders[7], {
     test: /\.(js|jsx)$/,
-    exclude: [ /\/node_modules\// ],
+    exclude: [ /node_modules/ ],
     loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
   })
 

@@ -19,7 +19,7 @@ function babel (options) {
 
   const babelDefaultConfig = {
     cacheDirectory: true,
-    exclude: /\/node_modules\//
+    exclude: /node_modules/
   }
 
   return Object.assign((context) => {
