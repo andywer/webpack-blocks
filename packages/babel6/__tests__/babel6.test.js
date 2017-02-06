@@ -12,7 +12,7 @@ test('Babel default options work', (t) => {
   t.deepEqual(block.post(context).module.loaders, [
     {
       test: '*.js',
-      exclude: [ /\/node_modules\// ],
+      exclude: [ /node_modules/ ],
       loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
     }
   ])
