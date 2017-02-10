@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## 0.4.1
+
+- Made `plugins` parameter optional ([#112](https://github.com/andywer/webpack-blocks/issues/112))
+
 ## 0.4.0
 
 - Breaking change: Dropped the default `node_modules/` exclusion
