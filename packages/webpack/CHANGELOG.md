@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Fail with meaningful message if `createConfig()` is called with invalid param ([#110](https://github.com/andywer/webpack-blocks/issues/110))
+
 ## 0.4.0
 
 - Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
