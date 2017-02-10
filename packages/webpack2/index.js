@@ -4,6 +4,7 @@
  * @see https://webpack.github.io/docs/configuration.html
  */
 
+const assert = require('assert-plus')
 const common = require('@webpack-blocks/webpack-common')
 const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
@@ -41,6 +42,7 @@ exports.sourceMaps = common.sourceMaps
  * @return {object}                   Webpack config object.
  */
 function createVanillaConfig (configSetters) {
+  assert.arrayOfFunc(configSetters, '1st param passed to createConfig.vanilla() must be an array of functions.')
   return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
 }
 
@@ -66,6 +68,7 @@ function createEmptyConfig () {
  * @return {object}                   Webpack config object.
  */
 function createConfig (configSetters) {
+  assert.arrayOfFunc(configSetters, '1st param passed to createConfig() must be an array of functions.')
   return core.createConfig({ webpack, webpackVersion }, [ createBaseConfig ].concat(configSetters))
 }
 
