@@ -16,6 +16,7 @@ module.exports = postcss
  * @return {Function}
  */
 function postcss (plugins, options) {
+  plugins = plugins || []
   options = options || {}
 
   // https://github.com/postcss/postcss-loader#options
