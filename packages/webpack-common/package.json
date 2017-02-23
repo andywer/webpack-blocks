@@ -10,6 +10,10 @@
     "test": "standard && ava src/**/__tests__",
     "prepublish": "npm run build && npm test"
   },
+  "keywords": [
+    "webpack",
+    "webpack-blocks"
+  ],
   "ava": {
     "require": [
       "babel-register"

@@ -12,6 +12,10 @@
   "engines": {
     "node": ">= 4.0"
   },
+  "keywords": [
+    "webpack",
+    "webpack-blocks"
+  ],
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
