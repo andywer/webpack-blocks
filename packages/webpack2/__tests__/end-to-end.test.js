@@ -67,6 +67,15 @@ test('building the typescript project works', async (t) => {
   t.true(bundleContents.indexOf('module.exports = "This is the injected process.env.TEST!"') > -1)
 })
 
+test('the postcss/sass/source-maps project build does not fail', async (t) => {
+  // Regression test for https://github.com/andywer/webpack-blocks/issues/116
+
+  const projectPath = path.join(fixturesPath, 'postcss-sass-sourcemaps')
+
+  const config = require(path.join(projectPath, 'webpack.config.js'))
+  await runWebpack(config)
+})
+
 function runWebpack (config) {
   return new Promise((resolve, reject) => {
     webpack(config, (error, stats) => {
