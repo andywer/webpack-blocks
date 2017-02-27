@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Added `text/html` file type (in `@webpack-blocks/core`)
+
 ## 0.4.0
 
 - Provide `createConfig.vanilla()` (see [#80](https://github.com/andywer/webpack-blocks/issues/80))
