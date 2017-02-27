@@ -22,28 +22,38 @@ test('complete webpack config creation', (t) => {
     })
   ])
 
-  t.is(webpackConfig.module.loaders.length, 7)
-  t.deepEqual(webpackConfig.module.loaders[0], {
+  t.is(webpackConfig.module.rules.length, 7)
+  t.deepEqual(webpackConfig.module.rules[0], {
     test: /\.css$/,
-    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          localIdentName: '[name]--[local]--[hash:base64:5]',
+          modules: true
+        }
+      }
+    ]
   })
-  t.deepEqual(webpackConfig.module.loaders[1], {
+  t.deepEqual(webpackConfig.module.rules[1], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
-    loaders: [ 'file-loader' ]
+    loader: 'file-loader'
   })
-  t.deepEqual(webpackConfig.module.loaders[2], {
+  t.deepEqual(webpackConfig.module.rules[2], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
-    loaders: [ 'file-loader' ]
+    loader: 'file-loader'
   })
-  t.deepEqual(webpackConfig.module.loaders[3], {
+  t.deepEqual(webpackConfig.module.rules[3], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-    loaders: [ 'url-loader' ]
+    loader: 'url-loader'
   })
-  t.deepEqual(webpackConfig.module.loaders[4], {
+  t.deepEqual(webpackConfig.module.rules[4], {
     test: /\.(mp4|webm)$/,
-    loaders: [ 'url-loader' ]
+    loader: 'url-loader'
   })
-  t.deepEqual(webpackConfig.module.loaders[5], {
+  t.deepEqual(webpackConfig.module.rules[5], {
     test: /\.(sass|scss)$/,
     use: [
       'style-loader',
@@ -59,10 +69,15 @@ test('complete webpack config creation', (t) => {
       }
     ]
   })
-  t.deepEqual(webpackConfig.module.loaders[6], {
+  t.deepEqual(webpackConfig.module.rules[6], {
     test: /\.(js|jsx)$/,
     exclude: [ /node_modules/ ],
-    loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
+    use: [ {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true
+      }
+    } ]
   })
 
   t.deepEqual(webpackConfig.entry, {
@@ -103,7 +118,7 @@ test('createConfig.vanilla() creates configurations without defaults', (t) => {
       main: [ './src/main.js' ]
     },
     module: {
-      loaders: []
+      rules: []
     },
     output: {
       filename: 'bundle.js',
