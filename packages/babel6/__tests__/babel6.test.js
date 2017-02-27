@@ -18,7 +18,12 @@ test('Babel default options work', (t) => {
     {
       test: '*.js',
       exclude: [ /node_modules/ ],
-      loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
+      use: [ {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      } ]
     }
   ])
 })
@@ -43,7 +48,14 @@ test('Babel options and exclude work', (t) => {
     {
       test: '*.js',
       exclude: [ 'foo/' ],
-      loaders: [ 'babel-loader?{"cacheDirectory":true,"plugins":["bar"],"presets":["es2015"]}' ]
+      use: [ {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          plugins: ['bar'],
+          presets: ['es2015']
+        }
+      } ]
     }
   ])
 })
@@ -67,7 +79,12 @@ test('Babel `include` option works', (t) => {
     {
       test: '*.js',
       include: [ 'src/**/*.js' ],
-      loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
+      use: [ {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      } ]
     }
   ])
 })
