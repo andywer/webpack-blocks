@@ -1,5 +1,9 @@
 # @webpack-blocks/core - Changelog
 
+## Next release
+
+- Added `text/html` file type
+
 ## 0.4.0
 
 - Changed signature of `createConfig()` to allow passing `context.webpackVersion`
