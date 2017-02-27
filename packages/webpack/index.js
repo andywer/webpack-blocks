@@ -86,9 +86,6 @@ function createBaseConfig (context) {
           test: context.fileType('application/font'),
           loaders: [ 'file-loader' ]
         }, {
-          test: context.fileType('application/json'),
-          loaders: [ 'json-loader' ]
-        }, {
           test: context.fileType('audio'),
           loaders: [ 'url-loader' ]
         }, {
@@ -99,7 +96,7 @@ function createBaseConfig (context) {
     },
     plugins: [],
     resolve: {
-      extensions: [ '', '.js', '.jsx', '.json' ]
+      extensions: [ '.js', '.jsx', '.json' ]
     }
   }
 }

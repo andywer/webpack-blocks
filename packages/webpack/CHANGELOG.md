@@ -11,37 +11,20 @@
 - Added `webpackVersion` to context
 - Breaking change: Removed `node_modules/` exclusion from default css-loader
 - Using `webpack-merge` v2.3 instead of v0.14
+- Using `webpack` v2.2 instead of its RC
+
+## 0.3.1
+
+- Remove the `json-loader` config & depedency, since webpack 2 comes with a default json-loader config (#63)
 
 ## 0.3.0
 
+Initial non-beta release. Aligned with the v0.3 release changes.
+
 - Provide `group()` for creating presets
 - Provide `performance()` for webpack performance budgeting
+- Updated dependency: Using webpack 2 release candidate
 
-## 0.2.0
+## 0.1.0-beta
 
-- Normalize entry points to object syntax to fix entry point merging issues (see [#21](https://github.com/andywer/webpack-blocks/pull/21))
-
-## 0.1.5
-
-- Add empty string to `resolve.extensions` again (https://github.com/andywer/webpack-blocks/pull/21)
-
-## 0.1.4
-
-- Use explicit `-loader` suffix
-- Remove empty string from `resolve.extensions`
-
-## 0.1.3
-
-- Bugfix: `context` and `output.path` paths are now absolute as they are supposed to be
-
-## 0.1.2
-
-- Bugfix: Can now safely call `addPlugins()` with an empty array
-
-## 0.1.1
-
-- Export `webpack` for convenience
-
-## 0.1.0
-
-Initial release.
+Initial beta release.

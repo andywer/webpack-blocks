@@ -1,5 +1,5 @@
 /*
- * Functions for use in @webpack-blocks/webpack and @webpack-blocks/webpack2.
+ * Functions for use in @webpack-blocks/webpack and @webpack-blocks/webpack.
  */
 
 import path from 'path'
