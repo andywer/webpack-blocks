@@ -1,4 +1,3 @@
-export { default as defineConstants } from './defineConstants'
 export { default as devServer } from './devServer'
 export { default as parseVersion } from './parseVersion'
 export * from './extractText'

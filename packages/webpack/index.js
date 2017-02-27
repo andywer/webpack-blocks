@@ -20,7 +20,7 @@ exports.createConfig.vanilla = createVanillaConfig
 
 exports.addPlugins = common.addPlugins
 exports.customConfig = common.customConfig
-exports.defineConstants = common.defineConstants
+exports.defineConstants = require('./lib/defineConstants')
 exports.entryPoint = common.entryPoint
 exports.performance = common.performance
 exports.resolveAliases = common.resolveAliases
