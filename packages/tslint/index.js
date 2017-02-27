@@ -18,22 +18,20 @@ function tslint (options) {
     loaders: [ 'tslint-loader' ]
   }, extra)
 
-  const module = (context) => (context.webpackVersion.major === 1 ? {
-    preLoaders: [ loader(context) ]
-  } : {
+  const module = (context) => ({
     loaders: [ loader(context, { enforce: 'pre' }) ]
   })
 
-  const setter = (context) => Object.assign({
+  const setter = (context) => ({
     module: module(context),
-    plugins: context.webpackVersion.major === 2 ? [
+    plugins: [
       new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options
         }
       })
-    ] : []
-  }, context.webpackVersion.major === 1 ? { tslint: options } : undefined)
+    ]
+  })
 
   return Object.assign(setter, { pre })
 }
