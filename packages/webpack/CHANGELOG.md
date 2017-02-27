@@ -2,6 +2,7 @@
 
 ## Next release
 
+- Fail with meaningful message if `createConfig()` is called with invalid param ([#110](https://github.com/andywer/webpack-blocks/issues/110))
 - Added `text/html` file type (in `@webpack-blocks/core`)
 
 ## 0.4.0
