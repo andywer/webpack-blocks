@@ -45,26 +45,7 @@ function postcss (plugins, options) {
 }
 
 function createPostcssPluginsConfig (webpack, plugins) {
-  const isWebpack2 = typeof webpack.validateSchema !== 'undefined'
-
-  if (isWebpack2) {
-    return {
-      plugins: [
-        new webpack.LoaderOptionsPlugin({
-          options: {
-            postcss: plugins,
-
-            // Hacky fix for a strange issue involving the postcss-loader, sass-loader and webpack@2
-            // (see https://github.com/andywer/webpack-blocks/issues/116)
-            // Might be removed again once the `sass` block uses a newer `sass-loader`
-            context: '/'
-          }
-        })
-      ]
-    }
-  } else {
-    return {
-      postcss: plugins
-    }
+  return {
+    postcss: plugins
   }
 }

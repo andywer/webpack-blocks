@@ -5,7 +5,7 @@ import webpack from 'webpack'
 
 const fixturesPath = path.join(__dirname, '..', '__e2e-fixtures__')
 
-test('building a minimal webpack2 project works', async (t) => {
+test('building a minimal webpack project works', async (t) => {
   const projectPath = path.join(fixturesPath, 'minimal')
   const buildPath = path.join(projectPath, 'build')
 

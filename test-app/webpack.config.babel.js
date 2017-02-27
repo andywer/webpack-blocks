@@ -1,11 +1,11 @@
 const {
   addPlugins, createConfig, defineConstants, entryPoint, env, performance, setOutput, sourceMaps, webpack
-} = require('@webpack-blocks/webpack2')
+} = require('@webpack-blocks/webpack')
 
 const babel = require('@webpack-blocks/babel6')
 const cssModules = require('@webpack-blocks/css-modules')
-const devServer = require('@webpack-blocks/dev-server2')
-const extractText = require('@webpack-blocks/extract-text2')
+const devServer = require('@webpack-blocks/dev-server')
+const extractText = require('@webpack-blocks/extract-text')
 const typescript = require('@webpack-blocks/typescript')
 const plugins = require('./webpack.plugins')
 

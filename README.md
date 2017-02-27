@@ -15,18 +15,18 @@ Missing anything? Write your own and share them!
 ## Installation
 
 ```sh
-npm install --save-dev @webpack-blocks/webpack2 @webpack-blocks/babel6 ...
+npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
 ```
 
 
 ## Usage
 
-Create a webpack 2 config with Babel support, dev server and PostCSS autoprefixer:
+Create a webpack config with Babel support, dev server and PostCSS autoprefixer:
 
 ```js
-const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack2')
+const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server2')
+const devServer = require('@webpack-blocks/dev-server')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
@@ -94,30 +94,20 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [babel6](./packages/babel6)
 - [css-modules](./packages/css-modules)
 - [dev-server](./packages/dev-server)
-- [dev-server2](./packages/dev-server2) *(for Webpack 2)*
 - [extract-text](./packages/extract-text)
-- [extract-text2](./packages/extract-text2) *(for Webpack 2)*
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
 - [typescript](./packages/typescript)
 - [tslint](./packages/tslint)
-- [webpack](./packages/webpack) *(Webpack 1 base config)*
-- [webpack2](./packages/webpack2) *(Webpack 2 base config)*
+- [webpack](./packages/webpack) *(Webpack base config)*
 
 Missing something? Write and publish your own webpack blocks!
 
 
 ## Upgrading from webpack 1.x to webpack 2.x
 
-One of the nice gimmicks of using webpack-blocks is that you can switch between webpack versions in an instant!
-
-Just use the webpack 2.x versions of the following blocks:
-
-```
-@webpack-blocks/webpack -> @webpack-blocks/webpack2
-@webpack-blocks/dev-server -> @webpack-blocks/dev-server2
-@webpack-blocks/extract-text -> @webpack-blocks/extract-text2
-```
+You can upgrade to webpack 2.x by upgrading all of your `@webpack-blocks`
+packages to the `2.x` or higher version.
 
 
 ## Design principles
@@ -206,7 +196,7 @@ No problem. If you don't want to write your own webpack block you can just use `
 ```js
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, customConfig } = require('@webpack-blocks/webpack2')
+const { addPlugins, customConfig } = require('@webpack-blocks/webpack')
 
 ...
 
@@ -239,9 +229,9 @@ block's partial config.
 Got some projects with a similar, yet not identical webpack configuration? Seems like you could use a preset:
 
 ```js
-const { createConfig, env, group } = require('@webpack-blocks/webpack2')
+const { createConfig, env, group } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server2')
+const devServer = require('@webpack-blocks/dev-server')
 
 function myPreset (proxyConfig) {
   return group([
