@@ -45,7 +45,19 @@ test('complete webpack config creation', (t) => {
   })
   t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.(sass|scss)$/,
-    loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: false
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options: {}
+      }
+    ]
   })
   t.deepEqual(webpackConfig.module.loaders[6], {
     test: /\.(js|jsx)$/,

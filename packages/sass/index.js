@@ -17,14 +17,20 @@ module.exports = sass
 function sass (options) {
   options = options || {}
 
-  const hasOptions = Object.keys(options).length > 0
-
   return (context, util) => util.addLoader({
     test: context.fileType('text/x-sass'),
-    loaders: [
+    use: [
       'style-loader',
-      options.sourceMap ? 'css-loader?sourceMap' : 'css-loader',
-      hasOptions ? 'sass-loader?' + JSON.stringify(options) : 'sass-loader'
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: !!options.sourceMap
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options
+      }
     ]
   })
 }
