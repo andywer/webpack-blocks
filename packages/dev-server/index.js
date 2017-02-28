@@ -17,7 +17,8 @@ devServer.reactHot = reactHot
  * @param {string|string[]} [entry]   Defaults to 'webpack/hot/only-dev-server'
  * @return {Function}
  */
-function devServer (options = {}, entry = null) {
+function devServer (options, entry) {
+  options = options || {}
   if (options && (typeof options === 'string' || Array.isArray(options))) {
     entry = options
     options = {}
@@ -86,7 +87,8 @@ function proxy (proxyRoutes) {
  * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function reactHot (options = {}) {
+function reactHot (options) {
+  options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
   return (context) => ({
