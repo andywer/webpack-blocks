@@ -5,12 +5,12 @@
  */
 
 const assert = require('assert-plus')
-const common = require('@webpack-blocks/webpack-common')
 const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
 const path = require('path')
+const parseVersion = require('./lib/parseVersion')
 
-const webpackVersion = common.parseVersion(require('webpack/package.json').version)
+const webpackVersion = parseVersion(require('webpack/package.json').version)
 
 exports.env = core.env
 exports.group = core.group
