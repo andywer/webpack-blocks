@@ -20,8 +20,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2",
-    "@webpack-blocks/webpack-common": "^0.4.0"
+    "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
     "standard": "^8.1.0"
