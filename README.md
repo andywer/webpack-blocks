@@ -74,10 +74,10 @@ module.exports = createConfig([
 function myCssLoader (include) {
   return (context, util) => util.merge({
     module: {
-      loaders: [
+      rules: [
         {
           test: context.fileType('text/css'),
-          loaders: [ 'style-loader', 'my-css-loader' ],
+          use: [ 'style-loader', 'my-css-loader' ],
           include
         }
       ]
@@ -164,7 +164,7 @@ function babel (options) {
     // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
     test: context.fileType('application/javascript'),
     exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-    loaders: [ 'babel-loader?cacheDirectory' ]
+    use: [ 'babel-loader?cacheDirectory' ]
   })
 }
 ```

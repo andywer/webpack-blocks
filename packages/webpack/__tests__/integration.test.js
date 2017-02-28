@@ -39,19 +39,19 @@ test('complete webpack config creation', (t) => {
   })
   t.deepEqual(webpackConfig.module.rules[1], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
-    loader: 'file-loader'
+    use: 'file-loader'
   })
   t.deepEqual(webpackConfig.module.rules[2], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
-    loader: 'file-loader'
+    use: 'file-loader'
   })
   t.deepEqual(webpackConfig.module.rules[3], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-    loader: 'url-loader'
+    use: 'url-loader'
   })
   t.deepEqual(webpackConfig.module.rules[4], {
     test: /\.(mp4|webm)$/,
-    loader: 'url-loader'
+    use: 'url-loader'
   })
   t.deepEqual(webpackConfig.module.rules[5], {
     test: /\.(sass|scss)$/,

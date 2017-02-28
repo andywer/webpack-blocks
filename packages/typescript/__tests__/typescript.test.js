@@ -20,10 +20,10 @@ test('Typescript default options work', t => {
         extensions: ['.ts', '.tsx']
       },
       module: {
-        loaders: [
+        rules: [
           {
             test: '*.ts',
-            loaders: ['awesome-typescript-loader']
+            use: ['awesome-typescript-loader']
           }
         ]
       },

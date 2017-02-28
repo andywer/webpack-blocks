@@ -20,16 +20,16 @@ function extractText (outputFilePattern, fileType) {
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
   return (context, util) => prevConfig => {
-    const loaderConfig = getLoaderConfigByType(context, prevConfig, fileType)
-    const nonStyleLoaders = getNonStyleLoaders(loaderConfig, fileType)
+    const ruleConfig = getRuleConfigByType(context, prevConfig, fileType)
+    const nonStyleLoaders = getNonStyleLoaders(ruleConfig, fileType)
 
     // Partial application of `addLoader`, `addPlugin` & `removeLoaders`
     // Bind them to their job, but don't apply them on a config yet
 
     const _addLoader = util.addLoader({
       test: context.fileType(fileType),
-      exclude: loaderConfig.exclude,
-      loader: plugin.extract({
+      exclude: ruleConfig.exclude,
+      use: plugin.extract({
         fallbackLoader: 'style-loader',
         loader: nonStyleLoaders
       })
@@ -51,16 +51,16 @@ function extractText (outputFilePattern, fileType) {
  * @return {object}
  * @throws {Error}
  */
-function getLoaderConfigByType (context, webpackConfig, fileType) {
+function getRuleConfigByType (context, webpackConfig, fileType) {
   // TODO: Consider that there might be more than one loader matching the file type!
 
-  const loaderConfig = webpackConfig.module.loaders.find(
+  const ruleConfig = webpackConfig.module.rules.find(
     // using string-based comparison here, since webpack-merge tends to deep-cloning things
     (loader) => String(loader.test) === String(context.fileType(fileType))
   )
 
-  if (loaderConfig) {
-    return loaderConfig
+  if (ruleConfig) {
+    return ruleConfig
   } else {
     throw new Error(`${fileType} loader could not be found in webpack config.`)
   }
@@ -76,32 +76,35 @@ function getLoaderConfigByType (context, webpackConfig, fileType) {
  * @return {string[]}
  * @throws {Error}
  */
-function getNonStyleLoaders (loaderConfig, fileType) {
-  if (!loaderConfig.loaders || loaderConfig.loaders.length === 0) {
+function getNonStyleLoaders (ruleConfig, fileType) {
+  if (!ruleConfig.use || ruleConfig.use.length === 0) {
     throw new Error(`No ${fileType} file loaders found.`)
   }
-  if (!/^style(-loader)?$/.test(loaderConfig.loaders[0])) {
-    throw new Error(`Expected "style-loader" to be first loader of .css files. Instead got: ${loaderConfig.loaders[0]}`)
+  const loader = typeof ruleConfig.use[0] === 'string'
+        ? ruleConfig.use[0]
+        : ruleConfig.use[0].loader
+  if (loader !== 'style-loader') {
+    throw new Error(`Expected "style-loader" to be first loader of .css files. Instead got: ${ruleConfig.use[0].loader}`)
   }
 
-  // `loaderConfig.loaders` without the leading 'style-loader'
-  const nonStyleLoaders = [].concat(loaderConfig.loaders)
+  // `ruleConfig.use` without the leading 'style-loader'
+  const nonStyleLoaders = [].concat(ruleConfig.use)
   nonStyleLoaders.shift()
 
   return nonStyleLoaders
 }
 
 /**
- * @param {RegExp} loaderTest   Remove all loaders that match this `.test` regex.
+ * @param {RegExp} ruleTest   Remove all loaders that match this `.test` regex.
  * @return {Function}
  */
-function removeLoaders (loaderTest) {
+function removeLoaders (ruleTest) {
   return prevConfig => {
-    const newLoaders = prevConfig.module.loaders.filter(loaderDef => loaderDef.test !== loaderTest)
+    const newRules = prevConfig.module.rules.filter(ruleDef => ruleDef.test !== ruleTest)
 
     return Object.assign({}, prevConfig, {
       module: Object.assign({}, prevConfig.module, {
-        loaders: newLoaders
+        rules: newRules
       })
     })
   }

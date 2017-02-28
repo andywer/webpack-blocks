@@ -59,7 +59,7 @@
     "babel-register": "^6.18.0",
     "sinon": "^1.17.6",
     "standard": "^8.1.0",
-    "webpack": "^1.13.2"
+    "webpack": "^2.2.0"
   },
   "dependencies": {
     "webpack-merge": "^2.3.1"

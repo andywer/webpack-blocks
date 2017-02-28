@@ -82,16 +82,16 @@ function createBaseConfig (context, util) {
           use: [ 'style-loader', 'css-loader' ]
         }, {
           test: context.fileType('image'),
-          loader: 'file-loader'
+          use: 'file-loader'
         }, {
           test: context.fileType('application/font'),
-          loader: 'file-loader'
+          use: 'file-loader'
         }, {
           test: context.fileType('audio'),
-          loader: 'url-loader'
+          use: 'url-loader'
         }, {
           test: context.fileType('video'),
-          loader: 'url-loader'
+          use: 'url-loader'
         }
       ]
     },
