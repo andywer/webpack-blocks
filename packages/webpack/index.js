@@ -8,6 +8,7 @@ const assert = require('assert-plus')
 const common = require('@webpack-blocks/webpack-common')
 const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
+const path = require('path')
 
 const webpackVersion = common.parseVersion(require('webpack/package.json').version)
 
@@ -18,16 +19,16 @@ exports.webpack = webpack
 exports.createConfig = createConfig
 exports.createConfig.vanilla = createVanillaConfig
 
-exports.addPlugins = common.addPlugins
-exports.customConfig = common.customConfig
+exports.addPlugins = addPlugins
+exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
 exports.entryPoint = entryPoint
-exports.performance = common.performance
-exports.resolveAliases = common.resolveAliases
-exports.setContext = common.setContext
-exports.setDevTool = common.setDevTool
-exports.setOutput = common.setOutput
-exports.sourceMaps = common.sourceMaps
+exports.performance = performance
+exports.resolveAliases = resolveAliases
+exports.setContext = setContext
+exports.setDevTool = setDevTool
+exports.setOutput = setOutput
+exports.sourceMaps = sourceMaps
 
 /**
  * Takes an array of webpack blocks and creates a webpack config out of them.
@@ -135,5 +136,87 @@ function normalizeEntry (entry) {
     return entry
   } else {
     throw new Error(`Expected entry point to be object, array or string. Instead got: ${entry}`)
+  }
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#plugins
+ */
+function addPlugins (plugins) {
+  return plugins.length > 0
+    ? () => ({ plugins })
+    : () => ({})          // since webpack-merge would otherwise clear the plugins array
+}
+
+function customConfig (wpConfig) {
+  return () => wpConfig
+}
+
+/**
+ * @param {object} performanceBudget
+ * @param {number} performanceBudget.maxAssetSize
+ * @param {number} performanceBudget.maxEntrypointSize
+ * @param {string} performanceBudget.hints              'warning' or 'error'
+ */
+function performance (performanceBudget) {
+  return () => ({
+    performance: performanceBudget
+  })
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#resolve-alias
+ */
+function resolveAliases (aliases) {
+  return () => ({
+    resolve: {
+      alias: aliases
+    }
+  })
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#context
+ */
+function setContext (contextPath) {
+  return () => ({
+    context: path.resolve(contextPath)
+  })
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#devtool
+ */
+function setDevTool (devtool) {
+  return () => ({ devtool })
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#output
+ */
+function setOutput (output) {
+  if (typeof output === 'string') {
+    output = {
+      filename: path.basename(output) || 'bundle.js',
+      path: path.resolve(path.dirname(output) || './build')
+    }
+  }
+
+  return () => ({ output })
+}
+
+/**
+ * Just a convenience wrapper to enable sourcemaps in an easier-to-read fashion
+ * than `setDevTool()`.
+ * @TODO: Only sets the javascript sourcemaps now. Would be nice to make loaders
+ *        enable their specific sourcemaps when `sourceMaps()` is used.
+ *
+ * @param {string} [devtool]
+ * @return {Function}
+ */
+function sourceMaps (devtool = 'cheap-module-source-map') {
+  return (context) => {
+    context.sourceMaps = true
+    return { devtool }
   }
 }
