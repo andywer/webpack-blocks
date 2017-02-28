@@ -7,7 +7,7 @@
   "main": "lib/index",
   "scripts": {
     "build": "babel src/ -d lib/ --source-maps",
-    "test": "standard && ava src/**/__tests__",
+    "test": "standard",
     "prepublish": "npm run build && npm test"
   },
   "keywords": [
@@ -30,7 +30,6 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "devDependencies": {
-    "ava": "^0.18.0",
     "babel-cli": "^6.16.0",
     "babel-preset-es2015-node4": "^2.1.1",
     "babel-register": "^6.18.0",
