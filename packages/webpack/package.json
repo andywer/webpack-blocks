@@ -19,7 +19,6 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "@webpack-blocks/core": "^0.4.0",
-    "@webpack-blocks/webpack-common": "^0.4.0",
     "assert-plus": "^1.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
