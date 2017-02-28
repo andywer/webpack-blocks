@@ -21,7 +21,7 @@ exports.createConfig.vanilla = createVanillaConfig
 exports.addPlugins = common.addPlugins
 exports.customConfig = common.customConfig
 exports.defineConstants = require('./lib/defineConstants')
-exports.entryPoint = common.entryPoint
+exports.entryPoint = entryPoint
 exports.performance = common.performance
 exports.resolveAliases = common.resolveAliases
 exports.setContext = common.setContext
@@ -98,5 +98,39 @@ function createBaseConfig (context) {
     resolve: {
       extensions: [ '.js', '.jsx', '.json' ]
     }
+  }
+}
+
+/**
+ * Adds one or multiple entry points. If the parameter is not an object the
+ * entry point(s) will be added to the default chunk named `main`.
+ *
+ * @param {object|string[]|string} entry
+ * @see https://webpack.github.io/docs/configuration.html#entry
+ */
+function entryPoint (entry) {
+  return () => ({
+    entry: normalizeEntry(entry)
+  })
+}
+
+function normalizeEntry (entry) {
+  if (Array.isArray(entry)) {
+    return {
+      main: entry
+    }
+  } else if (typeof entry === 'string') {
+    return {
+      main: [ entry ]
+    }
+  } else if (typeof entry === 'object') {
+    Object.keys(entry).forEach((entryName) => {
+      if (!Array.isArray(entry[entryName])) {
+        entry[entryName] = [ entry[entryName] ]
+      }
+    })
+    return entry
+  } else {
+    throw new Error(`Expected entry point to be object, array or string. Instead got: ${entry}`)
   }
 }

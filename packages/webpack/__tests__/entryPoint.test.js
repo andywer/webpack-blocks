@@ -1,5 +1,5 @@
-import test from 'ava'
-import { entryPoint } from '../webpack'
+const test = require('ava')
+const { entryPoint } = require('../index')
 
 test('entryPoint() should normalize string to object entry', (t) => {
   let config = {}
