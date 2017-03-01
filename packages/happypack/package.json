@@ -1,0 +1,24 @@
+{
+  "name": "@webpack-blocks/happypack",
+  "version": "0.0.1",
+  "description": "Webpack block for happypack",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-blocks",
+    "happypack"
+  ],
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "author": "Fabrizio Fenoglio",
+  "license": "MIT",
+  "dependencies": {
+    "happypack": "^3.0.3"
+  }
+}
