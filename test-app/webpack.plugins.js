@@ -1,4 +1,4 @@
-const { webpack } = require('@webpack-blocks/webpack2')
+const { webpack } = require('@webpack-blocks/webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 exports.basePlugins = [

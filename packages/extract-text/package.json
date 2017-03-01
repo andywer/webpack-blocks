@@ -19,11 +19,13 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "extract-text-webpack-plugin": "^1.0.1",
-    "@webpack-blocks/webpack-common": "^0.4.0"
+    "extract-text-webpack-plugin": "^2.0.0-rc.0"
+  },
+  "peerDependencies": {
+    "webpack": "^2.2.0-rc.1"
   },
   "devDependencies": {
     "standard": "^8.1.0",
-    "webpack": "^1.13.2"
+    "webpack": "^2.2.0-rc.1"
   }
 }

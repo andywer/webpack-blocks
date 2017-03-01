@@ -1,10 +1,10 @@
-const webpackBlock = require('../../index')
+const webpack = require('../../index')
 
 // Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpackBlock.createConfig
-const customConfig = webpackBlock.customConfig
-const entryPoint = webpackBlock.entryPoint
-const setOutput = webpackBlock.setOutput
+const createConfig = webpack.createConfig
+const customConfig = webpack.customConfig
+const entryPoint = webpack.entryPoint
+const setOutput = webpack.setOutput
 
 const path = require('path')
 

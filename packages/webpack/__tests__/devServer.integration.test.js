@@ -1,7 +1,7 @@
-import test from 'ava'
-import { createConfig } from '@webpack-blocks/core'
-import devServer from '../devServer'
-import { entryPoint } from '../webpack'
+const test = require('ava')
+const { createConfig } = require('@webpack-blocks/core')
+const devServer = require('@webpack-blocks/dev-server')
+const { entryPoint } = require('../index')
 
 const webpack = {
   // Cannot use shorthand notation, since this would cause an 'is not a constructor' error

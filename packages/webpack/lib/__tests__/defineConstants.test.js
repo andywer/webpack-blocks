@@ -1,6 +1,6 @@
-import test from 'ava'
-import { createConfig } from '@webpack-blocks/core'
-import { defineConstants } from '../index'
+const test = require('ava')
+const { createConfig } = require('@webpack-blocks/core')
+const defineConstants = require('../defineConstants')
 
 const webpack = {
   DefinePlugin: function DefinePluginMock (definitions) {

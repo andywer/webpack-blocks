@@ -6,13 +6,8 @@
 
 ## 0.3.0
 
-- Adapted to new API: Using `context` now
+Initial non-beta release. Aligned with the v0.3 release changes.
 
-## 0.1.1
+## 0.1.0-beta
 
-- Fixed ExtractTextPlugin usage (failed before if > 2 webpack loaders were assigned to the file type)
-- Added a parameter to use ExtractTextPlugin on different file types as CSS (SASS, for instance)
-
-## 0.1.0
-
-Initial release.
+Initial beta release.

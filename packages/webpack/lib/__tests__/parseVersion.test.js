@@ -1,5 +1,5 @@
-import test from 'ava'
-import parseVersion from '../parseVersion'
+const test = require('ava')
+const parseVersion = require('../parseVersion')
 
 test('parseVersion() works', (t) => {
   t.deepEqual(parseVersion('1.2.3'), {

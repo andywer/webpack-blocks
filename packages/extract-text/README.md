@@ -1,4 +1,4 @@
-# Webpack blocks - Extract text
+# Webpack blocks - Extract text plugin
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/extract-text.svg)](https://www.npmjs.com/package/@webpack-blocks/extract-text)
@@ -14,9 +14,7 @@ const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   ...,
-  extractText(),
-  // or:
-  extractText('css/[name].css', 'text/css')
+  extractText('css/[name].css')   // or just `extractText()`
 ])
 ```
 

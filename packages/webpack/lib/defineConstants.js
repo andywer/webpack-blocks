@@ -1,4 +1,4 @@
-export default defineConstants
+module.exports = defineConstants
 
 /**
  * Replaces constants in your source code with a value (`process.env.NODE_ENV`

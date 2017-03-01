@@ -1,10 +1,11 @@
-const webpackBlock = require('../../index')
+const webpack = require('../../index')
 
 // Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpackBlock.createConfig
-const defineConstants = webpackBlock.defineConstants
-const entryPoint = webpackBlock.entryPoint
-const setOutput = webpackBlock.setOutput
+const defineConstants = webpack.defineConstants
+const createConfig = webpack.createConfig
+const entryPoint = webpack.entryPoint
+const performance = webpack.performance
+const setOutput = webpack.setOutput
 
 const typescript = require('@webpack-blocks/typescript')
 const tslint = require('@webpack-blocks/tslint')
@@ -20,6 +21,11 @@ module.exports = createConfig([
   typescript(),
   tslint({
     emitErrors: true
+  }),
+  performance({
+    maxAssetSize: 100000,
+    maxEntrypointSize: 500000,
+    hints: 'error'
   }),
   defineConstants({
     'process.env.TEST': 'This is the injected process.env.TEST!'
