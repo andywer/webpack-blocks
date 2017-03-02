@@ -16,7 +16,7 @@ module.exports = typescript
  * @return {Function}
  */
 function typescript (options) {
-  const setter = (context, util) => util.merge({
+  return (context, util) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']
     },
@@ -36,14 +36,4 @@ function typescript (options) {
       ] : []
     )
   })
-
-  return Object.assign(setter, { pre })
-}
-
-function pre (context) {
-  const registeredTypes = context.fileType.all()
-
-  if (!('application/x-typescript' in registeredTypes)) {
-    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
-  }
 }
