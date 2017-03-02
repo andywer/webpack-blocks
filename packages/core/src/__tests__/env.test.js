@@ -10,7 +10,7 @@ test('env() merges correctly', (t) => {
     entryPoint2()
   ])
 
-  t.deepEqual(envBlock(null, {}), {
+  t.deepEqual(envBlock(null, {})({}), {
     entry: {
       foo: './src/foo',
       bar: './src/bar'
@@ -24,55 +24,52 @@ test('env() respects the NODE_ENV', (t) => {
     entryPoint2()
   ])
 
-  t.deepEqual(envBlock(null, {}), {})
+  const emptyConfig = { entry: {} }
+  t.deepEqual(envBlock(null, {})(emptyConfig), emptyConfig)
 })
 
 test('env() block passes complete config to child blocks', (t) => {
-  const spyBlock1 = sinon.spy(() => ({ entry: { foo: 'foo' } }))
-  const spyBlock2 = sinon.spy(() => ({}))
+  const spyBlock1 = sinon.spy(() => prevConfig => ({
+    ...prevConfig,
+    entry: {
+      ...prevConfig.entry,
+      foo: 'foo'
+    }
+  }))
+  const spyBlock2 = sinon.spy(() => prevConfig => prevConfig)
 
   const envBlock = env(process.env.NODE_ENV, [ spyBlock1, spyBlock2 ])
 
-  envBlock(null, {
+  const createdConfig = envBlock({}, {})({
     entry: { baz: 'baz' }
   })
 
   t.is(spyBlock1.callCount, 1)
-  t.deepEqual(spyBlock1.lastCall.args, [ null, { entry: { baz: 'baz' } } ])
-
   t.is(spyBlock2.callCount, 1)
-  t.deepEqual(spyBlock2.lastCall.args, [ null, { entry: { baz: 'baz', foo: 'foo' } } ])
-})
 
-test('env() block merges only child blocks, not parent config', (t) => {
-  const envBlock = env(process.env.NODE_ENV, [
-    entryPoint1(),
-    entryPoint2()
-  ])
-
-  const prevConfig = {
-    entry: { baz: 'baz' }
-  }
-
-  t.deepEqual(envBlock(null, prevConfig), {
+  t.deepEqual(createdConfig, {
     entry: {
-      foo: './src/foo',
-      bar: './src/bar'
+      baz: 'baz',
+      foo: 'foo'
     }
   })
 })
 
 function entryPoint1 () {
-  return () => ({
+  return () => prevConfig => ({
+    ...prevConfig,
     entry: {
+      ...prevConfig.entry,
       foo: './src/foo'
     }
   })
 }
 
 function entryPoint2 () {
-  return () => ({
+  return () => prevConfig => ({
+    ...prevConfig,
     entry: {
+      ...prevConfig.entry,
       bar: './src/bar'
     }
   })

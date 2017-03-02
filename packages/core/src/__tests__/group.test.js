@@ -10,7 +10,7 @@ test('group() merges the blocks', (t) => {
   const grouped = group([ block1, block2, block3 ])
   t.is(typeof grouped, 'function')
 
-  const resultingConfig = grouped({}, {})
+  const resultingConfig = grouped({}, {})({})
   t.deepEqual(resultingConfig, {
     distinct1: 'distinct1',
     distinct2: 'distinct2',
@@ -51,13 +51,15 @@ test('group() merges post hooks', (t) => {
 
 // Single-function pre & post hook
 function createTestBlock1 () {
-  const setter = () => ({
+  const setter = () => prevConfig => ({
+    ...prevConfig,
     distinct1: 'distinct1',
     shared: 'shared1'
   })
 
-  const pre = () => undefined
-  const post = () => ({
+  const pre = () => {}
+  const post = () => prevConfig => ({
+    ...prevConfig,
     post1: 'post1',
     postShared: 'shared1'
   })
@@ -70,7 +72,8 @@ function createTestBlock1 () {
 
 // No hooks
 function createTestBlock2 () {
-  const setter = () => ({
+  const setter = () => prevConfig => ({
+    ...prevConfig,
     distinct2: 'distinct2',
     shared: 'shared2'
   })
@@ -80,13 +83,15 @@ function createTestBlock2 () {
 
 // Array-of-functions pre & post hook
 function createTestBlock3 () {
-  const setter = () => ({
+  const setter = () => prevConfig => ({
+    ...prevConfig,
     distinct3: 'distinct3',
     shared: 'shared3'
   })
 
-  const pre = () => undefined
-  const post = () => ({
+  const pre = () => {}
+  const post = () => prevConfig => ({
+    ...prevConfig,
     post3: 'post3',
     postShared: 'shared3'
   })
