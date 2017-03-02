@@ -23,7 +23,7 @@ function cssModules (options) {
   const importLoaders = options.importLoaders || 1
   const localIdentName = options.localIdentName || localIdentDefault
 
-  return (context, helpers) => helpers.addLoader(
+  return (context, util) => util.addLoader(
     Object.assign({
       test: context.fileType('text/css'),
       loaders: [ 'style-loader', 'css-loader?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]

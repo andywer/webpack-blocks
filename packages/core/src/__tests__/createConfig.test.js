@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import { createConfig } from '../index'
-import blockHelpers from '../blockHelpers'
+import blockHelpers from '../blockUtils'
 
 test('createConfig() invokes blocks (config setters)', (t) => {
   const block1 = () => prevConfig => ({

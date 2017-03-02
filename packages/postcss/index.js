@@ -27,7 +27,7 @@ function postcss (plugins, options) {
     options.syntax && { syntax: options.syntax }
   )
 
-  return (context, helpers) => prevConfig => {
+  return (context, util) => prevConfig => {
     const loaderDef = Object.assign(
       {
         test: context.fileType('text/css'),
@@ -37,19 +37,19 @@ function postcss (plugins, options) {
       } : {}
     )
 
-    const _addLoader = helpers.addLoader(loaderDef)
+    const _addLoader = util.addLoader(loaderDef)
     const _addPlugin = plugins
-      ? addLoaderOptionsPlugin(context, helpers, plugins)
+      ? addLoaderOptionsPlugin(context, util, plugins)
       : config => config
 
     return _addPlugin(_addLoader(prevConfig))
   }
 }
 
-function addLoaderOptionsPlugin (context, helpers, postcssPlugins) {
+function addLoaderOptionsPlugin (context, util, postcssPlugins) {
   const webpack = context.webpack
 
-  return helpers.addPlugin(
+  return util.addPlugin(
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: postcssPlugins,

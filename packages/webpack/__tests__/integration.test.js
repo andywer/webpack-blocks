@@ -24,24 +24,24 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.module.loaders.length, 7)
   t.deepEqual(webpackConfig.module.loaders[0], {
+    test: /\.css$/,
+    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
+  })
+  t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
     loaders: [ 'file-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[1], {
+  t.deepEqual(webpackConfig.module.loaders[2], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
     loaders: [ 'file-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[2], {
+  t.deepEqual(webpackConfig.module.loaders[3], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
     loaders: [ 'url-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[3], {
+  t.deepEqual(webpackConfig.module.loaders[4], {
     test: /\.(mp4|webm)$/,
     loaders: [ 'url-loader' ]
-  })
-  t.deepEqual(webpackConfig.module.loaders[4], {
-    test: /\.css$/,
-    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
   })
   t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.(sass|scss)$/,

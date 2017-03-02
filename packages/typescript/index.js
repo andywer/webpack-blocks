@@ -16,7 +16,7 @@ module.exports = typescript
  * @return {Function}
  */
 function typescript (options) {
-  const setter = (context, helpers) => helpers.merge({
+  const setter = (context, util) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']
     },

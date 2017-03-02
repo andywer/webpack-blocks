@@ -19,14 +19,14 @@ function extractText (outputFilePattern, fileType) {
 
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
-  return (context, helpers) => prevConfig => {
+  return (context, util) => prevConfig => {
     const loaderConfig = getLoaderConfigByType(context, prevConfig, fileType)
     const nonStyleLoaders = getNonStyleLoaders(loaderConfig, fileType)
 
     // Partial application of `addLoader`, `addPlugin` & `removeLoaders`
     // Bind them to their job, but don't apply them on a config yet
 
-    const _addLoader = helpers.addLoader({
+    const _addLoader = util.addLoader({
       test: context.fileType(fileType),
       exclude: loaderConfig.exclude,
       loader: plugin.extract({
@@ -34,7 +34,7 @@ function extractText (outputFilePattern, fileType) {
         loader: nonStyleLoaders
       })
     })
-    const _addPlugin = helpers.addPlugin(plugin)
+    const _addPlugin = util.addPlugin(plugin)
     const _removeLoaders = removeLoaders(context.fileType(fileType))
 
     // Now apply them to the config: Remove the existing loaders for that
@@ -52,6 +52,8 @@ function extractText (outputFilePattern, fileType) {
  * @throws {Error}
  */
 function getLoaderConfigByType (context, webpackConfig, fileType) {
+  // TODO: Consider that there might be more than one loader matching the file type!
+
   const loaderConfig = webpackConfig.module.loaders.find(
     // using string-based comparison here, since webpack-merge tends to deep-cloning things
     (loader) => String(loader.test) === String(context.fileType(fileType))

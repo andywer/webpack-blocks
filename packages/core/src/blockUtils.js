@@ -11,11 +11,9 @@ function merge (configSnippet) {
 }
 
 function addLoader (loaderDef) {
-  return prevConfig => ({
-    ...prevConfig,
+  return prevConfig => webpackMerge.smart(prevConfig, {
     module: {
-      ...prevConfig.module,
-      loaders: prevConfig.module.loaders.concat([ loaderDef ])
+      loaders: [ loaderDef ]
     }
   })
 }

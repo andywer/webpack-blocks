@@ -19,7 +19,7 @@ function sass (options) {
 
   const hasOptions = Object.keys(options).length > 0
 
-  return (context, helpers) => helpers.addLoader({
+  return (context, util) => util.addLoader({
     test: context.fileType('text/x-sass'),
     loaders: [
       'style-loader',

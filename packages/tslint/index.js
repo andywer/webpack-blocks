@@ -13,13 +13,13 @@ module.exports = tslint
 function tslint (options) {
   options = options || {}
 
-  const setter = (context, helpers) => prevConfig => {
-    const _addLoader = helpers.addLoader({
+  const setter = (context, util) => prevConfig => {
+    const _addLoader = util.addLoader({
       test: context.fileType('application/x-typescript'),
       loaders: [ 'tslint-loader' ],
       enforce: 'pre'
     })
-    const _addPlugin = helpers.addPlugin(
+    const _addPlugin = util.addPlugin(
       new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options

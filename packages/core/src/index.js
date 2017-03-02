@@ -1,6 +1,6 @@
 const createFileTypesMapping = require('./createFileTypesMapping')
 const defaultFileTypes = require('./defaultFileTypes')
-const helpers = require('./blockHelpers')
+const helpers = require('./blockUtils')
 
 exports.createConfig = createConfig
 exports.group = group

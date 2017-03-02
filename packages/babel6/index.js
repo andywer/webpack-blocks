@@ -22,7 +22,7 @@ function babel (options) {
     exclude: /node_modules/
   }
 
-  const setter = (context, helpers) => (prevConfig) => {
+  const setter = context => prevConfig => {
     // Write babel config into the context
     context.babel = context.babel || babelDefaultConfig
 
@@ -48,7 +48,7 @@ function babel (options) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, helpers) {
+function postConfig (context, util) {
   const exclude = context.babel.exclude
   const include = context.babel.include
 
@@ -65,5 +65,5 @@ function postConfig (context, helpers) {
     include: Array.isArray(include) ? include : [ include ]
   })
 
-  return helpers.addLoader(loaderDef)
+  return util.addLoader(loaderDef)
 }

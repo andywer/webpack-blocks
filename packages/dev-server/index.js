@@ -39,13 +39,13 @@ function devServer (options, entry) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, helpers) {
+function postConfig (context, util) {
   const entryPointsToAdd = context.devServer.entry.length > 0
     ? context.devServer.entry
     : [ 'webpack/hot/only-dev-server' ]
 
   return prevConfig => {
-    return helpers.merge({
+    return util.merge({
       devServer: Object.assign({
         hot: true,
         historyApiFallback: true,
@@ -77,7 +77,7 @@ function addDevEntryToAll (presentEntryPoints, devServerEntry) {
  * @see http://webpack.github.io/docs/webpack-dev-server.html#proxy
  */
 function proxy (proxyRoutes) {
-  return (context, helpers) => helpers.merge({
+  return (context, util) => util.merge({
     devServer: {
       proxy: proxyRoutes
     }
@@ -95,7 +95,7 @@ function reactHot (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (context, helpers) => helpers.addLoader({
+  return (context, util) => util.addLoader({
     test: context.fileType('application/javascript'),
     exclude: Array.isArray(exclude) ? exclude : [ exclude ],
     loaders: [ 'react-hot' ]
