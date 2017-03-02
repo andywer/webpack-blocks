@@ -25,7 +25,7 @@ module.exports = createConfig([
     precss
   ]),
   extractText(
-    path.join('styles.css')
+    'styles.css'
   ),
   performance({
     maxAssetSize: 100000,

@@ -24,24 +24,24 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.module.loaders.length, 7)
   t.deepEqual(webpackConfig.module.loaders[0], {
-    test: /\.css$/,
-    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
-  })
-  t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
     loaders: [ 'file-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[2], {
+  t.deepEqual(webpackConfig.module.loaders[1], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
     loaders: [ 'file-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[3], {
+  t.deepEqual(webpackConfig.module.loaders[2], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
     loaders: [ 'url-loader' ]
   })
-  t.deepEqual(webpackConfig.module.loaders[4], {
+  t.deepEqual(webpackConfig.module.loaders[3], {
     test: /\.(mp4|webm)$/,
     loaders: [ 'url-loader' ]
+  })
+  t.deepEqual(webpackConfig.module.loaders[4], {
+    test: /\.css$/,
+    loaders: [ 'style-loader', 'css-loader?importLoaders=1&localIdentName=[name]--[local]--[hash:base64:5]&modules' ]
   })
   t.deepEqual(webpackConfig.module.loaders[5], {
     test: /\.(sass|scss)$/,
@@ -105,7 +105,7 @@ test('context contains necessary properties', (t) => {
   t.plan(10)
 
   createConfig.vanilla([
-    (context) => {
+    context => {
       // context.fileType
       t.is(typeof context.fileType, 'function')
       t.is(typeof context.fileType.add, 'function')
@@ -121,7 +121,8 @@ test('context contains necessary properties', (t) => {
       t.is(typeof context.webpackVersion, 'object')
       t.is(typeof context.webpackVersion.major, 'number')
       t.is(typeof context.webpackVersion.minor, 'number')
-      return {}
+
+      return prevConfig => prevConfig
     }
   ])
 })

@@ -47,13 +47,13 @@ function createVanillaConfig (configSetters) {
   return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
 }
 
-function createEmptyConfig () {
-  return {
+function createEmptyConfig (context, util) {
+  return util.merge({
     module: {
       loaders: []
     },
     plugins: []
-  }
+  })
 }
 
 /**
@@ -73,8 +73,8 @@ function createConfig (configSetters) {
   return core.createConfig({ webpack, webpackVersion }, [ createBaseConfig ].concat(configSetters))
 }
 
-function createBaseConfig (context) {
-  return {
+function createBaseConfig (context, util) {
+  return util.merge({
     module: {
       loaders: [
         {
@@ -99,7 +99,7 @@ function createBaseConfig (context) {
     resolve: {
       extensions: [ '.js', '.jsx', '.json' ]
     }
-  }
+  })
 }
 
 /**
@@ -110,7 +110,7 @@ function createBaseConfig (context) {
  * @see https://webpack.github.io/docs/configuration.html#entry
  */
 function entryPoint (entry) {
-  return () => ({
+  return (context, util) => util.merge({
     entry: normalizeEntry(entry)
   })
 }
@@ -140,13 +140,11 @@ function normalizeEntry (entry) {
  * @see https://webpack.github.io/docs/configuration.html#plugins
  */
 function addPlugins (plugins) {
-  return plugins.length > 0
-    ? () => ({ plugins })
-    : () => ({})          // since webpack-merge would otherwise clear the plugins array
+  return (context, util) => util.merge({ plugins })
 }
 
 function customConfig (wpConfig) {
-  return () => wpConfig
+  return (context, util) => util.merge(wpConfig)
 }
 
 /**
@@ -156,7 +154,7 @@ function customConfig (wpConfig) {
  * @param {string} performanceBudget.hints              'warning' or 'error'
  */
 function performance (performanceBudget) {
-  return () => ({
+  return (context, util) => util.merge({
     performance: performanceBudget
   })
 }
@@ -165,7 +163,7 @@ function performance (performanceBudget) {
  * @see https://webpack.github.io/docs/configuration.html#resolve-alias
  */
 function resolveAliases (aliases) {
-  return () => ({
+  return (context, util) => util.merge({
     resolve: {
       alias: aliases
     }
@@ -176,7 +174,7 @@ function resolveAliases (aliases) {
  * @see https://webpack.github.io/docs/configuration.html#context
  */
 function setContext (contextPath) {
-  return () => ({
+  return (context, util) => util.merge({
     context: path.resolve(contextPath)
   })
 }
@@ -185,7 +183,7 @@ function setContext (contextPath) {
  * @see https://webpack.github.io/docs/configuration.html#devtool
  */
 function setDevTool (devtool) {
-  return () => ({ devtool })
+  return (context, util) => util.merge({ devtool })
 }
 
 /**
@@ -199,7 +197,7 @@ function setOutput (output) {
     }
   }
 
-  return () => ({ output })
+  return (context, util) => util.merge({ output })
 }
 
 /**
@@ -212,8 +210,11 @@ function setOutput (output) {
  * @return {Function}
  */
 function sourceMaps (devtool) {
-  return (context) => {
+  return (context, util) => {
     context.sourceMaps = true
-    return { devtool: devtool || 'cheap-module-source-map' }
+
+    return util.merge({
+      devtool: devtool || 'cheap-module-source-map'
+    })
   }
 }
