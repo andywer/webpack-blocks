@@ -1,5 +1,9 @@
 # @webpack-blocks/typescript - Changelog
 
+## 2.0.0
+
+- Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
+
 ## 0.4.0
 
 - No changes, just keeping the version numbers in sync

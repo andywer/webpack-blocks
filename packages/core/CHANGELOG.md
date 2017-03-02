@@ -1,7 +1,8 @@
 # @webpack-blocks/core - Changelog
 
-## Next release
+## 2.0.0
 
+- New block API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
 - Added `text/html` file type
 
 ## 0.4.0
