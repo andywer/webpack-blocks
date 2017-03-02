@@ -1,6 +1,6 @@
 const createFileTypesMapping = require('./createFileTypesMapping')
 const defaultFileTypes = require('./defaultFileTypes')
-const helpers = require('./blockUtils')
+const blockUtils = require('./blockUtils')
 
 exports.createConfig = createConfig
 exports.group = group
@@ -96,7 +96,7 @@ function getHooks (configSetters, type) {
 function invokeConfigSetters (configSetters, context, baseConfig) {
   return configSetters.reduce(
     (config, setter) => {
-      const updateFunction = setter(context, helpers)
+      const updateFunction = setter(context, blockUtils)
 
       if (typeof updateFunction !== 'function') {
         throw new Error(
