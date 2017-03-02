@@ -28,30 +28,34 @@ function devServer (options, entry) {
     entry = entry ? [ entry ] : []
   }
 
-  return Object.assign((context) => {
+  const setter = context => prevConfig => {
     context.devServer = context.devServer || { entry: [], options: {} }
     context.devServer.entry = context.devServer.entry.concat(entry)
     context.devServer.options = Object.assign({}, context.devServer.options, options)
 
-    return {}
-  }, { post: postConfig })
+    return prevConfig
+  }
+
+  return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, config) {
+function postConfig (context, helpers) {
   const entryPointsToAdd = context.devServer.entry.length > 0
     ? context.devServer.entry
     : [ 'webpack/hot/only-dev-server' ]
 
-  return {
-    devServer: Object.assign({
-      hot: true,
-      historyApiFallback: true,
-      inline: true
-    }, context.devServer.options),
-    entry: addDevEntryToAll(config.entry || {}, entryPointsToAdd),
-    plugins: [
-      new context.webpack.HotModuleReplacementPlugin()
-    ]
+  return prevConfig => {
+    return helpers.merge({
+      devServer: Object.assign({
+        hot: true,
+        historyApiFallback: true,
+        inline: true
+      }, context.devServer.options),
+      entry: addDevEntryToAll(prevConfig.entry || {}, entryPointsToAdd),
+      plugins: [
+        new context.webpack.HotModuleReplacementPlugin()
+      ]
+    })(prevConfig)
   }
 }
 
@@ -73,7 +77,7 @@ function addDevEntryToAll (presentEntryPoints, devServerEntry) {
  * @see http://webpack.github.io/docs/webpack-dev-server.html#proxy
  */
 function proxy (proxyRoutes) {
-  return () => ({
+  return (context, helpers) => helpers.merge({
     devServer: {
       proxy: proxyRoutes
     }
@@ -91,13 +95,9 @@ function reactHot (options) {
   options = options || {}
   const exclude = options.exclude || /\/node_modules\//
 
-  return (context) => ({
-    module: {
-      loaders: [{
-        test: context.fileType('application/javascript'),
-        exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-        loaders: [ 'react-hot' ]
-      }]
-    }
+  return (context, helpers) => helpers.addLoader({
+    test: context.fileType('application/javascript'),
+    exclude: Array.isArray(exclude) ? exclude : [ exclude ],
+    loaders: [ 'react-hot' ]
   })
 }
