@@ -19,26 +19,28 @@ function extractText (outputFilePattern, fileType) {
 
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
-  return (context, webpackConfig) => {
-    const loaderConfig = getLoaderConfigByType(context, webpackConfig, fileType)
+  return (context, helpers) => prevConfig => {
+    const loaderConfig = getLoaderConfigByType(context, prevConfig, fileType)
     const nonStyleLoaders = getNonStyleLoaders(loaderConfig, fileType)
 
-    return {
-      module: {
-        loaders: [
-          {
-            test: context.fileType(fileType),
-            exclude: loaderConfig.exclude,
-            loader: plugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: nonStyleLoaders
-            }),
-            loaders: undefined
-          }
-        ]
-      },
-      plugins: [ plugin ]
-    }
+    // Partial application of `addLoader`, `addPlugin` & `removeLoaders`
+    // Bind them to their job, but don't apply them on a config yet
+
+    const _addLoader = helpers.addLoader({
+      test: context.fileType(fileType),
+      exclude: loaderConfig.exclude,
+      loader: plugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: nonStyleLoaders
+      })
+    })
+    const _addPlugin = helpers.addPlugin(plugin)
+    const _removeLoaders = removeLoaders(context.fileType(fileType))
+
+    // Now apply them to the config: Remove the existing loaders for that
+    // file type, add the new loader and add the plugin
+
+    return _addPlugin(_addLoader(_removeLoaders(prevConfig)))
   }
 }
 
@@ -85,4 +87,20 @@ function getNonStyleLoaders (loaderConfig, fileType) {
   nonStyleLoaders.shift()
 
   return nonStyleLoaders
+}
+
+/**
+ * @param {RegExp} loaderTest   Remove all loaders that match this `.test` regex.
+ * @return {Function}
+ */
+function removeLoaders (loaderTest) {
+  return prevConfig => {
+    const newLoaders = prevConfig.module.loaders.filter(loaderDef => loaderDef.test !== loaderTest)
+
+    return Object.assign({}, prevConfig, {
+      module: Object.assign({}, prevConfig.module, {
+        loaders: newLoaders
+      })
+    })
+  }
 }
