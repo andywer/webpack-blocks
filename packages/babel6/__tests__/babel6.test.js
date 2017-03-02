@@ -1,15 +1,20 @@
 import test from 'ava'
+import sinon from 'sinon'
 import babel6 from '../index'
 
 test('Babel default options work', (t) => {
   const block = babel6()
 
+  const addLoader = sinon.spy((loaderDef) => config => config)
   const context = {
     fileType: () => '*.js'
   }
 
-  t.deepEqual(block(context), {})
-  t.deepEqual(block.post(context).module.loaders, [
+  t.deepEqual(block(context, { addLoader })({}), {})
+  t.deepEqual(block.post(context, { addLoader })({}), {})
+
+  t.is(addLoader.callCount, 1)
+  t.deepEqual(addLoader.lastCall.args, [
     {
       test: '*.js',
       exclude: [ /node_modules/ ],
@@ -25,12 +30,16 @@ test('Babel options and exclude work', (t) => {
     plugins: ['bar']
   })
 
+  const addLoader = sinon.spy((loaderDef) => config => config)
   const context = {
     fileType: () => '*.js'
   }
 
-  t.deepEqual(block(context), {})
-  t.deepEqual(block.post(context).module.loaders, [
+  t.deepEqual(block(context, { addLoader })({}), {})
+  t.deepEqual(block.post(context, { addLoader })({}), {})
+
+  t.is(addLoader.callCount, 1)
+  t.deepEqual(addLoader.lastCall.args, [
     {
       test: '*.js',
       exclude: [ 'foo/' ],
@@ -45,12 +54,16 @@ test('Babel `include` option works', (t) => {
     include: 'src/**/*.js'
   })
 
+  const addLoader = sinon.spy((loaderDef) => config => config)
   const context = {
     fileType: () => '*.js'
   }
 
-  t.deepEqual(block(context), {})
-  t.deepEqual(block.post(context).module.loaders, [
+  t.deepEqual(block(context, { addLoader })({}), {})
+  t.deepEqual(block.post(context, { addLoader })({}), {})
+
+  t.is(addLoader.callCount, 1)
+  t.deepEqual(addLoader.lastCall.args, [
     {
       test: '*.js',
       include: [ 'src/**/*.js' ],
