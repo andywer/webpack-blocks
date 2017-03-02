@@ -63,7 +63,7 @@ module.exports = createConfig([
 ])
 ```
 
-Need a custom block? Easy, since a block is just a function returning a function:
+Need a custom block? A block is quite easy to write:
 
 ```js
 module.exports = createConfig([
@@ -72,7 +72,7 @@ module.exports = createConfig([
 ])
 
 function myCssLoader (include) {
-  return (context) => ({
+  return (context, util) => util.merge({
     module: {
       loaders: [
         {
@@ -160,17 +160,11 @@ Take the `babel6` webpack block for instance:
 function babel (options) {
   const { exclude = /\/node_modules\// } = options || {}
 
-  return (context) => ({
-    module: {
-      loaders: [
-        {
-          // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-          test: context.fileType('application/javascript'),
-          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'babel-loader?cacheDirectory' ]
-        }
-      ]
-    }
+  return (context, util) => util.addLoader({
+    // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
+    test: context.fileType('application/javascript'),
+    exclude: Array.isArray(exclude) ? exclude : [ exclude ],
+    loaders: [ 'babel-loader?cacheDirectory' ]
   })
 }
 ```

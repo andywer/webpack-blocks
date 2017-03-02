@@ -7,7 +7,7 @@ Skip the *Hooks* section if you are in a hurry. You can create a lot of cool stu
 
 ## Basics
 
-A webpack block is *just a function* that returns a webpack config snippet and *requires no dependencies at all*.
+A webpack block is *just a function* that returns an update function and *requires no dependencies at all*. The update function takes a webpack configuration object and returns an updated version of this webpack configuration.
 
 Take the `babel6` webpack block for instance:
 
@@ -20,22 +20,68 @@ Take the `babel6` webpack block for instance:
 function babel (options) {
   const { exclude = /\/node_modules\// } = options || {}
 
-  return (context) => ({
+  return (context, util) => prevConfig => ({
+    ...prevConfig,
     module: {
-      loaders: [
+      ...prevConfig.module,
+      loaders: prevConfig.module.loaders.concat([
         {
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
           test: context.fileType('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
           loaders: [ 'babel?cacheDirectory' ]
         }
-      ]
+      ])
     }
   })
 }
 ```
 
 Thus it is also super easy to unit test and generic enough to share it with the world.
+
+
+## Block utilities
+
+You might have recognized the second paramter `util` in the last example's block function. It is an object containing some convenience functions to make common tasks easier.
+
+#### util.addLoader(loaderDefinition: object)
+
+Returns an update function that adds the given loader definition to a webpack configuration. Use it like this:
+
+```js
+function sampleBlock () {
+  return (context, { addLoader }) => addLoader({
+    test: context.fileType('text/css'),
+    loaders: [ 'style-loader', 'css-loader' ]
+  })
+}
+```
+
+#### util.addPlugin(plugin: WebpackPlugin)
+
+Returns an update function that adds the given plugin instance to a webpack configuration. Use it like this:
+
+```js
+function sampleBlock () {
+  return (context, { addPlugin }) => addPlugin(
+    new webpack.DefinePlugin({ 'DEBUG': 'true' })
+  )
+}
+```
+
+#### util.merge(configSnippet: object)
+
+Returns an update function that merges the given configuration snippet into a webpack configuration. Use it like this:
+
+```js
+function sampleBlock () {
+  return (context, { merge }) => merge({
+    resolve: {
+      extensions: ['ts']
+    }
+  })
+}
+```
 
 
 ## Context
@@ -92,8 +138,8 @@ function preHook (context) {
   // Manipulate the `context` here (register a new file type, for example)
 }
 
-function postHook (context, config) {
-  return { /* webpack config snippet */ }
+function postHook (context, util) {
+  return config => config   // Return your update function here
 }
 ```
 
@@ -105,16 +151,14 @@ Let's solve our constants definition example. We can now make the `blockFunction
 function defineConstants (constants) {
   return Object.assign((context) => {
     context.defineConstants = Object.assign({}, context.defineConstants, constants)
-    return {}
+    return config => config   // Don't change the config here yet
   }, { post })
 }
 
-function post (context) {
-  return {
-    plugins: [
-      new webpack.DefinePlugin(context.defineConstants)
-    ]
-  }
+function post (context, { addPlugin }) {
+  return addPlugin(
+    new webpack.DefinePlugin(context.defineConstants)
+  )
 }
 ```
 
