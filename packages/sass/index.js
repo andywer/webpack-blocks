@@ -19,18 +19,12 @@ function sass (options) {
 
   const hasOptions = Object.keys(options).length > 0
 
-  return (context) => ({
-    module: {
-      loaders: [
-        {
-          test: context.fileType('text/x-sass'),
-          loaders: [
-            'style-loader',
-            options.sourceMap ? 'css-loader?sourceMap' : 'css-loader',
-            hasOptions ? 'sass-loader?' + JSON.stringify(options) : 'sass-loader'
-          ]
-        }
-      ]
-    }
+  return (context, helpers) => helpers.addLoader({
+    test: context.fileType('text/x-sass'),
+    loaders: [
+      'style-loader',
+      options.sourceMap ? 'css-loader?sourceMap' : 'css-loader',
+      hasOptions ? 'sass-loader?' + JSON.stringify(options) : 'sass-loader'
+    ]
   })
 }
