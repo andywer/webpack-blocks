@@ -27,36 +27,38 @@ function postcss (plugins, options) {
     options.syntax && { syntax: options.syntax }
   )
 
-  return (context) => Object.assign(
-    {
-      module: {
-        loaders: [
-          Object.assign({
-            test: context.fileType('text/css'),
-            loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
-          }, options.exclude ? {
-            exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
-          } : {})
-        ]
-      }
-    },
-    plugins ? createPostcssPluginsConfig(context.webpack, plugins) : {}
-  )
+  return (context, helpers) => prevConfig => {
+    const loaderDef = Object.assign(
+      {
+        test: context.fileType('text/css'),
+        loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
+      }, options.exclude ? {
+        exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
+      } : {}
+    )
+
+    const _addLoader = helpers.addLoader(loaderDef)
+    const _addPlugin = plugins
+      ? addLoaderOptionsPlugin(context, helpers, plugins)
+      : config => config
+
+    return _addPlugin(_addLoader(prevConfig))
+  }
 }
 
-function createPostcssPluginsConfig (webpack, plugins) {
-  return {
-    plugins: [
-      new webpack.LoaderOptionsPlugin({
-        options: {
-          postcss: plugins,
+function addLoaderOptionsPlugin (context, helpers, postcssPlugins) {
+  const webpack = context.webpack
 
-          // Hacky fix for a strange issue involving the postcss-loader, sass-loader and webpack@2
-          // (see https://github.com/andywer/webpack-blocks/issues/116)
-          // Might be removed again once the `sass` block uses a newer `sass-loader`
-          context: '/'
-        }
-      })
-    ]
-  }
+  return helpers.addPlugin(
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: postcssPlugins,
+
+        // Hacky fix for a strange issue involving the postcss-loader, sass-loader and webpack@2
+        // (see https://github.com/andywer/webpack-blocks/issues/116)
+        // Might be removed again once the `sass` block uses a newer `sass-loader`
+        context: '/'
+      }
+    })
+  )
 }
