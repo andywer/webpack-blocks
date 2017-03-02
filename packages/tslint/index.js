@@ -13,31 +13,29 @@ module.exports = tslint
 function tslint (options) {
   options = options || {}
 
-  const loader = (context, extra) => Object.assign({
-    test: context.fileType('application/x-typescript'),
-    loaders: [ 'tslint-loader' ]
-  }, extra)
-
-  const module = (context) => ({
-    loaders: [ loader(context, { enforce: 'pre' }) ]
-  })
-
-  const setter = (context) => ({
-    module: module(context),
-    plugins: [
+  const setter = (context, helpers) => prevConfig => {
+    const _addLoader = helpers.addLoader({
+      test: context.fileType('application/x-typescript'),
+      loaders: [ 'tslint-loader' ],
+      enforce: 'pre'
+    })
+    const _addPlugin = helpers.addPlugin(
       new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options
         }
       })
-    ]
-  })
+    )
+
+    return _addLoader(_addPlugin(prevConfig))
+  }
 
   return Object.assign(setter, { pre })
 }
 
 function pre (context) {
   const registeredTypes = context.fileType.all()
+
   if (!('application/x-typescript' in registeredTypes)) {
     context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
   }
