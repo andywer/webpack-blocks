@@ -30,8 +30,8 @@ function extractText (outputFilePattern, fileType) {
       test: context.fileType(fileType),
       exclude: ruleConfig.exclude,
       use: plugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: nonStyleLoaders
+        fallback: 'style-loader',
+        use: nonStyleLoaders
       })
     })
     const _addPlugin = util.addPlugin(plugin)
@@ -100,7 +100,9 @@ function getNonStyleLoaders (ruleConfig, fileType) {
  */
 function removeLoaders (ruleTest) {
   return prevConfig => {
-    const newRules = prevConfig.module.rules.filter(ruleDef => ruleDef.test !== ruleTest)
+    const newRules = prevConfig.module.rules.filter(
+      ruleDef => String(ruleDef.test) !== String(ruleTest)
+    )
 
     return Object.assign({}, prevConfig, {
       module: Object.assign({}, prevConfig.module, {
