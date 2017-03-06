@@ -1,57 +1,33 @@
 import test from 'ava'
+import sinon from 'sinon'
 import typescript from '../index'
 import { CheckerPlugin } from 'awesome-typescript-loader'
 
-test('Typescript default options work', (t) => {
+test('Typescript default options work', t => {
   const block = typescript()
+  const merge = sinon.spy(() => prevConfig => prevConfig)
 
   const context = {
     fileType: () => '*.ts'
   }
 
-  const config = block(context)
+  block(context, { merge })({})
 
-  t.deepEqual(config.resolve, {
-    extensions: ['.ts', '.tsx']
-  })
-  t.deepEqual(config.module.loaders, [{
-    test: '*.ts',
-    loaders: ['awesome-typescript-loader']
-  }])
-  t.deepEqual(config.plugins, [new CheckerPlugin()])
-
-  const emptyContext = {
-    fileType: {
-      types: {},
-      all: function () {
-        return (() => this.types)()
+  t.is(merge.callCount, 1)
+  t.deepEqual(merge.lastCall.args, [
+    {
+      resolve: {
+        extensions: ['.ts', '.tsx']
       },
-      add: function (name, regex) {
-        return ((name, regex) => { this.types[name] = regex })(name, regex)
-      }
-    }
-  }
-
-  block.pre(emptyContext)
-
-  t.deepEqual(emptyContext.fileType.types, {
-    'application/x-typescript': /\.(ts|tsx)$/
-  })
-
-  const filledContext = {
-    fileType: {
-      types: { 'application/x-typescript': /\.(ts|tsx)$/ },
-      all: function () {
-        return (() => this.types)()
+      module: {
+        loaders: [
+          {
+            test: '*.ts',
+            loaders: ['awesome-typescript-loader']
+          }
+        ]
       },
-      add: function () {
-        return (() => { this.error = true })()
-      }
+      plugins: [new CheckerPlugin()]
     }
-  }
-
-  block.pre(filledContext)
-
-  t.falsy(filledContext.fileType.error)
+  ])
 })
-

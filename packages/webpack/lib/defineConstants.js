@@ -12,21 +12,21 @@ module.exports = defineConstants
  * @return {Function}
  */
 function defineConstants (constants) {
-  return Object.assign((context) => {
+  const setter = context => prevConfig => {
     context.defineConstants = Object.assign({}, context.defineConstants, constants)
-    return {}       // return empty webpack config snippet
-  }, { post: addDefinePlugin })
+    return prevConfig
+  }
+
+  return Object.assign(setter, { post: addDefinePlugin })
 }
 
-function addDefinePlugin (context) {
-  const stringify = (value) => JSON.stringify(value, null, 2)
+function addDefinePlugin (context, util) {
+  const stringify = value => JSON.stringify(value, null, 2)
   const stringifiedConstants = mapProps(context.defineConstants, stringify)
 
-  return {
-    plugins: [
-      new context.webpack.DefinePlugin(stringifiedConstants)
-    ]
-  }
+  return util.addPlugin(
+    new context.webpack.DefinePlugin(stringifiedConstants)
+  )
 }
 
 function mapProps (object, valueMapper) {

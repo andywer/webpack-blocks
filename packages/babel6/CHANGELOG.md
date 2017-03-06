@@ -1,5 +1,9 @@
 # @webpack-blocks/babel6 - Changelog
 
+## 2.0.0
+
+- Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
+
 ## 0.4.1
 
 - Fix default `node_modules/` exclusion, so it works on windows ([#108](https://github.com/andywer/webpack-blocks/pull/108))

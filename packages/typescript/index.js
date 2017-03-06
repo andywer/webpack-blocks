@@ -16,7 +16,7 @@ module.exports = typescript
  * @return {Function}
  */
 function typescript (options) {
-  const setter = (context) => ({
+  return (context, util) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']
     },
@@ -24,9 +24,7 @@ function typescript (options) {
       loaders: [
         {
           test: context.fileType('application/x-typescript'),
-          loaders: [
-            'awesome-typescript-loader'
-          ]
+          loaders: ['awesome-typescript-loader']
         }
       ]
     },
@@ -38,13 +36,4 @@ function typescript (options) {
       ] : []
     )
   })
-
-  return Object.assign(setter, { pre })
-}
-
-function pre (context) {
-  const registeredTypes = context.fileType.all()
-  if (!('application/x-typescript' in registeredTypes)) {
-    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
-  }
 }

@@ -25,6 +25,9 @@ test('devServer() without options provides expected defaults', (t) => {
       historyApiFallback: true,
       inline: true
     },
+    module: {
+      loaders: []
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
@@ -53,6 +56,9 @@ test('devServer() uses custom options and can be composed', (t) => {
       hot: true,
       historyApiFallback: true,
       inline: false
+    },
+    module: {
+      loaders: []
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()

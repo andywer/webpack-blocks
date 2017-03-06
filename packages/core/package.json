@@ -18,6 +18,19 @@
     "functional"
   ],
   "ava": {
+    "babel": {
+      "plugins": [
+        [
+          "transform-object-rest-spread",
+          {
+            "useBuiltIns": true
+          }
+        ]
+      ],
+      "presets": [
+        "@ava/stage-4"
+      ]
+    },
     "require": [
       "babel-register"
     ]
@@ -25,13 +38,23 @@
   "babel": {
     "presets": [
       "es2015"
+    ],
+    "plugins": [
+      [
+        "transform-object-rest-spread",
+        {
+          "useBuiltIns": true
+        }
+      ]
     ]
   },
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "devDependencies": {
+    "@ava/babel-preset-stage-4": "^1.0.0",
     "ava": "^0.18.0",
     "babel-cli": "^6.16.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-register": "^6.18.0",
     "sinon": "^1.17.6",

@@ -105,7 +105,7 @@ test('context contains necessary properties', (t) => {
   t.plan(10)
 
   createConfig.vanilla([
-    (context) => {
+    context => {
       // context.fileType
       t.is(typeof context.fileType, 'function')
       t.is(typeof context.fileType.add, 'function')
@@ -121,7 +121,8 @@ test('context contains necessary properties', (t) => {
       t.is(typeof context.webpackVersion, 'object')
       t.is(typeof context.webpackVersion.major, 'number')
       t.is(typeof context.webpackVersion.minor, 'number')
-      return {}
+
+      return prevConfig => prevConfig
     }
   ])
 })

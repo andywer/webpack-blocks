@@ -22,7 +22,7 @@ function babel (options) {
     exclude: /node_modules/
   }
 
-  return Object.assign((context) => {
+  const setter = context => prevConfig => {
     // Write babel config into the context
     context.babel = context.babel || babelDefaultConfig
 
@@ -42,12 +42,13 @@ function babel (options) {
       context.babel.presets = (context.babel.presets || []).concat(options.presets)
     }
 
-    // Return empty config snippet (configuration will be created by the post hook)
-    return {}
-  }, { post: postConfig })
+    return prevConfig
+  }
+
+  return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context) {
+function postConfig (context, util) {
   const exclude = context.babel.exclude
   const include = context.babel.include
 
@@ -55,7 +56,7 @@ function postConfig (context) {
   delete babelOptions.exclude
   delete babelOptions.include
 
-  const loaderConfig = Object.assign({
+  const loaderDef = Object.assign({
     test: context.fileType('application/javascript'),
     loaders: [ 'babel-loader?' + JSON.stringify(babelOptions) ]
   }, exclude && {
@@ -64,9 +65,5 @@ function postConfig (context) {
     include: Array.isArray(include) ? include : [ include ]
   })
 
-  return {
-    module: {
-      loaders: [ loaderConfig ]
-    }
-  }
+  return util.addLoader(loaderDef)
 }

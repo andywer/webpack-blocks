@@ -1,17 +1,21 @@
 import test from 'ava'
 import sinon from 'sinon'
 import { createConfig } from '../index'
+import blockHelpers from '../blockUtils'
 
 test('createConfig() invokes blocks (config setters)', (t) => {
-  const block1 = () => ({
+  const block1 = () => prevConfig => ({
+    ...prevConfig,
     distinct1: 'distinct1',
     shared: 'shared1'
   })
-  const block2 = () => ({
+  const block2 = () => prevConfig => ({
+    ...prevConfig,
     distinct2: 'distinct2',
     shared: 'shared2'
   })
-  const block3 = () => ({
+  const block3 = () => prevConfig => ({
+    ...prevConfig,
     distinct3: 'distinct3',
     shared: 'shared3'
   })
@@ -22,18 +26,22 @@ test('createConfig() invokes blocks (config setters)', (t) => {
     distinct1: 'distinct1',
     distinct2: 'distinct2',
     distinct3: 'distinct3',
-    shared: 'shared3'
+    shared: 'shared3',
+    module: {
+      loaders: []
+    },
+    plugins: []
   })
 })
 
 test('createConfig() invokes pre hooks', (t) => {
-  const block1 = Object.assign(() => ({}), {
+  const block1 = Object.assign(() => config => config, {
     pre: sinon.spy(() => {})
   })
-  const block2 = Object.assign(() => ({}), {
+  const block2 = Object.assign(() => config => config, {
     pre: sinon.spy(() => {})
   })
-  const block3 = Object.assign(() => ({}), {
+  const block3 = Object.assign(() => config => config, {
     pre: sinon.spy(() => {})
   })
 
@@ -55,20 +63,23 @@ test('createConfig() invokes pre hooks', (t) => {
 })
 
 test('createConfig() invokes post hooks', (t) => {
-  const block1 = Object.assign(() => ({}), {
-    post: sinon.spy(() => ({
+  const block1 = Object.assign(() => config => config, {
+    post: sinon.spy(() => prevConfig => ({
+      ...prevConfig,
       distinct1: 'distinct1',
       shared: 'shared1'
     }))
   })
-  const block2 = Object.assign(() => ({}), {
-    post: sinon.spy(() => ({
+  const block2 = Object.assign(() => config => config, {
+    post: sinon.spy(() => prevConfig => ({
+      ...prevConfig,
       distinct2: 'distinct2',
       shared: 'shared2'
     }))
   })
-  const block3 = Object.assign(() => ({}), {
-    post: sinon.spy(() => ({
+  const block3 = Object.assign(() => config => config, {
+    post: sinon.spy(() => prevConfig => ({
+      ...prevConfig,
       distinct3: 'distinct3',
       shared: 'shared3'
     }))
@@ -79,7 +90,11 @@ test('createConfig() invokes post hooks', (t) => {
     distinct1: 'distinct1',
     distinct2: 'distinct2',
     distinct3: 'distinct3',
-    shared: 'shared3'
+    shared: 'shared3',
+    module: {
+      loaders: []
+    },
+    plugins: []
   })
 
   t.is(block1.post.callCount, 1)
@@ -88,32 +103,31 @@ test('createConfig() invokes post hooks', (t) => {
 
   t.is(block1.post.lastCall.args.length, 2)
   t.is(typeof block1.post.lastCall.args[0], 'object')
-  t.deepEqual(block1.post.lastCall.args[1], {})
+  t.is(block1.post.lastCall.args[1], blockHelpers)
   const context = block1.post.lastCall.args[0]
 
-  t.deepEqual(block2.post.lastCall.args, [
-    context,
-    { distinct1: 'distinct1', shared: 'shared1' }
-  ])
-
-  t.deepEqual(block3.post.lastCall.args, [
-    context,
-    { distinct1: 'distinct1', distinct2: 'distinct2', shared: 'shared2' }
-  ])
+  t.deepEqual(block2.post.lastCall.args, [ context, blockHelpers ])
+  t.deepEqual(block3.post.lastCall.args, [ context, blockHelpers ])
 })
 
 test('createConfig() invokes hooks and setters in the right order', (t) => {
-  const block1 = Object.assign(sinon.spy(() => ({})), {
-    pre: sinon.spy(() => {}),
-    post: sinon.spy(() => ({}))
+  const block1 = Object.assign(sinon.spy(() => config => config), {
+    pre: sinon.spy(() => config => config),
+    post: sinon.spy(() => config => config)
   })
-  const block2 = Object.assign(sinon.spy(() => ({})), {
-    pre: [ sinon.spy(() => {}), sinon.spy(() => {}) ],
-    post: [ sinon.spy(() => {}), sinon.spy(() => {}) ]
+  const block2 = Object.assign(sinon.spy(() => config => config), {
+    pre: [
+      sinon.spy(() => config => config),
+      sinon.spy(() => config => config)
+    ],
+    post: [
+      sinon.spy(() => config => config),
+      sinon.spy(() => config => config)
+    ]
   })
-  const block3 = Object.assign(sinon.spy(() => ({})), {
-    pre: sinon.spy(() => {}),
-    post: sinon.spy(() => ({}))
+  const block3 = Object.assign(sinon.spy(() => config => config), {
+    pre: sinon.spy(() => config => config),
+    post: sinon.spy(() => config => config)
   })
 
   createConfig({}, [ block1, block2, block3 ])
@@ -144,15 +158,15 @@ test('createConfig() invokes hooks and setters in the right order', (t) => {
 })
 
 test('createConfig() ignores duplicate hooks', (t) => {
-  const block1 = Object.assign(sinon.spy(() => ({})), {
-    pre: sinon.spy(() => {}),
-    post: sinon.spy(() => ({}))
+  const block1 = Object.assign(sinon.spy(() => config => config), {
+    pre: sinon.spy(() => config => config),
+    post: sinon.spy(() => config => config)
   })
-  const block2 = Object.assign(sinon.spy(() => ({})), {
-    pre: [ sinon.spy(() => {}), block1.pre ],
-    post: [ sinon.spy(() => {}), block1.post ]
+  const block2 = Object.assign(sinon.spy(() => config => config), {
+    pre: [ sinon.spy(() => config => config), block1.pre ],
+    post: [ sinon.spy(() => config => config), block1.post ]
   })
-  const block3 = Object.assign(sinon.spy(() => ({})), {
+  const block3 = Object.assign(sinon.spy(() => config => config), {
     pre: block1.pre,
     post: block1.post
   })

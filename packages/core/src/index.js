@@ -1,6 +1,6 @@
-const merge = require('webpack-merge')
 const createFileTypesMapping = require('./createFileTypesMapping')
 const defaultFileTypes = require('./defaultFileTypes')
+const blockUtils = require('./blockUtils')
 
 exports.createConfig = createConfig
 exports.group = group
@@ -31,8 +31,15 @@ function createConfig (initialContext, configSetters) {
   const fileType = createFileTypesMapping(defaultFileTypes)
   const context = Object.assign({ fileType }, initialContext)
 
+  const baseConfig = {
+    module: {
+      loaders: []
+    },
+    plugins: []
+  }
+
   invokePreHooks(configSetters, context)
-  const config = invokeConfigSetters(configSetters, context)
+  const config = invokeConfigSetters(configSetters, context, baseConfig)
   const postProcessedConfig = invokePostHooks(configSetters, context, config)
 
   return postProcessedConfig
@@ -50,7 +57,7 @@ function env (envName, configSetters) {
   const currentEnv = process.env.NODE_ENV || 'development'
 
   if (currentEnv !== envName) {
-    return () => ({})
+    return () => config => config
   } else {
     return group(configSetters)
   }
@@ -67,15 +74,7 @@ function group (configSetters) {
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
-  const groupBlock = (context, config) => {
-    // `baseConfig` must be {}, so `invokeConfigSetters()` returns a config
-    // diff, not the whole merged config
-    const baseConfig = {}
-    // `getCompleteConfig` will make sure the whole config is passed as 2nd param when
-    // the config setters are invoked, even though the baseConfig is `{}`, not `config`
-    const getCompleteConfig = (incompleteConfig) => merge.smart(config, incompleteConfig)
-    return invokeConfigSetters(configSetters, context, baseConfig, getCompleteConfig)
-  }
+  const groupBlock = (context) => config => invokeConfigSetters(configSetters, context, config)
 
   return Object.assign(groupBlock, { pre, post })
 }
@@ -94,11 +93,20 @@ function getHooks (configSetters, type) {
   return filterDuplicates(flattenedHooks)
 }
 
-function invokeConfigSetters (configSetters, context, baseConfig = {}, getCompleteConfig = (config) => config) {
+function invokeConfigSetters (configSetters, context, baseConfig) {
   return configSetters.reduce(
-    (mergedConfig, setter) => {
-      const configPartial = setter(context, getCompleteConfig(mergedConfig))
-      return merge.smart(mergedConfig, configPartial)
+    (config, setter) => {
+      const updateFunction = setter(context, blockUtils)
+
+      if (typeof updateFunction !== 'function') {
+        throw new Error(
+          `Expected a function, instead got a ${typeof updateFunction}. Beware that the block API changed since version 0.x.
+
+          Dump of what should have been a function: ${JSON.stringify(updateFunction)}`
+        )
+      }
+
+      return updateFunction(config)
     },
     baseConfig
   )
