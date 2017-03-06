@@ -33,7 +33,7 @@ function createConfig (initialContext, configSetters) {
 
   const baseConfig = {
     module: {
-      loaders: []
+      rules: []
     },
     plugins: []
   }

@@ -13,7 +13,7 @@ function merge (configSnippet) {
 function addLoader (loaderDef) {
   return prevConfig => webpackMerge.smart(prevConfig, {
     module: {
-      loaders: [ loaderDef ]
+      rules: [ loaderDef ]
     }
   })
 }
