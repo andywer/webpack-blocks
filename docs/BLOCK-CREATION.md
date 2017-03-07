@@ -24,12 +24,17 @@ function babel (options) {
     ...prevConfig,
     module: {
       ...prevConfig.module,
-      loaders: prevConfig.module.loaders.concat([
+      rules: prevConfig.module.rules.concat([
         {
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
           test: context.fileType('application/javascript'),
           exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          loaders: [ 'babel?cacheDirectory' ]
+          use: [{
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            }
+          }]
         }
       ])
     }
@@ -52,7 +57,7 @@ Returns an update function that adds the given loader definition to a webpack co
 function sampleBlock () {
   return (context, { addLoader }) => addLoader({
     test: context.fileType('text/css'),
-    loaders: [ 'style-loader', 'css-loader' ]
+    use: [ 'style-loader', 'css-loader' ]
   })
 }
 ```

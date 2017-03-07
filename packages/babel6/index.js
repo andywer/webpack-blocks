@@ -56,14 +56,17 @@ function postConfig (context, util) {
   delete babelOptions.exclude
   delete babelOptions.include
 
-  const loaderDef = Object.assign({
+  const ruleConfig = Object.assign({
     test: context.fileType('application/javascript'),
-    loaders: [ 'babel-loader?' + JSON.stringify(babelOptions) ]
+    use: [ {
+      loader: 'babel-loader',
+      options: babelOptions
+    } ]
   }, exclude && {
     exclude: Array.isArray(exclude) ? exclude : [ exclude ]
   }, include && {
     include: Array.isArray(include) ? include : [ include ]
   })
 
-  return util.addLoader(loaderDef)
+  return util.addLoader(ruleConfig)
 }

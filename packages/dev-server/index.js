@@ -98,6 +98,6 @@ function reactHot (options) {
   return (context, util) => util.addLoader({
     test: context.fileType('application/javascript'),
     exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-    loaders: [ 'react-hot' ]
+    use: [ 'react-hot' ]
   })
 }

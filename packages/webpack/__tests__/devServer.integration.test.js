@@ -26,7 +26,7 @@ test('devServer() without options provides expected defaults', (t) => {
       inline: true
     },
     module: {
-      loaders: []
+      rules: []
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
@@ -58,7 +58,7 @@ test('devServer() uses custom options and can be composed', (t) => {
       inline: false
     },
     module: {
-      loaders: []
+      rules: []
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()

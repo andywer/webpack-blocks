@@ -16,7 +16,7 @@ function tslint (options) {
   const setter = (context, util) => prevConfig => {
     const _addLoader = util.addLoader({
       test: context.fileType('application/x-typescript'),
-      loaders: [ 'tslint-loader' ],
+      use: [ 'tslint-loader' ],
       enforce: 'pre'
     })
     const _addPlugin = util.addPlugin(

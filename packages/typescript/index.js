@@ -21,10 +21,10 @@ function typescript (options) {
       extensions: ['.ts', '.tsx']
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: context.fileType('application/x-typescript'),
-          loaders: ['awesome-typescript-loader']
+          use: [ 'awesome-typescript-loader' ]
         }
       ]
     },

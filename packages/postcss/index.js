@@ -28,16 +28,16 @@ function postcss (plugins, options) {
   )
 
   return (context, util) => prevConfig => {
-    const loaderDef = Object.assign(
+    const ruleDef = Object.assign(
       {
         test: context.fileType('text/css'),
-        loaders: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
+        use: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
       }, options.exclude ? {
         exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
       } : {}
     )
 
-    const _addLoader = util.addLoader(loaderDef)
+    const _addLoader = util.addLoader(ruleDef)
     const _addPlugin = plugins
       ? addLoaderOptionsPlugin(context, util, plugins)
       : config => config

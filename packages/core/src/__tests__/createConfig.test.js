@@ -28,7 +28,7 @@ test('createConfig() invokes blocks (config setters)', (t) => {
     distinct3: 'distinct3',
     shared: 'shared3',
     module: {
-      loaders: []
+      rules: []
     },
     plugins: []
   })
@@ -92,7 +92,7 @@ test('createConfig() invokes post hooks', (t) => {
     distinct3: 'distinct3',
     shared: 'shared3',
     module: {
-      loaders: []
+      rules: []
     },
     plugins: []
   })

@@ -26,20 +26,15 @@ function cssModules (options) {
   return (context, util) => util.addLoader(
     Object.assign({
       test: context.fileType('text/css'),
-      loaders: [ 'style-loader', 'css-loader?' + stringifyQueryParams({ importLoaders, localIdentName, modules: true }) ]
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: { importLoaders, localIdentName, modules: true }
+        }
+      ]
     }, options.exclude ? {
       exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
     } : {})
   )
-}
-
-/**
- * Cannot use `require('querystring').stringify()`, since css-loader params might
- * contain special characters as `[`, `]` that would be escaped.
- */
-function stringifyQueryParams (params) {
-  return Object.keys(params)
-    .filter((paramName) => (params[ paramName ] !== null && params[ paramName ] !== undefined))
-    .map((paramName) => (params[ paramName ] === true ? `${paramName}` : `${paramName}=${params[ paramName ]}`))
-    .join('&')
 }

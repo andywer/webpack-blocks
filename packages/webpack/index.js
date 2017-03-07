@@ -50,7 +50,7 @@ function createVanillaConfig (configSetters) {
 function createEmptyConfig (context, util) {
   return util.merge({
     module: {
-      loaders: []
+      rules: []
     },
     plugins: []
   })
@@ -76,22 +76,22 @@ function createConfig (configSetters) {
 function createBaseConfig (context, util) {
   return util.merge({
     module: {
-      loaders: [
+      rules: [
         {
           test: context.fileType('text/css'),
-          loaders: [ 'style-loader', 'css-loader' ]
+          use: [ 'style-loader', 'css-loader' ]
         }, {
           test: context.fileType('image'),
-          loaders: [ 'file-loader' ]
+          use: 'file-loader'
         }, {
           test: context.fileType('application/font'),
-          loaders: [ 'file-loader' ]
+          use: 'file-loader'
         }, {
           test: context.fileType('audio'),
-          loaders: [ 'url-loader' ]
+          use: 'url-loader'
         }, {
           test: context.fileType('video'),
-          loaders: [ 'url-loader' ]
+          use: 'url-loader'
         }
       ]
     },
