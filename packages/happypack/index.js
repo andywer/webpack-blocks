@@ -62,7 +62,7 @@ function happyfyConfig(configSnippet, _, happypackConfig) {
  * Takes an array, a function or something falsy and returns the array, the
  * function wrapped in an array or an empty array, respectively.
  */
-function toArray(value) {https://github.com/fenos/webpack-blocks
+function toArray(value) {
   if (value) {
     return Array.isArray(value) ? value : [value]
   } else {
