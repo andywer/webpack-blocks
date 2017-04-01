@@ -54,7 +54,7 @@ test('complete webpack config creation', (t) => {
   })
 
   t.deepEqual(webpackConfig.entry, {
-    main: [ './src/main.js', 'webpack/hot/only-dev-server' ]
+    main: [ './src/main.js' ]
   })
 
   t.deepEqual(webpackConfig.devServer, {

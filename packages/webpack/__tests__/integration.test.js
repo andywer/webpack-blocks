@@ -57,7 +57,7 @@ test('complete webpack config creation', (t) => {
     loaders: [ 'babel-loader?{"cacheDirectory":true}' ]
   })
 
-  t.deepEqual(webpackConfig.entry, { main: [ './src/main.js', 'webpack/hot/only-dev-server' ] })
+  t.deepEqual(webpackConfig.entry, { main: [ './src/main.js' ] })
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
