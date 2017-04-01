@@ -61,6 +61,7 @@ test('complete webpack config creation', (t) => {
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
+    hotOnly: true,
     historyApiFallback: true,
     inline: true,
     proxy: {

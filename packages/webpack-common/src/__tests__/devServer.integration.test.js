@@ -22,6 +22,7 @@ test('devServer() without options provides expected defaults', (t) => {
     },
     devServer: {
       hot: true,
+      hotOnly: true,
       historyApiFallback: true,
       inline: true
     },
@@ -51,6 +52,7 @@ test('devServer() uses custom options and can be composed', (t) => {
     },
     devServer: {
       hot: true,
+      hotOnly: true,
       historyApiFallback: true,
       inline: false
     },
