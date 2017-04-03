@@ -1,0 +1,29 @@
+{
+  "name": "@webpack-blocks/elm",
+  "version": "0.4.0",
+  "description": "Webpack block for elm.",
+  "main": "lib/index",
+  "license": "MIT",
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "scripts": {
+    "test": "standard && ava",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-blocks"
+  ],
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "elm-hot-loader": "^0.5.4",
+    "elm-webpack-loader": "^4.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.0",
+    "standard": "^8.1.0"
+  }
+}
