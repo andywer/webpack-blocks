@@ -4,7 +4,7 @@
   "description": "Webpack block for elm.",
   "main": "lib/index",
   "license": "MIT",
-  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "author": "Ivakhnenko Dmitry <jeetiss@ya.ru>",
   "scripts": {
     "test": "standard && ava",
     "prepublish": "npm test"
