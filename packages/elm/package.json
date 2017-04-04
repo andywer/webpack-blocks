@@ -19,6 +19,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
+    "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.4",
     "elm-webpack-loader": "^4.3.0"
   },
