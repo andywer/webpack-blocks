@@ -1,4 +1,4 @@
-# Webpack blocks - TypeScript
+# webpack blocks - TypeScript
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/typescript.svg)](https://www.npmjs.com/package/@webpack-blocks/typescript)
@@ -21,7 +21,7 @@ module.exports = createConfig([
 
 Uses the default tsconfig.json in the root directory to pass options (See [here](https://github.com/s-panferov/awesome-typescript-loader#tsconfigjson))
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 

@@ -1,4 +1,4 @@
-# Webpack blocks - CSS Modules
+# webpack blocks - CSS Modules
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/css-modules.svg)](https://www.npmjs.com/package/@webpack-blocks/css-modules)
@@ -30,7 +30,7 @@ That many loaders after the css-loader are used to import resources. Defaults to
 The pattern how to rewrite the CSS class names. Defaults to `[name]--[local]--[hash:base64:5]` in development and `[hash:base64:10]` in production.
 
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 

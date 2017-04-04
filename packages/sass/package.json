@@ -1,7 +1,7 @@
 {
   "name": "@webpack-blocks/sass",
   "version": "0.4.0",
-  "description": "Webpack block for SASS.",
+  "description": "webpack block for SASS.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",

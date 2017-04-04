@@ -1,4 +1,4 @@
-# Webpack blocks - SASS
+# webpack blocks - SASS
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/sass.svg)](https://www.npmjs.com/package/@webpack-blocks/sass)
@@ -22,7 +22,7 @@ module.exports = createConfig([
 You can pass random `sass-loader` options as an object to the `sass` block. Those options are basically identical with [node-sass' options](https://github.com/sass/node-sass#options).
 
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 
