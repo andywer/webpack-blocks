@@ -50,14 +50,14 @@ function createConfig (initialContext, configSetters) {
 function env (envName, configSetters) {
   const currentEnv = process.env.NODE_ENV || 'development'
 
-  return groupIf(currentEnv !== envName, configSetters);
+  return groupIf(currentEnv === envName, configSetters);
 }
 
 /**
  * Applies an array of webpack blocks only if condition is true
  */
 function groupIf(condition,configSetters) {
-    if (condition) {
+    if (!condition) {
         return () => ({})
     } else {
         return group(configSetters)
