@@ -1,7 +1,7 @@
 {
   "name": "@webpack-blocks/typescript",
   "version": "0.4.0",
-  "description": "Webpack block for Typescript.",
+  "description": "webpack block for Typescript.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Jan van Brügge <supermanitu@gmail.com>",

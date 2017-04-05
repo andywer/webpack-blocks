@@ -1,7 +1,7 @@
 {
   "name": "@webpack-blocks/babel6",
   "version": "0.4.1",
-  "description": "Webpack block for babel 6+.",
+  "description": "webpack block for babel 6+.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",

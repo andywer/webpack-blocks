@@ -95,7 +95,7 @@ function runWebpack (config) {
         reject(error)
       } else if (stats.hasErrors()) {
         stats.toJson().errors.forEach((error) => console.error(error, '\n'))
-        reject(new Error('Webpack soft error occured. See stderr output.'))
+        reject(new Error('webpack soft error occured. See stderr output.'))
       } else {
         resolve(stats)
       }

@@ -1,4 +1,4 @@
-# Webpack blocks - Webpack Dev Server
+# webpack blocks - webpack Dev Server
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/dev-server.svg)](https://www.npmjs.com/package/@webpack-blocks/dev-server)
@@ -28,7 +28,7 @@ module.exports = createConfig([
 ```
 
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 

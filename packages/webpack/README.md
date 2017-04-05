@@ -1,4 +1,4 @@
-# Webpack blocks - Webpack base configuration
+# webpack blocks - webpack base configuration
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/webpack.svg)](https://www.npmjs.com/package/@webpack-blocks/webpack)
@@ -119,7 +119,7 @@ Instead of passing the destination file path you can also
 Just a convenience wrapper to enable sourcemaps in an easier-to-read fashion than `setDevTool()`. Will set webpack's `devtool` to `'cheap-module-source-map'` if no explicit `devtool` is passed as parameter.
 
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 

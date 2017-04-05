@@ -15,10 +15,10 @@ const isFunction = (value) => typeof value === 'function'
  * final, complete webpack config that will be returned.
  *
  * @param {object}     initialContext                 The blueprint for the initial context object.
- * @param {object}     initialContext.webpack         Webpack instance
- * @param {object}     initialContext.webpackVersion  Webpack version (`{ major, minor, ... }`)
+ * @param {object}     initialContext.webpack         webpack instance
+ * @param {object}     initialContext.webpackVersion  webpack version (`{ major, minor, ... }`)
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
- * @return {object}                   Webpack config object.
+ * @return {object}                   webpack config object.
  */
 function createConfig (initialContext, configSetters) {
   if (!initialContext) {

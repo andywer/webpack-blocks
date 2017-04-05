@@ -1,5 +1,5 @@
 /**
- * Webpack base config block.
+ * webpack base config block.
  *
  * @see https://webpack.github.io/docs/configuration.html
  */
@@ -39,7 +39,7 @@ exports.sourceMaps = common.sourceMaps
  * default config.
  *
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
- * @return {object}                   Webpack config object.
+ * @return {object}                   webpack config object.
  */
 function createVanillaConfig (configSetters) {
   assert.arrayOfFunc(configSetters, '1st param passed to createConfig.vanilla() must be an array of functions.')
@@ -65,7 +65,7 @@ function createEmptyConfig () {
  * configuration first.
  *
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
- * @return {object}                   Webpack config object.
+ * @return {object}                   webpack config object.
  */
 function createConfig (configSetters) {
   assert.arrayOfFunc(configSetters, '1st param passed to createConfig() must be an array of functions.')

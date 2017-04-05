@@ -1,4 +1,4 @@
-# How to Write a Webpack Block
+# How to Write a webpack Block
 
 This guide is going to show you how to create a custom webpack block. Don't worry, it's not hard!
 

@@ -7,7 +7,7 @@ Missing anything? Write your own and share them!
 [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
->"Finally, webpack config done right. (...) Webpack clearly wants to stay low-level. So it makes total sense to outsource configuring it to well designed blocks instead of copy-paste."
+>"Finally, webpack config done right. (...) webpack clearly wants to stay low-level. So it makes total sense to outsource configuring it to well designed blocks instead of copy-paste."
 >
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
@@ -94,15 +94,15 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [babel6](./packages/babel6)
 - [css-modules](./packages/css-modules)
 - [dev-server](./packages/dev-server)
-- [dev-server2](./packages/dev-server2) *(for Webpack 2)*
+- [dev-server2](./packages/dev-server2) *(for webpack 2)*
 - [extract-text](./packages/extract-text)
-- [extract-text2](./packages/extract-text2) *(for Webpack 2)*
+- [extract-text2](./packages/extract-text2) *(for webpack 2)*
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
 - [typescript](./packages/typescript)
 - [tslint](./packages/tslint)
-- [webpack](./packages/webpack) *(Webpack 1 base config)*
-- [webpack2](./packages/webpack2) *(Webpack 2 base config)*
+- [webpack](./packages/webpack) *(webpack 1 base config)*
+- [webpack2](./packages/webpack2) *(webpack 2 base config)*
 
 Missing something? Write and publish your own webpack blocks!
 

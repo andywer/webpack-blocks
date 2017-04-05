@@ -1,7 +1,7 @@
 {
   "name": "@webpack-blocks/tslint",
   "version": "0.4.0",
-  "description": "Webpack block for typescript linting.",
+  "description": "webpack block for typescript linting.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Jan van Brügge <supermanitu@gmail.com>",

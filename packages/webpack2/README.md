@@ -1,4 +1,4 @@
-# Webpack blocks - Webpack 2 base configuration
+# webpack blocks - webpack 2 base configuration
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/webpack2.svg)](https://www.npmjs.com/package/@webpack-blocks/webpack2)
@@ -32,7 +32,7 @@ module.exports = createConfig([
 ```
 
 
-## Webpack 2 compatible blocks
+## webpack 2 compatible blocks
 
 There are some webpack loaders and plugins that are only compatible with webpack 2 in a certain version.
 Make sure you use the appropriate webpack blocks:
@@ -129,7 +129,7 @@ Instead of passing the destination file path you can also
 Just a convenience wrapper to enable sourcemaps in an easier-to-read fashion than `setDevTool()`. Will set webpack's `devtool` to `'cheap-module-source-map'` if no explicit `devtool` is passed as parameter.
 
 
-## Webpack blocks
+## webpack blocks
 
 Check out the
 
