@@ -1,12 +1,12 @@
 {
-  "name": "@webpack-blocks/postcss",
-  "version": "0.4.3",
-  "description": "webpack block for PostCSS.",
+  "name": "@webpack-blocks/elm",
+  "version": "0.4.0",
+  "description": "Webpack block for elm.",
   "main": "lib/index",
   "license": "MIT",
-  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "author": "Ivakhnenko Dmitry <jeetiss@ya.ru>",
   "scripts": {
-    "test": "standard",
+    "test": "standard && ava",
     "prepublish": "npm test"
   },
   "engines": {
@@ -19,9 +19,12 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "postcss-loader": "^1.2.0"
+    "elm": "^0.18.0",
+    "elm-hot-loader": "^0.5.4",
+    "elm-webpack-loader": "^4.3.0"
   },
   "devDependencies": {
+    "ava": "^0.18.0",
     "standard": "^8.1.0"
   }
 }

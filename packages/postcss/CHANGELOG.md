@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## 0.4.3
+
+- Bug fix: Fix loading of `postcss.config.js` ([#137](https://github.com/andywer/webpack-blocks/pull/137))
+
 ## 0.4.2
 
 - Bug fix: Fix `postcss`/`sass` crash when using webpack 2 and source maps ([#116](https://github.com/andywer/webpack-blocks/issues/116))

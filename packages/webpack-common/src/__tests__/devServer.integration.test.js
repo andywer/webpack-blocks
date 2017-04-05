@@ -18,10 +18,11 @@ test('devServer() without options provides expected defaults', (t) => {
 
   t.deepEqual(config, {
     entry: {
-      main: ['./test.js', 'webpack/hot/only-dev-server']
+      main: ['./test.js']
     },
     devServer: {
       hot: true,
+      hotOnly: true,
       historyApiFallback: true,
       inline: true
     },
@@ -51,6 +52,7 @@ test('devServer() uses custom options and can be composed', (t) => {
     },
     devServer: {
       hot: true,
+      hotOnly: true,
       historyApiFallback: true,
       inline: false
     },
@@ -72,7 +74,7 @@ test('devServer block extends multiple entry points correctly', (t) => {
   ])
 
   t.deepEqual(config.entry, {
-    a: ['./a', 'webpack/hot/only-dev-server'],
-    b: ['./b', 'webpack/hot/only-dev-server']
+    a: ['./a'],
+    b: ['./b']
   })
 })

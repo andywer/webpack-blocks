@@ -14,7 +14,7 @@ devServer.reactHot = reactHot
  * @param {bool}   [options.historyApiFallback]
  * @param {bool}   [options.hot]
  * @param {bool}   [options.inline]
- * @param {string|string[]} [entry]   Defaults to 'webpack/hot/only-dev-server'
+ * @param {string|string[]} [entry]
  * @return {Function}
  */
 function devServer (options = {}, entry = null) {
@@ -39,11 +39,12 @@ function devServer (options = {}, entry = null) {
 function postConfig (context, config) {
   const entryPointsToAdd = context.devServer.entry.length > 0
     ? context.devServer.entry
-    : [ 'webpack/hot/only-dev-server' ]
+    : []
 
   return {
     devServer: Object.assign({
       hot: true,
+      hotOnly: true,
       historyApiFallback: true,
       inline: true
     }, context.devServer.options),
