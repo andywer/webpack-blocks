@@ -40,7 +40,7 @@ function postcss (plugins, options) {
         ]
       }
     },
-    plugins ? createPostcssPluginsConfig(context.webpack, plugins) : {}
+    plugins.length > 0 ? createPostcssPluginsConfig(context.webpack, plugins) : {}
   )
 }
 
