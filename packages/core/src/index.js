@@ -5,7 +5,6 @@ const defaultFileTypes = require('./defaultFileTypes')
 exports.createConfig = createConfig
 exports.group = group
 exports.env = env
-exports.groupIf = groupIf
 
 const isFunction = (value) => typeof value === 'function'
 
@@ -48,16 +47,19 @@ function createConfig (initialContext, configSetters) {
  * @return {Function}
  */
 function env (envName, configSetters) {
-  const currentEnv = process.env.NODE_ENV || 'development'
+    let addSettings = false
+    if (typeof envName === 'string' || envName instanceof String) {
+        const currentEnv = process.env.NODE_ENV || 'development'
+        addSettings = (currentEnv === envName)
+    }
+    else {
+        for (let name in envName) {
+            if (!envName.hasOwnProperty(name)) continue
+            addSettings &= ( process.env[name] == envName[name])
+        }
+    }
 
-  return groupIf(currentEnv === envName, configSetters);
-}
-
-/**
- * Applies an array of webpack blocks only if condition is true
- */
-function groupIf(condition,configSetters) {
-    if (!condition) {
+    if (addSettings) {
         return () => ({})
     } else {
         return group(configSetters)
