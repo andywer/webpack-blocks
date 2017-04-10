@@ -16,7 +16,7 @@ test('Typescript default options work', (t) => {
   })
   t.deepEqual(config.module.loaders, [{
     test: '*.ts',
-    loaders: ['awesome-typescript-loader']
+    loaders: ['awesome-typescript-loader?{}']
   }])
   t.deepEqual(config.plugins, [new CheckerPlugin()])
 
