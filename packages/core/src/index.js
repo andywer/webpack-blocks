@@ -59,7 +59,7 @@ function env (envName, configSetters) {
         }
     }
 
-    if (addSettings) {
+    if (!addSettings) {
         return () => ({})
     } else {
         return group(configSetters)
