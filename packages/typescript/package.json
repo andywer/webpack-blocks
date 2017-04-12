@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Jan van Brügge <supermanitu@gmail.com>",
   "scripts": {
-    "test": "standard && ava",
+    "test": "standard",
     "prepublish": "npm test"
   },
   "engines": {

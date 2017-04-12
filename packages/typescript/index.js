@@ -31,7 +31,7 @@ function typescript (options) {
     },
     plugins: [
       new CheckerPlugin(),
-      new TsConfigPathsPlugin({ tsconfig: options.tsconfig, compiler: options.compiler }) //This hooks into webpacks module resolution, configure via tsconfig.json
+      new TsConfigPathsPlugin({ tsconfig: options.tsconfig, compiler: options.compiler }) // This hooks into webpacks module resolution, configure via tsconfig.json
     ]
   })
 
