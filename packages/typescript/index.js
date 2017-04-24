@@ -10,12 +10,11 @@ const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPl
 module.exports = typescript
 
 /**
- * @param {object} [advancedPathResolution]                  See https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
- * @param {object} [options.tsconfig]
- * @param {object} [options.compiler]
+ * @param {object} [options] See https://github.com/s-panferov/awesome-typescript-loader#loader-options
  * @return {Function}
  */
 function typescript (options) {
+  options = options || {}
   return (context, util) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']
@@ -24,16 +23,18 @@ function typescript (options) {
       rules: [
         {
           test: context.fileType('application/x-typescript'),
-          use: [ 'awesome-typescript-loader' ]
+          use: [
+            {
+              loader: 'awesome-typescript-loader',
+              options
+            }
+          ]
         }
       ]
     },
     plugins: [
-      new CheckerPlugin()
-    ].concat(
-      options ? [
-        new TsConfigPathsPlugin({ tsconfig: options.tsconfig, compiler: options.compiler })
-      ] : []
-    )
+      new CheckerPlugin(),
+      new TsConfigPathsPlugin({ tsconfig: options.configFileName, compiler: options.compiler }) // This hooks into webpacks module resolution, configure via tsconfig.json
+    ]
   })
 }

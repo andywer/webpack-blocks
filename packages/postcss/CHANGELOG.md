@@ -1,8 +1,12 @@
 # @webpack-blocks/postcss - Changelog
 
-## 2.0.0
+## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
+
+## 0.4.3
+
+- Bug fix: Fix loading of `postcss.config.js` ([#137](https://github.com/andywer/webpack-blocks/pull/137))
 
 ## 0.4.2
 

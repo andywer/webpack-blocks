@@ -1,6 +1,6 @@
 # @webpack-blocks/webpack - Changelog
 
-## 2.0.0
+## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
 - Fail with meaningful message if `createConfig()` is called with invalid param ([#110](https://github.com/andywer/webpack-blocks/issues/110))

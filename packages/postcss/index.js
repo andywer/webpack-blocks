@@ -38,7 +38,7 @@ function postcss (plugins, options) {
     )
 
     const _addLoader = util.addLoader(ruleDef)
-    const _addPlugin = plugins
+    const _addPlugin = plugins.length > 0
       ? addLoaderOptionsPlugin(context, util, plugins)
       : config => config
 
