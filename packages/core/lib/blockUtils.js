@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const webpackMerge = require('webpack-merge')
 
 module.exports = {
@@ -11,9 +12,10 @@ function merge (configSnippet) {
 }
 
 function addLoader (loaderDef) {
+  const cleanedLoaderDef = _.omitBy(loaderDef, _.isUndefined)
   return prevConfig => webpackMerge.smart(prevConfig, {
     module: {
-      rules: [ loaderDef ]
+      rules: [ cleanedLoaderDef ]
     }
   })
 }
