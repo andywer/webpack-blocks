@@ -9,8 +9,8 @@
   "devDependencies": {
     "@types/node": "^7.0.0",
     "@types/react": "^15.0.0",
+    "@webpack-blocks/assets": "^1.0.0",
     "@webpack-blocks/babel6": "^0.4.0",
-    "@webpack-blocks/css-modules": "^0.4.0",
     "@webpack-blocks/dev-server": "^0.4.0",
     "@webpack-blocks/extract-text": "^0.4.0",
     "@webpack-blocks/typescript": "^0.4.0",
