@@ -20,15 +20,11 @@
   "dependencies": {
     "@webpack-blocks/core": "^0.4.0",
     "assert-plus": "^1.0.0",
-    "css-loader": "^0.25.0",
-    "file-loader": "^0.9.0",
-    "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
     "webpack": "^2.2.0"
   },
   "devDependencies": {
+    "@webpack-blocks/assets": "^1.0.0",
     "@webpack-blocks/babel6": "^0.4.0",
-    "@webpack-blocks/css-modules": "^0.4.0",
     "@webpack-blocks/dev-server": "^0.4.0",
     "@webpack-blocks/elm": "^0.4.0",
     "@webpack-blocks/extract-text": "^0.4.0",
