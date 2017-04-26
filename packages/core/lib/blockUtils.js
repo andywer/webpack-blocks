@@ -19,8 +19,9 @@ function addLoader (loaderDef) {
 }
 
 function addPlugin (plugin) {
-  return prevConfig => ({
-    ...prevConfig,
-    plugins: prevConfig.plugins.concat([ plugin ])
-  })
+  return prevConfig => Object.assign(
+    {},
+    prevConfig,
+    { plugins: prevConfig.plugins.concat([ plugin ]) }
+  )
 }

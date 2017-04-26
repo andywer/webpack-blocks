@@ -7,12 +7,10 @@ module.exports = parseVersion
  * @return {object}   { major: number, minor: number, patch: number, prerelease: string, raw: string }
  */
 function parseVersion (versionString) {
-  const splitVersion = versionString.split('-')
-  const release = splitVersion[0]
-  const prerelease = splitVersion[1] || ''
+  const [ release, prerelease ] = versionString.split('-')
   const splitRelease = release
     .split('.')
-    .map((number) => parseInt(number, 10))
+    .map(number => parseInt(number, 10))
 
   return {
     major: splitRelease[0],

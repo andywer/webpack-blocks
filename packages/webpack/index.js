@@ -209,12 +209,10 @@ function setOutput (output) {
  * @param {string} [devtool]
  * @return {Function}
  */
-function sourceMaps (devtool) {
+function sourceMaps (devtool = 'cheap-module-source-map') {
   return (context, util) => {
     context.sourceMaps = true
 
-    return util.merge({
-      devtool: devtool || 'cheap-module-source-map'
-    })
+    return util.merge({ devtool })
   }
 }

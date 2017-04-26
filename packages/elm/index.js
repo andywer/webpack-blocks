@@ -14,9 +14,10 @@ module.exports = elm
  * @param {string}                  [options.cwd]           Custom location for your elm files.
  * @return {Function}
  */
-function elm (options, isProduction) {
-  options = options || {}
-  isProduction = isProduction || process.env.NODE_ENV === 'production'
+function elm (options = {}, isProduction) {
+  isProduction = typeof isProduction === 'boolean'
+    ? isProduction
+    : process.env.NODE_ENV === 'production'
 
   const productionDefaultConfig = {
     exclude: [/elm-stuff/, /node_modules/],

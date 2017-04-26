@@ -17,8 +17,7 @@ devServer.reactHot = reactHot
  * @param {string|string[]} [entry]
  * @return {Function}
  */
-function devServer (options, entry) {
-  options = options || {}
+function devServer (options = {}, entry = []) {
   if (options && (typeof options === 'string' || Array.isArray(options))) {
     entry = options
     options = {}
@@ -90,8 +89,7 @@ function proxy (proxyRoutes) {
  * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function reactHot (options) {
-  options = options || {}
+function reactHot (options = {}) {
   const exclude = options.exclude || /\/node_modules\//
 
   return (context, util) => util.addLoader({

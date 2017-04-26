@@ -14,9 +14,7 @@ module.exports = sass
  * @param {bool}     [options.sourceMap]
  * @return {Function}
  */
-function sass (options) {
-  options = options || {}
-
+function sass (options = {}) {
   return (context, util) => util.addLoader({
     test: context.fileType('text/x-sass'),
     use: [

@@ -13,8 +13,7 @@ module.exports = typescript
  * @param {object} [options] See https://github.com/s-panferov/awesome-typescript-loader#loader-options
  * @return {Function}
  */
-function typescript (options) {
-  options = options || {}
+function typescript (options = {}) {
   return (context, util) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']

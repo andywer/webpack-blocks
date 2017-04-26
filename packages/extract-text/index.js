@@ -13,10 +13,7 @@ module.exports = extractText
  * @param {string}  [fileType]          A MIME type used for file matching. Defaults to `text/css`.
  * @return {Function}
  */
-function extractText (outputFilePattern, fileType) {
-  outputFilePattern = outputFilePattern || 'css/[name].[contenthash:8].css'
-  fileType = fileType || 'text/css'
-
+function extractText (outputFilePattern = 'css/[name].[contenthash:8].css', fileType = 'text/css') {
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
   return (context, util) => prevConfig => {

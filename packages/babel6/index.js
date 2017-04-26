@@ -14,9 +14,7 @@ module.exports = babel
  * @param {string[]}                [options.presets]   Babel presets to use.
  * @return {Function}
  */
-function babel (options) {
-  options = options || {}
-
+function babel (options = {}) {
   const babelDefaultConfig = {
     cacheDirectory: true,
     exclude: /node_modules/
