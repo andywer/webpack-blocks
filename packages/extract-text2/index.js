@@ -31,8 +31,8 @@ function extractText (outputFilePattern, fileType) {
             test: context.fileType(fileType),
             exclude: loaderConfig.exclude,
             loader: plugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: nonStyleLoaders
+              fallback: 'style-loader',
+              use: nonStyleLoaders
             }),
             loaders: undefined
           }
