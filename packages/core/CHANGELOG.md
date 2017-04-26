@@ -4,6 +4,7 @@
 
 - New block API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
 - Added `text/html` file type
+- Dropped Babel, requires node 6+
 
 ## 0.4.0
 
