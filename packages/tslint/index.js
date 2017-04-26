@@ -10,9 +10,7 @@ module.exports = tslint
  * @param {object}   [options]                  See https://github.com/wbuchwalter/tslint-loader#usage
  * @return {Function}
  */
-function tslint (options) {
-  options = options || {}
-
+function tslint (options = {}) {
   const setter = (context, util) => prevConfig => {
     const _addLoader = util.addLoader({
       test: context.fileType('application/x-typescript'),

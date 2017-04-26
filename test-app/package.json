@@ -4,7 +4,7 @@
     "start": "NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
   },
   "engines": {
-    "node": ">= 5.0"
+    "node": ">= 6.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.0",

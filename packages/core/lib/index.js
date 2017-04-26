@@ -6,7 +6,7 @@ exports.createConfig = createConfig
 exports.group = group
 exports.env = env
 
-const isFunction = (value) => typeof value === 'function'
+const isFunction = value => typeof value === 'function'
 
 /**
  * Takes an array of webpack blocks and creates a webpack config out of them.
@@ -74,7 +74,7 @@ function group (configSetters) {
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
-  const groupBlock = (context) => config => invokeConfigSetters(configSetters, context, config)
+  const groupBlock = context => config => invokeConfigSetters(configSetters, context, config)
 
   return Object.assign(groupBlock, { pre, post })
 }
@@ -87,7 +87,7 @@ function getHooks (configSetters, type) {
 
   // Flatten the array (since each item might be an array as well)
   const flattenedHooks = hooks
-    .map((hook) => Array.isArray(hook) ? hook : [ hook ])
+    .map(hook => Array.isArray(hook) ? hook : [ hook ])
     .reduce((allHooks, someHooks) => allHooks.concat(someHooks), [])
 
   return filterDuplicates(flattenedHooks)
@@ -114,7 +114,7 @@ function invokeConfigSetters (configSetters, context, baseConfig) {
 
 function invokePreHooks (configSetters, context) {
   const preHooks = getHooks(configSetters, 'pre')
-  preHooks.forEach((hook) => hook(context))
+  preHooks.forEach(hook => hook(context))
 }
 
 function invokePostHooks (configSetters, context, config) {

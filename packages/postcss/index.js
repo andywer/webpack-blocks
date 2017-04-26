@@ -15,10 +15,7 @@ module.exports = postcss
  * @param {string}                  [options.syntax]      Package name of custom PostCSS parser/stringifier to use.
  * @return {Function}
  */
-function postcss (plugins, options) {
-  plugins = plugins || []
-  options = options || {}
-
+function postcss (plugins = [], options = {}) {
   // https://github.com/postcss/postcss-loader#options
   const postcssOptions = Object.assign(
     {},
@@ -46,9 +43,7 @@ function postcss (plugins, options) {
   }
 }
 
-function addLoaderOptionsPlugin (context, util, postcssPlugins) {
-  const webpack = context.webpack
-
+function addLoaderOptionsPlugin ({ webpack }, util, postcssPlugins) {
   return util.addPlugin(
     new webpack.LoaderOptionsPlugin({
       options: {
