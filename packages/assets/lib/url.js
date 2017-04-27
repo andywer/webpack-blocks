@@ -12,7 +12,7 @@ module.exports = url
  */
 function url (fileType, options = {}) {
   if (!fileType || typeof fileType !== 'string') {
-    throw new Error(`Need to pass a valid file type to url().`)
+    throw new Error(`Need to pass a valid file type (MIME type) string to url().`)
   }
   return (context, util) => util.addLoader({
     test: context.fileType(fileType),

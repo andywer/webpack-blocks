@@ -17,7 +17,7 @@ function css (fileType = 'text/css', options) {
     fileType = 'text/css'
   }
   if (!fileType || typeof fileType !== 'string') {
-    throw new Error(`Need to pass a valid file type to css().`)
+    throw new Error(`Need to pass a valid file type (MIME type) string to css().`)
   }
 
   options = options || {}
