@@ -1,4 +1,4 @@
-# Webpack blocks - Babel 6+
+# Webpack blocks - Assets
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/assets.svg)](https://www.npmjs.com/package/@webpack-blocks/assets)
@@ -14,7 +14,7 @@ const { css, file, url } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
   css(),
-  file('font'),                     // will copy font files and link to them
+  file('application/font'),                     // will copy font files and link to them
   url('image', { limit: 10000 })    // will load images up to 10KB as data URL
 ])
 ```
@@ -60,10 +60,12 @@ The difference to `css()` is that it sets the following options:
 
 ### file(fileType: string, options: ?object)
 
-You can pass all [file-loader options](https://github.com/webpack-contrib/file-loader).
+The file type is supposed to be a MIME type or MIME media type like `text/css`, `image`, `image/jpeg`, ... as defined by the [default file types](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js) or other blocks.
+You can pass all [file-loader options](https://github.com/webpack-contrib/file-loader) as the 2nd parameter.
 
 ### url(fileType: string, options: ?object)
 
+The file type is supposed to be a MIME type or MIME media type like `text/css`, `image`, `image/jpeg`, ... as defined by the [default file types](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js) or other blocks.
 You can pass all [url-loader options](https://github.com/webpack-contrib/url-loader). We strongly recommend setting a `limit` to prevent huge files to be encoded as a data URL.
 
 
