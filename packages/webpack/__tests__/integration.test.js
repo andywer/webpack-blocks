@@ -1,20 +1,27 @@
 import test from 'ava'
 import path from 'path'
 import { createConfig, entryPoint, setOutput, sourceMaps } from '../index'
+import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel6'
-import cssModules from '@webpack-blocks/css-modules'
 import devServer from '@webpack-blocks/dev-server'
 import sass from '@webpack-blocks/sass'
 
-test('complete webpack config creation', (t) => {
+test('complete webpack config creation', t => {
   const webpackConfig = createConfig([
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js'),
     babel(),
     sourceMaps(),
-    cssModules({
+    css.modules({
       localIdentName: '[name]--[local]--[hash:base64:5]'
     }),
+    url('image', {
+      exclude: 'node_modules/**',
+      limit: 10000
+    }),
+    file('application/font'),
+    file('audio'),
+    file('video'),
     sass(),
     devServer(),
     devServer.proxy({
@@ -26,7 +33,7 @@ test('complete webpack config creation', (t) => {
   t.deepEqual(webpackConfig.module.rules[0], {
     test: /\.css$/,
     use: [
-      'style-loader',
+      { loader: 'style-loader' },
       {
         loader: 'css-loader',
         options: {
@@ -39,19 +46,42 @@ test('complete webpack config creation', (t) => {
   })
   t.deepEqual(webpackConfig.module.rules[1], {
     test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
-    use: 'file-loader'
+    exclude: 'node_modules/**',
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
+      }
+    ]
   })
   t.deepEqual(webpackConfig.module.rules[2], {
     test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
-    use: 'file-loader'
+    use: [
+      {
+        loader: 'file-loader',
+        options: {}
+      }
+    ]
   })
   t.deepEqual(webpackConfig.module.rules[3], {
     test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-    use: 'url-loader'
+    use: [
+      {
+        loader: 'file-loader',
+        options: {}
+      }
+    ]
   })
   t.deepEqual(webpackConfig.module.rules[4], {
     test: /\.(mp4|webm)$/,
-    use: 'url-loader'
+    use: [
+      {
+        loader: 'file-loader',
+        options: {}
+      }
+    ]
   })
   t.deepEqual(webpackConfig.module.rules[5], {
     test: /\.(sass|scss)$/,
@@ -99,15 +129,13 @@ test('complete webpack config creation', (t) => {
 
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
-  t.deepEqual(webpackConfig.resolve.extensions.sort(), [ '.js', '.json', '.jsx' ])
-
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'
+    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins'
   ])
 })
 
-test('createConfig.vanilla() creates configurations without defaults', (t) => {
-  const webpackConfig = createConfig.vanilla([
+test('createConfig() creates a minimal configuration', t => {
+  const webpackConfig = createConfig([
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js')
   ])
@@ -127,10 +155,10 @@ test('createConfig.vanilla() creates configurations without defaults', (t) => {
   })
 })
 
-test('context contains necessary properties', (t) => {
+test('context contains necessary properties', t => {
   t.plan(10)
 
-  createConfig.vanilla([
+  createConfig([
     context => {
       // context.fileType
       t.is(typeof context.fileType, 'function')

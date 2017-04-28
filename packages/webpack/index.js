@@ -17,7 +17,6 @@ exports.group = core.group
 exports.webpack = webpack
 
 exports.createConfig = createConfig
-exports.createConfig.vanilla = createVanillaConfig
 
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
@@ -36,13 +35,12 @@ exports.sourceMaps = sourceMaps
  * partial webpack config. These partial configs are merged to create the
  * final, complete webpack config that will be returned.
  *
- * Wraps @webpack-blocks/core's `createConfig` without `createConfig()`'s usual
- * default config.
+ * Wraps @webpack-blocks/core's `createConfig`.
  *
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {object}                   Webpack config object.
  */
-function createVanillaConfig (configSetters) {
+function createConfig (configSetters) {
   assert.arrayOfFunc(configSetters, '1st param passed to createConfig.vanilla() must be an array of functions.')
   return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
 }
@@ -53,52 +51,6 @@ function createEmptyConfig (context, util) {
       rules: []
     },
     plugins: []
-  })
-}
-
-/**
- * Takes an array of webpack blocks and creates a webpack config out of them.
- * Each webpack block is a callback function which will be invoked to return a
- * partial webpack config. These partial configs are merged to create the
- * final, complete webpack config that will be returned.
- *
- * Wraps @webpack-blocks/core's `createConfig` to provide some sane default
- * configuration first.
- *
- * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
- * @return {object}                   Webpack config object.
- */
-function createConfig (configSetters) {
-  assert.arrayOfFunc(configSetters, '1st param passed to createConfig() must be an array of functions.')
-  return core.createConfig({ webpack, webpackVersion }, [ createBaseConfig ].concat(configSetters))
-}
-
-function createBaseConfig (context, util) {
-  return util.merge({
-    module: {
-      rules: [
-        {
-          test: context.fileType('text/css'),
-          use: [ 'style-loader', 'css-loader' ]
-        }, {
-          test: context.fileType('image'),
-          use: 'file-loader'
-        }, {
-          test: context.fileType('application/font'),
-          use: 'file-loader'
-        }, {
-          test: context.fileType('audio'),
-          use: 'url-loader'
-        }, {
-          test: context.fileType('video'),
-          use: 'url-loader'
-        }
-      ]
-    },
-    plugins: [],
-    resolve: {
-      extensions: [ '.js', '.jsx', '.json' ]
-    }
   })
 }
 

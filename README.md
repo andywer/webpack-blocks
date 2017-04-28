@@ -25,6 +25,7 @@ Create a webpack config with Babel support, dev server and PostCSS autoprefixer:
 
 ```js
 const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const { css, file } = require('@webpack-blocks/assets')
 const babel = require('@webpack-blocks/babel6')
 const devServer = require('@webpack-blocks/dev-server')
 const postcss = require('@webpack-blocks/postcss')
@@ -33,10 +34,12 @@ const autoprefixer = require('autoprefixer')
 module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
+  css(),
   babel(),
   postcss([
     autoprefixer({ browsers: ['last 2 versions'] })
   ]),
+  file('image'),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
@@ -53,13 +56,13 @@ module.exports = createConfig([
 Wanna use CSS modules? No problem!
 
 ```js
-const cssModules = require('@webpack-blocks/css-modules')
+const { css } = require('@webpack-blocks/assets')
 
 ...
 
 module.exports = createConfig([
   ...
-  cssModules()
+  css.modules()
 ])
 ```
 
@@ -91,8 +94,8 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 
 ## Available webpack blocks
 
+- [assets](./packages/assets)
 - [babel6](./packages/babel6)
-- [css-modules](./packages/css-modules)
 - [dev-server](./packages/dev-server)
 - [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
