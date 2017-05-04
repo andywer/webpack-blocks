@@ -1,0 +1,32 @@
+{
+  "name": "webpack-blocks",
+  "version": "1.0.0",
+  "description": "Convenience package that includes all the most common webpack blocks.",
+  "license": "MIT",
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "scripts": {
+    "test": "standard",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-blocks"
+  ],
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "@webpack-blocks/assets": "^1.0.0",
+    "@webpack-blocks/babel6": "^1.0.0",
+    "@webpack-blocks/dev-server": "^1.0.0",
+    "@webpack-blocks/extract-text": "^1.0.0",
+    "@webpack-blocks/postcss": "^1.0.0",
+    "@webpack-blocks/typescript": "^1.0.0",
+    "@webpack-blocks/webpack": "^1.0.0"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  }
+}
