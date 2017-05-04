@@ -14,13 +14,15 @@ Of course you can still separately define or install custom blocks and use them 
 
 ```js
 const {
+  addPlugins,
   babel,
   createConfig,
   css,
   defineConstants,
   entryPoint,
   extractText,
-  setOutput
+  setOutput,
+  webpack
 } = require('webpack-blocks')
 
 module.exports = createConfig([
@@ -31,7 +33,10 @@ module.exports = createConfig([
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
-  extractText('css/[name].css')
+  extractText('css/[name].css'),
+  addPlugins([
+    new webpack.LoaderOptionsPlugin({ minimize: true })
+  ])
 ])
 ```
 

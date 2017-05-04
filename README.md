@@ -30,6 +30,7 @@ All blocks, like `babel6`, `postcss` and so on, live in their own small packages
 ```js
 const {
   createConfig,
+  webpack,
 
   // Feature blocks
   babel,
@@ -39,6 +40,7 @@ const {
   postcss,
 
   // Shorthand setters
+  addPlugins,
   defineConstants,
   entryPoint,
   env,
@@ -65,6 +67,11 @@ module.exports = createConfig([
       '/api': { target: 'http://localhost:3000' }
     }),
     sourceMaps()
+  ]),
+  env('production', [
+    addPlugins([
+      new webpack.LoaderOptionsPlugin({ minimize: true })
+    ])
   ])
 ])
 ```
