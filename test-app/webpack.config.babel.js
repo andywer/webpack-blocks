@@ -1,39 +1,80 @@
 const {
-  addPlugins, createConfig, defineConstants, entryPoint, env, performance, setOutput, sourceMaps, webpack
-} = require('@webpack-blocks/webpack')
+  createConfig,
 
-const { css } = require('@webpack-blocks/assets')
-const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
-const extractText = require('@webpack-blocks/extract-text')
-const typescript = require('@webpack-blocks/typescript')
-const plugins = require('./webpack.plugins')
+  // Feature blocks
+  addPlugins,
+  defineConstants,
+  entryPoint,
+  env,
+  group,
+  performance,
+  setOutput,
+  sourceMaps,
+  webpack,
+
+  // Shorthand setters
+  babel,
+  css,
+  devServer,
+  extractText,
+  typescript
+} = require('webpack-blocks')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const development = () => group([
+  sourceMaps(),
+  devServer(),
+  devServer.proxy({
+    '/api/*': { target: 'http://localhost:4000' }
+  }),
+  performance({
+    // Increase performance budget thresholds for development mode
+    maxAssetSize: 1500000,
+    maxEntrypointSize: 1500000
+  })
+])
+
+const production = () => group([
+  extractText(),
+  addPlugins([
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      screwIe8: true,
+      sourceMap: false
+    })
+  ])
+])
 
 module.exports = createConfig([
   setOutput('./build/bundle.js'),
   babel(),
   css.modules(),
   typescript(),
-  addPlugins(plugins.basePlugins),
+  addPlugins([
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: './index.html'
+    })
+  ]),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
   }),
   env('development', [
     entryPoint('./src/index.dev.js'),
-    sourceMaps(),
-    devServer(),
-    devServer.proxy({
-      '/api/*': { target: 'http://localhost:4000' }
-    }),
-    performance({
-      // Increase performance budget thresholds for development mode
-      maxAssetSize: 1500000,
-      maxEntrypointSize: 1500000
-    })
+    development()
   ]),
   env('production', [
     entryPoint('./src/index.js'),
-    extractText(),
-    addPlugins(plugins.productionPlugins)
+    production()
   ])
 ])
