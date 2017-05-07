@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/typescript",
-  "version": "0.4.1",
+  "version": "1.0.0-alpha",
   "description": "Webpack block for Typescript.",
   "main": "lib/index",
   "license": "MIT",
