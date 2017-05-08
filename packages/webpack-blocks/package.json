@@ -23,6 +23,7 @@
     "@webpack-blocks/dev-server": "1.0.0-alpha",
     "@webpack-blocks/extract-text": "1.0.0-alpha",
     "@webpack-blocks/postcss": "1.0.0-alpha",
+    "@webpack-blocks/sass": "1.0.0-alpha",
     "@webpack-blocks/typescript": "1.0.0-alpha",
     "@webpack-blocks/webpack": "1.0.0-alpha"
   },

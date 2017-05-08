@@ -47,6 +47,7 @@ module.exports = createConfig([
 * [dev-server](https://github.com/andywer/webpack-blocks/tree/master/packages/dev-server)
 * [extract-text](https://github.com/andywer/webpack-blocks/tree/master/packages/extract-text)
 * [postcss](https://github.com/andywer/webpack-blocks/tree/master/packages/postcss)
+* [sass](https://github.com/andywer/webpack-blocks/tree/master/packages/sass)
 * [typescript](https://github.com/andywer/webpack-blocks/tree/master/packages/typescript)
 * [webpack](https://github.com/andywer/webpack-blocks/tree/master/packages/webpack)
 
