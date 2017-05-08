@@ -18,14 +18,14 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "@webpack-blocks/assets": "1.0.0-alpha",
-    "@webpack-blocks/babel6": "1.0.0-alpha",
-    "@webpack-blocks/dev-server": "1.0.0-alpha",
-    "@webpack-blocks/extract-text": "1.0.0-alpha",
-    "@webpack-blocks/postcss": "1.0.0-alpha",
-    "@webpack-blocks/sass": "1.0.0-alpha",
-    "@webpack-blocks/typescript": "1.0.0-alpha",
-    "@webpack-blocks/webpack": "1.0.0-alpha"
+    "@webpack-blocks/assets": "^1.0.0-alpha",
+    "@webpack-blocks/babel6": "^1.0.0-alpha",
+    "@webpack-blocks/dev-server": "^1.0.0-alpha",
+    "@webpack-blocks/extract-text": "^1.0.0-alpha",
+    "@webpack-blocks/postcss": "^1.0.0-alpha",
+    "@webpack-blocks/sass": "^1.0.0-alpha",
+    "@webpack-blocks/typescript": "^1.0.0-alpha",
+    "@webpack-blocks/webpack": "^1.0.0-alpha"
   },
   "devDependencies": {
     "standard": "^8.1.0"
