@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/elm",
-  "version": "0.4.0",
+  "version": "1.0.0-alpha",
   "description": "Webpack block for elm.",
   "main": "lib/index",
   "license": "MIT",

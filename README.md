@@ -15,20 +15,38 @@ Missing anything? Write your own and share them!
 ## Installation
 
 ```sh
-npm install --save-dev @webpack-blocks/webpack @webpack-blocks/babel6 ...
+npm install --save-dev webpack webpack-blocks
+# or
+yarn add --dev webpack webpack-blocks
 ```
 
 
 ## Usage
 
-Create a webpack config with Babel support, dev server and PostCSS autoprefixer:
+The following sample shows how to create a webpack config with Babel support, dev server and PostCSS autoprefixer.
+
+All blocks, like `babel6`, `postcss` and so on, live in their own small packages. We added the unscoped [webpack-blocks package](./packages/webpack-blocks) that wraps all the most common blocks, so you do not have to manage these micro dependencies.
 
 ```js
-const { createConfig, defineConstants, env, entryPoint, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
-const { css, file } = require('@webpack-blocks/assets')
-const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
-const postcss = require('@webpack-blocks/postcss')
+const {
+  createConfig,
+  webpack,
+
+  // Feature blocks
+  babel,
+  css,
+  devServer,
+  file,
+  postcss,
+
+  // Shorthand setters
+  addPlugins,
+  defineConstants,
+  entryPoint,
+  env,
+  setOutput,
+  sourceMaps
+} = require('webpack-blocks')
 const autoprefixer = require('autoprefixer')
 
 module.exports = createConfig([
@@ -49,6 +67,11 @@ module.exports = createConfig([
       '/api': { target: 'http://localhost:3000' }
     }),
     sourceMaps()
+  ]),
+  env('production', [
+    addPlugins([
+      new webpack.LoaderOptionsPlugin({ minimize: true })
+    ])
   ])
 ])
 ```
@@ -56,7 +79,7 @@ module.exports = createConfig([
 Wanna use CSS modules? No problem!
 
 ```js
-const { css } = require('@webpack-blocks/assets')
+const { css } = require('webpack-blocks')
 
 ...
 
@@ -75,7 +98,7 @@ module.exports = createConfig([
 ])
 
 function myCssLoader (include) {
-  return (context, util) => util.merge({
+  return (context, { merge }) => merge({
     module: {
       rules: [
         {
