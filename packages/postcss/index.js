@@ -29,7 +29,11 @@ function postcss (plugins = [], options = {}) {
       {
         test: context.fileType('text/css'),
         use: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
-      }, options.exclude ? {
+      },
+      options.include ? {
+        include: Array.isArray(options.include) ? options.include : [ options.include ]
+      } : {},
+      options.exclude ? {
         exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
       } : {}
     )
