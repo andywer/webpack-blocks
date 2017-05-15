@@ -4,6 +4,18 @@ This guide is going to show you how to create a custom webpack block. Don't worr
 
 Skip the *Hooks* section if you are in a hurry. You can create a lot of cool stuff without using them.
 
+Read the *Basics*. You can come back and read more if you are stuck or wondering why it works this way.
+
+
+## Table of Contents
+
+- [Basics](#basics)
+- [Block Utilities](#block-utilities)
+- [Context](#context)
+- [Hooks](#hooks)
+- [Testing](#testing)
+- [Publishing](#publishing)
+
 
 ## Basics
 
@@ -45,7 +57,7 @@ function babel (options) {
 Thus it is also super easy to unit test and generic enough to share it with the world.
 
 
-## Block utilities
+## Block Utilities
 
 You might have recognized the second paramter `util` in the last example's block function. It is an object containing some convenience functions to make common tasks easier.
 
@@ -91,19 +103,19 @@ function sampleBlock () {
 
 ## Context
 
-The context object is an additional metadata object that is passed to every block. It is meant to contain any kind of data that is needed for webpack config creation, but not part of the webpack config itself.
+The context object is a metadata object that is passed to every block. It is meant to contain any kind of data that is needed for webpack config creation, but not part of the webpack config itself.
 
 Initially it will contain the `fileType` mapping and a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
 
 The `context.fileType` is a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js).
 
-The `context.webpack` property is the webpack instance, so you do not have to `require('webpack')` in your blocks. Use `context.webpack` instead.
+The `context.webpack` property is the webpack instance, so you do not have to `require('webpack')` in your blocks.
 
 ### Adding custom file types
 
 To add a new `fileType` you can use the `fileType.add(mimeType: string, regex: RegExp)` function. See its usage in the `typescript` block:
 
-```
+```js
 function preHook (context) {
   const registeredTypes = context.fileType.all()
   if (!('application/x-typescript' in registeredTypes)) {
@@ -194,6 +206,13 @@ To make the deduplication work you have to make sure your hook functions are dec
 If you have got metadata that you need in a later lifecycle stage, but that is not part of the actual webpack config object then please store it in the `context` object.
 
 That is what the context is for and making that metadata part of the webpack snippet you return is really bad practice, especially since webpack 2 is going to validate the webpack config against a fixed schema.
+
+
+## Testing
+
+You definitely want to test your blocks, so you don't ship broken stuff, right?
+
+Have a look at the [testing docs](./TESTING.md).
 
 
 ## Publishing

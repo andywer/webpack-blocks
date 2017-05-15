@@ -2,7 +2,9 @@
 
 Functional building blocks for the webpack config. Compose it using feature middlewares like *Babel*, *PostCSS*, *HMR&nbsp;(Hot&nbsp;Module&nbsp;Replacement)*, …
 
-Missing anything? Write your own and share them!
+Divide & conquer your configuration - Cluster your blocks to groups and compose these groups.
+
+Missing anything? Write your own blocks and share them!
 
 [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
@@ -10,6 +12,17 @@ Missing anything? Write your own and share them!
 >"Finally, webpack config done right. (...) Webpack clearly wants to stay low-level. So it makes total sense to outsource configuring it to well designed blocks instead of copy-paste."
 >
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
+
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Available webpack blocks](#available-webpack-blocks)
+- [Design principles](#design-principles)
+- [FAQ](#faq)
+- [Like what you see?](#like-what-you-see)
+- [License](#license)
 
 
 ## Installation
@@ -136,13 +149,7 @@ Missing something? Write and publish your own webpack blocks!
 - Keep everything configurable
 - But provide sane defaults
 
-## You might want to know
-
-<details>
-<summary>Can I get rid of the default loaders?</summary>
-
-The `createConfig()` function sets some generic default loaders. This should not be a problem. If does happen to be a problem you can also create a "vanilla" configuration (without the defaults) by using `createConfig.vanilla()` instead.
-</details>
+## FAQ
 
 <details>
 <summary>How does env() work?</summary>
@@ -270,3 +277,8 @@ The key feature is the `group()` method which takes a set of blocks and returns 
 ## Like what you see?
 
 Support webpack-blocks by giving [feedback](https://github.com/andywer/webpack-blocks/issues), publishing new webpack blocks or just by 🌟 starring the project!
+
+
+## License
+
+MIT
