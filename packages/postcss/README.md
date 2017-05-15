@@ -34,6 +34,8 @@ module.exports = {
 
 ## Options
 
+### PostCSS options
+
 #### parser *(optional)*
 Package name of a custom PostCSS parser to use. Pass for instance `'sugarss'` to be able to write indent-based CSS.
 
@@ -42,6 +44,15 @@ Package name of a custom PostCSS stringifier to use.
 
 #### syntax *(optional)*
 Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
+
+
+### Loader options
+
+#### include *(optional)*
+If set the PostCSS loader will only be applied to the path or the paths you specified. Might be a regular expression, string, function or array of these.
+
+#### exclude *(optional)*
+If set the PostCSS loader will not be applied to these path or the paths. Might be a regular expression, string, function or array of these.
 
 
 ## Webpack blocks
