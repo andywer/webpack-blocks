@@ -12,6 +12,13 @@ Missing anything? Write your own and share them!
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
 
+## 1.0
+
+We are quickly heading towards to webpack-blocks 1.0 release. You can find the 1.0 readme in the [release/1.0 branch](https://github.com/andywer/webpack-blocks/tree/release/1.0).
+
+You can already try the alpha release. If so, please make sure to leave a short comment in [The 1.0 Experience](https://github.com/andywer/webpack-blocks/issues/153). It's much appreciated!
+
+
 ## Installation
 
 ```sh
