@@ -27,6 +27,9 @@ test('createConfig() invokes blocks (config setters)', (t) => {
     distinct2: 'distinct2',
     distinct3: 'distinct3',
     shared: 'shared3',
+    resolve: {
+      extensions: ['.js', '.json']
+    },
     module: {
       rules: []
     },
@@ -91,6 +94,9 @@ test('createConfig() invokes post hooks', (t) => {
     distinct2: 'distinct2',
     distinct3: 'distinct3',
     shared: 'shared3',
+    resolve: {
+      extensions: ['.js', '.json']
+    },
     module: {
       rules: []
     },
