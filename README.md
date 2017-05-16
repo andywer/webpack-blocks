@@ -152,6 +152,22 @@ Missing something? Write and publish your own webpack blocks!
 ## FAQ
 
 <details>
+<summary>How to debug?</summary>
+
+In case the webpack configuration does not work as expected you can easily debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
+
+```js
+const stringify = require('stringify-object')
+
+module.exports = createConfig([
+  // ...
+])
+
+console.log(stringify(module.exports))
+```
+</details>
+
+<details>
 <summary>How does env() work?</summary>
 
 You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
