@@ -130,7 +130,7 @@ test('complete webpack config creation', t => {
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins'
+    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'
   ])
 })
 
@@ -151,7 +151,10 @@ test('createConfig() creates a minimal configuration', t => {
       filename: 'bundle.js',
       path: path.resolve('./build')
     },
-    plugins: []
+    plugins: [],
+    resolve: {
+      extensions: ['.js', '.json']
+    }
   })
 })
 

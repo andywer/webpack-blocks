@@ -31,7 +31,10 @@ test('devServer() without options provides expected defaults', (t) => {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    resolve: {
+      extensions: ['.js', '.json']
+    }
   })
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
@@ -64,7 +67,10 @@ test('devServer() uses custom options and can be composed', (t) => {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    resolve: {
+      extensions: ['.js', '.json']
+    }
   })
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
