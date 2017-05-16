@@ -32,6 +32,10 @@ function createConfig (initialContext, configSetters) {
   const context = Object.assign({ fileType }, initialContext)
 
   const baseConfig = {
+    resolve: {
+      // Explicitly define default extensions, otherwise blocks will overwrite them instead of extending
+      extensions: ['.js', '.json']
+    },
     module: {
       rules: []
     },
