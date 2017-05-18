@@ -5,7 +5,8 @@ const { entryPoint } = require('../index')
 
 const webpack = {
   // Cannot use shorthand notation, since this would cause an 'is not a constructor' error
-  HotModuleReplacementPlugin: function HotModuleReplacementPlugin () {}
+  HotModuleReplacementPlugin: function HotModuleReplacementPlugin () {},
+  NamedModulesPlugin: function NamedModulesPlugin () {}
 }
 
 test('devServer() without options provides expected defaults', (t) => {
@@ -30,7 +31,8 @@ test('devServer() without options provides expected defaults', (t) => {
       rules: []
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin()
     ],
     resolve: {
       extensions: ['.js', '.json']
@@ -66,7 +68,8 @@ test('devServer() uses custom options and can be composed', (t) => {
       rules: []
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin()
     ],
     resolve: {
       extensions: ['.js', '.json']
