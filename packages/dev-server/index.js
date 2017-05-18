@@ -51,7 +51,8 @@ function postConfig (context, util) {
       }, context.devServer.options),
       entry: addDevEntryToAll(prevConfig.entry || {}, entryPointsToAdd),
       plugins: [
-        new context.webpack.HotModuleReplacementPlugin()
+        new context.webpack.HotModuleReplacementPlugin(),
+        new context.webpack.NamedModulesPlugin()
       ]
     })(prevConfig)
   }
