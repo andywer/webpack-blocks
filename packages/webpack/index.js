@@ -23,7 +23,7 @@ exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
 exports.entryPoint = entryPoint
 exports.performance = performance
-exports.resolveAliases = resolveAliases
+exports.resolve = resolve
 exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
@@ -112,13 +112,11 @@ function performance (performanceBudget) {
 }
 
 /**
- * @see https://webpack.github.io/docs/configuration.html#resolve-alias
+ * @see https://webpack.github.io/docs/configuration.html#resolve
  */
-function resolveAliases (aliases) {
+function resolve (config) {
   return (context, util) => util.merge({
-    resolve: {
-      alias: aliases
-    }
+    resolve: config
   })
 }
 
