@@ -100,6 +100,12 @@ Options object:
 }
 ```
 
+#### resolve(config: object)
+
+Sets [resolve](https://webpack.github.io/docs/configuration.html#resolve).
+
+Example usage: `resolve({ modules: ['src', 'node_modules'] })`.
+
 #### resolveAliases(aliases: object)
 
 Sets [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias). Use it to manually override module resolving.
