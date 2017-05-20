@@ -24,6 +24,7 @@ exports.defineConstants = require('./lib/defineConstants')
 exports.entryPoint = entryPoint
 exports.performance = performance
 exports.resolve = resolve
+exports.resolveAliases = resolveAliases
 exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
@@ -117,6 +118,19 @@ function performance (performanceBudget) {
 function resolve (config) {
   return (context, util) => util.merge({
     resolve: config
+  })
+}
+
+/**
+ * @deprecated
+ * @see https://webpack.github.io/docs/configuration.html#resolve-alias
+ */
+function resolveAliases (aliases) {
+  console.warn(`[webpack-blocks] resolveAliases is deprecated. Please, use resolve({ alias: '' }) instead.`)
+  return (context, util) => util.merge({
+    resolve: {
+      alias: aliases
+    }
   })
 }
 
