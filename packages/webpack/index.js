@@ -113,7 +113,7 @@ function performance (performanceBudget) {
 }
 
 /**
- * @see https://webpack.github.io/docs/configuration.html#resolve
+ * @see https://webpack.js.org/configuration/resolve/
  */
 function resolve (config) {
   return (context, util) => util.merge({
