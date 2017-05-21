@@ -95,7 +95,7 @@ Sets [resolve](https://webpack.js.org/configuration/resolve/). Use it to manuall
 Example:
 ```js
 resolve({
-  alias: { Utilities: path.resolve(__dirname, 'src/utilities/') }, // import Utility from 'Utilities/utility'
+  alias: { Utilities: path.resolve(__dirname, 'src/utilities/') }, // resolve `import 'Utilities'` to correct path
   extensions: ['.js', '.json'],
   modules: [path.resolve(__dirname, 'src'), 'node_modules']
 })
