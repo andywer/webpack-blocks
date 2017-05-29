@@ -3,6 +3,7 @@
 ## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
+- Added `match()`
 - Fail with meaningful message if `createConfig()` is called with invalid param ([#110](https://github.com/andywer/webpack-blocks/issues/110))
 - Added `text/html` file type (in `@webpack-blocks/core`)
 - Requires node 6+
