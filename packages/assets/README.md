@@ -9,64 +9,58 @@ This is the `assets` block providing configuration for the style loader, file lo
 ## Usage
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
+const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css, file, url } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
-  css(),
-  file('application/font'),                     // will copy font files and link to them
-  url('image', { limit: 10000 })    // will load images up to 10KB as data URL
+  css(),                            // or use `match()` to apply it to other files than *.css
+  match(['*.eot', '*.ttf', '*.woff', '*.woff2'], [
+    file()                          // will copy font files to build directory and link to them
+  ]),
+  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg', '*.webp'], [
+    url({ limit: 10000 })           // will load images up to 10KB as data URL
+  ])
 ])
 ```
 
 In order to use CSS modules:
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
+const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
-  css.modules({
-    exclude: [ /node_modules/ ],
-    localIdentName: '[name]--[local]--[hash:base64:5]'
-  })
+  match('*.css', { exclude: path.resolve('node_modules') }, [
+    css.modules({
+      localIdentName: '[name]--[local]--[hash:base64:5]'
+    })
+  ])
 ])
 ```
 
 
-## Generic options
+## API
 
-#### exclude *(optional)*
-Regular expression, string or function describing which files/directories to exclude from the babeling.
+### css(options: ?object)
 
-#### include *(optional)*
-Regular expression, string or function used to white-list which files/directories should be babeled. By default `exclude` is set only.
+Will match `*.css` by default if not used with `match()`. You can pass all [css-loader options](https://github.com/webpack-contrib/css-loader).
 
+### css.modules(options: ?object)
 
-## Specific usage
+Will match `*.css` by default if not used with `match()`. You can pass all [css-loader options](https://github.com/webpack-contrib/css-loader).
 
-### css(fileType: ?string, options: ?object)
-
-`fileType` defaults to `'text/css'` which matches `*.css`. You can pass all [css-loader options](https://github.com/webpack-contrib/css-loader).
-
-### css.modules(fileType: ?string, options: ?object)
-
-`fileType` defaults to `'text/css'` which matches `*.css`. You can pass all [css-loader options](https://github.com/webpack-contrib/css-loader).
-
-The difference to `css()` is that it sets the following options:
+The difference to `css()` is that it sets the following css-loader options:
 * `modules: true`
 * `importLoaders` defaults to `1`
 * `localIdentName` defaults to `'[name]--[local]--[hash:base64:5]'` in development and `'[hash:base64:10]'` in production
 
-### file(fileType: string, options: ?object)
+### file(options: ?object)
 
-The file type is supposed to be a MIME type or MIME media type like `text/css`, `image`, `image/jpeg`, ... as defined by the [default file types](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js) or other blocks.
-You can pass all [file-loader options](https://github.com/webpack-contrib/file-loader) as the 2nd parameter.
+Must be used with `match()`. You can pass all [file-loader options](https://github.com/webpack-contrib/file-loader).
 
-### url(fileType: string, options: ?object)
+### url(options: ?object)
 
-The file type is supposed to be a MIME type or MIME media type like `text/css`, `image`, `image/jpeg`, ... as defined by the [default file types](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js) or other blocks.
-You can pass all [url-loader options](https://github.com/webpack-contrib/url-loader). We strongly recommend setting a `limit` to prevent huge files to be encoded as a data URL.
+Must be used with `match()`. You can pass all [url-loader options](https://github.com/webpack-contrib/url-loader). We strongly recommend setting a `limit` to prevent huge files to be encoded as a data URL.
 
 
 ## Webpack blocks
