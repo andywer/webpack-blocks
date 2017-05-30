@@ -9,6 +9,7 @@ export {
   customConfig,
   entryPoint,
   performance,
+  resolve,
   resolveAliases,
   setContext,
   setDevTool,
@@ -72,6 +73,15 @@ function normalizeEntry (entry) {
 function performance (performanceBudget) {
   return () => ({
     performance: performanceBudget
+  })
+}
+
+/**
+ * @see https://webpack.github.io/docs/configuration.html#resolve
+ */
+function resolve (config) {
+  return () => ({
+    resolve: config
   })
 }
 

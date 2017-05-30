@@ -23,6 +23,7 @@ exports.customConfig = common.customConfig
 exports.defineConstants = common.defineConstants
 exports.entryPoint = common.entryPoint
 exports.performance = common.performance
+exports.resolve = common.resolve
 exports.resolveAliases = common.resolveAliases
 exports.setContext = common.setContext
 exports.setDevTool = common.setDevTool
