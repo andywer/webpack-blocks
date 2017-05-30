@@ -88,11 +88,18 @@ Options object:
 }
 ```
 
-#### resolveAliases(aliases: object)
+#### resolve(config: object)
 
-Sets [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias). Use it to manually override module resolving.
+Sets [resolve](https://webpack.js.org/configuration/resolve/). Use it to manually override module resolution.
 
-Example usage: `resolveAliases({ foo: path.resolve('./bar.js') })` will make `require('foo')` resolve to `bar.js`.
+Example:
+```js
+resolve({
+  alias: { Utilities: path.resolve(__dirname, 'src/utilities/') }, // resolve `import 'Utilities'` to correct path
+  extensions: ['.js', '.json'],
+  modules: [path.resolve(__dirname, 'src'), 'node_modules']
+})
+```
 
 #### setContext(path: string)
 
