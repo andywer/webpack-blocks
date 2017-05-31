@@ -8,38 +8,27 @@ module.exports = babel
 
 /**
  * @param {object} [options]
- * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
- * @param {RegExp|Function|string}  [options.include]   Directories to include.
- * @param {string[]}                [options.plugins]   Babel plugins to use.
- * @param {string[]}                [options.presets]   Babel presets to use.
+ * @param {bool}                    [options.cacheDirectory]  Use cache directory. Defaults to true.
+ * @param {string[]}                [options.plugins]         Babel plugins to use.
+ * @param {string[]}                [options.presets]         Babel presets to use.
  * @return {Function}
  */
 function babel (options = {}) {
-  const babelDefaultConfig = {
-    cacheDirectory: true,
-    exclude: /node_modules/
-  }
+  options = Object.assign({
+    cacheDirectory: true
+  }, options)
 
   const setter = context => prevConfig => {
-    // Write babel config into the context
-    context.babel = context.babel || babelDefaultConfig
+    context.babel = context.babel || {}
 
-    if ('cacheDirectory' in options) {
-      context.babel.cacheDirectory = options.cacheDirectory
-    }
-    if ('exclude' in options) {
-      context.babel.exclude = options.exclude
-    }
-    if ('include' in options) {
-      context.babel.include = options.include
-    }
-    if ('plugins' in options) {
-      context.babel.plugins = (context.babel.plugins || []).concat(options.plugins)
-    }
-    if ('presets' in options) {
-      context.babel.presets = (context.babel.presets || []).concat(options.presets)
-    }
-
+    // Merge babel config into the one stored in context
+    context.babel = Object.assign(
+      {},
+      context.babel,
+      options,
+      options.plugins ? { plugins: (context.babel.plugins || []).concat(options.plugins) } : {},
+      options.presets ? { presets: (context.babel.presets || []).concat(options.presets) } : {}
+    )
     return prevConfig
   }
 
@@ -47,24 +36,12 @@ function babel (options = {}) {
 }
 
 function postConfig (context, util) {
-  const exclude = context.babel.exclude
-  const include = context.babel.include
-
-  const babelOptions = Object.assign({}, context.babel)
-  delete babelOptions.exclude
-  delete babelOptions.include
-
   const ruleConfig = Object.assign({
     test: context.fileType('application/javascript'),
-    use: [ {
-      loader: 'babel-loader',
-      options: babelOptions
-    } ]
-  }, exclude && {
-    exclude: Array.isArray(exclude) ? exclude : [ exclude ]
-  }, include && {
-    include: Array.isArray(include) ? include : [ include ]
-  })
+    use: [
+      { loader: 'babel-loader', options: context.babel }
+    ]
+  }, context.match)
 
   return util.addLoader(ruleConfig)
 }

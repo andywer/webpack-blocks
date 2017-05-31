@@ -1,5 +1,9 @@
 # @webpack-blocks/babel6 - Changelog
 
+## Next release
+
+- Use `match()` instead of passing an `exclude` option
+
 ## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
