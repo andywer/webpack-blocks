@@ -1,5 +1,9 @@
 # @webpack-blocks/extract-text - Changelog
 
+## Next release
+
+- Use `match()` instead of `fileType` option
+
 ## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
