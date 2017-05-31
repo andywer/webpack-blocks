@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Ivakhnenko Dmitry <jeetiss@ya.ru>",
   "scripts": {
-    "test": "standard && ava",
+    "test": "ava && standard",
     "prepublish": "npm test"
   },
   "engines": {
@@ -24,6 +24,7 @@
     "elm-webpack-loader": "^4.3.0"
   },
   "devDependencies": {
+    "@webpack-blocks/core": "^1.0.0-alpha",
     "ava": "^0.18.0",
     "standard": "^8.1.0"
   }

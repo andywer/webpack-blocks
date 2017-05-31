@@ -8,8 +8,6 @@ module.exports = elm
 
 /**
  * @param {object} [options]
- * @param {RegExp|Function|string}  [options.exclude]       Directories to exclude.
- * @param {RegExp|Function|string}  [options.include]       Directories to include.
  * @param {number}                  [options.maxInstances]  Maximum instances of elm that can spawned.
  * @param {string}                  [options.cwd]           Custom location for your elm files.
  * @return {Function}
@@ -20,12 +18,10 @@ function elm (options = {}, isProduction) {
     : process.env.NODE_ENV === 'production'
 
   const productionDefaultConfig = {
-    exclude: [/elm-stuff/, /node_modules/],
     hot: false,
     options: {}
   }
   const developmentDefaultConfig = {
-    exclude: [/elm-stuff/, /node_modules/],
     hot: true,
     options: {
       verbose: true,
@@ -34,48 +30,31 @@ function elm (options = {}, isProduction) {
     }
   }
 
-  const elmDefaultConfig = isProduction ? productionDefaultConfig : developmentDefaultConfig
-
-  return Object.assign(context => prevConfig => {
-    context.elm = context.elm || elmDefaultConfig
-
-    if ('exclude' in options) {
-      context.elm.exclude = options.exclude
-    }
-    if ('include' in options) {
-      context.elm.include = options.include
-    }
-    if ('cwd' in options) {
-      context.elm.options.cwd = options.cwd
-    }
-    if ('maxInstances' in options) {
-      context.elm.options.maxInstances = options.maxInstances
-    }
+  const main = context => prevConfig => {
+    context.elm = Object.assign({}, context.elm, isProduction ? productionDefaultConfig : developmentDefaultConfig)
+    context.elm.options = Object.assign(context.elm.options, options)
 
     // Return unchanged config (configuration will be created by the post hook)
     return prevConfig
-  }, { post: postConfig })
+  }
+
+  return Object.assign(main, { post: postConfig })
 }
 
 function postConfig (context, util) {
-  const exclude = context.elm.exclude
-  const include = context.elm.include
-
-  const hotLoader = { loader: 'elm-hot-loader' }
+  const elmLoader = {
+    loader: 'elm-webpack-loader',
+    options: context.elm.options
+  }
+  const elmHotLoader = {
+    loader: 'elm-hot-loader'
+  }
 
   const loaderConfig = Object.assign({
     test: context.fileType('application/x-elm'),
-    use: (context.elm.hot ? [hotLoader] : []).concat([
-      {
-        loader: 'elm-webpack-loader',
-        options: context.elm.options
-      }
-    ])
-  }, exclude && {
-    exclude: Array.isArray(exclude) ? exclude : [ exclude ]
-  }, include && {
-    include: Array.isArray(include) ? include : [ include ]
-  })
+    exclude: [/elm-stuff/, /node_modules/],
+    use: context.elm.hot ? [elmHotLoader, elmLoader] : [elmLoader]
+  }, context.match)
 
   return util.merge({
     resolve: {
