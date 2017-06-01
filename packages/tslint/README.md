@@ -17,6 +17,9 @@ module.exports = createConfig([
 ])
 ```
 
+Use `match()` to explicitly specify the files to lint.
+
+
 ## Options
 
 You can pass random `ts-loader` options as an object to the `tslint` block. See [tslint-loader options](https://github.com/wbuchwalter/tslint-loader#usage).
