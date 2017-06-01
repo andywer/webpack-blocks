@@ -1,5 +1,9 @@
 # @webpack-blocks/typescript - Changelog
 
+## Next release
+
+- Make compatible with `match()`
+
 ## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
