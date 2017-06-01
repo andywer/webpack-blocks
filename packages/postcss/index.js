@@ -7,57 +7,43 @@
 module.exports = postcss
 
 /**
- * @param {PostCSSPlugin[]} [plugins]                   Will read `postcss.config.js` file if not supplied.
- * @param {object}          [options]
- * @param {RegExp|Function|string}  [options.exclude]     Directories to exclude.
- * @param {string}                  [options.parser]      Package name of custom PostCSS parser to use.
- * @param {string}                  [options.stringifier] Package name of custom PostCSS stringifier to use.
- * @param {string}                  [options.syntax]      Package name of custom PostCSS parser/stringifier to use.
+ * @param {PostCSSPlugin[]} [plugins]               Will read `postcss.config.js` file if not supplied.
+ * @param {object}          [options]               https://github.com/postcss/postcss-loader#options
+ * @param {string}          [options.parser]        Package name of custom PostCSS parser to use.
+ * @param {string}          [options.stringifier]   Package name of custom PostCSS stringifier to use.
+ * @param {string}          [options.syntax]        Package name of custom PostCSS parser/stringifier to use.
  * @return {Function}
  */
 function postcss (plugins = [], options = {}) {
-  // https://github.com/postcss/postcss-loader#options
-  const postcssOptions = Object.assign(
-    {},
-    options.parser && { parser: options.parser },
-    options.stringifier && { stringifier: options.stringifier },
-    options.syntax && { syntax: options.syntax }
-  )
-
   return (context, util) => prevConfig => {
-    const ruleDef = Object.assign(
-      {
-        test: context.fileType('text/css'),
-        use: [ 'style-loader', 'css-loader', 'postcss-loader?' + JSON.stringify(postcssOptions) ]
-      },
-      options.include ? {
-        include: Array.isArray(options.include) ? options.include : [ options.include ]
-      } : {},
-      options.exclude ? {
-        exclude: Array.isArray(options.exclude) ? options.exclude : [ options.exclude ]
-      } : {}
-    )
+    const ruleDef = Object.assign({
+      test: context.fileType('text/css'),
+      use: [
+        'style-loader',
+        'css-loader',
+        { loader: 'postcss-loader', options }
+      ]
+    }, context.match)
 
-    const _addLoader = util.addLoader(ruleDef)
-    const _addPlugin = plugins.length > 0
-      ? addLoaderOptionsPlugin(context, util, plugins)
-      : config => config
+    let nextConfig = util.addLoader(ruleDef)(prevConfig)
 
-    return _addPlugin(_addLoader(prevConfig))
+    if (plugins.length > 0) {
+      nextConfig = util.addPlugin(createLoaderOptionsPlugin(context, plugins))(nextConfig)
+    }
+
+    return nextConfig
   }
 }
 
-function addLoaderOptionsPlugin ({ webpack }, util, postcssPlugins) {
-  return util.addPlugin(
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: postcssPlugins,
+function createLoaderOptionsPlugin ({ webpack }, postcssPlugins) {
+  return new webpack.LoaderOptionsPlugin({
+    options: {
+      postcss: postcssPlugins,
 
-        // Hacky fix for a strange issue involving the postcss-loader, sass-loader and webpack@2
-        // (see https://github.com/andywer/webpack-blocks/issues/116)
-        // Might be removed again once the `sass` block uses a newer `sass-loader`
-        context: '/'
-      }
-    })
-  )
+      // Hacky fix for a strange issue involving the postcss-loader, sass-loader and webpack@2
+      // (see https://github.com/andywer/webpack-blocks/issues/116)
+      // TODO: Might be removed again once the `sass` block uses a newer `sass-loader`
+      context: '/'
+    }
+  })
 }

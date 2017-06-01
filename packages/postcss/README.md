@@ -9,14 +9,18 @@ This is the `postcss` block providing PostCSS configuration.
 ## Usage
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
 module.exports = createConfig([
-  postcss([
-    autoprefixer({ browsers: ['last 2 versions'] })
-  ], { /* custom PostCSS options */ })
+  match('*.css', { exclude: path.resolve('node_modules') }, [
+    css(),
+    postcss([
+      autoprefixer({ browsers: ['last 2 versions'] })
+    ], { /* custom PostCSS options */ })
+  ])
 ])
 ```
 
@@ -24,9 +28,11 @@ Instead of passing the PostCSS plugins as an array you can also create a `postcs
 
 ```js
 // postcss.config.js
+const autoprefixer = require('autoprefixer')
+
 module.exports = {
   plugins: [
-    require('precss')
+    autoprefixer({ browsers: ['last 2 versions'] })
   ]
 }
 ```
@@ -44,15 +50,6 @@ Package name of a custom PostCSS stringifier to use.
 
 #### syntax *(optional)*
 Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
-
-
-### Loader options
-
-#### include *(optional)*
-If set the PostCSS loader will only be applied to the path or the paths you specified. Might be a regular expression, string, function or array of these.
-
-#### exclude *(optional)*
-If set the PostCSS loader will not be applied to these path or the paths. Might be a regular expression, string, function or array of these.
 
 
 ## Webpack blocks
