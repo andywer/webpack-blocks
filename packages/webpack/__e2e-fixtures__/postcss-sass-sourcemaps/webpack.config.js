@@ -1,9 +1,4 @@
-const webpackBlock = require('../../index')
-
-// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpackBlock.createConfig
-const entryPoint = webpackBlock.entryPoint
-const setOutput = webpackBlock.setOutput
+const { createConfig, entryPoint, setOutput } = require('../../index')
 
 const path = require('path')
 const postcss = require('@webpack-blocks/postcss')

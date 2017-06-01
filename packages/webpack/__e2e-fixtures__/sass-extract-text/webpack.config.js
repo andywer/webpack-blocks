@@ -1,9 +1,4 @@
-const webpackBlock = require('../../index')
-
-// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpackBlock.createConfig
-const entryPoint = webpackBlock.entryPoint
-const setOutput = webpackBlock.setOutput
+const { createConfig, entryPoint, match, setOutput } = require('../../index')
 
 const path = require('path')
 const extractText = require('@webpack-blocks/extract-text')
@@ -16,6 +11,8 @@ module.exports = createConfig([
   setOutput(
     path.join(__dirname, 'build/bundle.js')
   ),
-  sass({ indentSyntax: true }),
-  extractText('styles.css', 'text/x-sass')
+  match('*.sass', [
+    sass({ indentSyntax: true }),
+    extractText('styles.css')
+  ])
 ])

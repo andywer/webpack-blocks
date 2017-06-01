@@ -1,10 +1,4 @@
-const webpack2 = require('../../index')
-
-// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpack2.createConfig
-const entryPoint = webpack2.entryPoint
-const performance = webpack2.performance
-const setOutput = webpack2.setOutput
+const { createConfig, entryPoint, performance, setOutput } = require('../../index')
 
 const elm = require('@webpack-blocks/elm')
 const path = require('path')

@@ -1,11 +1,11 @@
-const webpack = require('../../index')
-
-// Need to write it like this instead of destructuring so it runs on Node 4.x w/o transpiling
-const createConfig = webpack.createConfig
-const defineConstants = webpack.defineConstants
-const entryPoint = webpack.entryPoint
-const performance = webpack.performance
-const setOutput = webpack.setOutput
+const {
+  createConfig,
+  defineConstants,
+  entryPoint,
+  match,
+  performance,
+  setOutput
+} = require('../../index')
 
 const babel = require('@webpack-blocks/babel6')
 const postcss = require('@webpack-blocks/postcss')
@@ -21,12 +21,14 @@ module.exports = createConfig([
     path.join(__dirname, 'build/bundle.js')
   ),
   babel(),
-  postcss([
-    precss
+  match('*.css', [
+    postcss([
+      precss
+    ]),
+    extractText(
+      'styles.css'
+    )
   ]),
-  extractText(
-    'styles.css'
-  ),
   performance({
     maxAssetSize: 100000,
     maxEntrypointSize: 500000,

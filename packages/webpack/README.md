@@ -49,7 +49,7 @@ Applies an array of webpack blocks only if `process.env.NODE_ENV` matches the gi
 
 #### match(test: string|RegExp|Array, options: ?object, configSetters: Function[]): Function
 
-State on which files to apply the loader blocks passed in this call. Works like `group()`, but adds the file matching information to the context. The options parameter is optional.
+State on which files to apply the loader blocks passed in this call. Works like `group()`, but adds the file matching information to the context that can be used by the child blocks. The options parameter is optional.
 
 Use like this:
 
@@ -58,6 +58,16 @@ module.exports = createConfig([
   match('*.scss', { exclude: path.resolve('node_modules') }, [
     sass(),
     extractText('css/[name].css')
+  ])
+])
+```
+
+To match multiple file patterns you can pass a pattern array:
+
+```js
+module.exports = createConfig([
+  match(['*.sass', '*.scss'], [
+    /* blocks */
   ])
 ])
 ```

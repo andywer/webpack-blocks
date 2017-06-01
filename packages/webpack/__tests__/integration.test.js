@@ -1,52 +1,69 @@
 import test from 'ava'
 import path from 'path'
-import { createConfig, entryPoint, setOutput, sourceMaps } from '../index'
+import { createConfig, entryPoint, match, setOutput, sourceMaps } from '../index'
 import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel6'
 import devServer from '@webpack-blocks/dev-server'
 import sass from '@webpack-blocks/sass'
 
 test('complete webpack config creation', t => {
+  const images = ['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp']
+  const fonts = ['*.eot', '*.ttf', '*.woff', '*.woff2']
+
   const webpackConfig = createConfig([
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js'),
     babel(),
     sourceMaps(),
-    css.modules({
-      localIdentName: '[name]--[local]--[hash:base64:5]'
-    }),
-    url('image', {
-      exclude: 'node_modules/**',
-      limit: 10000
-    }),
-    file('application/font'),
-    file('audio'),
-    file('video'),
-    sass(),
     devServer(),
     devServer.proxy({
       '/api/*': { target: 'http://localhost:8080' }
-    })
+    }),
+    match('*.scss', [
+      css.modules({
+        localIdentName: '[name]--[local]--[hash:base64:5]'
+      }),
+      sass()
+    ]),
+    match(images, { exclude: /node_modules/ }, [
+      url({
+        limit: 10000
+      })
+    ]),
+    match(fonts, [
+      file()
+    ])
   ])
 
-  t.is(webpackConfig.module.rules.length, 7)
+  t.is(webpackConfig.module.rules.length, 4)
   t.deepEqual(webpackConfig.module.rules[0], {
-    test: /\.css$/,
+    test: /^.*\.scss$/,
     use: [
-      { loader: 'style-loader' },
+      'style-loader',
       {
         loader: 'css-loader',
         options: {
           importLoaders: 1,
           localIdentName: '[name]--[local]--[hash:base64:5]',
-          modules: true
+          modules: true,
+          sourceMap: false
         }
+      },
+      {
+        loader: 'sass-loader',
+        options: {}
       }
     ]
   })
   t.deepEqual(webpackConfig.module.rules[1], {
-    test: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
-    exclude: 'node_modules/**',
+    test: [
+      /^.*\.gif$/,
+      /^.*\.jpg$/,
+      /^.*\.jpeg$/,
+      /^.*\.png$/,
+      /^.*\.webp$/
+    ],
+    exclude: /node_modules/,
     use: [
       {
         loader: 'url-loader',
@@ -57,7 +74,12 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[2], {
-    test: /\.(eot|ttf|woff|woff2)(\?.*)?$/,
+    test: [
+      /^.*\.eot$/,
+      /^.*\.ttf$/,
+      /^.*\.woff$/,
+      /^.*\.woff2$/
+    ],
     use: [
       {
         loader: 'file-loader',
@@ -66,42 +88,8 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[3], {
-    test: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-    use: [
-      {
-        loader: 'file-loader',
-        options: {}
-      }
-    ]
-  })
-  t.deepEqual(webpackConfig.module.rules[4], {
-    test: /\.(mp4|webm)$/,
-    use: [
-      {
-        loader: 'file-loader',
-        options: {}
-      }
-    ]
-  })
-  t.deepEqual(webpackConfig.module.rules[5], {
-    test: /\.(sass|scss)$/,
-    use: [
-      'style-loader',
-      {
-        loader: 'css-loader',
-        options: {
-          sourceMap: false
-        }
-      },
-      {
-        loader: 'sass-loader',
-        options: {}
-      }
-    ]
-  })
-  t.deepEqual(webpackConfig.module.rules[6], {
     test: /\.(js|jsx)$/,
-    exclude: [ /node_modules/ ],
+    exclude: /node_modules/,
     use: [ {
       loader: 'babel-loader',
       options: {
