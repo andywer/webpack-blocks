@@ -21,6 +21,7 @@ const {
   defineConstants,
   entryPoint,
   extractText,
+  match,
   setOutput,
   webpack
 } = require('webpack-blocks')
@@ -29,11 +30,13 @@ module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  css(),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
-  extractText('css/[name].css'),
+  match('*.css', { exclude: /node_modules/ }, [
+    css(),
+    extractText('css/[name].css')
+  ]),
   addPlugins([
     new webpack.LoaderOptionsPlugin({ minimize: true })
   ])
