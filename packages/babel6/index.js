@@ -38,6 +38,7 @@ function babel (options = {}) {
 function postConfig (context, util) {
   const ruleConfig = Object.assign({
     test: context.fileType('application/javascript'),
+    exclude: /node_modules/,
     use: [
       { loader: 'babel-loader', options: context.babel }
     ]

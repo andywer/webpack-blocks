@@ -10,6 +10,7 @@ test('Babel default options work', t => {
   t.deepEqual(config.module.rules, [
     {
       test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
       use: [
         {
           loader: 'babel-loader',
@@ -33,6 +34,7 @@ test('Babel options work', t => {
   t.deepEqual(config.module.rules, [
     {
       test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
       use: [
         {
           loader: 'babel-loader',
@@ -49,7 +51,7 @@ test('Babel options work', t => {
 
 test('using custom match() works', t => {
   const config = createConfig({}, [
-    match('*.js', { exclude: /node_modules/ }, [
+    match('*.js', { exclude: [] }, [
       babel6({
         cacheDirectory: false
       })
@@ -59,7 +61,7 @@ test('using custom match() works', t => {
   t.deepEqual(config.module.rules, [
     {
       test: /^.*\.js$/,
-      exclude: /node_modules/,
+      exclude: [],
       use: [
         {
           loader: 'babel-loader',

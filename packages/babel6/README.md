@@ -19,6 +19,8 @@ module.exports = createConfig([
 ])
 ```
 
+You can also use the babel block without `match()`. It will by default match `*.js` and `*.jsx` files while excluding everything in `node_modules/`.
+
 
 ## Options
 
