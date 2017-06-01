@@ -17,6 +17,20 @@ module.exports = createConfig([
 ])
 ```
 
+Use `match()` to explicitly specify on which files to apply the block:
+
+```js
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const sass = require('@webpack-blocks/sass')
+
+module.exports = createConfig([
+  match('*.scss', { exclude: path.resolve('node_modules') }, [
+    sass(/* node-sass options */)
+  ])
+])
+```
+
+
 ## Options
 
 You can pass random `sass-loader` options as an object to the `sass` block. Those options are basically identical with [node-sass' options](https://github.com/sass/node-sass#options).
@@ -28,8 +42,10 @@ You can use the `extract-text` block to extract the compiled SASS/SCSS styles in
 
 ```js
 module.exports = createConfig([
-  sass(),
-  extractText('css/[name].css', 'text/x-sass')
+  match('*.scss', [
+    sass(),
+    extractText('css/[name].css')
+  ])
 ])
 ```
 
