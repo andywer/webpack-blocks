@@ -71,13 +71,34 @@ test('works with sass()', t => {
   ])
 })
 
+test('works with html()', t => {
+  const config = createConfig({}, [
+    match('*.html', [
+      html(),
+      extractText('build/layout.html')
+    ])
+  ])
+
+  const id = config.plugins[0].id
+  const plugin = Object.assign(new ExtractTextPlugin('build/layout.html'), { id })
+
+  t.deepEqual(config.plugins, [ plugin ])
+  t.deepEqual(config.module.rules, [
+    {
+      test: /^.*\.html$/,
+      use: plugin.extract({
+        fallback: [ ],
+        use: [ 'html-loader' ]
+      })
+    }
+  ])
+})
+
 test('fails properly if nothing to extract can be found', t => {
   t.throws(() => createConfig({}, [
     extractText()
   ]), /No loaders found to extract contents from/)
 })
-
-test.todo('works with html()')
 
 function css () {
   return (context, util) => util.addLoader(
@@ -97,6 +118,15 @@ function sass () {
         { loader: 'css-loader' },
         { loader: 'sass-loader' }
       ]
+    }, context.match)
+  )
+}
+
+function html () {
+  return (context, util) => util.addLoader(
+    Object.assign({
+      test: /\.html$/,
+      use: [ 'html-loader' ]
     }, context.match)
   )
 }
