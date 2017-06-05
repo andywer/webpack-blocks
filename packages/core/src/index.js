@@ -47,13 +47,23 @@ function createConfig (initialContext, configSetters) {
  * @return {Function}
  */
 function env (envName, configSetters) {
-  const currentEnv = process.env.NODE_ENV || 'development'
+    let addSettings = false
+    if (typeof envName === 'string' || envName instanceof String) {
+        const currentEnv = process.env.NODE_ENV || 'development'
+        addSettings = (currentEnv === envName)
+    }
+    else {
+        for (let name in envName) {
+            if (!envName.hasOwnProperty(name)) continue
+            addSettings &= ( process.env[name] == envName[name])
+        }
+    }
 
-  if (currentEnv !== envName) {
-    return () => ({})
-  } else {
-    return group(configSetters)
-  }
+    if (!addSettings) {
+        return () => ({})
+    } else {
+        return group(configSetters)
+    }
 }
 
 /**
