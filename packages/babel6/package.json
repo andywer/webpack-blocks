@@ -19,8 +19,8 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "babel-core": "^6.17.0",
-    "babel-loader": "^6.2.5"
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1"
   },
   "devDependencies": {
     "ava": "^0.18.0",
