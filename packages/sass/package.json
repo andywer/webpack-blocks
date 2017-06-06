@@ -20,8 +20,8 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "css-loader": "^0.25.0",
-    "node-sass": "^3.4.2",
-    "sass-loader": "^4.0.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {
