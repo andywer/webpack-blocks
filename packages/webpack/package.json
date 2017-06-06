@@ -43,7 +43,7 @@
     "jsdom": "^9.9.1",
     "mz": "^2.6.0",
     "node-sass": "^4.5.3",
-    "postcss-loader": "^1.2.0",
+    "postcss-loader": "^2.0.5",
     "precss": "^1.4.0",
     "sass-loader": "^6.0.5",
     "sinon": "^1.17.7",
