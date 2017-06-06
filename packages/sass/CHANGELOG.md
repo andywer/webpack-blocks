@@ -1,5 +1,9 @@
 # @webpack-blocks/sass - Changelog
 
+## Next release
+
+- Update `sass-loader` & `node-sass` version
+
 ## 0.4.0
 
 - No changes, just keeping the version numbers in sync
