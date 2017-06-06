@@ -2,7 +2,7 @@
 
 ## Next release
 
-- Update `sass-loader` & `node-sass` version
+- Update `sass-loader` & `node-sass` version for node 8 support ([#164](https://github.com/andywer/webpack-blocks/issues/164))
 
 ## 0.4.0
 
