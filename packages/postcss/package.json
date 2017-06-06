@@ -19,7 +19,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "postcss-loader": "^2.0.5"
+    "postcss-loader": "^1.2.0"
   },
   "devDependencies": {
     "standard": "^8.1.0"
