@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard && ava",
+    "test": "ava && standard index.js __tests__/*.js",
     "prepublish": "npm test"
   },
   "engines": {
@@ -43,10 +43,10 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "mz": "^2.6.0",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.5.3",
     "postcss-loader": "^1.2.0",
     "precss": "^1.4.0",
-    "sass-loader": "^4.0.2",
+    "sass-loader": "^4.1.1",
     "standard": "^8.1.0",
     "style-loader": "^0.13.1",
     "tslint": "^4.3.1",
