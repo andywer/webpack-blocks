@@ -4,6 +4,7 @@ import { createConfig, entryPoint, match, setOutput, sourceMaps } from '../index
 import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel6'
 import devServer from '@webpack-blocks/dev-server'
+import postcss from '@webpack-blocks/postcss'
 import sass from '@webpack-blocks/sass'
 
 test('complete webpack config creation', t => {
@@ -23,6 +24,7 @@ test('complete webpack config creation', t => {
       css.modules({
         localIdentName: '[name]--[local]--[hash:base64:5]'
       }),
+      postcss(),
       sass()
     ]),
     match(images, { exclude: /node_modules/ }, [
@@ -48,6 +50,10 @@ test('complete webpack config creation', t => {
           modules: true,
           sourceMap: false
         }
+      },
+      {
+        loader: 'postcss-loader',
+        options: {}
       },
       {
         loader: 'sass-loader',
