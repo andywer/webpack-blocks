@@ -51,6 +51,6 @@
     "style-loader": "^0.18.2",
     "tslint": "^4.3.1",
     "tslint-loader": "^3.3.0",
-    "typescript": "^2.1.5"
+    "typescript": "^2.3.4"
   }
 }
