@@ -34,7 +34,7 @@
     "@webpack-blocks/dev-server": "^0.4.0",
     "@webpack-blocks/extract-text": "^0.4.0",
     "@webpack-blocks/postcss": "^0.4.0",
-    "@webpack-blocks/sass": "^0.4.0",
+    "@webpack-blocks/sass": "^0.4.1",
     "@webpack-blocks/tslint": "^0.4.0",
     "@webpack-blocks/typescript": "^0.4.0",
     "ava": "^0.18.0",
