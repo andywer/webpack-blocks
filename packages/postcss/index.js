@@ -17,7 +17,7 @@ module.exports = postcss
 function postcss (plugins = [], options = {}) {
   return (context, util) => prevConfig => {
     const ruleDef = Object.assign({
-      test: context.fileType('text/css'),
+      test: /\.css$/,
       use: [
         'style-loader',
         'css-loader',

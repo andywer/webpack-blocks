@@ -103,7 +103,7 @@ test('fails properly if nothing to extract can be found', t => {
 function css () {
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('text/css'),
+      test: /\.css$/,
       use: [ 'style-loader', 'css-loader' ]
     }, context.match)
   )
@@ -112,7 +112,7 @@ function css () {
 function sass () {
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('text/css'),
+      test: /\.css$/,
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader' },

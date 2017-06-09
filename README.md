@@ -124,7 +124,7 @@ function myCssLoader () {
       rules: [
         Object.assign(
           {
-            test: context.fileType('text/css'),
+            test: /\.css$/,
             use: [ 'style-loader', 'my-css-loader' ]
           },
           context.match     // carries `test`, `exclude` & `include` as set by `match()`
@@ -135,7 +135,7 @@ function myCssLoader () {
 }
 ```
 
-If we use `myCssLoader` in `match()` then `context.match` will be populated with whatever we set in `match()`. Otherwise there is still the `test: context.fileType('text/css')` fallback, so our block will work without `match()` as well.
+If we use `myCssLoader` in `match()` then `context.match` will be populated with whatever we set in `match()`. Otherwise there is still the `test: /\.css$/` fallback, so our block will work without `match()` as well.
 
 Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
@@ -222,7 +222,7 @@ function babel (options = { cacheDirectory: true }) {
   return (context, util) => util.addLoader(
     Object.assign({
       // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-      test: context.fileType('application/javascript'),
+      test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       use: [
         { loader: 'babel-loader', options }

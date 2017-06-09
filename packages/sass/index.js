@@ -17,7 +17,7 @@ module.exports = sass
 function sass (options = {}) {
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('text/x-sass'),
+      test: /\.(sass|scss)$/,
       use: [
         'style-loader',
         {

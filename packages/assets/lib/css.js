@@ -9,7 +9,7 @@ module.exports.modules = cssModules
 function css (options = {}) {
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('text/css'),
+      test: /\.css$/,
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader', options }
@@ -36,7 +36,7 @@ function cssModules (options = {}) {
 
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('text/css'),
+      test: /\.css$/,
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader', options }

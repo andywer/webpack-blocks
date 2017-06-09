@@ -92,7 +92,7 @@ function proxy (proxyRoutes) {
 function reactHot () {
   return (context, util) => util.addLoader(
     Object.assign({
-      test: context.fileType('application/javascript'),
+      test: /\.(js|jsx)$/,
       use: [ 'react-hot' ]
     }, context.match)
   )

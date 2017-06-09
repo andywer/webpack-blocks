@@ -38,7 +38,7 @@ function babel (options = { cacheDirectory: true }) {
         Object.assign({
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
           // setting `test` & `exclude` defaults here, in case there is no `context.match` data
-          test: context.fileType('application/javascript'),
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: [
             { loader: 'babel-loader', options }
@@ -63,10 +63,12 @@ Returns an update function that adds the given loader definition to a webpack co
 
 ```js
 function sampleBlock () {
-  return (context, { addLoader }) => addLoader({
-    test: context.fileType('text/css'),
-    use: [ 'style-loader', 'css-loader' ]
-  })
+  return (context, { addLoader }) => addLoader(
+    Object.assign({
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
+    }, context.match)
+  )
 }
 ```
 
@@ -104,6 +106,8 @@ The context object is a metadata object that is passed to every block. It is mea
 Initially it will contain the `fileType` mapping and a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
 
 ### context.fileType
+
+*Deprecated. This feature will be removed soon. Use `match()` and `context.match` instead.*
 
 The `context.fileType` is a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js).
 

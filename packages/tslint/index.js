@@ -14,7 +14,7 @@ function tslint (options = {}) {
   return (context, util) => prevConfig => {
     let nextConfig = util.addLoader(
       Object.assign({
-        test: context.fileType('application/x-typescript'),
+        test: /\.(ts|tsx)$/,
         use: [ 'tslint-loader' ],
         enforce: 'pre'
       }, context.match)

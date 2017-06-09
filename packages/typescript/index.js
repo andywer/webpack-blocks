@@ -20,7 +20,7 @@ function typescript (options = {}) {
     module: {
       rules: [
         Object.assign({
-          test: context.fileType('application/x-typescript'),
+          test: /\.(ts|tsx)$/,
           use: [
             {
               loader: 'awesome-typescript-loader',

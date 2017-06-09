@@ -30,6 +30,7 @@ function createConfig (initialContext, configSetters) {
     throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
   }
 
+  /** @deprecated context.fileType */
   const fileType = createFileTypesMapping(defaultFileTypes)
   const context = Object.assign({ fileType }, initialContext)
 

@@ -19,7 +19,7 @@ function extractText (outputFilePattern = 'css/[name].[contenthash:8].css') {
     let nextConfig = prevConfig
 
     // Only apply to loaders in the same `match()` group or css loaders if there is no `match()`
-    const ruleToMatch = context.match || { test: context.fileType('text/css') }
+    const ruleToMatch = context.match || { test: /\.css$/ }
     const matchingLoaderRules = getMatchingLoaderRules(ruleToMatch, prevConfig)
 
     if (matchingLoaderRules.length === 0) {

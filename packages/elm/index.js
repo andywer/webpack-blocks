@@ -51,7 +51,7 @@ function postConfig (context, util) {
   }
 
   const loaderConfig = Object.assign({
-    test: context.fileType('application/x-elm'),
+    test: /\.elm$/,
     exclude: [/elm-stuff/, /node_modules/],
     use: context.elm.hot ? [elmHotLoader, elmLoader] : [elmLoader]
   }, context.match)
