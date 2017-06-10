@@ -1,6 +1,6 @@
 # @webpack-blocks/assets - Changelog
 
-## Next release
+## 1.0.0-beta
 
 - Breaking API change. Use `match()` instead of passing a file type option.
 

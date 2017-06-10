@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/elm",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "Webpack block for elm.",
   "main": "lib/index",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "elm-webpack-loader": "^4.3.1"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-alpha",
+    "@webpack-blocks/core": "^1.0.0-beta",
     "ava": "^0.18.2",
     "standard": "^8.6.0"
   }

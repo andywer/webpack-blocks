@@ -1,11 +1,14 @@
 # @webpack-blocks/core - Changelog
 
-## 1.0
+## 1.0.0-beta
+
+- Added `match()`
+
+## 1.0.0-alpha
 
 - New block API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
-- Added `match()`
 - Added `text/html` file type
-- Dropped Babel, requires node 6+
+- Dropped transpiling, requires node 6+
 
 ## 0.4.0
 
