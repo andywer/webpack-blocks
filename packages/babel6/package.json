@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard && ava",
+    "test": "ava && standard",
     "prepublish": "npm test"
   },
   "engines": {
@@ -23,8 +23,8 @@
     "babel-loader": "^6.4.1"
   },
   "devDependencies": {
+    "@webpack-blocks/core": "^1.0.0-alpha",
     "ava": "^0.18.0",
-    "sinon": "^1.17.7",
     "standard": "^8.1.0"
   }
 }

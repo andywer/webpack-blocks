@@ -10,95 +10,91 @@ module.exports = extractText
 
 /**
  * @param {string}    outputFilePattern
- * @param {string}  [fileType]          A MIME type used for file matching. Defaults to `text/css`.
  * @return {Function}
  */
-function extractText (outputFilePattern = 'css/[name].[contenthash:8].css', fileType = 'text/css') {
+function extractText (outputFilePattern = 'css/[name].[contenthash:8].css') {
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
-  return (context, util) => prevConfig => {
-    const ruleConfig = getRuleConfigByType(context, prevConfig, fileType)
-    const nonStyleLoaders = getNonStyleLoaders(ruleConfig, fileType)
+  const postHook = (context, util) => prevConfig => {
+    let nextConfig = prevConfig
 
-    // Partial application of `addLoader`, `addPlugin` & `removeLoaders`
-    // Bind them to their job, but don't apply them on a config yet
+    // Only apply to loaders in the same `match()` group or css loaders if there is no `match()`
+    const ruleToMatch = context.match || { test: /\.css$/ }
+    const matchingLoaderRules = getMatchingLoaderRules(ruleToMatch, prevConfig)
 
-    const _addLoader = util.addLoader({
-      test: context.fileType(fileType),
-      exclude: ruleConfig.exclude,
+    if (matchingLoaderRules.length === 0) {
+      throw new Error(`extractText(): No loaders found to extract contents from. Looking for loaders matching ${ruleToMatch.test}`)
+    }
+
+    const [ fallbackLoaders, nonFallbackLoaders ] = splitFallbackRule(matchingLoaderRules)
+
+    const newLoaderDef = Object.assign({}, ruleToMatch, {
       use: plugin.extract({
-        fallback: 'style-loader',
-        use: nonStyleLoaders
+        fallback: fallbackLoaders,
+        use: nonFallbackLoaders
       })
     })
-    const _addPlugin = util.addPlugin(plugin)
-    const _removeLoaders = removeLoaders(context.fileType(fileType))
 
-    // Now apply them to the config: Remove the existing loaders for that
-    // file type, add the new loader and add the plugin
+    for (const ruleToRemove of matchingLoaderRules) {
+      nextConfig = removeLoaderRule(ruleToRemove)(nextConfig)
+    }
 
-    return _addPlugin(_addLoader(_removeLoaders(prevConfig)))
+    nextConfig = util.addPlugin(plugin)(nextConfig)
+    nextConfig = util.addLoader(newLoaderDef)(nextConfig)
+
+    return nextConfig
   }
-}
 
-/**
- * @param {object}  context
- * @param {object}  webpackConfig
- * @param {string}  fileType
- * @return {object}
- * @throws {Error}
- */
-function getRuleConfigByType (context, webpackConfig, fileType) {
-  // TODO: Consider that there might be more than one loader matching the file type!
-
-  const ruleConfig = webpackConfig.module.rules.find(
-    // using string-based comparison here, since webpack-merge tends to deep-cloning things
-    (loader) => String(loader.test) === String(context.fileType(fileType))
+  return Object.assign(
+    () => prevConfig => prevConfig,
+    { post: postHook }
   )
+}
 
-  if (ruleConfig) {
-    return ruleConfig
+function getMatchingLoaderRules (ruleToMatch, webpackConfig) {
+  return webpackConfig.module.rules.filter(
+    rule => (
+      isLoaderConditionMatching(rule.test, ruleToMatch.test) &&
+      isLoaderConditionMatching(rule.exclude, ruleToMatch.exclude) &&
+      isLoaderConditionMatching(rule.include, ruleToMatch.include)
+    )
+  )
+}
+
+function splitFallbackRule (rules) {
+  const leadingStyleLoaderInAllRules = rules.every(rule => {
+    return rule.use.length > 0 && rule.use[0] && (rule.use[0] === 'style-loader' || rule.use[0].loader === 'style-loader')
+  })
+
+  if (leadingStyleLoaderInAllRules) {
+    const trimmedRules = rules.map(rule => Object.assign({}, rule, { use: rule.use.slice(1) }))
+    return [ ['style-loader'], getUseEntriesFromRules(trimmedRules) ]
   } else {
-    throw new Error(`${fileType} loader could not be found in webpack config.`)
+    return [ [], getUseEntriesFromRules(rules) ]
   }
 }
 
-/**
- * Finds the loader config for the given `fileType` and returns all loaders
- * except the `style-loader` which is expected to be the first loader.
- *
- * @param {object}  context
- * @param {object}  webpackConfig
- * @param {string}  fileType
- * @return {string[]}
- * @throws {Error}
- */
-function getNonStyleLoaders (ruleConfig, fileType) {
-  if (!ruleConfig.use || ruleConfig.use.length === 0) {
-    throw new Error(`No ${fileType} file loaders found.`)
-  }
-  const loader = typeof ruleConfig.use[0] === 'string'
-        ? ruleConfig.use[0]
-        : ruleConfig.use[0].loader
-  if (loader !== 'style-loader') {
-    throw new Error(`Expected "style-loader" to be first loader of .css files. Instead got: ${ruleConfig.use[0].loader}`)
-  }
+function getUseEntriesFromRules (rules) {
+  const normalizeUseEntry = use => typeof use === 'string' ? { loader: use } : use
 
-  // `ruleConfig.use` without the leading 'style-loader'
-  const nonStyleLoaders = [].concat(ruleConfig.use)
-  nonStyleLoaders.shift()
-
-  return nonStyleLoaders
+  return rules.reduce(
+    (useEntries, rule) => useEntries.concat(rule.use.map(normalizeUseEntry)),
+    []
+  )
 }
 
 /**
- * @param {RegExp} ruleTest   Remove all loaders that match this `.test` regex.
+ * @param {object} rule   Remove all loaders that match this loader rule.
  * @return {Function}
  */
-function removeLoaders (ruleTest) {
+function removeLoaderRule (rule) {
   return prevConfig => {
     const newRules = prevConfig.module.rules.filter(
-      ruleDef => String(ruleDef.test) !== String(ruleTest)
+      prevRule => !(
+        isLoaderConditionMatching(prevRule.test, rule.test) &&
+        isLoaderConditionMatching(prevRule.include, rule.include) &&
+        isLoaderConditionMatching(prevRule.exclude, rule.exclude)
+      )
     )
 
     return Object.assign({}, prevConfig, {
@@ -107,4 +103,30 @@ function removeLoaders (ruleTest) {
       })
     })
   }
+}
+
+function isLoaderConditionMatching (test1, test2) {
+  if (test1 === test2) {
+    return true
+  } else if (typeof test1 !== typeof test2) {
+    return false
+  } else if (test1 instanceof RegExp && test2 instanceof RegExp) {
+    return test1 === test2 || String(test1) === String(test2)
+  } else if (Array.isArray(test1) && Array.isArray(test2)) {
+    return areArraysMatching(test1, test2)
+  }
+  return false
+}
+
+function areArraysMatching (array1, array2) {
+  if (array1.length !== array2.length) {
+    return false
+  }
+
+  return array1.every(
+    item1 => (
+      array2.indexOf(item1) >= 0 ||
+      (item1 instanceof RegExp && array2.find(item2 => item2 instanceof RegExp && String(item1) === String(item2)))
+    )
+  )
 }

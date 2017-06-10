@@ -17,6 +17,9 @@ module.exports = createConfig([
 ])
 ```
 
+Use `match()` to explicitly specify the files to load using the TypeScript loader.
+
+
 ## Options
 
 Uses the default tsconfig.json in the root directory to pass options (See [here](https://github.com/s-panferov/awesome-typescript-loader#tsconfigjson))

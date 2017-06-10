@@ -3,6 +3,7 @@
 ## 1.0
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
+- Make `reactHot` support `match()`
 - Requires node 6+
 
 ## 0.4.0

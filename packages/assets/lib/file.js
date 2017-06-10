@@ -1,28 +1,25 @@
-const _ = require('lodash')
-
 module.exports = file
 
 /**
- * @param {string} fileType
  * @param {object} [options] You can pass all file-loader options.
- * @param {*}      [options.include]
- * @param {*}      [options.exclude]
  * @return {Function}
  * @see https://github.com/webpack-contrib/file-loader
  */
-function file (fileType, options = {}) {
-  if (!fileType || typeof fileType !== 'string') {
-    throw new Error(`Need to pass a valid file type (MIME type) string to file().`)
+function file (options = {}) {
+  return (context, util) => {
+    if (!context.match) {
+      throw new Error(
+        `The file() block can only be used in combination with match(). ` +
+        `Use match() to state on which files to apply the file loader.`
+      )
+    }
+
+    return util.addLoader(
+      Object.assign({
+        use: [
+          { loader: 'file-loader', options }
+        ]
+      }, context.match)
+    )
   }
-  return (context, util) => util.addLoader({
-    test: context.fileType(fileType),
-    include: options.include,
-    exclude: options.exclude,
-    use: [
-      {
-        loader: 'file-loader',
-        options: _.omit(options, [ 'exclude', 'include' ])
-      }
-    ]
-  })
 }

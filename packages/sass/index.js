@@ -15,20 +15,22 @@ module.exports = sass
  * @return {Function}
  */
 function sass (options = {}) {
-  return (context, util) => util.addLoader({
-    test: context.fileType('text/x-sass'),
-    use: [
-      'style-loader',
-      {
-        loader: 'css-loader',
-        options: {
-          sourceMap: !!options.sourceMap
+  return (context, util) => util.addLoader(
+    Object.assign({
+      test: /\.(sass|scss)$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: Boolean(options.sourceMap)
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options
         }
-      },
-      {
-        loader: 'sass-loader',
-        options
-      }
-    ]
-  })
+      ]
+    }, context.match)
+  )
 }

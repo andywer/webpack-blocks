@@ -22,7 +22,7 @@ const {
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const development = () => group([
+const developmentConfig = () => group([
   sourceMaps(),
   devServer(),
   devServer.proxy({
@@ -35,7 +35,7 @@ const development = () => group([
   })
 ])
 
-const production = () => group([
+const productionConfig = () => group([
   extractText(),
   addPlugins([
     new webpack.LoaderOptionsPlugin({
@@ -56,10 +56,9 @@ const production = () => group([
 ])
 
 module.exports = createConfig([
-  setOutput('./build/bundle.js'),
   babel(),
-  css.modules(),
   typescript(),
+  css.modules(),
   addPlugins([
     new HtmlWebpackPlugin({
       inject: true,
@@ -71,10 +70,11 @@ module.exports = createConfig([
   }),
   env('development', [
     entryPoint('./src/index.dev.js'),
-    development()
+    developmentConfig()
   ]),
   env('production', [
     entryPoint('./src/index.js'),
-    production()
+    setOutput('./build/bundle.js'),
+    productionConfig()
   ])
 ])

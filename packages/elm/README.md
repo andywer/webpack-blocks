@@ -17,14 +17,10 @@ module.exports = createConfig([
 ])
 ```
 
+You can use `match()` to customize which files to load using the elm loader.
+
 
 ## Options
-
-#### exclude *(optional)*
-Regular expression, string or function describing which files/directories to exclude from the elming. Defaults to `/\/elm-stuff\//` and `/\/node_modules\//` regex.
-
-#### include *(optional)*
-Regular expression, string or function used to white-list which files/directories should be elmed. By default `exclude` is set only.
 
 #### maxInstances *(optional)*
 Number uset to set maxInstances of elm that can spawned. This should be set to a number less than the number of cores your machine has. The ideal number is 1, as it will prevent Elm instances causing deadlocks.

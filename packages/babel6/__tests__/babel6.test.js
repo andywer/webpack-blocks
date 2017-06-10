@@ -1,90 +1,75 @@
 import test from 'ava'
-import sinon from 'sinon'
+import { createConfig, match } from '@webpack-blocks/core'
 import babel6 from '../index'
 
-test('Babel default options work', (t) => {
-  const block = babel6()
+test('Babel default options work', t => {
+  const config = createConfig({}, [
+    babel6()
+  ])
 
-  const addLoader = sinon.spy((loaderDef) => config => config)
-  const context = {
-    fileType: () => '*.js'
-  }
-
-  t.deepEqual(block(context, { addLoader })({}), {})
-  t.deepEqual(block.post(context, { addLoader })({}), {})
-
-  t.is(addLoader.callCount, 1)
-  t.deepEqual(addLoader.lastCall.args, [
+  t.deepEqual(config.module.rules, [
     {
-      test: '*.js',
-      exclude: [ /node_modules/ ],
-      use: [ {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
         }
-      } ]
+      ]
     }
   ])
 })
 
-test('Babel options and exclude work', (t) => {
-  const block = babel6({
-    exclude: 'foo/',
-    presets: ['es2015'],
-    plugins: ['bar']
-  })
+test('Babel options work', t => {
+  const config = createConfig({}, [
+    babel6({
+      presets: ['es2015'],
+      plugins: ['bar']
+    })
+  ])
 
-  const addLoader = sinon.spy((loaderDef) => config => config)
-  const context = {
-    fileType: () => '*.js'
-  }
-
-  t.deepEqual(block(context, { addLoader })({}), {})
-  t.deepEqual(block.post(context, { addLoader })({}), {})
-
-  t.is(addLoader.callCount, 1)
-  t.deepEqual(addLoader.lastCall.args, [
+  t.deepEqual(config.module.rules, [
     {
-      test: '*.js',
-      exclude: [ 'foo/' ],
-      use: [ {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          plugins: ['bar'],
-          presets: ['es2015']
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: ['es2015'],
+            plugins: ['bar']
+          }
         }
-      } ]
+      ]
     }
   ])
 })
 
-test('Babel `include` option works', (t) => {
-  const block = babel6({
-    exclude: null,
-    include: 'src/**/*.js'
-  })
+test('using custom match() works', t => {
+  const config = createConfig({}, [
+    match('*.js', { exclude: [] }, [
+      babel6({
+        cacheDirectory: false
+      })
+    ])
+  ])
 
-  const addLoader = sinon.spy((loaderDef) => config => config)
-  const context = {
-    fileType: () => '*.js'
-  }
-
-  t.deepEqual(block(context, { addLoader })({}), {})
-  t.deepEqual(block.post(context, { addLoader })({}), {})
-
-  t.is(addLoader.callCount, 1)
-  t.deepEqual(addLoader.lastCall.args, [
+  t.deepEqual(config.module.rules, [
     {
-      test: '*.js',
-      include: [ 'src/**/*.js' ],
-      use: [ {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
+      test: /^.*\.js$/,
+      exclude: [],
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: false
+          }
         }
-      } ]
+      ]
     }
   ])
 })

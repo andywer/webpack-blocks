@@ -29,32 +29,28 @@ Take the `babel6` webpack block for instance:
  * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function babel (options) {
-  const { exclude = /\/node_modules\// } = options || {}
-
+function babel (options = { cacheDirectory: true }) {
   return (context, util) => prevConfig => ({
     ...prevConfig,
     module: {
       ...prevConfig.module,
       rules: prevConfig.module.rules.concat([
-        {
+        Object.assign({
           // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-          test: context.fileType('application/javascript'),
-          exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-          use: [{
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            }
-          }]
-        }
+          // setting `test` & `exclude` defaults here, in case there is no `context.match` data
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: [
+            { loader: 'babel-loader', options }
+          ]
+        }, context.match)   // carries `test`, `exclude` & `include` as set by `match()`
       ])
     }
   })
 }
 ```
 
-Thus it is also super easy to unit test and generic enough to share it with the world.
+Thus it is also pretty easy to unit test and generic enough to share it with the world.
 
 
 ## Block Utilities
@@ -67,10 +63,12 @@ Returns an update function that adds the given loader definition to a webpack co
 
 ```js
 function sampleBlock () {
-  return (context, { addLoader }) => addLoader({
-    test: context.fileType('text/css'),
-    use: [ 'style-loader', 'css-loader' ]
-  })
+  return (context, { addLoader }) => addLoader(
+    Object.assign({
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
+    }, context.match)
+  )
 }
 ```
 
@@ -107,24 +105,27 @@ The context object is a metadata object that is passed to every block. It is mea
 
 Initially it will contain the `fileType` mapping and a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
 
+### context.fileType
+
+*Deprecated. This feature will be removed soon. Use `match()` and `context.match` instead.*
+
 The `context.fileType` is a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js).
 
+### context.match
+
+This is where the file matching patterns reside you set by using `match()` in the configuration.
+
+If the block is used within a `match()` then `context.match` will contain:
+
+* `test`: Which files to match, usually a regex or an array of regexs. Always present.
+* `exclude`: Condition(s) which paths not to match. Might not be present.
+* `include`: Condition(s) to override `exclude`. Might not be present.
+
+If the block is not used within a `match()` then `context.match` will be undefined.
+
+### context.webpack
+
 The `context.webpack` property is the webpack instance, so you do not have to `require('webpack')` in your blocks.
-
-### Adding custom file types
-
-To add a new `fileType` you can use the `fileType.add(mimeType: string, regex: RegExp)` function. See its usage in the `typescript` block:
-
-```js
-function preHook (context) {
-  const registeredTypes = context.fileType.all()
-  if (!('application/x-typescript' in registeredTypes)) {
-    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
-  }
-}
-```
-
-Every block using MIME types that are not already defined in `core/lib/defaultFileTypes.js` needs to have a similar pre [hook](#Hooks) to register its custom types. If it is a rather common file type feel free to open a pull request for adding it to the `defaultFileTypes` as well.
 
 
 ## Hooks

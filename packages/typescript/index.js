@@ -4,8 +4,7 @@
  * @see https://github.com/s-panferov/awesome-typescript-loader
  */
 
-const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin
-const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin
+const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 module.exports = typescript
 
@@ -20,15 +19,15 @@ function typescript (options = {}) {
     },
     module: {
       rules: [
-        {
-          test: context.fileType('application/x-typescript'),
+        Object.assign({
+          test: /\.(ts|tsx)$/,
           use: [
             {
               loader: 'awesome-typescript-loader',
               options
             }
           ]
-        }
+        }, context.match)
       ]
     },
     plugins: [

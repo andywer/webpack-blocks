@@ -14,7 +14,22 @@ const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   ...,
-  extractText('css/[name].css')   // or just `extractText()`
+  extractText('path/to/output.file')
+])
+```
+
+You will frequently want to use it to extract styles:
+
+```js
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
+const extractText = require('@webpack-blocks/extract-text')
+
+module.exports = createConfig([
+  match('*.css', [
+    css(),
+    extractText()     // filename defaults to 'css/[name].[contenthash:8].css'
+  ])
 ])
 ```
 

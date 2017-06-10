@@ -43,6 +43,7 @@ All blocks, like `babel6`, `postcss` and so on, live in their own small packages
 ```js
 const {
   createConfig,
+  match,
   webpack,
 
   // Feature blocks
@@ -61,16 +62,21 @@ const {
   sourceMaps
 } = require('webpack-blocks')
 const autoprefixer = require('autoprefixer')
+const path = require('path')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
-  css(),
   babel(),
-  postcss([
-    autoprefixer({ browsers: ['last 2 versions'] })
+  match('*.css', { exclude: path.resolve('node_modules') }, [
+    css(),
+    postcss([
+      autoprefixer({ browsers: ['last 2 versions'] })
+    ])
   ]),
-  file('image'),
+  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp'], [
+    file()
+  ]),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
@@ -98,7 +104,9 @@ const { css } = require('webpack-blocks')
 
 module.exports = createConfig([
   ...
-  css.modules()
+  match('*.css', { exclude: path.resolve('node_modules') }, [
+    css.modules()
+  ]
 ])
 ```
 
@@ -110,20 +118,24 @@ module.exports = createConfig([
   myCssLoader([ './styles' ])
 ])
 
-function myCssLoader (include) {
+function myCssLoader () {
   return (context, { merge }) => merge({
     module: {
       rules: [
-        {
-          test: context.fileType('text/css'),
-          use: [ 'style-loader', 'my-css-loader' ],
-          include
-        }
+        Object.assign(
+          {
+            test: /\.css$/,
+            use: [ 'style-loader', 'my-css-loader' ]
+          },
+          context.match     // carries `test`, `exclude` & `include` as set by `match()`
+        )
       ]
     }
   })
 }
 ```
+
+If we use `myCssLoader` in `match()` then `context.match` will be populated with whatever we set in `match()`. Otherwise there is still the `test: /\.css$/` fallback, so our block will work without `match()` as well.
 
 Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
@@ -206,15 +218,17 @@ Take the `babel6` webpack block for instance:
  * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function babel (options) {
-  const { exclude = /\/node_modules\// } = options || {}
-
-  return (context, util) => util.addLoader({
-    // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
-    test: context.fileType('application/javascript'),
-    exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-    use: [ 'babel-loader?cacheDirectory' ]
-  })
+function babel (options = { cacheDirectory: true }) {
+  return (context, util) => util.addLoader(
+    Object.assign({
+      // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [
+        { loader: 'babel-loader', options }
+      ]
+    }, context.match)
+  )
 }
 ```
 

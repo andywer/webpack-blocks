@@ -42,21 +42,23 @@ It is also quite simple to write one. Here is a short example:
 
 ```js
 import test from 'ava'
-import { createConfig } from 'webpack-blocks'
+import { createConfig, match } from 'webpack-blocks'
 import myBlock from '../my-block'
 
-test('my block adds the loader with custom exclude', t => {
+test('my block works with match()', t => {
   const output = createConfig([
-    myBlock({ exclude: /node_modules/ })
+    match('*.myext', { exclude: /node_modules/ }, [
+      myBlock()
+    ])
   ])
 
   t.deepEqual(output, {
     module: {
       rules: [
         {
-          test: /.myext/,
+          test: /^.*\.myext/,
           exclude: /node_modules/,
-          use: 'my-fancy-loader'
+          use: [ 'my-fancy-loader' ]
         }
       ]
     }

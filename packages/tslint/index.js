@@ -11,30 +11,23 @@ module.exports = tslint
  * @return {Function}
  */
 function tslint (options = {}) {
-  const setter = (context, util) => prevConfig => {
-    const _addLoader = util.addLoader({
-      test: context.fileType('application/x-typescript'),
-      use: [ 'tslint-loader' ],
-      enforce: 'pre'
-    })
-    const _addPlugin = util.addPlugin(
+  return (context, util) => prevConfig => {
+    let nextConfig = util.addLoader(
+      Object.assign({
+        test: /\.(ts|tsx)$/,
+        use: [ 'tslint-loader' ],
+        enforce: 'pre'
+      }, context.match)
+    )(prevConfig)
+
+    nextConfig = util.addPlugin(
       new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options
         }
       })
-    )
+    )(nextConfig)
 
-    return _addLoader(_addPlugin(prevConfig))
-  }
-
-  return Object.assign(setter, { pre })
-}
-
-function pre (context) {
-  const registeredTypes = context.fileType.all()
-
-  if (!('application/x-typescript' in registeredTypes)) {
-    context.fileType.add('application/x-typescript', /\.(ts|tsx)$/)
+    return nextConfig
   }
 }

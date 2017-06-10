@@ -61,7 +61,7 @@ function postConfig (context, util) {
 function addDevEntryToAll (presentEntryPoints, devServerEntry) {
   const newEntryPoints = {}
 
-  Object.keys(presentEntryPoints).forEach((chunkName) => {
+  Object.keys(presentEntryPoints).forEach(chunkName => {
     // It's fine to just set the `devServerEntry`, instead of concat()-ing the present ones.
     // Will be concat()-ed by webpack-merge (see `createConfig()`)
     newEntryPoints[ chunkName ] = devServerEntry
@@ -84,18 +84,16 @@ function proxy (proxyRoutes) {
 }
 
 /**
- * For adding the react-hot-loader to the JS loaders. Only when using
- * react-hot-loader before version 3.
+ * For adding the react-hot-loader to the JS loaders.
  * @param {object} [options]
  * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function reactHot (options = {}) {
-  const exclude = options.exclude || /\/node_modules\//
-
-  return (context, util) => util.addLoader({
-    test: context.fileType('application/javascript'),
-    exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-    use: [ 'react-hot' ]
-  })
+function reactHot () {
+  return (context, util) => util.addLoader(
+    Object.assign({
+      test: /\.(js|jsx)$/,
+      use: [ 'react-hot' ]
+    }, context.match)
+  )
 }

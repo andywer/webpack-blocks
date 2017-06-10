@@ -9,22 +9,23 @@ This is the `babel6` block providing Babel (Version 6+) configuration using the 
 ## Usage
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
+const { createConfig, match } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel6')
 
 module.exports = createConfig([
-  babel(/* options */)
+  match('*.js', { exclude: path.resolve('node_modules') }, [
+    babel(/* options */)
+  ])
 ])
 ```
+
+You can also use the babel block without `match()`. It will by default match `*.js` and `*.jsx` files while excluding everything in `node_modules/`.
 
 
 ## Options
 
-#### exclude *(optional)*
-Regular expression, string or function describing which files/directories to exclude from the babeling. Defaults to `/\/node_modules\//` regex, like all JS loaders.
-
-#### include *(optional)*
-Regular expression, string or function used to white-list which files/directories should be babeled. By default `exclude` is set only.
+#### cacheDirectory *(optional)*
+Uses a cache directory if set to true. Defaults to true.
 
 #### plugins *(optional)*
 Array of Babel plugins to use. Babel will read them from `.babelrc` or `package.json` if omitted.
