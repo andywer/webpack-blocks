@@ -20,7 +20,7 @@
   "dependencies": {
     "@webpack-blocks/core": "^1.0.0-alpha",
     "assert-plus": "^1.0.0",
-    "webpack": "^2.2.0"
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "@webpack-blocks/assets": "^1.0.0-alpha",
@@ -33,24 +33,24 @@
     "@webpack-blocks/tslint": "^1.0.0-alpha",
     "@webpack-blocks/typescript": "^1.0.0-alpha",
     "ava": "^0.18.2",
-    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "awesome-typescript-loader": "^3.1.3",
     "babel-loader": "^6.4.1",
     "css-loader": "^0.28.4",
     "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.4",
-    "elm-webpack-loader": "^4.3.0",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "jsdom": "^9.9.1",
+    "elm-webpack-loader": "^4.3.1",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "jsdom": "^9.12.0",
     "mz": "^2.6.0",
     "node-sass": "^4.5.3",
-    "postcss-loader": "^1.2.0",
+    "postcss-loader": "^1.3.3",
     "precss": "^1.4.0",
     "sass-loader": "^6.0.5",
     "sinon": "^1.17.7",
-    "standard": "^8.1.0",
+    "standard": "^8.6.0",
     "style-loader": "^0.18.2",
-    "tslint": "^4.3.1",
-    "tslint-loader": "^3.3.0",
+    "tslint": "^4.5.1",
+    "tslint-loader": "^3.5.3",
     "typescript": "^2.3.4"
   }
 }

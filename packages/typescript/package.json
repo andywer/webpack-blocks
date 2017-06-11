@@ -23,6 +23,6 @@
     "typescript": "^2.3.4"
   },
   "devDependencies": {
-    "standard": "^8.1.0"
+    "standard": "^8.6.0"
   }
 }

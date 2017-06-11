@@ -22,11 +22,11 @@
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "style-loader": "^0.18.2",
-    "url-loader": "^0.5.7"
+    "url-loader": "^0.5.8"
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0-alpha",
     "ava": "^0.19.1",
-    "standard": "^8.1.0"
+    "standard": "^8.6.0"
   }
 }

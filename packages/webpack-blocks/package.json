@@ -28,6 +28,6 @@
     "@webpack-blocks/webpack": "^1.0.0-alpha"
   },
   "devDependencies": {
-    "standard": "^8.1.0"
+    "standard": "^8.6.0"
   }
 }

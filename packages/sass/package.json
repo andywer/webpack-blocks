@@ -25,6 +25,6 @@
     "style-loader": "^0.18.2"
   },
   "devDependencies": {
-    "standard": "^8.1.0"
+    "standard": "^8.6.0"
   }
 }
