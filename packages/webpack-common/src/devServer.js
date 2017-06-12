@@ -95,7 +95,7 @@ function reactHot (options = {}) {
       loaders: [{
         test: context.fileType('application/javascript'),
         exclude: Array.isArray(exclude) ? exclude : [ exclude ],
-        loaders: [ 'react-hot' ]
+        loaders: [ 'react-hot-loader/webpack' ]
       }]
     }
   })
