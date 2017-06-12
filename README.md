@@ -16,7 +16,7 @@ Missing anything? Write your own and share them!
 
 We are quickly heading towards to webpack-blocks 1.0 release. You can find the 1.0 readme in the [release/1.0 branch](https://github.com/andywer/webpack-blocks/tree/release/1.0).
 
-You can already try the alpha release. If so, please make sure to leave a short comment in [The 1.0 Experience](https://github.com/andywer/webpack-blocks/issues/153). It's much appreciated!
+Try the beta release; install using `npm install webpack-blocks@next`. Please make sure to leave a short comment in [The 1.0 Experience](https://github.com/andywer/webpack-blocks/issues/153). It's much appreciated!
 
 
 ## Installation
