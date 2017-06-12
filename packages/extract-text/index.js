@@ -10,16 +10,21 @@ module.exports = extractText
 
 /**
  * @param {string}    outputFilePattern
+ * @param {string}    [fileType]          Deprecated
  * @return {Function}
  */
-function extractText (outputFilePattern = 'css/[name].[contenthash:8].css') {
+function extractText (outputFilePattern = 'css/[name].[contenthash:8].css', fileType = null) {
   const plugin = new ExtractTextPlugin(outputFilePattern)
+
+  if (fileType) {
+    console.warn(`extractText(): You are using the deprecated 'fileType' parameter. Use match() instead.`)
+  }
 
   const postHook = (context, util) => prevConfig => {
     let nextConfig = prevConfig
 
     // Only apply to loaders in the same `match()` group or css loaders if there is no `match()`
-    const ruleToMatch = context.match || { test: /\.css$/ }
+    const ruleToMatch = context.match || { test: fileType ? context.fileType(fileType) : /\.css$/ }
     const matchingLoaderRules = getMatchingLoaderRules(ruleToMatch, prevConfig)
 
     if (matchingLoaderRules.length === 0) {
