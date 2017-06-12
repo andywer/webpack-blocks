@@ -3,6 +3,7 @@
 ## 1.0.0-beta
 
 - Use `match()` instead of passing an `exclude` option
+- Updated `babel-loader` from 6.x to 7.0, but sticking to babel 6.x
 
 ## 1.0.0-alpha
 

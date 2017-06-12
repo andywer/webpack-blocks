@@ -20,7 +20,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "babel-core": "^6.25.0",
-    "babel-loader": "^6.4.1"
+    "babel-loader": "^7.0.0"
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0-beta",
