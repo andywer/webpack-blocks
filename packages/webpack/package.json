@@ -34,7 +34,7 @@
     "@webpack-blocks/typescript": "^1.0.0-beta",
     "ava": "^0.18.2",
     "awesome-typescript-loader": "^3.1.3",
-    "babel-loader": "^6.4.1",
+    "babel-loader": "^7.0.0",
     "css-loader": "^0.28.4",
     "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.4",
