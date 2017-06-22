@@ -52,6 +52,34 @@ module.exports = createConfig([
 Make sure you use the `extract-text` block *after* the `sass` block.
 
 
+## CSS Modules
+
+You can use SASS/SCSS in combination with CSS modules. It will allow you to use all the fancy syntactic sugar while yielding local-scoped CSS classes.
+
+```js
+module.exports = createConfig([
+  match('*.scss', [
+    sass(),
+    css.modules()
+  ])
+])
+```
+
+
+## PostCSS
+
+Of course you can use the SASS block together with PostCSS and its plugins, like the famous autoprefixer.
+
+```js
+module.exports = createConfig([
+  match('*.scss', [
+    sass(),
+    postcss()
+  ])
+])
+```
+
+
 ## Webpack blocks
 
 Check out the
