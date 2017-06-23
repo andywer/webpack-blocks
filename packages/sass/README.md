@@ -54,7 +54,7 @@ Make sure you use the `extract-text` block *after* the `sass` block.
 
 ## CSS Modules
 
-You can use SASS/SCSS in combination with CSS modules. It will allow you to use all the fancy syntactic sugar while yielding local-scoped CSS classes.
+You can use SASS/SCSS in combination with CSS modules.
 
 ```js
 module.exports = createConfig([
@@ -68,7 +68,7 @@ module.exports = createConfig([
 
 ## PostCSS
 
-Of course you can use the SASS block together with PostCSS and its plugins, like the famous autoprefixer.
+You can use the SASS block together with PostCSS and its plugins, like the autoprefixer.
 
 ```js
 module.exports = createConfig([
