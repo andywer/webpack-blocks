@@ -19,8 +19,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "@webpack-blocks/core": "^1.0.0-beta",
-    "assert-plus": "^1.0.0",
-    "webpack": "^2.6.1"
+    "assert-plus": "^1.0.0"
   },
   "devDependencies": {
     "@webpack-blocks/assets": "^1.0.0-beta",
@@ -51,6 +50,10 @@
     "style-loader": "^0.18.2",
     "tslint": "^4.5.1",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.3.4"
+    "typescript": "^2.3.4",
+    "webpack": "^3.0.0"
+  },
+  "peerDependencies": {
+    "webpack": "2.x || 3.x"
   }
 }
