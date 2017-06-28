@@ -80,10 +80,6 @@ Every constant's value is `JSON.stringify()`-ed first, so you don't have to reme
 
 Special feature: Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
 
-#### webpack: object
-
-Same as `require('webpack')`.
-
 ---
 
 #### addPlugins(plugins: WebpackPlugin[])
