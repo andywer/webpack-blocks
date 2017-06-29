@@ -15,7 +15,6 @@ const webpackVersion = parseVersion(require('webpack/package.json').version)
 exports.env = core.env
 exports.group = core.group
 exports.match = core.match
-exports.webpack = webpack
 
 exports.createConfig = createConfig
 
