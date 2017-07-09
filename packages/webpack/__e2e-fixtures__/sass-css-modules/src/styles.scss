@@ -1,0 +1,10 @@
+$HOVER_COLOR: #ff0000;
+$MARGIN: 10px;
+
+.myClass {
+  margin: $MARGIN;
+
+  &:hover {
+    color: $HOVER_COLOR;
+  }
+}
