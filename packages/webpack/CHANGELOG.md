@@ -1,5 +1,10 @@
 # @webpack-blocks/webpack - Changelog
 
+## 1.0.0-beta.2
+
+- Made webpack a peer dependency ([#169](https://github.com/andywer/webpack-blocks/issues/169))
+- Made compatible with webpack v3 ([#169](https://github.com/andywer/webpack-blocks/issues/169))
+
 ## 1.0.0-beta
 
 - Added `match()`
