@@ -1,5 +1,9 @@
 # @webpack-blocks/dev-server - Changelog
 
+## 1.0.0-beta.2
+
+- Make `webpack` a peer dependency, make compatible with webpack v3 ([#174](https://github.com/andywer/webpack-blocks/pull/174))
+
 ## 1.0.0-beta
 
 - Make `reactHot` support `match()`
