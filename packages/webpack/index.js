@@ -7,6 +7,7 @@
 const assert = require('assert-plus')
 const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
 const path = require('path')
 const parseVersion = require('./lib/parseVersion')
 
@@ -116,7 +117,10 @@ function performance (performanceBudget) {
  * @see https://webpack.js.org/configuration/resolve/
  */
 function resolve (config) {
-  return (context, util) => util.merge({
+  const strategy = { 'resolve.extensions': 'prepend' }
+  const merge = webpackMerge.smartStrategy(strategy)
+
+  return () => prevConfig => merge(prevConfig, {
     resolve: config
   })
 }
