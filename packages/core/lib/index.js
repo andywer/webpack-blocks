@@ -11,6 +11,17 @@ exports.match = match
 const isFunction = value => typeof value === 'function'
 
 /**
+ * Asserts that given param is an array of functions.
+ *
+ * @param {Function[]} configSetters Array of functions as returned by webpack blocks.
+ */
+function assertConfigSetters (configSetters) {
+  if (!Array.isArray(configSetters) || !configSetters.every(isFunction)) {
+    throw new Error('Expected parameter \'configSetters\' to be an array of functions.')
+  }
+}
+
+/**
  * Takes an array of webpack blocks and creates a webpack config out of them.
  * Each webpack block is a callback function which will be invoked to return a
  * partial webpack config. These partial configs are merged to create the
@@ -26,9 +37,7 @@ function createConfig (initialContext, configSetters) {
   if (!initialContext) {
     throw new Error(`No initial context passed.`)
   }
-  if (!Array.isArray(configSetters) || !configSetters.every(isFunction)) {
-    throw new Error(`Expected parameter 'configSetters' to be an array of functions.`)
-  }
+  assertConfigSetters(configSetters)
 
   /** @deprecated context.fileType */
   const fileType = createFileTypesMapping(defaultFileTypes)
@@ -61,6 +70,8 @@ function createConfig (initialContext, configSetters) {
  * @return {Function}
  */
 function env (envName, configSetters) {
+  assertConfigSetters(configSetters)
+
   const currentEnv = process.env.NODE_ENV || 'development'
 
   if (currentEnv !== envName) {
@@ -78,6 +89,8 @@ function env (envName, configSetters) {
  * @return {Function}
  */
 function group (configSetters) {
+  assertConfigSetters(configSetters)
+
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
@@ -102,6 +115,8 @@ function match (test, options, configSetters) {
     configSetters = options
     options = {}
   }
+
+  assertConfigSetters(configSetters)
 
   const match = { test: createFileTypeMatcher(test) }
 
