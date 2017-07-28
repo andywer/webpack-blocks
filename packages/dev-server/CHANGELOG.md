@@ -1,5 +1,9 @@
 # @webpack-blocks/dev-server - Changelog
 
+## 1.0.0-beta.3
+
+- Update `webpack-dev-server` to v2.6.1, now compatible with webpack v3 ([#179](https://github.com/andywer/webpack-blocks/issues/179))
+
 ## 1.0.0-beta.2
 
 - Make `webpack` a peer dependency, make compatible with webpack v3 ([#174](https://github.com/andywer/webpack-blocks/pull/174))
