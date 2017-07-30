@@ -1,6 +1,6 @@
 import test from 'ava'
 import path from 'path'
-import { createConfig, entryPoint, match, setOutput, sourceMaps } from '../index'
+import { createConfig, entryPoint, match, setOutput, sourceMaps, resolve } from '../index'
 import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel6'
 import devServer from '@webpack-blocks/dev-server'
@@ -176,4 +176,16 @@ test('context contains necessary properties', t => {
       return prevConfig => prevConfig
     }
   ])
+})
+
+test('prepends custom extension to default ones', t => {
+  const expectedExtensionOrder = ['.custom.js', '.js', '.json']
+
+  const webpackConfig = createConfig([
+    resolve({ extensions: ['.custom.js'] })
+  ])
+
+  const actualExtensions = webpackConfig.resolve.extensions
+
+  t.deepEqual(actualExtensions, expectedExtensionOrder)
 })
