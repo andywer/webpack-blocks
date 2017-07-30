@@ -1,9 +1,5 @@
 # @webpack-blocks/webpack - Changelog
 
-## 1.0.0-beta.4
-
-- Updated `@webpack-blocks/dev-server` to `v1.0.0-beta.3`
-
 ## 1.0.0-beta.3
 
 - Updated `@webpack-blocks/dev-server` to `v1.0.0-beta.2`
