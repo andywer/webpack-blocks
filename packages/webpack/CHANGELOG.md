@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next version
+
+- Make resolve() prepend custom extensions ([#177](https://github.com/andywer/webpack-blocks/issues/177))
+
 ## 1.0.0-beta.2
 
 - Made webpack a peer dependency ([#169](https://github.com/andywer/webpack-blocks/issues/169))
