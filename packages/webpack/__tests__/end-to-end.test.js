@@ -88,6 +88,23 @@ test('building the elm project works', async (t) => {
   require(path.join(buildPath, 'bundle.js'))
 })
 
+test('building the sass/css-modules project works', async (t) => {
+  const projectPath = path.join(fixturesPath, 'sass-css-modules')
+  const buildPath = path.join(projectPath, 'build')
+
+  const config = require(path.join(projectPath, 'webpack.config.js'))
+  await runWebpack(config)
+
+  global.window = await setUpJsdomEnv()
+  global.document = global.window.document
+  require(path.join(buildPath, 'bundle.js'))
+
+  // Check if CSS file contains correct content
+  const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
+  t.truthy(removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+\{margin:10px;\}/))
+  t.truthy(removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+:hover\{color:#ff0000;\}/))
+})
+
 function runWebpack (config) {
   return new Promise((resolve, reject) => {
     webpack(config, (error, stats) => {
