@@ -16,8 +16,15 @@ const isFunction = value => typeof value === 'function'
  * @param {Function[]} configSetters Array of functions as returned by webpack blocks.
  */
 function assertConfigSetters (configSetters) {
-  if (!Array.isArray(configSetters) || !configSetters.every(isFunction)) {
-    throw new Error('Expected parameter \'configSetters\' to be an array of functions.')
+  if (!Array.isArray(configSetters)) {
+    throw new Error(`Expected parameter 'configSetters' to be an array of functions. Instead got ${configSetters}.`)
+  }
+  if (!configSetters.every(isFunction)) {
+    const invalidElementIndex = configSetters.findIndex(setter => !isFunction(setter))
+    throw new Error(
+      `Expected parameter 'configSetters' to be an array of functions. ` +
+      `Element at index ${invalidElementIndex} is invalid: ${configSetters[invalidElementIndex]}.`
+    )
   }
 }
 
