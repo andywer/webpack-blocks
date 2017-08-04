@@ -10,7 +10,6 @@ const {
   performance,
   setOutput,
   sourceMaps,
-  webpack,
 
   // Shorthand setters
   babel,
@@ -21,6 +20,7 @@ const {
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 const developmentConfig = () => group([
   sourceMaps(),
