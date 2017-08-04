@@ -47,7 +47,7 @@
     "babel-register": "^6.24.1",
     "sinon": "^1.17.7",
     "standard": "^8.6.0",
-    "webpack": "^2.6.1"
+    "webpack": "^2.7.0"
   },
   "dependencies": {
     "glob-to-regexp": "^0.3.0",
