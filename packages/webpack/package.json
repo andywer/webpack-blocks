@@ -33,8 +33,8 @@
     "@webpack-blocks/tslint": "^1.0.0-beta",
     "@webpack-blocks/typescript": "^1.0.0-beta",
     "ava": "^0.18.2",
-    "awesome-typescript-loader": "^3.1.3",
-    "babel-loader": "^7.0.0",
+    "awesome-typescript-loader": "^3.2.2",
+    "babel-loader": "^7.1.1",
     "css-loader": "^0.28.4",
     "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.4",
@@ -45,14 +45,14 @@
     "node-sass": "^4.5.3",
     "postcss-loader": "^1.3.3",
     "precss": "^1.4.0",
-    "sass-loader": "^6.0.5",
+    "sass-loader": "^6.0.6",
     "sinon": "^1.17.7",
     "standard": "^8.6.0",
     "style-loader": "^0.18.2",
     "tslint": "^4.5.1",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.3.4",
-    "webpack": "^3.0.0"
+    "typescript": "^2.4.2",
+    "webpack": "^3.4.1"
   },
   "peerDependencies": {
     "webpack": "2.x || 3.x"
