@@ -4,7 +4,6 @@
  * @see https://webpack.github.io/docs/configuration.html
  */
 
-const assert = require('assert-plus')
 const core = require('@webpack-blocks/core')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
@@ -43,7 +42,6 @@ exports.sourceMaps = sourceMaps
  * @return {object}                   Webpack config object.
  */
 function createConfig (configSetters) {
-  assert.arrayOfFunc(configSetters, '1st param passed to createConfig.vanilla() must be an array of functions.')
   return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
 }
 
