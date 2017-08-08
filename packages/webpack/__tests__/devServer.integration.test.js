@@ -4,9 +4,27 @@ const devServer = require('@webpack-blocks/dev-server')
 const { entryPoint } = require('../index')
 
 const webpack = {
-  // Cannot use shorthand notation, since this would cause an 'is not a constructor' error
-  HotModuleReplacementPlugin: function HotModuleReplacementPlugin () {},
-  NamedModulesPlugin: function NamedModulesPlugin () {}
+  HotModuleReplacementPlugin: class HotModuleReplacementPlugin {},
+  NamedModulesPlugin: class NamedModulesPlugin {}
+}
+
+const commonConfig = {
+  stats: {
+    children: false,
+    chunks: false,
+    modules: false,
+    reasons: false
+  },
+  module: {
+    rules: []
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ],
+  resolve: {
+    extensions: ['.js', '.json']
+  }
 }
 
 test('devServer() without options provides expected defaults', (t) => {
@@ -17,7 +35,7 @@ test('devServer() without options provides expected defaults', (t) => {
     devServer()
   ])
 
-  t.deepEqual(config, {
+  t.deepEqual(config, Object.assign(commonConfig, {
     entry: {
       main: ['./test.js']
     },
@@ -26,18 +44,8 @@ test('devServer() without options provides expected defaults', (t) => {
       hotOnly: true,
       historyApiFallback: true,
       inline: true
-    },
-    module: {
-      rules: []
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
-    ],
-    resolve: {
-      extensions: ['.js', '.json']
     }
-  })
+  }))
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
 
@@ -53,7 +61,7 @@ test('devServer() uses custom options and can be composed', (t) => {
     devServer('some-entry-point')
   ])
 
-  t.deepEqual(config, {
+  t.deepEqual(config, Object.assign(commonConfig, {
     entry: {
       main: ['./test.js', 'some-entry-point'],
       second: ['./second.js', 'some-entry-point']
@@ -63,18 +71,8 @@ test('devServer() uses custom options and can be composed', (t) => {
       hotOnly: true,
       historyApiFallback: true,
       inline: false
-    },
-    module: {
-      rules: []
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
-    ],
-    resolve: {
-      extensions: ['.js', '.json']
     }
-  })
+  }))
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
 
