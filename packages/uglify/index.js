@@ -19,8 +19,6 @@ function uglify (options = {}) {
       cache: true
     },
     uglifyOptions: {
-      ie8: false,
-      ecma: 5,
       compress: {
         warnings: false
       }
