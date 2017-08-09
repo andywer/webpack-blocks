@@ -11,11 +11,12 @@ Based on [uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-w
 ## Usage
 
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
-const uglify = require('@webpack-blocks/uglify')
+const { createConfig, env, uglify } = require('webpack-blocks')
 
 module.exports = createConfig([
-  uglify(/* options */)
+  env('production', [
+    uglify(/* options */)
+  ])
 ])
 ```
 
@@ -35,8 +36,6 @@ By default generates this configuration:
         cache: true
       },
       uglifyOptions: {
-        ie8: false,
-        ecma: 5,
         compress: {
           warnings: false
         }

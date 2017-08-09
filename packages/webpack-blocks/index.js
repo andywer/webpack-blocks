@@ -5,6 +5,7 @@ const extractText = require('@webpack-blocks/extract-text')
 const postcss = require('@webpack-blocks/postcss')
 const sass = require('@webpack-blocks/sass')
 const typescript = require('@webpack-blocks/typescript')
+const uglify = require('@webpack-blocks/uglify')
 const webpack = require('@webpack-blocks/webpack')
 
 module.exports = Object.assign(
@@ -17,6 +18,7 @@ module.exports = Object.assign(
     extractText,
     postcss,
     sass,
-    typescript
+    typescript,
+    uglify
   }
 )
