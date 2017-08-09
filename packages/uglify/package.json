@@ -4,7 +4,7 @@
   "description": "Webpack block for UglifyJS",
   "main": "index",
   "license": "MIT",
-  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "author": "Artem Sapegin <artem@sapegin.ru>",
   "scripts": {
     "test": "ava && standard",
     "prepublish": "npm test"
