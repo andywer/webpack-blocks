@@ -43,7 +43,9 @@ test('devServer() without options provides expected defaults', (t) => {
       hot: true,
       hotOnly: true,
       historyApiFallback: true,
-      inline: true
+      inline: true,
+      clientLogLevel: 'none',
+      stats: 'errors-only'
     }
   }))
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
@@ -70,7 +72,9 @@ test('devServer() uses custom options and can be composed', (t) => {
       hot: true,
       hotOnly: true,
       historyApiFallback: true,
-      inline: false
+      inline: false,
+      clientLogLevel: 'none',
+      stats: 'errors-only'
     }
   }))
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)

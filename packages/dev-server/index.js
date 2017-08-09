@@ -47,7 +47,11 @@ function postConfig (context, util) {
         hot: true,
         hotOnly: true,
         historyApiFallback: true,
-        inline: true
+        inline: true,
+        // Disable verbose loggin in browser’s console
+        clientLogLevel: 'none',
+        // Do not print chunks list on every compilation, only print errors
+        stats: 'errors-only'
       }, context.devServer.options),
       entry: addDevEntryToAll(prevConfig.entry || {}, entryPointsToAdd),
       plugins: [
