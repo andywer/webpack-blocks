@@ -2,7 +2,7 @@
 
 Functional building blocks for your webpack config: easier way to configure webpack and to share configuration between projects.
 
-Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, *TypeScript*, etc., as well as best practices like extracting CSS or — all with just one line of configuration.
+Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, *TypeScript*, etc., as well as best practices like extracting CSS — all with just one line of configuration.
 
 [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
