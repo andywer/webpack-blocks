@@ -294,7 +294,7 @@ block's partial config.
 <details>
 <summary>How to compose blocks?</summary>
 
-Got some projects with similar, yet not identical webpack configurations? Create a “preset”, a function that returns a `group` of blocks so you could reuse it in multiple projects:
+Got some projects with similar, yet not identical webpack configurations? Create a “preset”, a function that returns a `group` of blocks so you can reuse it in multiple projects:
 
 ```js
 const { createConfig, env, group, babel, devServer } = require('webpack-blocks')
