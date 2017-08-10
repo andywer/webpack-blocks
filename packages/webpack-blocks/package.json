@@ -25,6 +25,7 @@
     "@webpack-blocks/postcss": "^1.0.0-beta",
     "@webpack-blocks/sass": "^1.0.0-beta",
     "@webpack-blocks/typescript": "^1.0.0-beta",
+    "@webpack-blocks/uglify": "^1.0.0",
     "@webpack-blocks/webpack": "^1.0.0-beta.2"
   },
   "devDependencies": {

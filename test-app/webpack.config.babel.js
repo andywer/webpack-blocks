@@ -16,7 +16,8 @@ const {
   css,
   devServer,
   extractText,
-  typescript
+  typescript,
+  uglify
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -37,20 +38,11 @@ const developmentConfig = () => group([
 
 const productionConfig = () => group([
   extractText(),
+  uglify(),
   addPlugins([
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      },
-      screwIe8: true,
-      sourceMap: false
     })
   ])
 ])

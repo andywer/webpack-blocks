@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next version
+
+- Add `@webpack-blocks/uglify`
+
 ## 1.0.0-beta.3
 
 - Updated `@webpack-blocks/dev-server` to `v1.0.0-beta.2`

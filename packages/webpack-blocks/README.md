@@ -20,9 +20,11 @@ const {
   css,
   defineConstants,
   entryPoint,
+  env,
   extractText,
   match,
   setOutput,
+  uglify,
   webpack
 } = require('webpack-blocks')
 
@@ -39,6 +41,9 @@ module.exports = createConfig([
   ]),
   addPlugins([
     new webpack.LoaderOptionsPlugin({ minimize: true })
+  ]),
+  env('production', [
+    uglify()
   ])
 ])
 ```
@@ -52,6 +57,7 @@ module.exports = createConfig([
 * [postcss](https://github.com/andywer/webpack-blocks/tree/master/packages/postcss)
 * [sass](https://github.com/andywer/webpack-blocks/tree/master/packages/sass)
 * [typescript](https://github.com/andywer/webpack-blocks/tree/master/packages/typescript)
+* [uglify](https://github.com/andywer/webpack-blocks/tree/master/packages/uglify)
 * [webpack](https://github.com/andywer/webpack-blocks/tree/master/packages/webpack)
 
 
