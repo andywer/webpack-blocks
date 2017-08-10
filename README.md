@@ -208,12 +208,12 @@ So make sure you set the NODE_ENV accordingly:
 ```js
 // your package.json
 "scripts": {
-  "build": "NODE_ENV=production webpack",
-  "start": "NODE_ENV=development webpack-dev-server"
+  "build": "cross-env NODE_ENV=production webpack",
+  "start": "cross-env NODE_ENV=development webpack-dev-server"
 }
 ```
 
-If there is no NODE_ENV set then it will treat NODE_ENV as if it was `development`.
+If there is no NODE_ENV set then it will treat NODE_ENV as if it was `development`. Use [cross-env](https://github.com/kentcdodds/cross-env) to make it work on all platforms.
 </details>
 
 <details>
