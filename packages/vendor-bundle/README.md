@@ -26,9 +26,13 @@ Name of the main bundle of your app.
 
 Output bundle file name.
 
-#### minChunks *(default: 5)*
+#### minChunks *(default: 1)*
 
 Minimal number of chunks to include dependency into the bundle.
+
+#### exclude *(optional)*, string, array of strings, RegExp or array of RegExps
+
+Modules to exclude from the bundle.
 
 ## Generated webpack config
 
@@ -41,10 +45,10 @@ By default generates this configuration:
       name: 'main',
       filename: 'vendor.[chunkhash].js',
       children: true,
-      minChunks (module, count) {
-        return module.context && module.context.includes('node_modules') &&
-                module.request.endsWith('.js') &&
-                count >= 5
+      minChunks ({ userRequest }, count) {
+        return userRequest && userRequest.includes('node_modules') &&
+                userRequest.endsWith('.js') &&
+                count >= options.minChunks
       }
     })
   ]
