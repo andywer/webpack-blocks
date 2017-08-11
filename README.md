@@ -1,10 +1,8 @@
 # webpack-blocks
 
-Functional building blocks for the webpack config. Compose it using feature middlewares like *Babel*, *PostCSS*, *HMR&nbsp;(Hot&nbsp;Module&nbsp;Replacement)*, …
+Functional building blocks for your webpack config: easier way to configure webpack and to share configuration between projects.
 
-Divide & conquer your configuration - Cluster your blocks to groups and compose these groups.
-
-Missing anything? Write your own blocks and share them!
+Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, *TypeScript*, etc., as well as best practices like extracting CSS — all with just one line of configuration.
 
 [![Build Status](https://travis-ci.org/andywer/webpack-blocks.svg?branch=master)](https://travis-ci.org/andywer/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
@@ -34,11 +32,9 @@ yarn add --dev webpack webpack-blocks
 ```
 
 
-## Usage
+## Example
 
-The following sample shows how to create a webpack config with Babel support, dev server and PostCSS autoprefixer.
-
-All blocks, like `babel6`, `postcss` and so on, live in their own small packages. We added the unscoped [webpack-blocks package](./packages/webpack-blocks) that wraps all the most common blocks, so you do not have to manage these micro dependencies.
+The following sample shows how to create a webpack config with Babel support, dev server and Autoprefixer.
 
 ```js
 const {
@@ -52,6 +48,7 @@ const {
   devServer,
   file,
   postcss,
+  uglify,
 
   // Shorthand setters
   addPlugins,
@@ -88,6 +85,7 @@ module.exports = createConfig([
     sourceMaps()
   ]),
   env('production', [
+    uglify(),
     addPlugins([
       new webpack.LoaderOptionsPlugin({ minimize: true })
     ])
@@ -95,26 +93,46 @@ module.exports = createConfig([
 ])
 ```
 
-Wanna use CSS modules? No problem!
+All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), webpack-blocks package wraps them as a single dependency for convenience.
+
+## More Examples
+
+CSS modules:
 
 ```js
-const { css } = require('webpack-blocks')
+const { createConfig, match, css } = require('webpack-blocks')
 
-...
+// ...
 
 module.exports = createConfig([
-  ...
+  // ...
   match('*.css', { exclude: path.resolve('node_modules') }, [
     css.modules()
   ]
 ])
 ```
 
-Need a custom block? A block is quite easy to write:
+TypeScript:
+
+```js
+const { createConfig } = require('webpack-blocks')
+const typescript = require('@webpack-blocks/typescript')
+
+// ...
+
+module.exports = createConfig([
+  // ...
+  typescript()
+])
+```
+
+## Custom Blocks
+
+Need a custom block? A simple block looks like this:
 
 ```js
 module.exports = createConfig([
-  ...
+  // ...
   myCssLoader([ './styles' ])
 ])
 
@@ -150,6 +168,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [sass](./packages/sass)
 - [typescript](./packages/typescript)
 - [tslint](./packages/tslint)
+- [uglify](./packages/uglify)
 - [webpack](./packages/webpack)
 
 Missing something? Write and publish your own webpack blocks!
@@ -166,7 +185,7 @@ Missing something? Write and publish your own webpack blocks!
 <details>
 <summary>How to debug?</summary>
 
-In case the webpack configuration does not work as expected you can easily debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
+In case the webpack configuration does not work as expected you can debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
 
 ```js
 const stringify = require('stringify-object')
@@ -182,35 +201,35 @@ console.log(stringify(module.exports))
 <details>
 <summary>How does env() work?</summary>
 
-You might wonder how `env('development', [ ... ])` works? It just checks the NODE_ENV environment variable and only applies its contained webpack blocks if it matches.
+`env('development', [ ... ])` checks the `NODE_ENV` environment variable and only applies its contained webpack blocks if it matches the given string.
 
 So make sure you set the NODE_ENV accordingly:
 
 ```js
 // your package.json
 "scripts": {
-  "build": "NODE_ENV=production webpack --config webpack.config.js",
-  "start": "NODE_ENV=development webpack-dev-server --config webpack.config.js"
+  "build": "cross-env NODE_ENV=production webpack",
+  "start": "cross-env NODE_ENV=development webpack-dev-server"
 }
 ```
 
-If there is no NODE_ENV set then it will just treat NODE_ENV as if it was `development`.
+If there is no NODE_ENV set then it will treat NODE_ENV as if it was `development`. Use [cross-env](https://github.com/kentcdodds/cross-env) to make it work on all platforms.
 </details>
 
 <details>
 <summary>What does defineConstants() do?</summary>
 
-`defineConstants()` is just a small convenience wrapper around webpack's [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). It is composable and automatically encodes the values. Use it to replace constants in your code by their values at build time.
+`defineConstants()` is a small convenience wrapper around webpack's [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). It is composable and automatically encodes the values. Use it to replace constants in your code by their values at build time.
 
-So having a `defineConstants({ 'process.env.FOO': 'foo' })` and a `defineConstants({ 'process.env.BAR': 'bar' })` in your config means the resulting webpack config will finally contain a single `new webpack.DefinePlugin({ 'process.env.FOO': '"FOO"', 'process.env.BAR': '"BAR"' })`, thus replacing any occurence of `process.env.FOO` and `process.env.BAR` with the given values.
+So having a `defineConstants({ 'process.env.FOO': 'foo' })` and a `defineConstants({ 'process.env.BAR': 'bar' })` in your config means the resulting webpack config will contain a single `new webpack.DefinePlugin({ 'process.env.FOO': '"FOO"', 'process.env.BAR': '"BAR"' })`, thus replacing any occurrence of `process.env.FOO` and `process.env.BAR` with the given values.
 </details>
 
 <details>
 <summary>What does a block look like from the inside?</summary>
 
-A webpack block is *just a function and requires no dependencies at all* (🎉🎉), thus making it easy to write your own blocks and share them with the community.
+A webpack block is *a function and requires no dependencies at all* (🎉🎉), thus making it easy to write your own blocks and share them with your team or the community.
 
-Take the `babel6` webpack block for instance:
+Take the `babel` webpack block for instance:
 
 ```js
 /**
@@ -240,17 +259,17 @@ For more details see [How to write a block](./docs/BLOCK-CREATION.md).
 <details>
 <summary>I need some custom webpack config snippet!</summary>
 
-No problem. If you don't want to write your own webpack block you can just use `customConfig()`:
+No problem. If you don't want to write your own webpack block you can use `customConfig()`:
 
 ```js
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { addPlugins, customConfig } = require('@webpack-blocks/webpack')
 
-...
+// ...
 
 module.exports = createConfig([
-  ...
+  // ...
   addPlugins([
     // Add a custom webpack plugin
     new HtmlWebpackPlugin({
@@ -273,14 +292,12 @@ block's partial config.
 </details>
 
 <details>
-<summary>How to compose blocks? (a.k.a. building presets)</summary>
+<summary>How to compose blocks?</summary>
 
-Got some projects with a similar, yet not identical webpack configuration? Seems like you could use a preset:
+Got some projects with similar, yet not identical webpack configurations? Create a “preset”, a function that returns a `group` of blocks so you can reuse it in multiple projects:
 
 ```js
-const { createConfig, env, group } = require('@webpack-blocks/webpack')
-const babel = require('@webpack-blocks/babel6')
-const devServer = require('@webpack-blocks/dev-server')
+const { createConfig, env, group, babel, devServer } = require('webpack-blocks')
 
 function myPreset (proxyConfig) {
   return group([
@@ -296,7 +313,7 @@ module.exports = createConfig([
   myPreset({
     '/api': { target: 'http://localhost:3000' }
   }),
-  ...   // add more blocks here
+  // add more blocks here
 ])
 ```
 
