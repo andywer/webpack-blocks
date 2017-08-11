@@ -44,7 +44,7 @@ test('devServer() without options provides expected defaults', (t) => {
       hotOnly: true,
       historyApiFallback: true,
       inline: true,
-      clientLogLevel: 'none',
+      clientLogLevel: 'error',
       stats: 'errors-only'
     }
   }))
@@ -73,7 +73,7 @@ test('devServer() uses custom options and can be composed', (t) => {
       hotOnly: true,
       historyApiFallback: true,
       inline: false,
-      clientLogLevel: 'none',
+      clientLogLevel: 'error',
       stats: 'errors-only'
     }
   }))

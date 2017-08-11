@@ -111,7 +111,7 @@ test('complete webpack config creation', t => {
     hotOnly: true,
     historyApiFallback: true,
     inline: true,
-    clientLogLevel: 'none',
+    clientLogLevel: 'error',
     stats: 'errors-only',
     proxy: {
       '/api/*': { target: 'http://localhost:8080' }
