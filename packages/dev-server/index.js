@@ -49,6 +49,7 @@ function postConfig (context, util) {
         historyApiFallback: true,
         inline: true,
         // Disable verbose loggin in browser’s console
+        // It will still show compile warnings and errors
         clientLogLevel: 'none',
         // Do not print chunks list on every compilation, only print errors
         stats: 'errors-only'
