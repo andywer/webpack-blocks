@@ -15,11 +15,14 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Available webpack blocks](#available-webpack-blocks)
-- [Design principles](#design-principles)
+- [Example](#example)
+- [More Examples](#more-example)
+- [Custom Blocks](#custom-blocks)
+- [Available Webpack Blocks](#available-webpack-blocks)
+- [Third-party Blocks](#third-party-blocks)
+- [Design Principles](#design-principles)
 - [FAQ](#faq)
-- [Like what you see?](#like-what-you-see)
+- [Like What You See?](#like-what-you-see)
 - [License](#license)
 
 
@@ -158,22 +161,34 @@ If we use `myCssLoader` in `match()` then `context.match` will be populated with
 Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
 
-## Available webpack blocks
+## Available Webpack Blocks
 
 - [assets](./packages/assets)
 - [babel6](./packages/babel6)
 - [dev-server](./packages/dev-server)
+- [elm](./packages/elm)
 - [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
-- [typescript](./packages/typescript)
 - [tslint](./packages/tslint)
+- [typescript](./packages/typescript)
 - [uglify](./packages/uglify)
 - [webpack](./packages/webpack)
 
+
+## Third-party Blocks
+
+- [webpack-blocks-happypack](https://github.com/diegohaz/webpack-blocks-happypack) — HappyPack
+- [webpack-blocks-purescript](https://github.com/ecliptic/webpack-blocks-purescript) — PureScript
+- [webpack-blocks-server-source-map](https://github.com/diegohaz/webpack-blocks-server-source-map) — source map for server bundle
+- [webpack-blocks-split-vendor](https://github.com/diegohaz/webpack-blocks-split-vendor) — vendor bundle
+- [webpack-blocks-ts](https://github.com/foxbunny/webpack-blocks-ts) — TypeScript using ts-loader instead of awesome-typescript-loader
+- [webpack-blocks-vue](https://github.com/foxbunny/webpack-blocks-vue) — Vue
+
 Missing something? Write and publish your own webpack blocks!
 
-## Design principles
+
+## Design Principles
 
 - Extensibility first
 - Uniformity for easy composition
