@@ -3,6 +3,26 @@ import sinon from 'sinon'
 import { createConfig } from '../index'
 import blockHelpers from '../blockUtils'
 
+const defaultConfig = {
+  distinct1: 'distinct1',
+  distinct2: 'distinct2',
+  distinct3: 'distinct3',
+  shared: 'shared3',
+  resolve: {
+    extensions: ['.js', '.json']
+  },
+  stats: {
+    children: false,
+    chunks: false,
+    modules: false,
+    reasons: false
+  },
+  module: {
+    rules: []
+  },
+  plugins: []
+}
+
 test('createConfig() invokes blocks (config setters)', (t) => {
   const block1 = () => prevConfig => ({
     ...prevConfig,
@@ -22,19 +42,7 @@ test('createConfig() invokes blocks (config setters)', (t) => {
 
   const resultingConfig = createConfig({}, [ block1, block2, block3 ])
 
-  t.deepEqual(resultingConfig, {
-    distinct1: 'distinct1',
-    distinct2: 'distinct2',
-    distinct3: 'distinct3',
-    shared: 'shared3',
-    resolve: {
-      extensions: ['.js', '.json']
-    },
-    module: {
-      rules: []
-    },
-    plugins: []
-  })
+  t.deepEqual(resultingConfig, defaultConfig)
 })
 
 test('createConfig() invokes pre hooks', (t) => {
@@ -89,19 +97,7 @@ test('createConfig() invokes post hooks', (t) => {
   })
 
   const resultingConfig = createConfig({}, [ block1, block2, block3 ])
-  t.deepEqual(resultingConfig, {
-    distinct1: 'distinct1',
-    distinct2: 'distinct2',
-    distinct3: 'distinct3',
-    shared: 'shared3',
-    resolve: {
-      extensions: ['.js', '.json']
-    },
-    module: {
-      rules: []
-    },
-    plugins: []
-  })
+  t.deepEqual(resultingConfig, defaultConfig)
 
   t.is(block1.post.callCount, 1)
   t.is(block2.post.callCount, 1)

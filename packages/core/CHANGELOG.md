@@ -3,6 +3,7 @@
 ## Next version
 
 - More useful error message when passing invalid blocks to `createConfig()` ([#171](https://github.com/andywer/webpack-blocks/issues/171))
+- Less noisy default options
 
 ## 1.0.0-beta
 

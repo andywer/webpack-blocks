@@ -111,6 +111,8 @@ test('complete webpack config creation', t => {
     hotOnly: true,
     historyApiFallback: true,
     inline: true,
+    clientLogLevel: 'error',
+    stats: 'errors-only',
     proxy: {
       '/api/*': { target: 'http://localhost:8080' }
     }
@@ -124,7 +126,7 @@ test('complete webpack config creation', t => {
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve'
+    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve', 'stats'
   ])
 })
 
@@ -144,6 +146,12 @@ test('createConfig() creates a minimal configuration', t => {
     output: {
       filename: 'bundle.js',
       path: path.resolve('./build')
+    },
+    stats: {
+      children: false,
+      chunks: false,
+      modules: false,
+      reasons: false
     },
     plugins: [],
     resolve: {

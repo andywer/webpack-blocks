@@ -55,6 +55,13 @@ function createConfig (initialContext, configSetters) {
       // Explicitly define default extensions, otherwise blocks will overwrite them instead of extending
       extensions: ['.js', '.json']
     },
+    // Less noisy than default settings
+    stats: {
+      children: false,
+      chunks: false,
+      modules: false,
+      reasons: false
+    },
     module: {
       rules: []
     },
