@@ -1,9 +1,9 @@
-# How to Test Blocks
+# How to test blocks
 
 Short summary: prefer integration tests instead of unit tests. End-to-end tests are even more convincing, but require more effort. So focus on integration tests and maybe add some end-to-end tests for the most critical bits.
 
 
-## Unit Tests
+## Unit tests
 
 Let's start with unit tests. You may find the following flow chart useful:
 
@@ -21,7 +21,7 @@ Is the block just a helper that sets config, but adds no loaders or plugins?
 It is often a good idea to skip writing unit tests for blocks and focus on integration tests instead. The moment you need to rewrite your unit test because you moved some block logic into a post hook you will know why you should have written an integration test instead.
 
 
-## Integration Tests
+## Integration tests
 
 In this context integration tests are tests that actually run `createConfig()` on the block and possibly other blocks to check if the created configuration matches the expected output.
 
@@ -58,7 +58,7 @@ Even if you feed `createConfig()` nothing more than your block it is still an in
 The benefit compared to unit testing is that this way you focus on testing the block's output, not its implementation details, like if the configuration is changed by the block's main code or a post hook.
 
 
-## End-to-end Tests
+## End-to-end tests
 
 Integration testing is a convenient way to quickly find regressions. But the confidence that the block will actually work in a real-world use case is still quite limited.
 

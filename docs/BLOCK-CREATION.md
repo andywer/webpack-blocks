@@ -7,10 +7,10 @@ Skip the *Hooks* section if you are in a hurry. You can create a lot of cool stu
 Read the *Basics*. You can come back and read more if you are stuck or wondering why it works this way.
 
 
-## Table of Contents
+## Table of contents
 
 - [Basics](#basics)
-- [Block Utilities](#block-utilities)
+- [Block utilities](#block-utilities)
 - [Context](#context)
 - [Hooks](#hooks)
 - [Testing](#testing)
@@ -53,7 +53,7 @@ function babel (options = { cacheDirectory: true }) {
 Thus it is also pretty easy to unit test and generic enough to share it with the world.
 
 
-## Block Utilities
+## Block utilities
 
 You might have recognized the second paramter `util` in the last example's block function. It is an object containing some convenience functions to make common tasks easier.
 
@@ -194,7 +194,7 @@ So this is what happens under the hood when `createConfig()` processes the block
 
 That's it. The resulting merged config object is createConfig's return value.
 
-### Best practices / Pitfalls
+### Best practices and pitfalls
 
 #### Static pre/post functions
 
