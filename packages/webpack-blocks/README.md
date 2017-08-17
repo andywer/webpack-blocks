@@ -65,6 +65,6 @@ module.exports = createConfig([
 
 Check out the
 
-👉 [Main Documentation](https://github.com/andywer/webpack-blocks)
+👉 [Main documentation](https://github.com/andywer/webpack-blocks)
 
 Released under the terms of the MIT license.

@@ -12,6 +12,6 @@ This is the core library. Not meant to be used manually.
 
 Check out the
 
-👉 [Main Documentation](https://github.com/andywer/webpack-blocks)
+👉 [Main documentation](https://github.com/andywer/webpack-blocks)
 
 Released under the terms of the MIT license.
