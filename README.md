@@ -12,17 +12,17 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
 
-## Table of Contents
+## Table of contents
 
 - [Installation](#installation)
 - [Example](#example)
-- [More Examples](#more-example)
-- [Custom Blocks](#custom-blocks)
-- [Available Webpack Blocks](#available-webpack-blocks)
-- [Third-party Blocks](#third-party-blocks)
-- [Design Principles](#design-principles)
+- [More examples](#more-example)
+- [Custom blocks](#custom-blocks)
+- [Available webpack blocks](#available-webpack-blocks)
+- [Third-party blocks](#third-party-blocks)
+- [Design principles](#design-principles)
 - [FAQ](#faq)
-- [Like What You See?](#like-what-you-see)
+- [Like what you see?](#like-what-you-see)
 - [License](#license)
 
 
@@ -98,7 +98,7 @@ module.exports = createConfig([
 
 All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), webpack-blocks package wraps them as a single dependency for convenience.
 
-## More Examples
+## More examples
 
 CSS modules:
 
@@ -129,7 +129,7 @@ module.exports = createConfig([
 ])
 ```
 
-## Custom Blocks
+## Custom blocks
 
 Need a custom block? A simple block looks like this:
 
@@ -161,7 +161,7 @@ If we use `myCssLoader` in `match()` then `context.match` will be populated with
 Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
 
-## Available Webpack Blocks
+## Available webpack blocks
 
 - [assets](./packages/assets)
 - [babel6](./packages/babel6)
@@ -176,7 +176,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [webpack](./packages/webpack)
 
 
-## Third-party Blocks
+## Third-party blocks
 
 - [webpack-blocks-happypack](https://github.com/diegohaz/webpack-blocks-happypack) — HappyPack
 - [webpack-blocks-purescript](https://github.com/ecliptic/webpack-blocks-purescript) — PureScript
@@ -188,7 +188,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 Missing something? Write and publish your own webpack blocks!
 
 
-## Design Principles
+## Design principles
 
 - Extensibility first
 - Uniformity for easy composition
