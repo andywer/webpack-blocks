@@ -12,11 +12,14 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 >[Dan Abramov](https://github.com/gaearon) via [twitter](https://twitter.com/dan_abramov/status/806249934399881216) (Co-author of Redux, Create React App and React Hot Loader)
 
 
-## Table of Contents
+## Table of contents
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Example](#example)
+- [More examples](#more-example)
+- [Custom blocks](#custom-blocks)
 - [Available webpack blocks](#available-webpack-blocks)
+- [Third-party blocks](#third-party-blocks)
 - [Design principles](#design-principles)
 - [FAQ](#faq)
 - [Like what you see?](#like-what-you-see)
@@ -95,7 +98,7 @@ module.exports = createConfig([
 
 All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), webpack-blocks package wraps them as a single dependency for convenience.
 
-## More Examples
+## More examples
 
 CSS modules:
 
@@ -126,7 +129,7 @@ module.exports = createConfig([
 ])
 ```
 
-## Custom Blocks
+## Custom blocks
 
 Need a custom block? A simple block looks like this:
 
@@ -163,15 +166,27 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [assets](./packages/assets)
 - [babel6](./packages/babel6)
 - [dev-server](./packages/dev-server)
+- [elm](./packages/elm)
 - [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
-- [typescript](./packages/typescript)
 - [tslint](./packages/tslint)
+- [typescript](./packages/typescript)
 - [uglify](./packages/uglify)
 - [webpack](./packages/webpack)
 
+
+## Third-party blocks
+
+- [webpack-blocks-happypack](https://github.com/diegohaz/webpack-blocks-happypack) — HappyPack
+- [webpack-blocks-purescript](https://github.com/ecliptic/webpack-blocks-purescript) — PureScript
+- [webpack-blocks-server-source-map](https://github.com/diegohaz/webpack-blocks-server-source-map) — source map for server bundle
+- [webpack-blocks-split-vendor](https://github.com/diegohaz/webpack-blocks-split-vendor) — vendor bundle
+- [webpack-blocks-ts](https://github.com/foxbunny/webpack-blocks-ts) — TypeScript using ts-loader instead of awesome-typescript-loader
+- [webpack-blocks-vue](https://github.com/foxbunny/webpack-blocks-vue) — Vue
+
 Missing something? Write and publish your own webpack blocks!
+
 
 ## Design principles
 
