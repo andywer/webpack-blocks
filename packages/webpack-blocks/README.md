@@ -1,9 +1,9 @@
-# Webpack blocks - The convenience package
+# webpack-blocks - the convenience package
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/webpack-blocks.svg)](https://www.npmjs.com/package/webpack-blocks)
 
-This is the webpack blocks convenience package. It wraps all the most commonly used blocks, so you can install just this single package and have webpack blocks and your favorite blocks set up.
+This is the webpack-blocks convenience package. It wraps all the most commonly used blocks, so you can install just this single package and have webpack-blocks and your favorite blocks set up.
 
 
 ## Usage
@@ -48,7 +48,7 @@ module.exports = createConfig([
 ])
 ```
 
-## Included packages
+## Included blocks
 
 * [assets](https://github.com/andywer/webpack-blocks/tree/master/packages/assets)
 * [babel6](https://github.com/andywer/webpack-blocks/tree/master/packages/babel6)
@@ -61,7 +61,7 @@ module.exports = createConfig([
 * [webpack](https://github.com/andywer/webpack-blocks/tree/master/packages/webpack)
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 

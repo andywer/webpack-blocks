@@ -1,4 +1,4 @@
-# Webpack blocks - Core library
+# webpack-blocks - core library
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/core.svg)](https://www.npmjs.com/package/@webpack-blocks/core)
@@ -8,7 +8,7 @@
 This is the core library. Not meant to be used manually.
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 
