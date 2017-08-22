@@ -1,4 +1,4 @@
-# Webpack blocks - PostCSS
+# webpack-blocks - PostCSS
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/postcss.svg)](https://www.npmjs.com/package/@webpack-blocks/postcss)
@@ -52,7 +52,7 @@ Package name of a custom PostCSS stringifier to use.
 Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 

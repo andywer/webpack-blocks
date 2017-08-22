@@ -1,4 +1,4 @@
-# Webpack blocks - elm
+# webpack-blocks - Elm
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/elm.svg)](https://www.npmjs.com/package/@webpack-blocks/elm)
@@ -29,7 +29,7 @@ Number uset to set maxInstances of elm that can spawned. This should be set to a
 String which specify a custom location within your project for your elm files.
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 

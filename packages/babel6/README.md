@@ -1,4 +1,4 @@
-# Webpack blocks - Babel 6+
+# webpack-blocks - Babel 6+
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/babel6.svg)](https://www.npmjs.com/package/@webpack-blocks/babel6)
@@ -34,7 +34,7 @@ Array of Babel plugins to use. Babel will read them from `.babelrc` or `package.
 Array of Babel presets to use. Babel will read them from `.babelrc` or `package.json` if omitted.
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 

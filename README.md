@@ -96,7 +96,7 @@ module.exports = createConfig([
 ])
 ```
 
-All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), webpack-blocks package wraps them as a single dependency for convenience.
+All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), `webpack-blocks` package wraps them as a single dependency for convenience.
 
 ## More examples
 

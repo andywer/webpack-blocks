@@ -1,4 +1,4 @@
-# Webpack blocks - Assets
+# webpack-blocks - assets
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/assets.svg)](https://www.npmjs.com/package/@webpack-blocks/assets)
@@ -63,7 +63,7 @@ Must be used with `match()`. You can pass all [file-loader options](https://gith
 Must be used with `match()`. You can pass all [url-loader options](https://github.com/webpack-contrib/url-loader). We strongly recommend setting a `limit` to prevent huge files to be encoded as a data URL.
 
 
-## Webpack blocks
+## webpack-blocks
 
 Check out the
 
