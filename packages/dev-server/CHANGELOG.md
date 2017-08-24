@@ -1,6 +1,6 @@
 # @webpack-blocks/dev-server - Changelog
 
-## Next version
+## 1.0.0-beta.3
 
 - Update `webpack-dev-server` to v2.6.1, now compatible with webpack v3 ([#179](https://github.com/andywer/webpack-blocks/issues/179))
 - Less noisy default options

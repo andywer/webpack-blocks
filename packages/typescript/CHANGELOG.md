@@ -1,5 +1,9 @@
 # @webpack-blocks/typescript - Changelog
 
+## 1.0.0-beta.2
+
+- Update dependency versions
+
 ## 1.0.0-beta
 
 - Make compatible with `match()`

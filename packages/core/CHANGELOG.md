@@ -1,6 +1,6 @@
 # @webpack-blocks/core - Changelog
 
-## Next version
+## 1.0.0-beta.2
 
 - More useful error message when passing invalid blocks to `createConfig()` ([#171](https://github.com/andywer/webpack-blocks/issues/171))
 - Less noisy default options
