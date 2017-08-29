@@ -1,5 +1,7 @@
 # webpack-blocks
 
+[![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
+
 Functional building blocks for your webpack config: easier way to configure webpack and to share configuration between projects.
 
 Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, *TypeScript*, etc., as well as best practices like extracting CSS — all with just one line of configuration.
