@@ -28,6 +28,25 @@ module.exports = createConfig([
 ])
 ```
 
+Don’t forget to enable hot reload in your app. If you’re using React it may look like this:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function render() {
+  ReactDOM.render(
+    <h1>Hello, webpack-blocks!</h1>,
+    document.getElementById('root')
+  );
+}
+
+render();
+
+if (module.hot) {
+  module.hot.accept(render);
+}
+```
 
 ## webpack-blocks
 
