@@ -1,9 +1,5 @@
 # @webpack-blocks/elm - Changelog
 
-## 1.0.0-beta.2
-
-- Added `package-lock.json`
-
 ## 1.0.0-beta
 
 - Use `match()` instead of passing `include`/`exclude` options

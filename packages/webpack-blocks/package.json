@@ -22,7 +22,7 @@
     "@webpack-blocks/babel6": "^1.0.0-beta.2",
     "@webpack-blocks/dev-server": "^1.0.0-beta.3",
     "@webpack-blocks/extract-text": "^1.0.0-beta.2",
-    "@webpack-blocks/postcss": "^1.0.0-beta.2",
+    "@webpack-blocks/postcss": "^1.0.0-beta",
     "@webpack-blocks/sass": "^1.0.0-beta.2",
     "@webpack-blocks/typescript": "^1.0.0-beta.2",
     "@webpack-blocks/uglify": "^1.0.0",
