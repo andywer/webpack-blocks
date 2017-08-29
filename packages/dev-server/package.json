@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/dev-server",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Webpack block for the webpack dev server.",
   "main": "lib/index",
   "license": "MIT",

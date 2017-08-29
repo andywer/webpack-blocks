@@ -1,10 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
-## Next version
+## 1.0.0-beta.3
 
 - Make resolve() prepend custom extensions ([#177](https://github.com/andywer/webpack-blocks/issues/177))
 - Let core `createConfig()` validate the passed setters ([#171](https://github.com/andywer/webpack-blocks/issues/171))
-
 
 ## 1.0.0-beta.2
 

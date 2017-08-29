@@ -1,5 +1,9 @@
 # @webpack-blocks/extract-text - Changelog
 
+## 1.0.0-beta.2
+
+- Update dependency version
+
 ## 1.0.0-beta
 
 - Use `match()` instead of `fileType` option
