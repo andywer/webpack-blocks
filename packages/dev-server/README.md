@@ -17,7 +17,7 @@ module.exports = createConfig([
   // use only if `NODE_ENV === 'development'`:
   env('development', [
     devServer({
-        // Show error overlay in the browser
+        // Show full-screen overlay in the browser on compiler errors or warnings
         overlay: true,
     }),
     // if you need to proxy API requests:
