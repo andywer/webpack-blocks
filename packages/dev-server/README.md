@@ -16,7 +16,10 @@ const devServer = require('@webpack-blocks/dev-server')
 module.exports = createConfig([
   // use only if `NODE_ENV === 'development'`:
   env('development', [
-    devServer(),
+    devServer({
+        // Show full-screen overlay in the browser on compiler errors or warnings
+        overlay: true,
+    }),
     // if you need to proxy API requests:
     devServer.proxy({
       '/api': { target: 'http://localhost:3000' }
