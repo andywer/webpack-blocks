@@ -38,7 +38,7 @@ module.exports = createConfig([
   }),
   match('*.css', { exclude: /node_modules/ }, [
     css(),
-    extractText('css/[name].css')
+    env('production', [extractText()])
   ]),
   addPlugins([
     new webpack.LoaderOptionsPlugin({ minimize: true })

@@ -34,18 +34,22 @@ module.exports = createConfig([
 
 ## Options
 
-You can pass random `sass-loader` options as an object to the `sass` block. Those options are basically identical with [node-sass' options](https://github.com/sass/node-sass#options).
+You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an object to the `sass` block.
 
 
 ## Extract text plugin
 
-You can use the `extract-text` block to extract the compiled SASS/SCSS styles into a separate CSS file. Just pass the `text/x-sass` MIME type as second argument to the `extract-text` block:
+Use the `extract-text` block to extract the compiled SASS/SCSS styles into a separate CSS file:
 
 ```js
+const { createConfig, match, env } = require('@webpack-blocks/webpack')
+const sass = require('@webpack-blocks/sass')
+const extractText = require('@webpack-blocks/extract-text')
+
 module.exports = createConfig([
   match('*.scss', [
     sass(),
-    extractText('css/[name].css')
+    env('production', [extractText()])
   ])
 ])
 ```
@@ -58,6 +62,10 @@ Make sure you use the `extract-text` block *after* the `sass` block.
 You can use SASS/SCSS in combination with CSS modules.
 
 ```js
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const sass = require('@webpack-blocks/sass')
+const { css } = require('@webpack-blocks/assets')
+
 module.exports = createConfig([
   match('*.scss', [
     sass(),
@@ -69,13 +77,18 @@ module.exports = createConfig([
 
 ## PostCSS
 
-You can use the SASS block together with PostCSS and its plugins, like the autoprefixer.
+You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like the Autoprefixer.
 
 ```js
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const sass = require('@webpack-blocks/sass')
+const postcss = require('@webpack-blocks/postcss')
+const autoprefixer = require('autoprefixer');
+
 module.exports = createConfig([
   match('*.scss', [
     sass(),
-    postcss()
+    postcss([autoprefixer()])
   ])
 ])
 ```
