@@ -1,11 +1,10 @@
-# webpack-blocks - Extract text plugin
+# webpack-blocks - Extract text
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/extract-text.svg)](https://www.npmjs.com/package/@webpack-blocks/extract-text)
 
-This is the block providing configuration for the [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin). Use it to extract CSS styles out of the bundle and into a separate CSS file.
-
+Use this block to extract text (for example CSS) from the bundle into a separate file. Uses [Extract Text Plugin](https://github.com/webpack/extract-text-webpack-plugin).
 
 ## Usage
 
@@ -14,22 +13,25 @@ const { createConfig } = require('@webpack-blocks/webpack')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
-  ...,
+  /* ... */
   extractText('path/to/output.file')
 ])
 ```
 
-You will frequently want to use it to extract styles:
+Most likely you’ll use it to extract styles:
 
 ```js
-const { createConfig, match } = require('@webpack-blocks/webpack')
+const { createConfig, match, env } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.css', [
     css(),
-    extractText()     // filename defaults to 'css/[name].[contenthash:8].css'
+    // Filename defaults to 'css/[name].[contenthash:8].css'
+    // Extract styles only in production mode
+    // to keep styles hot reload in development
+    env('production', [extractText()])
   ])
 ])
 ```

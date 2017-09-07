@@ -48,6 +48,15 @@ Combines an array of blocks to a new joined block. Running this single block has
 
 Applies an array of webpack blocks only if `process.env.NODE_ENV` matches the given `envName`. If no `NODE_ENV` is set, it will be treated as 'development'.
 
+Use like this:
+
+```js
+module.exports = createConfig([
+  css(),
+  env('production', [extractText()])
+])
+```
+
 #### match(test: string|RegExp|Array, options: ?object, configSetters: Function[]): Function
 
 State on which files to apply the loader blocks passed in this call. Works like `group()`, but adds the file matching information to the context that can be used by the child blocks. The options parameter is optional.
