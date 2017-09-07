@@ -180,7 +180,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [typescript](./packages/typescript)
 - [uglify](./packages/uglify)
 
-## [Helpers](./packages/webpack#helpers).
+## [Helpers](./packages/webpack#helpers)
 
 Helpers allow you to structure your config and define settings for particular environments (like `production` or `development`) or file types.
 
@@ -188,7 +188,7 @@ Helpers allow you to structure your config and define settings for particular en
 - env
 - match
 
-## [Shorthand setters](./packages/webpack#shorthand-setters).
+## [Shorthand setters](./packages/webpack#shorthand-setters)
 
 Shorthand setters gives you easier access to common webpack settings, like plugins, entry points and source maps.
 
