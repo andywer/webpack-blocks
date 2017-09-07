@@ -40,6 +40,8 @@ module.exports = createConfig([
 
 Takes an array of config setters (the functions returned by invoked webpack blocks), invokes them and returns the resulting webpack config object.
 
+### Helpers
+
 #### group(configSetters: Function[]): Function
 
 Combines an array of blocks to a new joined block. Running this single block has the same effect as running all source blocks.
@@ -82,6 +84,22 @@ module.exports = createConfig([
 ])
 ```
 
+### Shorthand setters
+
+#### addPlugins(plugins: WebpackPlugin[])
+
+Add custom [plugins](https://webpack.github.io/docs/configuration.html#plugins) to the webpack configuration.
+
+Example usage:
+
+```js
+addPlugins([ new HtmlWebpackPlugin() ])
+```
+
+#### customConfig(webpackConfigSnippet: object)
+
+Add some custom configuration to the webpack configuration. The object you pass will be merged into the webpack configuration object.
+
 #### defineConstants(constants: object): Function
 
 Replaces constants in your source code with a value (`process.env.NODE_ENV` for example) using the [webpack.DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). Pass an object containing your constant definitions: `{ [constantName: string]: <constantValue: any> }`.
@@ -89,18 +107,6 @@ Replaces constants in your source code with a value (`process.env.NODE_ENV` for 
 Every constant's value is `JSON.stringify()`-ed first, so you don't have to remember.
 
 Special feature: Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
-
----
-
-#### addPlugins(plugins: WebpackPlugin[])
-
-Add custom [plugins](https://webpack.github.io/docs/configuration.html#plugins) to the webpack configuration.
-
-Example usage: `addPlugins([ new HtmlWebpackPlugin() ])`
-
-#### customConfig(webpackConfigSnippet: object)
-
-Add some custom configuration to the webpack configuration. The object you pass will be merged into the webpack configuration object.
 
 #### entryPoint(entryPoint: string|string[]|object)
 
@@ -111,6 +117,7 @@ Adds one or multiple entry points. If the parameter is not an object the entry p
 Set a performance budget. Performance budgets are custom limits (like max bundle size) you can set to make webpack warn you or throw an error if the application exceeds those limits.
 
 Options object:
+
 ```js
 {
   maxAssetSize: number,         // File size limit in bytes
@@ -124,6 +131,7 @@ Options object:
 Sets [resolve](https://webpack.js.org/configuration/resolve/). Use it to manually override module resolution.
 
 Example:
+
 ```js
 resolve({
   alias: { Utilities: path.resolve(__dirname, 'src/utilities/') }, // resolve `import 'Utilities'` to correct path
