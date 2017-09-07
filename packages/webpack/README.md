@@ -11,7 +11,7 @@ This is the `webpack` block providing webpack core functionality. Also provides 
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, createConfig, entryPoint, env, setOutput, sourceMaps, webpack } = require('@webpack-blocks/webpack')
+const { addPlugins, createConfig, defineConstants, entryPoint, env, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
@@ -22,11 +22,11 @@ module.exports = createConfig([
     new HtmlWebpackPlugin({
       inject: true,
       template: './index.html'
-    }),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env || 'development')
     })
   ]),
+  defineConstants({
+    'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
+  }),
   env('development', [
     // will only enable source maps if `NODE_ENV === 'development'`
     sourceMaps()

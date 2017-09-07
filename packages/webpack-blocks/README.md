@@ -14,6 +14,7 @@ Here is a small sample configuration. Instead of requiring from `@webpack-blocks
 Of course you can still separately define or install custom blocks and use them as you want.
 
 ```js
+const webpack = require('webpack')
 const {
   addPlugins,
   babel,
@@ -25,8 +26,7 @@ const {
   extractText,
   match,
   setOutput,
-  uglify,
-  webpack
+  uglify
 } = require('webpack-blocks')
 
 module.exports = createConfig([

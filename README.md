@@ -44,10 +44,10 @@ yarn add --dev webpack webpack-blocks
 The following sample shows how to create a webpack config with Babel support, dev server and Autoprefixer.
 
 ```js
+const webpack = require('webpack')
 const {
   createConfig,
   match,
-  webpack,
 
   // Feature blocks
   babel,
