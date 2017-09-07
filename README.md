@@ -21,6 +21,8 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 - [More examples](#more-example)
 - [Custom blocks](#custom-blocks)
 - [Available webpack blocks](#available-webpack-blocks)
+- [Helpers](#helpers)
+- [Shorthand setters](#shorthand-setters)
 - [Third-party blocks](#third-party-blocks)
 - [Design principles](#design-principles)
 - [FAQ](#faq)
@@ -98,7 +100,9 @@ module.exports = createConfig([
 ])
 ```
 
-All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), `webpack-blocks` package wraps them as a single dependency for convenience.
+See shorthand setters and helpers [documentation](packages/webpack#exports).
+
+All blocks, like `babel` or `postcss` are also available as their own [small packages](./packages), `webpack-blocks` package wraps these blocks, shorthand setters and helpers as a single dependency for convenience.
 
 ## More examples
 
@@ -175,8 +179,29 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [tslint](./packages/tslint)
 - [typescript](./packages/typescript)
 - [uglify](./packages/uglify)
-- [webpack](./packages/webpack)
 
+## [Helpers](./packages/webpack#helpers).
+
+Helpers allow you to structure your config and define settings for particular environments (like `production` or `development`) or file types.
+
+- group
+- env
+- match
+
+## [Shorthand setters](./packages/webpack#shorthand-setters).
+
+Shorthand setters gives you easier access to common webpack settings, like plugins, entry points and source maps.
+
+- addPlugins
+- customConfig
+- defineConstants
+- entryPoint
+- performance
+- resolve
+- setContext
+- setDevTool
+- setOutput
+- sourceMaps
 
 ## Third-party blocks
 
