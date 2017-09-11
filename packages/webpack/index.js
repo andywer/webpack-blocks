@@ -21,6 +21,7 @@ exports.createConfig = createConfig
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
+exports.setEnv = require('./lib/setEnv')
 exports.entryPoint = entryPoint
 exports.performance = performance
 exports.resolve = resolve
