@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next version
+
+- Added `setEnv()` ([#206](https://github.com/andywer/webpack-blocks/pull/206))
+
 ## 1.0.0-beta.3
 
 - Make resolve() prepend custom extensions ([#177](https://github.com/andywer/webpack-blocks/issues/177))

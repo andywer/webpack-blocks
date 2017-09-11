@@ -106,7 +106,23 @@ Replaces constants in your source code with a value (`process.env.NODE_ENV` for 
 
 Every constant's value is `JSON.stringify()`-ed first, so you don't have to remember.
 
-Special feature: Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
+Using `defineConstants` multiple times results in a single DefinePlugin instance configured to do all the replacements.
+
+#### setEnv(constants: string[]|object): Function
+
+Replaces constants in your source code with a values from `process.env` using the [webpack.EnvironmentPlugin](https://webpack.js.org/plugins/environment-plugin/).
+
+Using `setEnv` multiple times results in a single EnvironmentPlugin instance configured to do all the replacements.
+
+```js
+module.exports = createConfig([
+  setEnv(['NODE_ENV']),
+  setEnv({
+    BABEL_ENV: 'development', // use 'development' unless process.env.BABEL_ENV is defined
+    PORT: 3000,
+  }),
+])
+```
 
 #### entryPoint(entryPoint: string|string[]|object)
 

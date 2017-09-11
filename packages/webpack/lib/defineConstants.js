@@ -5,7 +5,7 @@ module.exports = defineConstants
  * for example) using the `webpack.DefinePlugin`. Every constant's value is
  * `JSON.stringify()`-ed first, so you don't have to remember.
  *
- * Special feature: Using `defineConstants` multiple times results in a single
+ * Using `defineConstants` multiple times results in a single
  * DefinePlugin instance configured to do all the replacements.
  *
  * @param {object} constants  { [constantName: string]: * }
