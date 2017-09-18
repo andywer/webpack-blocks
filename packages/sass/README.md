@@ -34,10 +34,17 @@ module.exports = createConfig([
 
 ## Options
 
+#### minimize *(optional)*
+Enable CSS minification (by passing this option to `css-loader`).
+
+#### Sass options
+
 You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an object to the `sass` block.
 
 
-## Extract text plugin
+## Examples
+
+### Extract text plugin
 
 Use the `extract-text` block to extract the compiled SASS/SCSS styles into a separate CSS file:
 
@@ -48,7 +55,7 @@ const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass(),
+    sass({ minimize: true }),
     env('production', [extractText()])
   ])
 ])
@@ -57,7 +64,7 @@ module.exports = createConfig([
 Make sure you use the `extract-text` block *after* the `sass` block.
 
 
-## CSS Modules
+### CSS Modules
 
 You can use SASS/SCSS in combination with CSS modules.
 
@@ -75,7 +82,7 @@ module.exports = createConfig([
 ```
 
 
-## PostCSS
+### PostCSS
 
 You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like the Autoprefixer.
 

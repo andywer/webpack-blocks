@@ -1,5 +1,9 @@
 # @webpack-blocks/sass - Changelog
 
+## Next release
+
+- Add `minimize` option.
+
 ## 1.0.0-beta.2
 
 - Update dependency versions

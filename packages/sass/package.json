@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard",
+    "test": "ava && standard",
     "prepublish": "npm test"
   },
   "engines": {
@@ -20,11 +20,15 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "css-loader": "^0.28.4",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2"
   },
   "devDependencies": {
+    "@webpack-blocks/assets": "^1.0.0-beta",
+    "@webpack-blocks/core": "^1.0.0-beta",
+    "ava": "^0.19.1",
     "standard": "^8.6.0"
   }
 }

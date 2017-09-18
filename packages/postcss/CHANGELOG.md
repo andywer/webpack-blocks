@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## Next release
+
+- Add `minimize` option.
+
 ## 1.0.0-beta
 
 - Use `match()` instead of `exclude`/`include` option
