@@ -33,9 +33,8 @@ When adding a new package you might need to run `npm run postinstall` in the rep
 2. Create a new branch from `master`.
 3. Do something awesome.
 4. Add / update tests.
-5. Commit your changes.
-6. Update changelogs of all packages that you change. Use *Next release* as a version number.
-7. Push them and open a pull request. 
+5. Update changelogs of all packages that you change. Use *Next release* as a version number.
+6. Push them and open a pull request. 
 
 
 ## More Information
