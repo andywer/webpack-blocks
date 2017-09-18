@@ -42,7 +42,7 @@ module.exports = {
 ## Options
 
 #### minimize *(optional)*
-Enable CSS minification.
+Enable CSS minification (by passing this option to `css-loader`).
 
 ### PostCSS options
 
