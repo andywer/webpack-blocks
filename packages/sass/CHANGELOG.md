@@ -1,6 +1,6 @@
 # @webpack-blocks/sass - Changelog
 
-## 1.0.0-beta.5
+## Next release
 
 - Add `minimize` option.
 
