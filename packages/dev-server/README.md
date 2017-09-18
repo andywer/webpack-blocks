@@ -24,9 +24,6 @@ module.exports = createConfig([
     devServer.proxy({
       '/api': { target: 'http://localhost:3000' }
     }),
-    // in case you are using react-hot-loader 2.x:
-    // (need to install `react-hot-loader` package manually, though)
-    devServer.reactHot()
   ])
 ])
 ```

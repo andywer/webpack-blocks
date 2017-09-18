@@ -7,7 +7,6 @@
 module.exports = devServer
 
 devServer.proxy = proxy
-devServer.reactHot = reactHot
 
 /**
  * @param {object} [options]    See https://webpack.github.io/docs/configuration.html#devserver
@@ -85,19 +84,4 @@ function proxy (proxyRoutes) {
       proxy: proxyRoutes
     }
   })
-}
-
-/**
- * For adding the react-hot-loader to the JS loaders.
- * @param {object} [options]
- * @param {RegExp, Function, string}  [options.exclude]   Directories to exclude.
- * @return {Function}
- */
-function reactHot () {
-  return (context, util) => util.addLoader(
-    Object.assign({
-      test: /\.(js|jsx)$/,
-      use: [ 'react-hot' ]
-    }, context.match)
-  )
 }
