@@ -41,6 +41,9 @@ module.exports = {
 
 ## Options
 
+#### minimize *(optional)*
+Enable CSS minification.
+
 ### PostCSS options
 
 #### parser *(optional)*

@@ -9,19 +9,27 @@ module.exports = postcss
 /**
  * @param {PostCSSPlugin[]} [plugins]               Will read `postcss.config.js` file if not supplied.
  * @param {object}          [options]               https://github.com/postcss/postcss-loader#options
+ * @param {bool}            [options.minimize]      Enable minification.
  * @param {string}          [options.parser]        Package name of custom PostCSS parser to use.
  * @param {string}          [options.stringifier]   Package name of custom PostCSS stringifier to use.
  * @param {string}          [options.syntax]        Package name of custom PostCSS parser/stringifier to use.
  * @return {Function}
  */
 function postcss (plugins = [], options = {}) {
+  const { minimize, ...postcssOptions } = options
   return (context, util) => prevConfig => {
     const ruleDef = Object.assign({
       test: /\.css$/,
       use: [
         'style-loader',
-        'css-loader',
-        { loader: 'postcss-loader', options }
+        {
+          loader: 'css-loader',
+          options: { minimize }
+        },
+        {
+          loader: 'postcss-loader',
+          options: postcssOptions
+        }
       ]
     }, context.match)
 

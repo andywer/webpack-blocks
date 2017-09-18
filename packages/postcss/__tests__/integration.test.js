@@ -18,7 +18,12 @@ test('Postcss works with defaults, without match()', t => {
       test: /\.css$/,
       use: [
         'style-loader',
-        'css-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: undefined
+          }
+        },
         {
           loader: 'postcss-loader',
           options: {}
@@ -45,7 +50,35 @@ test('Postcss works with css() & match()', t => {
         'style-loader',
         {
           loader: 'css-loader',
+          options: {
+            minimize: undefined
+          }
+        },
+        {
+          loader: 'postcss-loader',
           options: {}
+        }
+      ]
+    }
+  ])
+})
+
+test('Postcss should pass minimize option to css-loader', t => {
+  const config = createConfig({}, [
+    postcss({ minimize: true })
+  ])
+
+  t.deepEqual(config.plugins, [])
+  t.deepEqual(config.module.rules, [
+    {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: true
+          }
         },
         {
           loader: 'postcss-loader',
@@ -80,7 +113,12 @@ test('Postcss allows inline plugin config and custom options', t => {
       test: /^.*\.css$/,
       use: [
         'style-loader',
-        'css-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: undefined
+          }
+        },
         {
           loader: 'postcss-loader',
           options: {

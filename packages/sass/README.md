@@ -48,7 +48,7 @@ const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass(),
+    sass({ minimize: true }),
     env('production', [extractText()])
   ])
 ])

@@ -16,7 +16,6 @@ Of course you can still separately define or install custom blocks and use them 
 ```js
 const webpack = require('webpack')
 const {
-  addPlugins,
   babel,
   createConfig,
   css,
@@ -37,11 +36,8 @@ module.exports = createConfig([
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
   match('*.css', { exclude: /node_modules/ }, [
-    css(),
+    css({ minimize: true }),
     env('production', [extractText()])
-  ]),
-  addPlugins([
-    new webpack.LoaderOptionsPlugin({ minimize: true })
   ]),
   env('production', [
     uglify()
