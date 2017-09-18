@@ -29,7 +29,14 @@ When adding a new package you might need to run `npm run postinstall` in the rep
 
 ## Share
 
-Commit your changes, push them and open a pull request. We will review your pull request and eventually merge your valuable contribution back into the mother repository.
+1. Fork the repository.
+2. Create a new branch from `master`.
+3. Do something awesome.
+4. Add / update tests.
+5. Commit your changes.
+6. Update changelogs of all packages that you change. Use *Next release* as a version number.
+7. Push them and open a pull request. 
+
 
 ## More Information
 
