@@ -4,6 +4,8 @@
  * @see https://github.com/postcss/postcss-loader
  */
 
+const _ = require('lodash')
+
 module.exports = postcss
 
 /**
@@ -16,7 +18,7 @@ module.exports = postcss
  * @return {Function}
  */
 function postcss (plugins = [], options = {}) {
-  const { minimize, ...postcssOptions } = options
+  const postcssOptions = _.omit(options, 'minimize')
   return (context, util) => prevConfig => {
     const ruleDef = Object.assign({
       test: /\.css$/,
@@ -24,7 +26,7 @@ function postcss (plugins = [], options = {}) {
         'style-loader',
         {
           loader: 'css-loader',
-          options: { minimize }
+          options: { minimize: options.minimize }
         },
         {
           loader: 'postcss-loader',

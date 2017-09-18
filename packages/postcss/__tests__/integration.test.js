@@ -65,7 +65,7 @@ test('Postcss works with css() & match()', t => {
 
 test('Postcss should pass minimize option to css-loader', t => {
   const config = createConfig({}, [
-    postcss({ minimize: true })
+    postcss([], { minimize: true })
   ])
 
   t.deepEqual(config.plugins, [])

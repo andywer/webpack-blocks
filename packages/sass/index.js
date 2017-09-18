@@ -4,6 +4,8 @@
  * @see https://github.com/jtangelder/sass-loader
  */
 
+const _ = require('lodash')
+
 module.exports = sass
 
 /**
@@ -16,7 +18,7 @@ module.exports = sass
  * @return {Function}
  */
 function sass (options = {}) {
-  const { minimize, ...sassOptions } = options
+  const sassOptions = _.omit(options, 'minimize')
   return (context, util) => util.addLoader(
     Object.assign({
       test: /\.(sass|scss)$/,
@@ -26,7 +28,7 @@ function sass (options = {}) {
           loader: 'css-loader',
           options: {
             sourceMap: Boolean(options.sourceMap),
-            minimize
+            minimize: options.minimize
           }
         },
         {
