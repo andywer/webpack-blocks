@@ -1,11 +1,9 @@
 import test from 'ava'
-import config from '../webpack.config.babel'
 
-test('it creates the config file', t => {
-  const plugins = config.plugins
-  delete config.plugins // because it has absolute paths and bring a lot of bloat
-
+test('it exports the config', t => {
+  const originalConfig = require('../webpack.config.babel')
+  const config = Object.assign({}, originalConfig, {
+    plugins: originalConfig.plugins.map(p => p.constructor.name)
+  })
   t.snapshot(config)
-
-  config.plugins = plugins
 })
