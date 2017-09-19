@@ -1,10 +1,10 @@
 import test from 'ava'
 import { createConfig, match } from '@webpack-blocks/core'
-import babel6 from '../index'
+import babel from '../index'
 
 test('Babel default options work', t => {
   const config = createConfig({}, [
-    babel6()
+    babel()
   ])
 
   t.deepEqual(config.module.rules, [
@@ -25,7 +25,7 @@ test('Babel default options work', t => {
 
 test('Babel options work', t => {
   const config = createConfig({}, [
-    babel6({
+    babel({
       presets: ['es2015'],
       plugins: ['bar']
     })
@@ -52,7 +52,7 @@ test('Babel options work', t => {
 test('using custom match() works', t => {
   const config = createConfig({}, [
     match('*.js', { exclude: [] }, [
-      babel6({
+      babel({
         cacheDirectory: false
       })
     ])

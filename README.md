@@ -170,7 +170,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 ## Available webpack blocks
 
 - [assets](./packages/assets)
-- [babel6](./packages/babel6)
+- [babel](./packages/babel)
 - [dev-server](./packages/dev-server)
 - [elm](./packages/elm)
 - [extract-text](./packages/extract-text)

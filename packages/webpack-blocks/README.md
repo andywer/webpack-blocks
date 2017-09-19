@@ -9,7 +9,7 @@ This is the webpack-blocks convenience package. It wraps all the most commonly u
 
 ## Usage
 
-Here is a small sample configuration. Instead of requiring from `@webpack-blocks/webpack`, `@webpack-blocks/babel6` and others you just need a single `require()` and a single dependency in your `package.json`.
+Here is a small sample configuration. Instead of requiring from `@webpack-blocks/webpack`, `@webpack-blocks/babel` and others you just need a single `require()` and a single dependency in your `package.json`.
 
 Of course you can still separately define or install custom blocks and use them as you want.
 
@@ -48,7 +48,7 @@ module.exports = createConfig([
 ## Included blocks
 
 * [assets](https://github.com/andywer/webpack-blocks/tree/master/packages/assets)
-* [babel6](https://github.com/andywer/webpack-blocks/tree/master/packages/babel6)
+* [babel](https://github.com/andywer/webpack-blocks/tree/master/packages/babel)
 * [dev-server](https://github.com/andywer/webpack-blocks/tree/master/packages/dev-server)
 * [extract-text](https://github.com/andywer/webpack-blocks/tree/master/packages/extract-text)
 * [postcss](https://github.com/andywer/webpack-blocks/tree/master/packages/postcss)
