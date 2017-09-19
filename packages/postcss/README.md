@@ -4,7 +4,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/postcss.svg)](https://www.npmjs.com/package/@webpack-blocks/postcss)
 
-This is the `postcss` block providing PostCSS configuration.
+This is the `postcss` block providing [PostCSS](http://postcss.org/) configuration.
 
 
 ## Usage
@@ -13,19 +13,16 @@ This is the `postcss` block providing PostCSS configuration.
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 const postcss = require('@webpack-blocks/postcss')
-const autoprefixer = require('autoprefixer')
 
 module.exports = createConfig([
   match('*.css', { exclude: path.resolve('node_modules') }, [
     css(),
-    postcss([
-      autoprefixer({ browsers: ['last 2 versions'] })
-    ], { /* custom PostCSS options */ })
+    postcss()
   ])
 ])
 ```
 
-Instead of passing the PostCSS plugins as an array you can also create a `postcss.config.js` file containing the plugin configuration (see [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
+We recommend you to configure PostCSS using the `postcss.config.js` file (see [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
 
 ```js
 // postcss.config.js
@@ -36,6 +33,24 @@ module.exports = {
     autoprefixer({ browsers: ['last 2 versions'] })
   ]
 }
+```
+
+But you can pass configuration directly to the `postcss` block:
+
+```js
+const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
+const postcss = require('@webpack-blocks/postcss')
+const autoprefixer = require('autoprefixer')
+
+module.exports = createConfig([
+  postcss({
+    plugins: [
+      autoprefixer({ browsers: ['last 2 versions'] })
+    ]
+    /* Other PostCSS options */
+  })
+])
 ```
 
 
@@ -54,6 +69,9 @@ Package name of a custom PostCSS stringifier to use.
 
 #### syntax *(optional)*
 Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
+
+#### plugins *(optional)*
+Array of PostCSS plugins.
 
 
 ## webpack-blocks
