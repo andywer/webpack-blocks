@@ -26,7 +26,7 @@ Read the *Basics*. You can come back and read more if you are stuck or wondering
 
 A webpack block is *just a function* that returns an update function and *requires no dependencies at all*. The update function takes a webpack configuration object and returns an updated version of this webpack configuration.
 
-Take the `babel6` webpack block for instance:
+Take the `babel` webpack block for instance:
 
 ```js
 /**
