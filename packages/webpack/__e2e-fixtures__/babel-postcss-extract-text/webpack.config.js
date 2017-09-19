@@ -22,9 +22,11 @@ module.exports = createConfig([
   ),
   babel(),
   match('*.css', [
-    postcss([
-      precss
-    ]),
+    postcss({
+      plugins: [
+        precss
+      ]
+    }),
     extractText(
       'styles.css'
     )

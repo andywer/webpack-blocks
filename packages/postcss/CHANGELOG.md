@@ -2,6 +2,7 @@
 
 ## Next release
 
+- Breaking change: Remove `plugins` argument.
 - Add `minimize` option.
 
 ## 1.0.0-beta

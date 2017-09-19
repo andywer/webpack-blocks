@@ -12,8 +12,10 @@ module.exports = createConfig([
   setOutput(
     path.join(__dirname, 'build/bundle.js')
   ),
-  postcss([
-    precss
-  ]),
+  postcss({
+    plugins: [
+      precss
+    ]
+  }),
   sass({ indentSyntax: true, sourceMap: true })
 ])

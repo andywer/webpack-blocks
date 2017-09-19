@@ -3,16 +3,11 @@ import { css } from '@webpack-blocks/assets'
 import { createConfig, match } from '@webpack-blocks/core'
 import postcss from '../index'
 
-function LoaderOptionsPlugin (loaderOptions) {
-  this.loaderOptions = loaderOptions
-}
-
 test('Postcss works with defaults, without match()', t => {
   const config = createConfig({}, [
     postcss()
   ])
 
-  t.deepEqual(config.plugins, [])
   t.deepEqual(config.module.rules, [
     {
       test: /\.css$/,
@@ -41,7 +36,6 @@ test('Postcss works with css() & match()', t => {
     ])
   ])
 
-  t.deepEqual(config.plugins, [])
   t.deepEqual(config.module.rules, [
     {
       test: /^.*\.css$/,
@@ -65,10 +59,9 @@ test('Postcss works with css() & match()', t => {
 
 test('Postcss should pass minimize option to css-loader', t => {
   const config = createConfig({}, [
-    postcss([], { minimize: true })
+    postcss({ minimize: true })
   ])
 
-  t.deepEqual(config.plugins, [])
   t.deepEqual(config.module.rules, [
     {
       test: /\.css$/,
@@ -92,25 +85,16 @@ test('Postcss should pass minimize option to css-loader', t => {
 test('Postcss allows inline plugin config and custom options', t => {
   const fakePostcssPlugin = { id: 'fakePostcssPlugin' }
 
-  const config = createConfig({ webpack: { LoaderOptionsPlugin } }, [
-    match('*.css', [
-      postcss([
-        fakePostcssPlugin
-      ], { parser: 'sugarss' })
-    ])
-  ])
-
-  t.deepEqual(config.plugins, [
-    new LoaderOptionsPlugin({
-      options: {
-        postcss: [ fakePostcssPlugin ],
-        context: '/'
-      }
+  const config = createConfig({}, [
+    postcss({
+      plugins: [ fakePostcssPlugin ],
+      parser: 'sugarss'
     })
   ])
+
   t.deepEqual(config.module.rules, [
     {
-      test: /^.*\.css$/,
+      test: /\.css$/,
       use: [
         'style-loader',
         {
@@ -122,6 +106,7 @@ test('Postcss allows inline plugin config and custom options', t => {
         {
           loader: 'postcss-loader',
           options: {
+            plugins: [ fakePostcssPlugin ],
             parser: 'sugarss'
           }
         }
