@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
-    "start": "NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.babel.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
   },
   "engines": {
     "node": ">= 6.0"
@@ -18,5 +18,8 @@
     "webpack": "^3.5.3",
     "webpack-blocks": "^1.0.0-beta.4",
     "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "cross-env": "^5.0.5"
   }
 }
