@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import { group } from '../index'
+import group from '../group'
 
 test('group() merges the blocks', (t) => {
   const block1 = createTestBlock1()

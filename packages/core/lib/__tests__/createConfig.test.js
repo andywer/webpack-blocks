@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import { createConfig } from '../index'
+import createConfig from '../createConfig'
 import blockHelpers from '../blockUtils'
 
 const defaultConfig = {
