@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import { env } from '../index'
+import env from '../env'
 
 process.env.NODE_ENV = 'testing'
 

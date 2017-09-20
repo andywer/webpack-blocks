@@ -1,5 +1,6 @@
 import test from 'ava'
-import { createConfig, match } from '../index'
+import createConfig from '../createConfig'
+import match from '../match'
 
 test('match() sets context.match', t => {
   t.plan(9)
