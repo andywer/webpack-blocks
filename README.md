@@ -104,6 +104,7 @@ Check out the [sample app](./test-app) to see a webpack config in action or read
 - [dev-server2](./packages/dev-server2) *(for Webpack 2)*
 - [extract-text](./packages/extract-text)
 - [extract-text2](./packages/extract-text2) *(for Webpack 2)*
+- [less](https://github.com/kirill-konshin/webpack-blocks-less)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
 - [typescript](./packages/typescript)
