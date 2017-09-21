@@ -9,6 +9,10 @@ Read the *Basics*. You can come back and read more if you are stuck or wondering
 
 ## Table of contents
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/BLOCK-CREATION.md -->
+
+<!-- toc -->
+
 - [Basics](#basics)
 - [Block utilities](#block-utilities)
 - [Context](#context)
@@ -16,6 +20,7 @@ Read the *Basics*. You can come back and read more if you are stuck or wondering
 - [Testing](#testing)
 - [Publishing](#publishing)
 
+<!-- tocstop -->
 
 ## Basics
 

@@ -16,9 +16,13 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 
 ## Table of contents
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i README.md -->
+
+<!-- toc -->
+
 - [Installation](#installation)
 - [Example](#example)
-- [More examples](#more-example)
+- [More examples](#more-examples)
 - [Custom blocks](#custom-blocks)
 - [Available webpack blocks](#available-webpack-blocks)
 - [Helpers](#helpers)
@@ -29,6 +33,7 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 - [Like what you see?](#like-what-you-see)
 - [License](#license)
 
+<!-- tocstop -->
 
 ## Installation
 
