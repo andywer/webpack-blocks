@@ -67,6 +67,10 @@ Support for webpack 1.x has been dropped. If you have not upgraded yet we recomm
 
 Webpack is now a peer dependency of `@webpack-blocks/webpack`. Just make sure to explicitly `npm install --save-dev webpack`.
 
+### babel6 is now babel
+
+The `@webpack-blocks/babel6` package has been renamed to `@webpack-blocks/babel`. You can now choose which version of babel to use, since `babel-core` is now a peer dependency (see below).
+
 ### babel-core as a peer dependency
 
 `babel-core` is now a peer dependency of the `babel` block, so you can control which version of `babel-core` to use. Make sure to `npm install --save-dev babel-core` in your application.
