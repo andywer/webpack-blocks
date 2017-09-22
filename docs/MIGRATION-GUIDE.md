@@ -43,12 +43,6 @@ The `assets` package contains the `css`, `css.modules`, `file` and `url` blocks
 
 See the package's README for further details.
 
-### `@webpack-blocks/uglify` package
-
-The `uglify` package is a convenience block for easily configuring JS minification using the [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) which also supports minifying untranspiled ES2015 code.
-
-See the package's README for further details.
-
 ### `webpack-blocks` package
 
 The new `webpack-blocks` package can be installed using `npm install --save-dev webpack-blocks`. It is a convenience package, wrapping and exporting most of frequently used blocks, so you don't have to manage all those small package dependencies by yourself. Contains:
@@ -111,6 +105,12 @@ Please use node 6 or newer. We don't transpile the webpack-blocks code for legac
 ### webpack v3
 
 We officially support webpack 3 now 🎉
+
+### `@webpack-blocks/uglify` package
+
+The `uglify` package is a convenience block for easily configuring JS minification using the [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) which also supports minifying untranspiled ES2015 code.
+
+See the package's README for further details.
 
 ### `setEnv()`
 
