@@ -19,6 +19,7 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 
 <!-- toc -->
 
+- [Upgrading from v0.4](#upgrading-from-v04)
 - [Installation](#installation)
 - [Example](#example)
 - [More examples](#more-examples)
@@ -33,6 +34,10 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 - [License](#license)
 
 <!-- tocstop -->
+
+## Upgrading from v0.4
+
+Do you have an existing webpack-blocks v0.4 setup? Check out our [migration guide](./docs/MIGRATION-GUIDE.md) to get started with v1.0 today.
 
 ## Installation
 
