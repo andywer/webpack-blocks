@@ -17,7 +17,7 @@
 
 ### `match()`
 
-You can now use `match()` to specify on which files to apply certain loaders. Works with every block that adds a loader, like `babel`, `css`, `elm`, `postcss`, `sass`, ...
+You can now use `match()` to specify on which files to apply certain loaders. Works with every block that adds a loader, like `babel`, `css`, `elm`, `postcss`, `sass`.
 
 The blocks still work without `match()`. **However, blocks dropped the `fileType`, `exclude` & `include` from their options. Use `match()` for that.**
 
@@ -26,11 +26,14 @@ const { createConfig, css, file, match, postcss, url } = require('webpack-blocks
 const path = require('path')
 
 module.exports = createConfig([
-  babel(),            // matches *.js, *.jsx outside node_modules/ by default
+  // Matches *.js, *.jsx outside node_modules/ by default
+  babel(),
+
   match('*.css', { exclude: path.resolve('node_modules') }, [
     css(),
     postcss()
   ]),
+
   match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg', '*.webp'], [
     file()
   ])
@@ -41,7 +44,7 @@ module.exports = createConfig([
 
 The `assets` package contains the `css`, `css.modules`, `file` and `url` blocks which were contained in `@webpack-blocks/webpack` in v0.4. Use these blocks to configure a `css-loader`, `file-loader` or `url-loader`.
 
-See the package's README for further details.
+See the package's [README](../packages/assets/README.md) for further details.
 
 ### `webpack-blocks` package
 
@@ -57,7 +60,7 @@ The new `webpack-blocks` package can be installed using `npm install --save-dev 
 * uglify
 * webpack
 
-It also exports all the `@webpack-blocks/webpack` utility functions. See the package's README for further details.
+It also exports all the `@webpack-blocks/webpack` utility functions. See the package's [README](../packages/webpack-blocks/README.md) for further details.
 
 ### No more webpack v1
 
@@ -65,7 +68,7 @@ Support for webpack 1.x has been dropped. If you have not upgraded yet we recomm
 
 ### webpack as a peer dependency
 
-Webpack is now a peer dependency of `@webpack-blocks/webpack`. Just make sure to explicitly `npm install --save-dev webpack`.
+Webpack is now a peer dependency of `@webpack-blocks/webpack`. Make sure to explicitly `npm install --save-dev webpack`.
 
 ### babel6 is now babel
 
@@ -77,7 +80,7 @@ The `@webpack-blocks/babel6` package has been renamed to `@webpack-blocks/babel`
 
 ### `webpack` no longer exported
 
-The `webpack` instance is no longer exported by `@webpack-blocks/webpack`. Use `const webpack = require('webpack')` instead which is more explicit.
+`webpack` is no longer exported by `@webpack-blocks/webpack`. Use `const webpack = require('webpack')` instead which is more explicit.
 
 ### `resolve()` instead of `resolveAliases()`
 
@@ -98,7 +101,7 @@ The `devServer.reactHot()` block has never worked too well. We also decided not 
 
 If you feel like this is a feature you really want to have, create a new fancy React hot loader block and share it with the world!
 
-### Requiring node 6+ now
+### Requiring Node.js 6+ now
 
 Please use node 6 or newer. We don't transpile the webpack-blocks code for legacy node versions anymore.
 
@@ -114,7 +117,7 @@ We officially support webpack 3 now 🎉
 
 The `uglify` package is a convenience block for easily configuring JS minification using the [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) which also supports minifying untranspiled ES2015 code.
 
-See the package's README for further details.
+See the package's [README](../packages/uglify/README.md) for further details.
 
 ### `setEnv()`
 
@@ -177,12 +180,11 @@ function babel () {
 
 ### New API (#125)
 
-In webpack-blocks v0.x a block was a function with the signature `(context) => configDiff`.
-
 In webpack-blocks v1.0 a block is now expected to have the signature
 
-```
-(context, utils) => prevConfig => updatedConfig
+```diff
+- (context) => configDiff
++ (context, utils) => prevConfig => updatedConfig
 ```
 
 This way the block has more freedom about how to apply changes to the configuration. To keep writing custom blocks simple, the block will receive a `utils` argument. It contains:

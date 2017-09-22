@@ -46,7 +46,7 @@ yarn add --dev webpack webpack-blocks
 
 ## Upgrade from v0.4
 
-Do you have an existing webpack-blocks v0.4 setup? Check out our [migration guide](./docs/MIGRATION-GUIDE.md) to get started with v1.0 today.
+Check out our [migration guide](./docs/MIGRATION-GUIDE.md) to get started with v1.0 today.
 
 
 ## Example
