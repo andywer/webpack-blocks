@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Renamed `babel6` to `babel`
+
 ## 1.0.0-beta.4
 
 - Add `@webpack-blocks/uglify`
