@@ -151,7 +151,7 @@ This way extensions you set later in your `createConfig()` will have precedence 
 
 ### A concise migration example
 
-A simple babel block in the old v0.4:
+A simple Babel block written for the old v0.4 API would look like this:
 
 ```js
 function babel () {
@@ -168,7 +168,7 @@ function babel () {
 }
 ```
 
-The same block updated for v1.0:
+The same block updated for the v1.0 API:
 
 ```js
 function babel () {
