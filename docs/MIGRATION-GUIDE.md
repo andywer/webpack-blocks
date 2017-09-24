@@ -8,10 +8,9 @@
 
 - [Migrating configuration](#migrating-configuration)
 - [Additional features](#additional-features)
-- [Migrating blocks](#migrating-blocks)
+- [Migrating custom blocks](#migrating-custom-blocks)
 
 <!-- tocstop -->
-
 
 ## Migrating configuration
 
@@ -143,7 +142,7 @@ This way extensions you set later in your `createConfig()` will have precedence 
 
 ---
 
-## Migrating blocks
+## Migrating custom blocks
 
 ### A concise migration example
 
