@@ -1,5 +1,10 @@
 # Migrating to webpack-blocks v1.0
 
+This is the migration guide for upgrading from webpack-blocks v0.4 to v1.0. It is a major update with a couple of breaking changes.
+
+The first section covers the changes you have to make to your webpack-blocks configuration. The second section covers additional new features that you can use. The last section covers how to upgrade your custom blocks.
+
+
 ## Table of Contents
 
 <!-- To update run: npx markdown-toc --maxdepth 2 -i docs/MIGRATION-GUIDE.md -->
