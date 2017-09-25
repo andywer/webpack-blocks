@@ -74,6 +74,8 @@ test('the postcss/sass/source-maps project build does not fail', async (t) => {
 
   const config = require(path.join(projectPath, 'webpack.config.js'))
   await runWebpack(config)
+
+  t.pass()
 })
 
 test('building the elm project works', async (t) => {
@@ -86,6 +88,8 @@ test('building the elm project works', async (t) => {
   global.window = await setUpJsdomEnv()
   global.document = global.window.document
   require(path.join(buildPath, 'bundle.js'))
+
+  t.pass()
 })
 
 test('building the sass/css-modules project works', async (t) => {
