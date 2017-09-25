@@ -23,8 +23,5 @@
   },
   "peerDependencies": {
     "webpack": "2.x || 3.x"
-  },
-  "devDependencies": {
-    "standard": "^8.6.0"
   }
 }

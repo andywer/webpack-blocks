@@ -26,8 +26,6 @@
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0-beta",
-    "ava": "^0.18.2",
-    "standard": "^8.6.0",
     "webpack": "^3.5.1"
   }
 }

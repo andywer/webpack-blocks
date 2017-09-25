@@ -21,8 +21,5 @@
   "dependencies": {
     "awesome-typescript-loader": "^3.2.2",
     "typescript": "^2.4.2"
-  },
-  "devDependencies": {
-    "standard": "^8.6.0"
   }
 }
