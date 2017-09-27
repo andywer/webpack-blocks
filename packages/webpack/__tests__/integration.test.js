@@ -41,7 +41,10 @@ test('complete webpack config creation', t => {
   t.deepEqual(webpackConfig.module.rules[0], {
     test: /^.*\.scss$/,
     use: [
-      'style-loader',
+      {
+        loader: 'style-loader',
+        options: {}
+      },
       {
         loader: 'css-loader',
         options: {
