@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { basename } from 'path'
+import path from 'path'
 import { exec } from 'child_process'
 import rimraf from 'rimraf'
 import test from 'ava'
@@ -21,11 +21,11 @@ test('it exports the production config', t => {
   delete require.cache['../webpack.config.babel.js']
   const originalConfig = requireConfig()
   const module = Object.assign({}, originalConfig.module, {
-    rules: originalConfig.module.rules.map((rule, index) => {
-      if (index === 2) {
+    rules: originalConfig.module.rules.map((rule) => {
+      if (rule.test.toString() === /\.css$/.toString()) {
         return Object.assign({}, rule, {
           use: rule.use.map(use => Object.assign({}, use, {
-            loader: basename(use.loader)
+            loader: path.basename(use.loader)
           }))
         })
       }
@@ -34,7 +34,7 @@ test('it exports the production config', t => {
     })
   })
   const output = Object.assign({}, originalConfig.output, {
-    path: basename(originalConfig.output.path)
+    path: path.basename(originalConfig.output.path)
   })
   const config = Object.assign({}, originalConfig, {
     plugins: originalConfig.plugins.map(p => p.constructor.name),
@@ -47,7 +47,8 @@ test('it exports the production config', t => {
 })
 
 test.cb('it builds', t => {
-  rimraf('./build', () => {})
+  const buildLocation = './build'
+  rimraf(buildLocation, () => {})
   exec('npm run build', (err, stdout, stderr) => {
     t.is(err, null)
     testHtml()
@@ -57,7 +58,7 @@ test.cb('it builds', t => {
   })
 
   function testHtml () {
-    const html = fs.readFileSync('./build/index.html', { encoding: 'utf8' })
+    const html = fs.readFileSync(path.join(buildLocation, 'index.html'), { encoding: 'utf8' })
     const re = /<link href="css\/main.*.css" rel="stylesheet">/
 
     t.true(re.test(html))
@@ -65,17 +66,17 @@ test.cb('it builds', t => {
   }
 
   function testJs () {
-    const js = fs.readFileSync('./build/bundle.js', { encoding: 'utf8' })
+    const js = fs.readFileSync(path.join(buildLocation, 'bundle.js'), { encoding: 'utf8' })
     t.true(js.includes('No content here. We only test the build process 😉'))
   }
 
   function testCss () {
-    fs.readdirSync('./build/css', (err, files) => {
-      t.is(err, null)
-      t.is(files.length, 1)
-      t.true(files[0].startsWith('.'))
-      t.true(files[0].endsWith('{margin:30px auto;text-align:center}'))
-    })
+    const files = fs.readdirSync(path.join(buildLocation, 'css'), { encoding: 'utf8' })
+    t.is(files.length, 1)
+
+    const css = fs.readFileSync(path.join(buildLocation, 'css', files[0]), { encoding: 'utf8' })
+    t.true(css.startsWith('.'))
+    t.true(css.endsWith('{margin:30px auto;text-align:center}'))
   }
 })
 
