@@ -42,7 +42,10 @@ test('Sass works with css() & match()', t => {
       test: /^.*\.sass$/,
       exclude: /node_modules/,
       use: [
-        'style-loader',
+        {
+          loader: 'style-loader',
+          options: {}
+        },
         {
           loader: 'css-loader',
           options: {
