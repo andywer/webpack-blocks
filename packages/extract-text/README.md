@@ -6,6 +6,8 @@
 
 Use this block to extract text (for example CSS) from the bundle into a separate file. Uses [Extract Text Plugin](https://github.com/webpack/extract-text-webpack-plugin).
 
+Attention: This block only works with webpack v3. For webpack v2 support install the last 1.0 beta version of this block: `npm install --save-dev @webpack-blocks/extract-text@^1.0.0-beta.4`
+
 ## Usage
 
 ```js
