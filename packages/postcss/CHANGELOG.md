@@ -1,9 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
-## Next release
+## 1.0.0-rc
 
-- Breaking change: Remove `plugins` argument.
-- Add `minimize` option.
+- Breaking change: Remove `plugins` argument
+- Add `minimize` option
 
 ## 1.0.0-beta
 

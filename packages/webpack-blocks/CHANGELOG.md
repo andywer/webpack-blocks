@@ -1,8 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
-## Next release
+## 1.0.0-rc
 
 - Renamed `babel6` to `babel`
+- The new version of `extract-text` requires webpack v3
 
 ## 1.0.0-beta.4
 

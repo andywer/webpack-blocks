@@ -1,6 +1,6 @@
 # @webpack-blocks/extract-text - Changelog
 
-## Next release
+## 1.0.0-rc
 
 - Breaking change: drop webpack 2 support, update extract-text-webpack-plugin to v3
 

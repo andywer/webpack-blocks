@@ -1,6 +1,6 @@
 # @webpack-blocks/babel - Changelog
 
-## Next version
+## 1.0.0-rc
 
 - Breaking change: Renamed package from `babel6` to `babel` and
 moved `babel-core` to be a peer dependency ([#217](https://github.com/andywer/webpack-blocks/issues/217))

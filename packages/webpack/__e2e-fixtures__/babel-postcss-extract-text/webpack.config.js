@@ -7,7 +7,7 @@ const {
   setOutput
 } = require('../../index')
 
-const babel = require('@webpack-blocks/babel6')
+const babel = require('@webpack-blocks/babel')
 const postcss = require('@webpack-blocks/postcss')
 const extractText = require('@webpack-blocks/extract-text')
 const path = require('path')

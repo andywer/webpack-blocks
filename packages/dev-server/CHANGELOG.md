@@ -1,6 +1,6 @@
 # @webpack-blocks/dev-server - Changelog
 
-## Next version
+## 1.0.0-rc
 
 - Removed `reactHot` ([#214](https://github.com/andywer/webpack-blocks/pull/214))
 

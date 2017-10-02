@@ -1,6 +1,6 @@
 # @webpack-blocks/assets - Changelog
 
-## Next version
+## 1.0.0-rc
 
 - Added a `styleLoader` option to `css()` and `css.modules()` blocks.
 With it it's now possible to pass options to the `style-loader` or

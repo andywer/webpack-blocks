@@ -1,5 +1,5 @@
 const assets = require('@webpack-blocks/assets')
-const babel = require('@webpack-blocks/babel6')
+const babel = require('@webpack-blocks/babel')
 const devServer = require('@webpack-blocks/dev-server')
 const extractText = require('@webpack-blocks/extract-text')
 const postcss = require('@webpack-blocks/postcss')

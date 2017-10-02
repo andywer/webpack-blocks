@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/extract-text",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-rc",
   "description": "Webpack block for the Extract Text Plugin.",
   "main": "lib/index",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "webpack": ">= 3.0.0"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-beta",
+    "@webpack-blocks/core": "^1.0.0-rc",
     "ava": "^0.19.1",
     "standard": "^8.6.0",
     "webpack": "^3.6.0"
