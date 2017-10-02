@@ -70,6 +70,12 @@ It also exports all the `@webpack-blocks/webpack` utility functions. See the pac
 
 Support for webpack 1.x has been dropped. If you have not upgraded yet we recommend doing so soon.
 
+### webpack v3 is the default
+
+Most blocks should still work with webpack v2, but the latest `@webpack-blocks/extract-text` requires webpack v3.
+
+To use it with webpack v2, install the older beta version. See the package's [README](../packages/extract-text/README.md) for further details.
+
 ### webpack as a peer dependency
 
 Webpack is now a peer dependency of `@webpack-blocks/webpack`. Make sure to explicitly `npm install --save-dev webpack`.
@@ -112,10 +118,6 @@ Please use node 6 or newer. We don't transpile the webpack-blocks code for legac
 ---
 
 ## Additional features
-
-### webpack v3
-
-We officially support webpack 3 now 🎉
 
 ### `@webpack-blocks/uglify` package
 

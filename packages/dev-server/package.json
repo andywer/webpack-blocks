@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/dev-server",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-rc",
   "description": "Webpack block for the webpack dev server.",
   "main": "lib/index",
   "license": "MIT",
@@ -19,7 +19,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^2.9.1"
   },
   "peerDependencies": {
     "webpack": "2.x || 3.x"

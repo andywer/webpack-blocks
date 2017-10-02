@@ -1,7 +1,7 @@
 {
   "name": "@webpack-blocks/extract-text",
-  "version": "1.0.0-beta.2",
-  "description": "Webpack block for the Extract-text plugin.",
+  "version": "1.0.0-rc",
+  "description": "Webpack block for the Extract Text Plugin.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -19,13 +19,13 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "extract-text-webpack-plugin": "^2.1.2"
+    "extract-text-webpack-plugin": "^3.0.0"
   },
   "peerDependencies": {
-    "webpack": ">= 2.0.0"
+    "webpack": ">= 3.0.0"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-beta",
-    "webpack": "^2.7.0"
+    "@webpack-blocks/core": "^1.0.0-rc",
+    "webpack": "^3.6.0"
   }
 }

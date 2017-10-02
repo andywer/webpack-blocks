@@ -2,7 +2,7 @@ import test from 'ava'
 import path from 'path'
 import { createConfig, entryPoint, match, setOutput, sourceMaps, resolve } from '../index'
 import { css, file, url } from '@webpack-blocks/assets'
-import babel from '@webpack-blocks/babel6'
+import babel from '@webpack-blocks/babel'
 import devServer from '@webpack-blocks/dev-server'
 import postcss from '@webpack-blocks/postcss'
 import sass from '@webpack-blocks/sass'
@@ -41,7 +41,10 @@ test('complete webpack config creation', t => {
   t.deepEqual(webpackConfig.module.rules[0], {
     test: /^.*\.scss$/,
     use: [
-      'style-loader',
+      {
+        loader: 'style-loader',
+        options: {}
+      },
       {
         loader: 'css-loader',
         options: {

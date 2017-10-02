@@ -2,9 +2,9 @@ import test from 'ava'
 import { createConfig, match } from '@webpack-blocks/core'
 import { css } from '../lib/index'
 
-test('css() works', t => {
+test('css.modules() works', t => {
   const config = createConfig({}, [
-    css()
+    css.modules()
   ])
 
   t.deepEqual(config.module.rules, [
@@ -16,17 +16,21 @@ test('css() works', t => {
           options: {}
         }, {
           loader: 'css-loader',
-          options: {}
+          options: {
+            importLoaders: 1,
+            localIdentName: '[name]--[local]--[hash:base64:5]',
+            modules: true
+          }
         }
       ]
     }
   ])
 })
 
-test('css() works with options and match()', t => {
+test('css.modules() works with options and match()', t => {
   const config = createConfig({}, [
     match('*.pcss', { exclude: /node_modules/ }, [
-      css({
+      css.modules({
         minimize: true
       })
     ])
@@ -43,6 +47,9 @@ test('css() works with options and match()', t => {
         }, {
           loader: 'css-loader',
           options: {
+            importLoaders: 1,
+            localIdentName: '[name]--[local]--[hash:base64:5]',
+            modules: true,
             minimize: true
           }
         }
@@ -53,7 +60,7 @@ test('css() works with options and match()', t => {
 
 test('style-loader can take options', t => {
   const config = createConfig({}, [
-    css({
+    css.modules({
       styleLoader: {
         hmr: true
       }
@@ -70,7 +77,11 @@ test('style-loader can take options', t => {
         }
       }, {
         loader: 'css-loader',
-        options: {}
+        options: {
+          importLoaders: 1,
+          localIdentName: '[name]--[local]--[hash:base64:5]',
+          modules: true
+        }
       }
       ]
     }
@@ -79,7 +90,7 @@ test('style-loader can take options', t => {
 
 test('style-loader can be disabled', t => {
   const config = createConfig({}, [
-    css({
+    css.modules({
       styleLoader: false
     })
   ])
@@ -90,50 +101,11 @@ test('style-loader can be disabled', t => {
       use: [
         {
           loader: 'css-loader',
-          options: {}
-        }
-      ]
-    }
-  ])
-})
-
-test('deprecated css(<fileType>) still works', t => {
-  const config = createConfig({}, [
-    css('text/x-sass')
-  ])
-
-  t.deepEqual(config.module.rules, [
-    {
-      test: /\.(sass|scss)$/,
-      use: [
-        {
-          loader: 'style-loader',
-          options: {}
-        }, {
-          loader: 'css-loader',
-          options: {}
-        }
-      ]
-    }
-  ])
-})
-
-test('deprecated css(<fileType>, { exclude }) still works', t => {
-  const config = createConfig({}, [
-    css('text/x-sass', { exclude: /node_modules/ })
-  ])
-
-  t.deepEqual(config.module.rules, [
-    {
-      test: /\.(sass|scss)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'style-loader',
-          options: {}
-        }, {
-          loader: 'css-loader',
-          options: {}
+          options: {
+            importLoaders: 1,
+            localIdentName: '[name]--[local]--[hash:base64:5]',
+            modules: true
+          }
         }
       ]
     }

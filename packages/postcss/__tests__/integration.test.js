@@ -41,7 +41,10 @@ test('Postcss works with css() & match()', t => {
       test: /^.*\.css$/,
       exclude: /node_modules/,
       use: [
-        'style-loader',
+        {
+          loader: 'style-loader',
+          options: {}
+        },
         {
           loader: 'css-loader',
           options: {

@@ -1,6 +1,6 @@
 # @webpack-blocks/webpack - Changelog
 
-## Next version
+## 1.0.0-rc
 
 - Added `setEnv()` ([#206](https://github.com/andywer/webpack-blocks/pull/206))
 
