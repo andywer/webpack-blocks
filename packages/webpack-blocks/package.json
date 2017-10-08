@@ -6,7 +6,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "test": "standard",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -27,8 +27,5 @@
     "@webpack-blocks/typescript": "^1.0.0-rc",
     "@webpack-blocks/uglify": "^1.0.0",
     "@webpack-blocks/webpack": "^1.0.0-rc"
-  },
-  "devDependencies": {
-    "standard": "^8.6.0"
   }
 }

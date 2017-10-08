@@ -7,7 +7,7 @@
   "author": "Ivakhnenko Dmitry <jeetiss@ya.ru>",
   "scripts": {
     "test": "ava && standard",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -24,8 +24,6 @@
     "elm-webpack-loader": "^4.3.1"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-rc",
-    "ava": "^0.18.2",
-    "standard": "^8.6.0"
+    "@webpack-blocks/core": "^1.0.0-rc"
   }
 }

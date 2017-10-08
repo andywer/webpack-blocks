@@ -7,7 +7,7 @@
   "author": "Jan van Brügge <supermanitu@gmail.com>",
   "scripts": {
     "test": "standard",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -21,8 +21,5 @@
   "dependencies": {
     "awesome-typescript-loader": "^3.2.2",
     "typescript": "^2.4.2"
-  },
-  "devDependencies": {
-    "standard": "^8.6.0"
   }
 }

@@ -6,7 +6,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "test": "ava && standard",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -31,7 +31,6 @@
     "@webpack-blocks/sass": "^1.0.0-rc",
     "@webpack-blocks/tslint": "^1.0.0-rc",
     "@webpack-blocks/typescript": "^1.0.0-rc",
-    "ava": "^0.18.2",
     "awesome-typescript-loader": "^3.2.2",
     "babel-loader": "^7.1.1",
     "css-loader": "^0.28.4",
@@ -46,7 +45,6 @@
     "precss": "^1.4.0",
     "sass-loader": "^6.0.6",
     "sinon": "^1.17.7",
-    "standard": "^8.6.0",
     "style-loader": "^0.18.2",
     "tslint": "^4.5.1",
     "tslint-loader": "^3.5.3",

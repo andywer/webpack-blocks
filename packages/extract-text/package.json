@@ -7,7 +7,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "test": "ava && standard",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -26,8 +26,6 @@
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0-rc",
-    "ava": "^0.19.1",
-    "standard": "^8.6.0",
     "webpack": "^3.6.0"
   }
 }

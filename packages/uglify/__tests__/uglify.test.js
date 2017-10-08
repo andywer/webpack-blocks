@@ -1,5 +1,5 @@
 import test from 'ava'
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 import { createConfig } from '@webpack-blocks/core'
 import uglify from '../index'
 
