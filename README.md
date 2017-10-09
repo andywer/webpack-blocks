@@ -216,6 +216,7 @@ Shorthand setters gives you easier access to common webpack settings, like plugi
 ## Third-party blocks
 
 - [webpack-blocks-happypack](https://github.com/diegohaz/webpack-blocks-happypack) — HappyPack
+- [webpack-blocks-less](https://github.com/kirill-konshin/webpack-blocks-less) — Less
 - [webpack-blocks-purescript](https://github.com/ecliptic/webpack-blocks-purescript) — PureScript
 - [webpack-blocks-server-source-map](https://github.com/diegohaz/webpack-blocks-server-source-map) — source map for server bundle
 - [webpack-blocks-split-vendor](https://github.com/diegohaz/webpack-blocks-split-vendor) — vendor bundle
