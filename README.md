@@ -196,6 +196,7 @@ Helpers allow you to structure your config and define settings for particular en
 
 - group
 - env
+- inspect
 - match
 
 ## [Shorthand setters](./packages/webpack#shorthand-setters)
@@ -238,16 +239,17 @@ Missing something? Write and publish your own webpack blocks!
 <details>
 <summary>How to debug?</summary>
 
-In case the webpack configuration does not work as expected you can debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
+In case the webpack configuration does not work as expected you can debug it using the [inspect](./packages/webpack#inspect) method:
 
 ```js
-const stringify = require('stringify-object')
+const { createConfig, inspect } = require('webpack-blocks')
 
 module.exports = createConfig([
   // ...
 ])
 
-console.log(stringify(module.exports))
+inspect(module.exports) // Print the whole config
+inspect(module.exports, 'module.rules') // Print part of the config
 ```
 </details>
 

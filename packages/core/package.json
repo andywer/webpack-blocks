@@ -41,15 +41,16 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "devDependencies": {
     "@ava/babel-preset-stage-4": "^1.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.24.1",
+    "babel-register": "^6.26.0",
     "sinon": "^1.17.7",
     "webpack": "^2.7.0"
   },
   "dependencies": {
     "glob-to-regexp": "^0.3.0",
     "lodash": "^4.17.4",
+    "q-i": "^1.2.0",
     "webpack-merge": "^2.6.1"
   }
 }

@@ -59,6 +59,20 @@ module.exports = createConfig([
 ])
 ```
 
+#### inspect(object: any, address: ?string):
+
+Prints an object with color highlighting for easier debugging.
+
+Use like this:
+
+```js
+module.exports = createConfig([
+  // ...
+])
+inspect(module.exports) // Print the whole config
+inspect(module.exports, 'module.rules') // Print part of the config
+```
+
 #### match(test: string|RegExp|Array, options: ?object, configSetters: Function[]): Function
 
 State on which files to apply the loader blocks passed in this call. Works like `group()`, but adds the file matching information to the context that can be used by the child blocks. The options parameter is optional.
