@@ -1,6 +1,7 @@
 {
   "scripts": {
     "test": "lerna run test",
+    "posttest": "cd test-app && npm install && npm test",
     "postinstall": "lerna bootstrap && link-parent-bin"
   },
   "devDependencies": {
