@@ -30,6 +30,7 @@ exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
 exports.sourceMaps = sourceMaps
+exports.inspect = require('./lib/inspect')
 
 /**
  * Takes an array of webpack blocks and creates a webpack config out of them.

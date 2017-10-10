@@ -50,7 +50,6 @@
   "dependencies": {
     "glob-to-regexp": "^0.3.0",
     "lodash": "^4.17.4",
-    "q-i": "^1.2.0",
     "webpack-merge": "^2.6.1"
   }
 }
