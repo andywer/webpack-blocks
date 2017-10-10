@@ -14,15 +14,12 @@ test('Uglify default options work', t => {
 test('Uglify options work', t => {
   const config = createConfig({}, [
     uglify({
-      parallel: {
-        workers: 42
-      }
+      parallel: 42
     })
   ])
 
   t.truthy(config.plugins[0].options.parallel)
-  t.deepEqual(config.plugins[0].options.parallel, {
-    cache: true,
-    workers: 42
-  })
+  t.truthy(config.plugins[0].options.cache)
+  t.deepEqual(config.plugins[0].options.parallel, 42)
+  t.deepEqual(config.plugins[0].options.cache, true)
 })

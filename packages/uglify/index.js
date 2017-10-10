@@ -15,9 +15,8 @@ module.exports = uglify
  */
 function uglify (options = {}) {
   options = webpackMerge({
-    parallel: {
-      cache: true
-    },
+    parallel: true,
+    cache: true,
     uglifyOptions: {
       compress: {
         warnings: false
