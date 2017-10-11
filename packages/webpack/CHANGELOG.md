@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Add `inspect` method
+
 ## 1.0.0-rc
 
 - Added `setEnv()` ([#206](https://github.com/andywer/webpack-blocks/pull/206))

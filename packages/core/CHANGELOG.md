@@ -1,9 +1,5 @@
 # @webpack-blocks/core - Changelog
 
-## Next release
-
-- Add `inspect` method
-
 ## 1.0.0-beta.2
 
 - More useful error message when passing invalid blocks to `createConfig()` ([#171](https://github.com/andywer/webpack-blocks/issues/171))
