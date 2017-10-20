@@ -69,7 +69,7 @@ const {
 
   // Shorthand setters
   addPlugins,
-  defineConstants,
+  setEnv,
   entryPoint,
   env,
   setOutput,
@@ -91,8 +91,8 @@ module.exports = createConfig([
   match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp'], [
     file()
   ]),
-  defineConstants({
-    'process.env.NODE_ENV': process.env.NODE_ENV
+  setEnv({
+    NODE_ENV: process.env.NODE_ENV
   }),
   env('development', [
     devServer(),
@@ -210,6 +210,7 @@ Shorthand setters gives you easier access to common webpack settings, like plugi
 - resolve
 - setContext
 - setDevTool
+- setEnv
 - setOutput
 - sourceMaps
 
@@ -275,6 +276,8 @@ If there is no NODE_ENV set then it will treat NODE_ENV as if it was `developmen
 `defineConstants()` is a small convenience wrapper around webpack's [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin). It is composable and automatically encodes the values. Use it to replace constants in your code by their values at build time.
 
 So having a `defineConstants({ 'process.env.FOO': 'foo' })` and a `defineConstants({ 'process.env.BAR': 'bar' })` in your config means the resulting webpack config will contain a single `new webpack.DefinePlugin({ 'process.env.FOO': '"FOO"', 'process.env.BAR': '"BAR"' })`, thus replacing any occurrence of `process.env.FOO` and `process.env.BAR` with the given values.
+
+You can also use [setEnv](./packages/webpack#setenvconstants-stringobject-function) method to define `process.env.*` variables, it’s based on [webpack.EnvironmentPlugin](https://webpack.js.org/plugins/environment-plugin/): `setEnv({ FOO: 'foo' })`.
 </details>
 
 <details>
