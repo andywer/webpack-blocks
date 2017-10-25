@@ -46,7 +46,7 @@ test('it exports the production config', t => {
   process.env.NODE_ENV = NODE_ENV
 })
 
-test.cb('it builds', t => {
+test.skip('it builds', t => {
   const buildLocation = './build'
   rimraf(buildLocation, () => {})
   exec('npm run build', (err, stdout, stderr) => {
