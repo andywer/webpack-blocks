@@ -1,4 +1,6 @@
 {
+  "name": "sample-app",
+  "private": true,
   "scripts": {
     "test": "ava && standard",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.babel.js",

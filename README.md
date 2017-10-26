@@ -174,7 +174,7 @@ function myCssLoader () {
 
 If we use `myCssLoader` in `match()` then `context.match` will be populated with whatever we set in `match()`. Otherwise there is still the `test: /\.css$/` fallback, so our block will work without `match()` as well.
 
-Check out the [sample app](./test-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
+Check out the [sample app](./packages/sample-app) to see a webpack config in action or read [how to create your own blocks](./docs/BLOCK-CREATION.md).
 
 
 ## Available webpack blocks
