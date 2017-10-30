@@ -19,7 +19,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "css-loader": "^0.28.4",
+    "css-loader": "^0.28.7",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",

@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0-rc",
-    "webpack": "^3.5.1"
+    "webpack": "^3.8.1"
   }
 }
