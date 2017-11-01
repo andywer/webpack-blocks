@@ -14,7 +14,7 @@ const { createConfig } = require('@webpack-blocks/webpack')
 const typescript = require('@webpack-blocks/typescript')
 
 module.exports = createConfig([
-  typescript()
+  typescript(/* options, optional */)
 ])
 ```
 
@@ -23,7 +23,7 @@ Use `match()` to explicitly specify the files to load using the TypeScript loade
 
 ## Options
 
-Uses the default tsconfig.json in the root directory to pass options (See [here](https://github.com/s-panferov/awesome-typescript-loader#tsconfigjson))
+Uses the default tsconfig.json in the root directory (See [here](https://github.com/s-panferov/awesome-typescript-loader#tsconfigjson)). You can pass [awesome-typescript-loader options](https://github.com/s-panferov/awesome-typescript-loader#loader-options) to the block.
 
 ## webpack-blocks
 
