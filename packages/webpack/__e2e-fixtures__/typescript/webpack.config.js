@@ -11,7 +11,7 @@ module.exports = createConfig([
   setOutput(
     path.join(__dirname, 'build/bundle.js')
   ),
-  typescript(),
+  typescript({ configFileName: path.resolve('./tsconfig.json') }),
   tslint({
     emitErrors: true
   }),
