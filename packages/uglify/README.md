@@ -33,9 +33,8 @@ By default generates this configuration:
 {
   plugins: [
     new UglifyJSPlugin({
-      parallel: {
-        cache: true
-      },
+      parallel: true,
+      cache: true,
       uglifyOptions: {
         compress: {
           warnings: false
