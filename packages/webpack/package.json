@@ -19,6 +19,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "@webpack-blocks/core": "^1.0.0-rc",
+    "q-i": "^1.2.0",
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
