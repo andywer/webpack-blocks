@@ -84,6 +84,18 @@ module.exports = createConfig([
 ])
 ```
 
+#### when(condition: boolean, configSetters: Function[]): Function
+
+Applies an array of webpack blocks only if `condition` is true.
+
+Use like this:
+
+```js
+module.exports = createConfig([
+  when(process.env.CI, [reportBuildStatsPlugin()])
+])
+```
+
 ### Shorthand setters
 
 #### addPlugins(plugins: WebpackPlugin[])
