@@ -239,16 +239,16 @@ Missing something? Write and publish your own webpack blocks!
 <details>
 <summary>How to debug?</summary>
 
-In case the webpack configuration does not work as expected you can debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
+In case the webpack configuration does not work as expected you can debug it using [q-i](https://www.npmjs.com/package/q-i):
 
 ```js
-const stringify = require('stringify-object')
+const { print } = require('q-i')
 
 module.exports = createConfig([
   // ...
 ])
 
-console.log(stringify(module.exports))
+print(module.exports)
 ```
 </details>
 
