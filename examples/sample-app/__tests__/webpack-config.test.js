@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import execa from 'execa'
+import { exec } from 'child_process'
 import rimraf from 'rimraf'
 import test from 'ava'
 
@@ -46,16 +46,17 @@ test('it exports the production config', t => {
   process.env.NODE_ENV = NODE_ENV
 })
 
-test.only('it builds', async t => {
+test.skip('it builds', t => {
   const buildLocation = './build'
   rimraf(buildLocation, () => {})
 
-  await execa('npm', ['run', 'build'])
-
-  testHtml()
-  testCss()
-  testJs()
-  t.end()
+  exec('npm run build', (err, stdout, stderr) => {
+    t.is(err, null)
+    testHtml()
+    testCss()
+    testJs()
+    t.end()
+  })
 
   function testHtml () {
     const html = fs.readFileSync(path.join(buildLocation, 'index.html'), { encoding: 'utf8' })

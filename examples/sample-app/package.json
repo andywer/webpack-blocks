@@ -16,7 +16,6 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
-    "execa": "^0.8.0",
     "html-webpack-plugin": "^2.30.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
