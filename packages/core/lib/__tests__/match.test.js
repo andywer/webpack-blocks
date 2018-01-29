@@ -39,8 +39,8 @@ test('match() supports options and extended regexps', t => {
   t.plan(3)
 
   const loaderBlock = context => config => {
-    t.deepEqual(Object.keys(context.match), [ 'test', 'exclude' ])
-    t.is(context.match.test.toString(), '/^(.*\\.js|.*\\.jsx)$/')
+    t.deepEqual(Object.keys(context.match), [ 'exclude', 'test' ])
+    t.is(context.match.test.toString(), '/^.*\\.(js|jsx)$/')
     t.is(context.match.exclude, 'node_modules')
     return config
   }
@@ -49,7 +49,7 @@ test('match() supports options and extended regexps', t => {
   //       or the space will become part of the regex...
 
   createConfig({}, [
-    match('{*.js,*.jsx}', { exclude: 'node_modules' }, [
+    match('*.{js,jsx}', { exclude: 'node_modules' }, [
       loaderBlock
     ])
   ])

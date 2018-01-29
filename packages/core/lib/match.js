@@ -10,8 +10,6 @@ module.exports = match
  *
  * @param {string|RegExp|Function|Array} test   A glob like `*.css` or `{*.js, *.jsx}` or something else to use as `loader.test`.
  * @param {object} [options]                    Optional advanced matching options.
- * @param {string|Function|RegExp|Array|object} [options.include]
- * @param {string|Function|RegExp|Array|object} [options.exclude]
  * @param {Function[]} configSetters            Array of functions as returned by webpack blocks.
  * @return {Function}
  */
@@ -23,20 +21,13 @@ function match (test, options, configSetters) {
 
   assertConfigSetters(configSetters)
 
-  const match = { test: createFileTypeMatcher(test) }
+  options.test = createFileTypeMatcher(test)
 
-  if (options.exclude) {
-    match.exclude = options.exclude
-  }
-  if (options.include) {
-    match.include = options.include
-  }
-
-  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
+  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, options), config)
 
   return Object.assign(groupBlock, {
-    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
-    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, match), config)
+    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, options)),
+    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, options), config)
   })
 }
 
