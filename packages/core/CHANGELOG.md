@@ -1,8 +1,8 @@
 # @webpack-blocks/core - Changelog
 
-## master
+## Next version
 
-- Change `match()` to passes all [webpack rule options](https://webpack.js.org/configuration/module/) to context. ([#250](https://github.com/andywer/webpack-blocks/pull/250))
+- Change `match()` to pass all [webpack rule options](https://webpack.js.org/configuration/module/) to context. ([#250](https://github.com/andywer/webpack-blocks/pull/250))
 
 ## 1.0.0-beta.2
 
