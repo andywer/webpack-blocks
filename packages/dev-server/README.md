@@ -17,12 +17,13 @@ module.exports = createConfig([
   // use only if `NODE_ENV === 'development'`:
   env('development', [
     devServer({
-        // Show full-screen overlay in the browser on compiler errors or warnings
-        overlay: true,
-    }),
-    // if you need to proxy API requests:
-    devServer.proxy({
-      '/api': { target: 'http://localhost:3000' }
+      // Show full-screen overlay in the browser on compiler errors or warnings
+      overlay: true,
+
+      // If you need to proxy API requests:
+      proxy: {
+        '/api': { target: 'http://localhost:3000' },
+      },
     }),
   ])
 ])
