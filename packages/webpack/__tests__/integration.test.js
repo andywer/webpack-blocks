@@ -16,9 +16,10 @@ test('complete webpack config creation', t => {
     setOutput('./build/bundle.js'),
     babel(),
     sourceMaps(),
-    devServer(),
-    devServer.proxy({
-      '/api/*': { target: 'http://localhost:8080' }
+    devServer({
+      proxy: {
+        '/api/*': { target: 'http://localhost:8080' }
+      }
     }),
     match('*.scss', [
       css.modules({
