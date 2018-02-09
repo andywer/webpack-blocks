@@ -1,8 +1,12 @@
 # @webpack-blocks/dev-server - Changelog
 
+## Next version
+
+- Removed `proxy()` ([#251](https://github.com/andywer/webpack-blocks/pull/251))
+
 ## 1.0.0-rc
 
-- Removed `reactHot` ([#214](https://github.com/andywer/webpack-blocks/pull/214))
+- Removed `reactHot()` ([#214](https://github.com/andywer/webpack-blocks/pull/214))
 
 ## 1.0.0-beta.3
 
