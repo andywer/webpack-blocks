@@ -86,7 +86,7 @@ module.exports = createConfig([
 
 #### when(condition: boolean, configSetters: Function[]): Function
 
-Applies an array of webpack blocks only if `condition` is true.
+Applies an array of webpack blocks only if `condition` is true (or truthy).
 
 Use like this:
 
