@@ -15,7 +15,7 @@ module.exports = match
  * @param {Function[]} configSetters            Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function match (test, options, configSetters) {
+function match (patterns, options, configSetters) {
   if (!configSetters && Array.isArray(options)) {
     configSetters = options
     options = {}
@@ -23,10 +23,13 @@ function match (test, options, configSetters) {
 
   assertConfigSetters(configSetters)
 
-  const match = { test: createFileTypeMatcher(test) }
+  const match = {}
 
-  if (options.exclude) {
-    match.exclude = options.exclude
+  const [test, negations] = splitPatterns(patterns)
+
+  match.test = getMatches(patterns, test)
+  if (negations || options.exclude) {
+    match.exclude = getExcludes(patterns, negations, options.exclude)
   }
   if (options.include) {
     match.include = options.include
@@ -42,13 +45,53 @@ function match (test, options, configSetters) {
 
 const regexify = glob => globToRegex(glob, { extended: true })
 
-function createFileTypeMatcher (test) {
-  if (typeof test === 'string') {
+// split positive matches and negative matches
+function splitPatterns (patterns) {
+  if (typeof patterns === 'string') {
+    return [
+      !patterns.startsWith('!') && patterns,
+      patterns.startsWith('!') && patterns.slice(1)
+    ]
+  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
+    const test = patterns.filter(pattern => !pattern.startsWith('!'))
+    const negations = patterns.filter(pattern => pattern.startsWith('!')).map(pattern => pattern.slice(1))
+    return [test.length > 0 && test, negations.length > 0 && negations]
+  } else {
+    return [patterns, false]
+  }
+}
+
+function getMatches (patterns, test) {
+  if (typeof patterns === 'string') {
     return regexify(test)
-  } else if (Array.isArray(test) && test.every(item => typeof item === 'string')) {
-    return test.map(item => regexify(item))
+  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
+    return test.map(regexify)
   } else {
     return test
+  }
+}
+
+function getExcludes (patterns, negations, exclude) {
+  if (typeof patterns === 'string') {
+    let excludes = []
+    if (negations) {
+      excludes = excludes.concat(regexify(negations))
+    }
+    if (exclude) {
+      excludes = excludes.concat(exclude)
+    }
+    return excludes.length === 1 ? excludes[0] : excludes
+  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
+    let excludes = []
+    if (negations) {
+      excludes = excludes.concat(negations.map(regexify))
+    }
+    if (exclude) {
+      excludes = excludes.concat(exclude)
+    }
+    return excludes.length === 1 ? excludes[0] : excludes
+  } else {
+    return exclude
   }
 }
 
