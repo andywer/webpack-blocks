@@ -55,6 +55,23 @@ test('match() supports options and extended regexps', t => {
   ])
 })
 
+test('match() supports negations', t => {
+  t.plan(3)
+
+  const loaderBlock = context => config => {
+    t.deepEqual(Object.keys(context.match), [ 'test', 'exclude' ])
+    t.is(context.match.test.toString(), '/^.*\\.js$/')
+    t.is(context.match.exclude.toString(), '/^.*node_modules.*$/')
+    return config
+  }
+
+  createConfig({}, [
+    match(['*.js', '!*node_modules*'], [
+      loaderBlock
+    ])
+  ])
+})
+
 test('match() returns derived context that propagates mutations', t => {
   t.plan(1)
 
