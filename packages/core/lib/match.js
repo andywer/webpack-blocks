@@ -4,6 +4,11 @@ const { invokePreHooks, invokePostHooks } = require('./hooks')
 
 module.exports = match
 
+const concat = (...arrays) => arrays.reduce((concatenation, array) => concatenation.concat(array), [])
+const regexify = glob => globToRegex(glob, { extended: true })
+const stripArrayConditionally = array => array.length === 1 ? array[0] : array
+const toArray = thing => Array.isArray(thing) ? thing : [ thing ]
+
 /**
  * State on which files to apply the loader blocks passed in this call. Works
  * like `group()`, but adds the file matching information to the context.
@@ -15,7 +20,7 @@ module.exports = match
  * @param {Function[]} configSetters            Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function match (patterns, options, configSetters) {
+function match (test, options, configSetters) {
   if (!configSetters && Array.isArray(options)) {
     configSetters = options
     options = {}
@@ -23,16 +28,17 @@ function match (patterns, options, configSetters) {
 
   assertConfigSetters(configSetters)
 
-  const match = {}
+  const { inclusions, exclusions } = splitPatterns(toArray(test))
+  const match = Object.assign({}, options, {
+    // The `.test` is usually just one pattern, so stripping the array feels more natural
+    test: stripArrayConditionally(normalizeMatchers(inclusions))
+  })
 
-  const [test, negations] = splitPatterns(patterns)
-
-  match.test = getMatches(patterns, test)
-  if (negations || options.exclude) {
-    match.exclude = getExcludes(patterns, negations, options.exclude)
-  }
-  if (options.include) {
-    match.include = options.include
+  if (exclusions.length > 0) {
+    match.exclude = concat(
+      match.exclude ? toArray(match.exclude) : [],
+      normalizeMatchers(exclusions)
+    )
   }
 
   const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
@@ -43,55 +49,23 @@ function match (patterns, options, configSetters) {
   })
 }
 
-const regexify = glob => globToRegex(glob, { extended: true })
+function normalizeMatchers (fileMatchTests) {
+  return fileMatchTests.map(test => {
+    if (typeof test === 'string') {
+      return regexify(test)
+    } else {
+      return test
+    }
+  })
+}
 
-// split positive matches and negative matches
 function splitPatterns (patterns) {
-  if (typeof patterns === 'string') {
-    return [
-      !patterns.startsWith('!') && patterns,
-      patterns.startsWith('!') && patterns.slice(1)
-    ]
-  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
-    const test = patterns.filter(pattern => !pattern.startsWith('!'))
-    const negations = patterns.filter(pattern => pattern.startsWith('!')).map(pattern => pattern.slice(1))
-    return [test.length > 0 && test, negations.length > 0 && negations]
-  } else {
-    return [patterns, false]
-  }
-}
+  const isNegation = pattern => typeof pattern === 'string' && pattern.startsWith('!')
+  const stripLeadingExclam = pattern => pattern.startsWith('!') ? pattern.substr(1) : pattern
 
-function getMatches (patterns, test) {
-  if (typeof patterns === 'string') {
-    return regexify(test)
-  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
-    return test.map(regexify)
-  } else {
-    return test
-  }
-}
-
-function getExcludes (patterns, negations, exclude) {
-  if (typeof patterns === 'string') {
-    let excludes = []
-    if (negations) {
-      excludes = excludes.concat(regexify(negations))
-    }
-    if (exclude) {
-      excludes = excludes.concat(exclude)
-    }
-    return excludes.length === 1 ? excludes[0] : excludes
-  } else if (Array.isArray(patterns) && patterns.every(pattern => typeof pattern === 'string')) {
-    let excludes = []
-    if (negations) {
-      excludes = excludes.concat(negations.map(regexify))
-    }
-    if (exclude) {
-      excludes = excludes.concat(exclude)
-    }
-    return excludes.length === 1 ? excludes[0] : excludes
-  } else {
-    return exclude
+  return {
+    inclusions: patterns.filter(pattern => !isNegation(pattern)),
+    exclusions: patterns.filter(pattern => isNegation(pattern)).map(stripLeadingExclam)
   }
 }
 
