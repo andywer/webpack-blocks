@@ -1,10 +1,10 @@
+const _ = require('lodash')
 const globToRegex = require('glob-to-regexp')
 const { assertConfigSetters, invokeConfigSetters } = require('./configSetters')
 const { invokePreHooks, invokePostHooks } = require('./hooks')
 
 module.exports = match
 
-const concat = (...arrays) => arrays.reduce((concatenation, array) => concatenation.concat(array), [])
 const regexify = glob => globToRegex(glob, { extended: true })
 const stripArrayConditionally = array => array.length === 1 ? array[0] : array
 const toArray = thing => Array.isArray(thing) ? thing : [ thing ]
@@ -35,7 +35,7 @@ function match (test, options, configSetters) {
   })
 
   if (exclusions.length > 0) {
-    match.exclude = concat(
+    match.exclude = _.concat(
       match.exclude ? toArray(match.exclude) : [],
       normalizeMatchers(exclusions)
     )
