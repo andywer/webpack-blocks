@@ -33,7 +33,7 @@ module.exports = createConfig([
   // Matches *.js, *.jsx outside node_modules/ by default
   babel(),
 
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css(),
     postcss()
   ]),

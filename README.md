@@ -125,7 +125,7 @@ const { createConfig, match, css } = require('webpack-blocks')
 
 module.exports = createConfig([
   // ...
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css.modules()
   ]
 ])
