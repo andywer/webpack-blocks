@@ -21,7 +21,7 @@ const { createConfig, match } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel')
 
 module.exports = createConfig([
-  match('*.js', { exclude: path.resolve('node_modules') }, [
+  match(['*.js', '!*node_modules*'], [
     babel(/* options */)
   ])
 ])

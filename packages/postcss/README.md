@@ -15,7 +15,7 @@ const { css } = require('@webpack-blocks/assets')
 const postcss = require('@webpack-blocks/postcss')
 
 module.exports = createConfig([
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css(),
     postcss()
   ])

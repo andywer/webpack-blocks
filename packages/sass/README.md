@@ -25,7 +25,7 @@ const { createConfig, match } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
-  match('*.scss', { exclude: path.resolve('node_modules') }, [
+  match(['*.scss', '!*node_modules*'], [
     sass(/* node-sass options */)
   ])
 ])

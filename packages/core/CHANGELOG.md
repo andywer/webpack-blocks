@@ -1,5 +1,9 @@
 # @webpack-blocks/core - Changelog
 
+## Next version
+
+- Support negations in `match()` to set `exclude` ([#252](https://github.com/andywer/webpack-blocks/issues/252))
+
 ## 1.0.0-beta.2
 
 - More useful error message when passing invalid blocks to `createConfig()` ([#171](https://github.com/andywer/webpack-blocks/issues/171))

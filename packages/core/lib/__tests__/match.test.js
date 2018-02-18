@@ -39,7 +39,7 @@ test('match() supports options and extended regexps', t => {
   t.plan(3)
 
   const loaderBlock = context => config => {
-    t.deepEqual(Object.keys(context.match), [ 'test', 'exclude' ])
+    t.deepEqual(Object.keys(context.match).sort(), [ 'exclude', 'test' ])
     t.is(context.match.test.toString(), '/^(.*\\.js|.*\\.jsx)$/')
     t.is(context.match.exclude, 'node_modules')
     return config
@@ -50,6 +50,23 @@ test('match() supports options and extended regexps', t => {
 
   createConfig({}, [
     match('{*.js,*.jsx}', { exclude: 'node_modules' }, [
+      loaderBlock
+    ])
+  ])
+})
+
+test('match() supports negations', t => {
+  t.plan(3)
+
+  const loaderBlock = context => config => {
+    t.deepEqual(Object.keys(context.match).sort(), [ 'exclude', 'test' ])
+    t.is(context.match.test.toString(), '/^.*\\.js$/')
+    t.is(context.match.exclude.toString(), '/^.*node_modules.*$/')
+    return config
+  }
+
+  createConfig({}, [
+    match(['*.js', '!*node_modules*'], [
       loaderBlock
     ])
   ])
