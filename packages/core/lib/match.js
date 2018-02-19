@@ -27,7 +27,7 @@ function match (test, options, configSetters) {
   assertConfigSetters(configSetters)
 
   if (options.test) {
-    console.warn(`match(): Setting 'test' in options is not supported and will be overriden with a 'test' argument.`)
+    throw new Error(`match(): Setting 'test' in options is not supported and will be overriden with a 'test' argument.`)
   }
 
   const { inclusions, exclusions } = splitPatterns(toArray(test))
@@ -55,9 +55,8 @@ function normalizeMatchers (fileMatchTests) {
   return fileMatchTests.map(test => {
     if (typeof test === 'string') {
       return regexify(test)
-    } else {
-      return test
     }
+    return test
   })
 }
 
