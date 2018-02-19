@@ -51,7 +51,7 @@ test('Babel options work', t => {
 
 test('using custom match() works', t => {
   const config = createConfig({}, [
-    match('*.js', { exclude: [] }, [
+    match('*.js', { exclude: null }, [
       babel({
         cacheDirectory: false
       })
@@ -61,7 +61,7 @@ test('using custom match() works', t => {
   t.deepEqual(config.module.rules, [
     {
       test: /^.*\.js$/,
-      exclude: [],
+      exclude: null,
       use: [
         {
           loader: 'babel-loader',

@@ -14,9 +14,7 @@ const toArray = thing => Array.isArray(thing) ? thing : [ thing ]
  * like `group()`, but adds the file matching information to the context.
  *
  * @param {string|RegExp|Function|Array} test   A glob like `*.css` or `{*.js, *.jsx}` or something else to use as `loader.test`.
- * @param {object} [options]                    Optional advanced matching options.
- * @param {string|Function|RegExp|Array|object} [options.include]
- * @param {string|Function|RegExp|Array|object} [options.exclude]
+ * @param {object} [options]                    Rule options. See https://webpack.js.org/configuration/module/
  * @param {Function[]} configSetters            Array of functions as returned by webpack blocks.
  * @return {Function}
  */
@@ -27,6 +25,10 @@ function match (test, options, configSetters) {
   }
 
   assertConfigSetters(configSetters)
+
+  if (options.test) {
+    throw new Error(`match(): Setting 'test' in options is not supported; use the argument instead.`)
+  }
 
   const { inclusions, exclusions } = splitPatterns(toArray(test))
   const match = Object.assign({}, options, {
@@ -53,16 +55,14 @@ function normalizeMatchers (fileMatchTests) {
   return fileMatchTests.map(test => {
     if (typeof test === 'string') {
       return regexify(test)
-    } else {
-      return test
     }
+    return test
   })
 }
 
 function splitPatterns (patterns) {
   const isNegation = pattern => typeof pattern === 'string' && pattern.startsWith('!')
   const stripLeadingExclam = pattern => pattern.startsWith('!') ? pattern.substr(1) : pattern
-
   return {
     inclusions: patterns.filter(pattern => !isNegation(pattern)),
     exclusions: patterns.filter(pattern => isNegation(pattern)).map(stripLeadingExclam)
