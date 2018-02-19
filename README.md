@@ -82,7 +82,7 @@ module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css(),
     postcss([
       autoprefixer({ browsers: ['last 2 versions'] })
@@ -125,7 +125,7 @@ const { createConfig, match, css } = require('webpack-blocks')
 
 module.exports = createConfig([
   // ...
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css.modules()
   ]
 ])

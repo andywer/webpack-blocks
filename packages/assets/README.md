@@ -35,7 +35,7 @@ const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css.modules({
       localIdentName: '[name]--[local]--[hash:base64:5]'
     })

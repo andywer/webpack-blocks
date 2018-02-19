@@ -6,13 +6,8 @@
 
 module.exports = devServer
 
-devServer.proxy = proxy
-
 /**
- * @param {object} [options]    See https://webpack.github.io/docs/configuration.html#devserver
- * @param {bool}   [options.historyApiFallback]
- * @param {bool}   [options.hot]
- * @param {bool}   [options.inline]
+ * @param {object} [options]    See https://webpack.js.org/configuration/dev-server/
  * @param {string|string[]} [entry]
  * @return {Function}
  */
@@ -71,17 +66,4 @@ function addDevEntryToAll (presentEntryPoints, devServerEntry) {
   })
 
   return newEntryPoints
-}
-
-/**
- * @param {object} proxyRoutes    { <path>: <target URL> }
- * @return {Function}
- * @see http://webpack.github.io/docs/webpack-dev-server.html#proxy
- */
-function proxy (proxyRoutes) {
-  return (context, util) => util.merge({
-    devServer: {
-      proxy: proxyRoutes
-    }
-  })
 }

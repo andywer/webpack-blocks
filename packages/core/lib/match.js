@@ -1,8 +1,13 @@
+const _ = require('lodash')
 const globToRegex = require('glob-to-regexp')
 const { assertConfigSetters, invokeConfigSetters } = require('./configSetters')
 const { invokePreHooks, invokePostHooks } = require('./hooks')
 
 module.exports = match
+
+const regexify = glob => globToRegex(glob, { extended: true })
+const stripArrayConditionally = array => array.length === 1 ? array[0] : array
+const toArray = thing => Array.isArray(thing) ? thing : [ thing ]
 
 /**
  * State on which files to apply the loader blocks passed in this call. Works
@@ -25,29 +30,47 @@ function match (test, options, configSetters) {
     console.warn(`match(): Setting 'test' in options is not supported and will be overriden with a 'test' argument.`)
   }
 
-  options.test = createFileTypeMatcher(test)
+  const { inclusions, exclusions } = splitPatterns(toArray(test))
+  const match = Object.assign({}, options, {
+    // The `.test` is usually just one pattern, so stripping the array feels more natural
+    test: stripArrayConditionally(normalizeMatchers(inclusions))
+  })
 
-  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, options), config)
+  if (exclusions.length > 0) {
+    match.exclude = _.concat(
+      match.exclude ? toArray(match.exclude) : [],
+      normalizeMatchers(exclusions)
+    )
+  }
+
+  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
 
   return Object.assign(groupBlock, {
-    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, options)),
-    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, options), config)
+    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
+    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, match), config)
   })
 }
 
-const regexify = glob => globToRegex(glob, { extended: true })
-
-function createFileTypeMatcher (test) {
-  if (typeof test === 'string') {
-    return regexify(test)
-  }
-  if (Array.isArray(test) && test.every(item => typeof item === 'string')) {
-    return test.map(item => regexify(item))
-  }
-  return test
+function normalizeMatchers (fileMatchTests) {
+  return fileMatchTests.map(test => {
+    if (typeof test === 'string') {
+      return regexify(test)
+    } else {
+      return test
+    }
+  })
 }
 
-function deriveContextWithMatch (context, options) {
+function splitPatterns (patterns) {
+  const isNegation = pattern => typeof pattern === 'string' && pattern.startsWith('!')
+  const stripLeadingExclam = pattern => pattern.startsWith('!') ? pattern.substr(1) : pattern
+  return {
+    inclusions: patterns.filter(pattern => !isNegation(pattern)),
+    exclusions: patterns.filter(pattern => isNegation(pattern)).map(stripLeadingExclam)
+  }
+}
+
+function deriveContextWithMatch (context, match) {
   // Use an ES Proxy, so the returned context will include `match` and mutations
   // to it will also be applied to the original context. This is important,
   // since we have now got a global context object and local ones.
@@ -56,7 +79,7 @@ function deriveContextWithMatch (context, options) {
       return propName === 'match' ? true : (propName in target)
     },
     get (target, propName) {
-      return propName === 'match' ? options : target[propName]
+      return propName === 'match' ? match : target[propName]
     }
   })
 }
