@@ -27,7 +27,7 @@ function match (test, options, configSetters) {
   assertConfigSetters(configSetters)
 
   if (options.test) {
-    throw new Error(`match(): Setting 'test' in options is not supported and will be overriden with a 'test' argument.`)
+    throw new Error(`match(): Setting 'test' in options is not supported; use the argument instead.`)
   }
 
   const { inclusions, exclusions } = splitPatterns(toArray(test))
