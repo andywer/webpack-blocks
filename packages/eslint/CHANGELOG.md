@@ -1,5 +1,5 @@
 # @webpack-blocks/eslint - Changelog
 
-## 1.0.0-rc
+## Next release
 
 Initial release.
