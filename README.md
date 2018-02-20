@@ -183,6 +183,7 @@ Check out the [sample app](./packages/sample-app) to see a webpack config in act
 - [babel](./packages/babel)
 - [dev-server](./packages/dev-server)
 - [elm](./packages/elm)
+- [eslint](./packages/eslint)
 - [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
