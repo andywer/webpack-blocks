@@ -1,4 +1,4 @@
-# webpack-blocks - TSLint
+# webpack-blocks - ESLint
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
