@@ -5,3 +5,5 @@ node_js:
 cache:
   directories:
     - $HOME/.npm
+script:
+  - travis_wait 15 npm test   # Increase "no output received" timeout
