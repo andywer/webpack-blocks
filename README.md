@@ -198,6 +198,7 @@ Helpers allow you to structure your config and define settings for particular en
 - group
 - env
 - match
+- when
 
 ## [Shorthand setters](./packages/webpack#shorthand-setters)
 
