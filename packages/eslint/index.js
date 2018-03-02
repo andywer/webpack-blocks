@@ -16,9 +16,9 @@ function eslint (options = {}) {
       Object.assign(
         {
           test: /\.(js|jsx)$/,
-          use: ['eslint-loader'],
+          exclude: /node_modules/,
           enforce: 'pre',
-          options
+          use: [{ loader: 'eslint-loader', options }]
         },
         context.match
       )
