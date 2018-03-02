@@ -1,0 +1,30 @@
+{
+  "name": "@webpack-blocks/eslint",
+  "version": "1.0.0-rc",
+  "description": "Webpack block for JavaScript linting.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Dmytro Meleshko <dmytro.meleshko@gmail.com>",
+  "scripts": {
+    "test": "ava && standard",
+    "prepublishOnly": "npm test"
+  },
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-blocks"
+  ],
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {
+    "eslint-loader": "^1.9.0"
+  },
+  "devDependencies": {
+    "@webpack-blocks/core": "^1.0.0-rc"
+  },
+  "peerDependencies": {
+    "@webpack-blocks/core": "^1.0.0-rc"
+  }
+}
