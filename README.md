@@ -82,7 +82,7 @@ module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css(),
     postcss([
       autoprefixer({ browsers: ['last 2 versions'] })
@@ -125,7 +125,7 @@ const { createConfig, match, css } = require('webpack-blocks')
 
 module.exports = createConfig([
   // ...
-  match('*.css', { exclude: path.resolve('node_modules') }, [
+  match(['*.css', '!*node_modules*'], [
     css.modules()
   ]
 ])
@@ -183,6 +183,7 @@ Check out the [sample app](./packages/sample-app) to see a webpack config in act
 - [babel](./packages/babel)
 - [dev-server](./packages/dev-server)
 - [elm](./packages/elm)
+- [eslint](./packages/eslint)
 - [extract-text](./packages/extract-text)
 - [postcss](./packages/postcss)
 - [sass](./packages/sass)
@@ -240,16 +241,16 @@ Missing something? Write and publish your own webpack blocks!
 <details>
 <summary>How to debug?</summary>
 
-In case the webpack configuration does not work as expected you can debug it using [stringify-object](https://www.npmjs.com/package/stringify-object):
+In case the webpack configuration does not work as expected you can debug it using [q-i](https://www.npmjs.com/package/q-i):
 
 ```js
-const stringify = require('stringify-object')
+const { print } = require('q-i')
 
 module.exports = createConfig([
   // ...
 ])
 
-console.log(stringify(module.exports))
+print(module.exports)
 ```
 </details>
 

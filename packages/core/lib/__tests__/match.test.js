@@ -3,8 +3,6 @@ import createConfig from '../createConfig'
 import match from '../match'
 
 test('match() sets context.match', t => {
-  t.plan(9)
-
   const matchedLoaderBlock = context => config => {
     t.is(typeof context.match, 'object')
     t.deepEqual(Object.keys(context.match), [ 'test' ])
@@ -36,11 +34,9 @@ test('match() sets context.match', t => {
 })
 
 test('match() supports options and extended regexps', t => {
-  t.plan(3)
-
   const loaderBlock = context => config => {
-    t.deepEqual(Object.keys(context.match), [ 'test', 'exclude' ])
-    t.is(context.match.test.toString(), '/^(.*\\.js|.*\\.jsx)$/')
+    t.deepEqual(Object.keys(context.match).sort(), [ 'enforce', 'exclude', 'test' ])
+    t.is(context.match.test.toString(), '/^.*\\.(js|jsx)$/')
     t.is(context.match.exclude, 'node_modules')
     return config
   }
@@ -49,15 +45,28 @@ test('match() supports options and extended regexps', t => {
   //       or the space will become part of the regex...
 
   createConfig({}, [
-    match('{*.js,*.jsx}', { exclude: 'node_modules' }, [
+    match('*.{js,jsx}', { exclude: 'node_modules', enforce: 'pre' }, [
+      loaderBlock
+    ])
+  ])
+})
+
+test('match() supports negations', t => {
+  const loaderBlock = context => config => {
+    t.deepEqual(Object.keys(context.match).sort(), [ 'exclude', 'test' ])
+    t.is(context.match.test.toString(), '/^.*\\.js$/')
+    t.is(context.match.exclude.toString(), '/^.*node_modules.*$/')
+    return config
+  }
+
+  createConfig({}, [
+    match(['*.js', '!*node_modules*'], [
       loaderBlock
     ])
   ])
 })
 
 test('match() returns derived context that propagates mutations', t => {
-  t.plan(1)
-
   const mutatingBlock = context => config => {
     context.foo = 'bar'
     return config
@@ -74,4 +83,10 @@ test('match() returns derived context that propagates mutations', t => {
     ]),
     readingBlock
   ])
+})
+
+test('match() throws if `options` argument has `test`', t => {
+  t.throws(() => createConfig({}, [
+    match(['*.js'], {test: /\.jsx/}, [])
+  ]))
 })

@@ -1,48 +1,38 @@
 import test from 'ava'
 import { createConfig, match } from '@webpack-blocks/core'
-import babel from '../index'
+import eslint from '../index'
 
-test('Babel default options work', t => {
+test('ESLint default options work', t => {
   const config = createConfig({}, [
-    babel()
+    eslint()
   ])
 
   t.deepEqual(config.module.rules, [
     {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
+      enforce: 'pre',
       use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true
-          }
-        }
+        { loader: 'eslint-loader', options: {} }
       ]
     }
   ])
 })
 
-test('Babel options work', t => {
+test('ESLint options work', t => {
   const config = createConfig({}, [
-    babel({
-      presets: ['es2015'],
-      plugins: ['bar']
-    })
+    eslint({ fix: true })
   ])
 
   t.deepEqual(config.module.rules, [
     {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
+      enforce: 'pre',
       use: [
         {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            presets: ['es2015'],
-            plugins: ['bar']
-          }
+          loader: 'eslint-loader',
+          options: { fix: true }
         }
       ]
     }
@@ -52,9 +42,7 @@ test('Babel options work', t => {
 test('using custom match() works', t => {
   const config = createConfig({}, [
     match('*.js', { exclude: null }, [
-      babel({
-        cacheDirectory: false
-      })
+      eslint({ fix: true })
     ])
   ])
 
@@ -62,12 +50,11 @@ test('using custom match() works', t => {
     {
       test: /^.*\.js$/,
       exclude: null,
+      enforce: 'pre',
       use: [
         {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: false
-          }
+          loader: 'eslint-loader',
+          options: { fix: true }
         }
       ]
     }

@@ -25,9 +25,10 @@ const webpack = require('webpack')
 
 const developmentConfig = () => group([
   sourceMaps(),
-  devServer(),
-  devServer.proxy({
-    '/api/*': { target: 'http://localhost:4000' }
+  devServer({
+    proxy: {
+      '/api/*': { target: 'http://localhost:4000' }
+    }
   }),
   performance({
     // Increase performance budget thresholds for development mode

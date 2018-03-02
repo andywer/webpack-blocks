@@ -67,7 +67,7 @@ Use like this:
 
 ```js
 module.exports = createConfig([
-  match('*.scss', { exclude: path.resolve('node_modules') }, [
+  match(['*.scss', '!*node_modules*'], [
     sass(),
     extractText('css/[name].css')
   ])
