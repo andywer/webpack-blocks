@@ -1,0 +1,31 @@
+{
+  "name": "@webpack-blocks/vendor-bundle",
+  "version": "1.0.0",
+  "description": "Webpack block to extract a vendor bundle",
+  "main": "index",
+  "license": "MIT",
+  "author": "Artem Sapegin <artem@sapegin.ru>",
+  "scripts": {
+    "test": "ava && standard",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-blocks",
+    "vendor",
+    "bundle",
+    "chunk"
+  ],
+  "repository": "andywer/webpack-blocks",
+  "bugs": "https://github.com/andywer/webpack-blocks/issues",
+  "dependencies": {},
+  "devDependencies": {
+    "@webpack-blocks/core": "^1.0.0-beta",
+    "ava": "^0.18.2",
+    "standard": "^8.6.0",
+    "webpack": "^3.5.1"
+  }
+}
