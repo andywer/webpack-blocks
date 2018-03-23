@@ -23,7 +23,7 @@ function postcss (options = {}) {
   }
 
   const postcssOptions = _.omit(options, 'minimize')
-  return (context, util) => prevConfig => {
+  return ({context, util}) => prevConfig => {
     const ruleDef = Object.assign({
       test: /\.css$/,
       use: [
