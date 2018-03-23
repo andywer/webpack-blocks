@@ -18,7 +18,7 @@ function babel (options = {}) {
     cacheDirectory: true
   }, options)
 
-  const setter = context => prevConfig => {
+  const setter = ({context}) => prevConfig => {
     context.babel = context.babel || {}
 
     // Merge babel config into the one stored in context
@@ -35,7 +35,7 @@ function babel (options = {}) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, util) {
+function postConfig ({context, util}) {
   const ruleConfig = Object.assign({
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
