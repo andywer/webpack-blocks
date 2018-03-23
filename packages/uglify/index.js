@@ -24,7 +24,7 @@ function uglify (options = {}) {
     }
   }, options)
 
-  const postHook = (context, util) => {
+  const postHook = ({context, util}) => {
     const plugin = new UglifyJSPlugin(options)
     return util.addPlugin(plugin)
   }
