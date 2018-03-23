@@ -43,11 +43,11 @@ function match (test, options, configSetters) {
     )
   }
 
-  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
+  const groupBlock = ({context}) => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
 
   return Object.assign(groupBlock, {
-    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
-    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, match), config)
+    pre: ({context}) => invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
+    post: ({context}) => config => invokePostHooks(configSetters, deriveContextWithMatch(context, match), config)
   })
 }
 
