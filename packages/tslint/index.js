@@ -11,7 +11,7 @@ module.exports = tslint
  * @return {Function}
  */
 function tslint (options = {}) {
-  return (context, util) => prevConfig => {
+  return ({context, util}) => prevConfig => {
     let nextConfig = util.addLoader(
       Object.assign({
         test: /\.(ts|tsx)$/,
