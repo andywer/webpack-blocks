@@ -21,7 +21,7 @@ function devServer (options = {}, entry = []) {
     entry = entry ? [ entry ] : []
   }
 
-  const setter = context => prevConfig => {
+  const setter = ({context}) => prevConfig => {
     context.devServer = context.devServer || { entry: [], options: {} }
     context.devServer.entry = context.devServer.entry.concat(entry)
     context.devServer.options = Object.assign({}, context.devServer.options, options)
@@ -32,7 +32,7 @@ function devServer (options = {}, entry = []) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, util) {
+function postConfig ({context, util}) {
   const entryPointsToAdd = context.devServer.entry
 
   return prevConfig => {
