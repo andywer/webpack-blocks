@@ -13,7 +13,7 @@ module.exports = typescript
  * @return {Function}
  */
 function typescript (options = {}) {
-  return (context, util) => util.merge({
+  return ({context, util}) => util.merge({
     resolve: {
       extensions: ['.ts', '.tsx']
     },
