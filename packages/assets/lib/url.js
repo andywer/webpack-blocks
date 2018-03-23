@@ -9,7 +9,7 @@ module.exports = url
  * @see https://github.com/webpack-contrib/url-loader
  */
 function url (fileType, options = {}) {
-  return (context, util) => {
+  return ({context, util}) => {
     if (fileType && typeof fileType === 'object' && Object.keys(options).length === 0) {
       options = fileType
       fileType = null

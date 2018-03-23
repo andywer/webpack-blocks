@@ -27,7 +27,7 @@ function css (fileType, options = {}) {
     loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
   }
 
-  return (context, util) => util.addLoader(
+  return ({context, util}) => util.addLoader(
     Object.assign(
       {
         test: /\.css$/,
@@ -72,7 +72,7 @@ function cssModules (fileType, options = {}) {
     loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
   }
 
-  return (context, util) => util.addLoader(
+  return ({context, util}) => util.addLoader(
     Object.assign(
       {
         test: /\.css$/,
