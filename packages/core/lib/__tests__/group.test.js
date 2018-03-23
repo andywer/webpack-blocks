@@ -10,7 +10,7 @@ test('group() merges the blocks', (t) => {
   const grouped = group([ block1, block2, block3 ])
   t.is(typeof grouped, 'function')
 
-  const resultingConfig = grouped({}, {})({})
+  const resultingConfig = grouped({})({})
   t.deepEqual(resultingConfig, {
     distinct1: 'distinct1',
     distinct2: 'distinct2',

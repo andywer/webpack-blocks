@@ -25,9 +25,11 @@ function assertConfigSetters (configSetters) {
 }
 
 function invokeConfigSetters (configSetters, context, baseConfig) {
+  const setterOptions = {context, util: blockUtils}
+
   return configSetters.reduce(
     (config, setter) => {
-      const updateFunction = setter({context, blockUtils})
+      const updateFunction = setter(setterOptions)
 
       if (typeof updateFunction !== 'function') {
         throw new Error(

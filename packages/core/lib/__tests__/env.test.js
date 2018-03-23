@@ -10,7 +10,7 @@ test('env() merges correctly', (t) => {
     entryPoint2()
   ])
 
-  t.deepEqual(envBlock(null, {})({}), {
+  t.deepEqual(envBlock({})({}), {
     entry: {
       foo: './src/foo',
       bar: './src/bar'
@@ -25,7 +25,7 @@ test('env() respects the NODE_ENV', (t) => {
   ])
 
   const emptyConfig = { entry: {} }
-  t.deepEqual(envBlock(null, {})(emptyConfig), emptyConfig)
+  t.deepEqual(envBlock({})(emptyConfig), emptyConfig)
 })
 
 test('env() block passes complete config to child blocks', (t) => {
@@ -40,7 +40,7 @@ test('env() block passes complete config to child blocks', (t) => {
 
   const envBlock = env(process.env.NODE_ENV, [ spyBlock1, spyBlock2 ])
 
-  const createdConfig = envBlock({}, {})({
+  const createdConfig = envBlock({})({
     entry: { baz: 'baz' }
   })
 

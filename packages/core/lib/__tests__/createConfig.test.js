@@ -63,14 +63,15 @@ test('createConfig() invokes pre hooks', (t) => {
   t.is(block3.pre.callCount, 1)
 
   t.is(block1.pre.lastCall.args.length, 1)
-  const context = block1.pre.lastCall.args[0]
-  t.is(typeof context, 'object')
+  const options = block1.pre.lastCall.args[0]
+  t.is(typeof options, 'object')
+  t.is(typeof options.context, 'object')
 
   t.is(block2.pre.lastCall.args.length, 1)
-  t.is(block2.pre.lastCall.args[0], context)
+  t.is(block2.pre.lastCall.args[0], options)
 
   t.is(block3.pre.lastCall.args.length, 1)
-  t.is(block3.pre.lastCall.args[0], context)
+  t.is(block3.pre.lastCall.args[0], options)
 })
 
 test('createConfig() invokes post hooks', (t) => {
@@ -103,13 +104,14 @@ test('createConfig() invokes post hooks', (t) => {
   t.is(block2.post.callCount, 1)
   t.is(block3.post.callCount, 1)
 
-  t.is(block1.post.lastCall.args.length, 2)
-  t.is(typeof block1.post.lastCall.args[0], 'object')
-  t.is(block1.post.lastCall.args[1], blockHelpers)
-  const context = block1.post.lastCall.args[0]
+  t.is(block1.post.lastCall.args.length, 1)
+  const options = block1.post.lastCall.args[0]
+  t.is(typeof options, 'object')
+  t.is(typeof options.context, 'object')
+  t.is(options.util, blockHelpers)
 
-  t.deepEqual(block2.post.lastCall.args, [ context, blockHelpers ])
-  t.deepEqual(block3.post.lastCall.args, [ context, blockHelpers ])
+  t.deepEqual(block2.post.lastCall.args[0], options)
+  t.deepEqual(block3.post.lastCall.args[0], options)
 })
 
 test('createConfig() invokes hooks and setters in the right order', (t) => {

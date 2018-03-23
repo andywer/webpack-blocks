@@ -8,7 +8,7 @@ test('when() merges correctly', (t) => {
     entryPoint2()
   ])
 
-  t.deepEqual(whenBlock(null, {})({}), {
+  t.deepEqual(whenBlock({})({}), {
     entry: {
       foo: './src/foo',
       bar: './src/bar'
@@ -23,7 +23,7 @@ test('when() respects the condition', (t) => {
   ])
 
   const emptyConfig = { entry: {} }
-  t.deepEqual(whenBlock(null, {})(emptyConfig), emptyConfig)
+  t.deepEqual(whenBlock({})(emptyConfig), emptyConfig)
 })
 
 test('when() block passes complete config to child blocks', (t) => {
@@ -38,7 +38,7 @@ test('when() block passes complete config to child blocks', (t) => {
 
   const whenBlock = when(true, [ spyBlock1, spyBlock2 ])
 
-  const createdConfig = whenBlock({}, {})({
+  const createdConfig = whenBlock({})({
     entry: { baz: 'baz' }
   })
 

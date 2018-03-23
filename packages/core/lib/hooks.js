@@ -22,8 +22,9 @@ function getHooks (configSetters, type) {
 }
 
 function invokePreHooks (configSetters, context) {
+  const hookOptions = {context}
   const preHooks = getHooks(configSetters, 'pre')
-  preHooks.forEach(hook => hook({context}))
+  preHooks.forEach(hook => hook(hookOptions))
 }
 
 function invokePostHooks (configSetters, context, config) {
