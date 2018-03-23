@@ -5,7 +5,7 @@ const { entryPoint } = require('../index')
 test('entryPoint() should normalize string to object entry', (t) => {
   const merge = sinon.spy(() => prevConfig => prevConfig)
 
-  entryPoint('./test.js')(null, { merge })({})
+  entryPoint('./test.js')({ util: {merge} })({})
 
   t.is(merge.callCount, 1)
   t.deepEqual(merge.lastCall.args, [
@@ -20,7 +20,7 @@ test('entryPoint() should normalize string to object entry', (t) => {
 test('entryPoint() should normalize string array to object entry', (t) => {
   const merge = sinon.spy(() => prevConfig => prevConfig)
 
-  entryPoint([ './test.js', './test2.js' ])(null, { merge })({})
+  entryPoint([ './test.js', './test2.js' ])({ util: {merge} })({})
 
   t.is(merge.callCount, 1)
   t.deepEqual(merge.lastCall.args, [
@@ -38,7 +38,7 @@ test('entryPoint() should normalize an entry object\'s values', (t) => {
   entryPoint({
     main: './app.js',
     test: [ './test.js' ]
-  })(null, { merge })({})
+  })({ util: {merge} })({})
 
   t.is(merge.callCount, 1)
   t.deepEqual(merge.lastCall.args, [

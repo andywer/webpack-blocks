@@ -47,7 +47,7 @@ function createConfig (configSetters) {
   return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
 }
 
-function createEmptyConfig (context, util) {
+function createEmptyConfig ({context, util}) {
   return util.merge({
     module: {
       rules: []
@@ -64,7 +64,7 @@ function createEmptyConfig (context, util) {
  * @see https://webpack.github.io/docs/configuration.html#entry
  */
 function entryPoint (entry) {
-  return (context, util) => util.merge({
+  return ({context, util}) => util.merge({
     entry: normalizeEntry(entry)
   })
 }
@@ -94,11 +94,11 @@ function normalizeEntry (entry) {
  * @see https://webpack.github.io/docs/configuration.html#plugins
  */
 function addPlugins (plugins) {
-  return (context, util) => util.merge({ plugins })
+  return ({context, util}) => util.merge({ plugins })
 }
 
 function customConfig (wpConfig) {
-  return (context, util) => util.merge(wpConfig)
+  return ({context, util}) => util.merge(wpConfig)
 }
 
 /**
@@ -108,7 +108,7 @@ function customConfig (wpConfig) {
  * @param {string} performanceBudget.hints              'warning' or 'error'
  */
 function performance (performanceBudget) {
-  return (context, util) => util.merge({
+  return ({context, util}) => util.merge({
     performance: performanceBudget
   })
 }
@@ -131,7 +131,7 @@ function resolve (config) {
  */
 function resolveAliases (aliases) {
   console.warn(`[webpack-blocks] resolveAliases is deprecated. Please, use resolve({ alias: '' }) instead.`)
-  return (context, util) => util.merge({
+  return ({context, util}) => util.merge({
     resolve: {
       alias: aliases
     }
@@ -142,7 +142,7 @@ function resolveAliases (aliases) {
  * @see https://webpack.github.io/docs/configuration.html#context
  */
 function setContext (contextPath) {
-  return (context, util) => util.merge({
+  return ({context, util}) => util.merge({
     context: path.resolve(contextPath)
   })
 }
@@ -151,7 +151,7 @@ function setContext (contextPath) {
  * @see https://webpack.github.io/docs/configuration.html#devtool
  */
 function setDevTool (devtool) {
-  return (context, util) => util.merge({ devtool })
+  return ({context, util}) => util.merge({ devtool })
 }
 
 /**
@@ -165,7 +165,7 @@ function setOutput (output) {
     }
   }
 
-  return (context, util) => util.merge({ output })
+  return ({context, util}) => util.merge({ output })
 }
 
 /**
@@ -178,7 +178,7 @@ function setOutput (output) {
  * @return {Function}
  */
 function sourceMaps (devtool = 'cheap-module-source-map') {
-  return (context, util) => {
+  return ({context, util}) => {
     context.sourceMaps = true
 
     return util.merge({ devtool })

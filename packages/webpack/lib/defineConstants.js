@@ -12,7 +12,7 @@ module.exports = defineConstants
  * @return {Function}
  */
 function defineConstants (constants) {
-  const setter = context => prevConfig => {
+  const setter = ({context}) => prevConfig => {
     context.defineConstants = Object.assign({}, context.defineConstants, constants)
     return prevConfig
   }
@@ -20,7 +20,7 @@ function defineConstants (constants) {
   return Object.assign(setter, { post: addDefinePlugin })
 }
 
-function addDefinePlugin (context, util) {
+function addDefinePlugin ({context, util}) {
   const stringify = value => JSON.stringify(value, null, 2)
   const stringifiedConstants = mapProps(context.defineConstants, stringify)
 

@@ -11,7 +11,7 @@ module.exports = setEnv
  * @return {Function}
  */
 function setEnv (constants) {
-  const setter = context => prevConfig => {
+  const setter = ({context}) => prevConfig => {
     context.setEnv = Object.assign({}, context.setEnv, toObject(constants))
     return prevConfig
   }
@@ -19,7 +19,7 @@ function setEnv (constants) {
   return Object.assign(setter, { post: addEnvironmentPlugin })
 }
 
-function addEnvironmentPlugin (context, util) {
+function addEnvironmentPlugin ({context, util}) {
   return util.addPlugin(
     new context.webpack.EnvironmentPlugin(context.setEnv)
   )

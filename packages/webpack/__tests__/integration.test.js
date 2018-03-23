@@ -169,7 +169,7 @@ test('context contains necessary properties', t => {
   t.plan(10)
 
   createConfig([
-    context => {
+    ({context}) => {
       // context.fileType
       t.is(typeof context.fileType, 'function')
       t.is(typeof context.fileType.add, 'function')
