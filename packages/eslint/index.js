@@ -11,7 +11,7 @@ module.exports = eslint
  * @return {Function}
  */
 function eslint (options = {}) {
-  return (context, util) =>
+  return ({context, util}) =>
     util.addLoader(
       Object.assign(
         {
