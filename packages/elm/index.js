@@ -30,7 +30,7 @@ function elm (options = {}, isProduction) {
     }
   }
 
-  const main = context => prevConfig => {
+  const main = ({context}) => prevConfig => {
     context.elm = Object.assign({}, context.elm, isProduction ? productionDefaultConfig : developmentDefaultConfig)
     context.elm.options = Object.assign(context.elm.options, options)
 
@@ -41,7 +41,7 @@ function elm (options = {}, isProduction) {
   return Object.assign(main, { post: postConfig })
 }
 
-function postConfig (context, util) {
+function postConfig ({context, util}) {
   const elmLoader = {
     loader: 'elm-webpack-loader',
     options: context.elm.options
