@@ -122,7 +122,7 @@ test('deprecated fileType parameter does still work', t => {
 })
 
 function css () {
-  return (context, util) => util.addLoader(
+  return ({context, util}) => util.addLoader(
     Object.assign({
       test: /\.css$/,
       use: [ 'style-loader', 'css-loader' ]
@@ -131,7 +131,7 @@ function css () {
 }
 
 function sass () {
-  return (context, util) => util.addLoader(
+  return ({context, util}) => util.addLoader(
     Object.assign({
       test: /\.(sass|scss)$/,
       use: [
@@ -144,7 +144,7 @@ function sass () {
 }
 
 function html () {
-  return (context, util) => util.addLoader(
+  return ({context, util}) => util.addLoader(
     Object.assign({
       test: /\.html$/,
       use: [ 'html-loader' ]
