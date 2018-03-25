@@ -1,5 +1,9 @@
 # @webpack-blocks/assets - Changelog
 
+## Next Release
+
+- **Remove deprecated `fileType` API**
+
 ## 1.0.0-rc
 
 - Added a `styleLoader` option to `css()` and `css.modules()` blocks.
