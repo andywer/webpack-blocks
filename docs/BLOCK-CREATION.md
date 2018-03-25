@@ -108,13 +108,7 @@ function sampleBlock () {
 
 The context object is a metadata object that is passed to every block. It is meant to contain any kind of data that is needed for webpack config creation, but not part of the webpack config itself.
 
-Initially it will contain the `fileType` mapping and a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
-
-### context.fileType
-
-*Deprecated. This feature will be removed soon. Use `match()` and `context.match` instead.*
-
-The `context.fileType` is a mapping from MIME type (`application/javascript`, `text/css`, ...) to a regular expression used for matching filenames. You can find the default file types and the extensions they match [here](https://github.com/andywer/webpack-blocks/blob/master/packages/core/lib/defaultFileTypes.js).
+Initially it will contain a `webpack` instance. If you are using [hooks](#hooks) you might want to put custom metadata into the context and use it in the `post` hook.
 
 ### context.match
 
