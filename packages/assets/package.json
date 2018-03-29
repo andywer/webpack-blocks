@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/assets",
-  "version": "1.0.0-rc",
+  "version": "1.0.0",
   "description": "Webpack block for style loader, file loader, url loader and friends.",
   "main": "lib/index",
   "license": "MIT",
@@ -19,13 +19,13 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "css-loader": "^0.28.4",
+    "css-loader": "^0.28.11",
     "file-loader": "^0.11.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-rc"
+    "@webpack-blocks/core": "^1.0.0"
   }
 }

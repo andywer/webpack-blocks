@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/tslint",
-  "version": "1.0.0-rc",
+  "version": "1.0.0",
   "description": "Webpack block for typescript linting.",
   "main": "lib/index",
   "license": "MIT",
@@ -19,9 +19,9 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "tslint": "^5.5.0",
-    "tslint-loader": "^3.5.3",
-    "typescript": "^2.4.2"
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^2.8.1"
   },
   "peerDependencies": {
     "@webpack-blocks/core": ">= 0.4.0 || >= 1.0.0-alpha"
