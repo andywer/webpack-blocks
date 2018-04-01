@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Ivakhnenko Dmitry <jeetiss@ya.ru>",
   "scripts": {
-    "test": "ava && standard",
+    "test": "ava",
     "prepublishOnly": "npm test"
   },
   "engines": {
