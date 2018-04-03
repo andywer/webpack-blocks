@@ -3,7 +3,7 @@ import { createConfig } from '../index'
 
 const webpack = {}
 
-test('fileType() works with existing type', (t) => {
+test('fileType() works with existing type', t => {
   t.plan(1)
 
   createConfig(webpack, [
@@ -15,18 +15,21 @@ test('fileType() works with existing type', (t) => {
   ])
 })
 
-test('fileType() throws on non-existing type', (t) => {
+test('fileType() throws on non-existing type', t => {
   t.plan(1)
 
   createConfig(webpack, [
     context => prevConfig => {
-      t.throws(() => context.fileType('application/not-existent'), /Type is not registered/)
+      t.throws(
+        () => context.fileType('application/not-existent'),
+        /Type is not registered/
+      )
       return prevConfig
     }
   ])
 })
 
-test('fileType.get() works with existing type', (t) => {
+test('fileType.get() works with existing type', t => {
   t.plan(1)
 
   createConfig(webpack, [
@@ -38,18 +41,21 @@ test('fileType.get() works with existing type', (t) => {
   ])
 })
 
-test('fileType.get() throws on non-existing type', (t) => {
+test('fileType.get() throws on non-existing type', t => {
   t.plan(1)
 
   createConfig(webpack, [
     context => prevConfig => {
-      t.throws(() => context.fileType.get('application/not-existent'), /Type is not registered/)
+      t.throws(
+        () => context.fileType.get('application/not-existent'),
+        /Type is not registered/
+      )
       return prevConfig
     }
   ])
 })
 
-test('fileType.has() works with existing types', (t) => {
+test('fileType.has() works with existing types', t => {
   t.plan(1)
 
   createConfig(webpack, [
@@ -60,7 +66,7 @@ test('fileType.has() works with existing types', (t) => {
   ])
 })
 
-test('fileType.has() works with non-existing types', (t) => {
+test('fileType.has() works with non-existing types', t => {
   t.plan(1)
 
   createConfig(webpack, [
@@ -71,12 +77,15 @@ test('fileType.has() works with non-existing types', (t) => {
   ])
 })
 
-test('fileType.add() works', (t) => {
+test('fileType.add() works', t => {
   t.plan(2)
 
   createConfig(webpack, [
     context => prevConfig => {
-      t.throws(() => context.fileType.get('application/new-thing'), /Type is not registered/)
+      t.throws(
+        () => context.fileType.get('application/new-thing'),
+        /Type is not registered/
+      )
       context.fileType.add('application/new-thing', '*.new')
       return prevConfig
     },

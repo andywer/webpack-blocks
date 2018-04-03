@@ -15,7 +15,7 @@ function getHooks (configSetters, type) {
 
   // Flatten the array (since each item might be an array as well)
   const flattenedHooks = hooks
-    .map(hook => Array.isArray(hook) ? hook : [ hook ])
+    .map(hook => (Array.isArray(hook) ? hook : [hook]))
     .reduce((allHooks, someHooks) => allHooks.concat(someHooks), [])
 
   return _.uniq(flattenedHooks)

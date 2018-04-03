@@ -8,17 +8,12 @@ const typescript = require('@webpack-blocks/typescript')
 const uglify = require('@webpack-blocks/uglify')
 const webpack = require('@webpack-blocks/webpack')
 
-module.exports = Object.assign(
-  {},
-  assets,
-  webpack,
-  {
-    babel,
-    devServer,
-    extractText,
-    postcss,
-    sass,
-    typescript,
-    uglify
-  }
-)
+module.exports = Object.assign({}, assets, webpack, {
+  babel,
+  devServer,
+  extractText,
+  postcss,
+  sass,
+  typescript,
+  uglify
+})

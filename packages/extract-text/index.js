@@ -13,25 +13,38 @@ module.exports = extractText
  * @param {string}    [fileType]          Deprecated
  * @return {Function}
  */
-function extractText (outputFilePattern = 'css/[name].[contenthash:8].css', fileType = null) {
+function extractText (
+  outputFilePattern = 'css/[name].[contenthash:8].css',
+  fileType = null
+) {
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
   if (fileType) {
-    console.warn(`extractText(): You are using the deprecated 'fileType' parameter. Use match() instead.`)
+    console.warn(
+      `extractText(): You are using the deprecated 'fileType' parameter. Use match() instead.`
+    )
   }
 
   const postHook = (context, util) => prevConfig => {
     let nextConfig = prevConfig
 
     // Only apply to loaders in the same `match()` group or css loaders if there is no `match()`
-    const ruleToMatch = context.match || { test: fileType ? context.fileType(fileType) : /\.css$/ }
+    const ruleToMatch = context.match || {
+      test: fileType ? context.fileType(fileType) : /\.css$/
+    }
     const matchingLoaderRules = getMatchingLoaderRules(ruleToMatch, prevConfig)
 
     if (matchingLoaderRules.length === 0) {
-      throw new Error(`extractText(): No loaders found to extract contents from. Looking for loaders matching ${ruleToMatch.test}`)
+      throw new Error(
+        `extractText(): No loaders found to extract contents from. Looking for loaders matching ${
+          ruleToMatch.test
+        }`
+      )
     }
 
-    const [ fallbackLoaders, nonFallbackLoaders ] = splitFallbackRule(matchingLoaderRules)
+    const [fallbackLoaders, nonFallbackLoaders] = splitFallbackRule(
+      matchingLoaderRules
+    )
 
     const newLoaderDef = Object.assign({}, ruleToMatch, {
       use: plugin.extract({
@@ -50,37 +63,40 @@ function extractText (outputFilePattern = 'css/[name].[contenthash:8].css', file
     return nextConfig
   }
 
-  return Object.assign(
-    () => prevConfig => prevConfig,
-    { post: postHook }
-  )
+  return Object.assign(() => prevConfig => prevConfig, { post: postHook })
 }
 
 function getMatchingLoaderRules (ruleToMatch, webpackConfig) {
   return webpackConfig.module.rules.filter(
-    rule => (
+    rule =>
       isLoaderConditionMatching(rule.test, ruleToMatch.test) &&
       isLoaderConditionMatching(rule.exclude, ruleToMatch.exclude) &&
       isLoaderConditionMatching(rule.include, ruleToMatch.include)
-    )
   )
 }
 
 function splitFallbackRule (rules) {
   const leadingStyleLoaderInAllRules = rules.every(rule => {
-    return rule.use.length > 0 && rule.use[0] && (rule.use[0] === 'style-loader' || rule.use[0].loader === 'style-loader')
+    return (
+      rule.use.length > 0 &&
+      rule.use[0] &&
+      (rule.use[0] === 'style-loader' || rule.use[0].loader === 'style-loader')
+    )
   })
 
   if (leadingStyleLoaderInAllRules) {
-    const trimmedRules = rules.map(rule => Object.assign({}, rule, { use: rule.use.slice(1) }))
-    return [ ['style-loader'], getUseEntriesFromRules(trimmedRules) ]
+    const trimmedRules = rules.map(rule =>
+      Object.assign({}, rule, { use: rule.use.slice(1) })
+    )
+    return [['style-loader'], getUseEntriesFromRules(trimmedRules)]
   } else {
-    return [ [], getUseEntriesFromRules(rules) ]
+    return [[], getUseEntriesFromRules(rules)]
   }
 }
 
 function getUseEntriesFromRules (rules) {
-  const normalizeUseEntry = use => typeof use === 'string' ? { loader: use } : use
+  const normalizeUseEntry = use =>
+    typeof use === 'string' ? { loader: use } : use
 
   return rules.reduce(
     (useEntries, rule) => useEntries.concat(rule.use.map(normalizeUseEntry)),
@@ -95,11 +111,12 @@ function getUseEntriesFromRules (rules) {
 function removeLoaderRule (rule) {
   return prevConfig => {
     const newRules = prevConfig.module.rules.filter(
-      prevRule => !(
-        isLoaderConditionMatching(prevRule.test, rule.test) &&
-        isLoaderConditionMatching(prevRule.include, rule.include) &&
-        isLoaderConditionMatching(prevRule.exclude, rule.exclude)
-      )
+      prevRule =>
+        !(
+          isLoaderConditionMatching(prevRule.test, rule.test) &&
+          isLoaderConditionMatching(prevRule.include, rule.include) &&
+          isLoaderConditionMatching(prevRule.exclude, rule.exclude)
+        )
     )
 
     return Object.assign({}, prevConfig, {
@@ -129,9 +146,11 @@ function areArraysMatching (array1, array2) {
   }
 
   return array1.every(
-    item1 => (
+    item1 =>
       array2.indexOf(item1) >= 0 ||
-      (item1 instanceof RegExp && array2.find(item2 => item2 instanceof RegExp && String(item1) === String(item2)))
-    )
+      (item1 instanceof RegExp &&
+        array2.find(
+          item2 => item2 instanceof RegExp && String(item1) === String(item2)
+        ))
   )
 }

@@ -3,14 +3,12 @@ import { createConfig, match } from '@webpack-blocks/core'
 import elm from '../index'
 
 test('Elm default options work', t => {
-  const config = createConfig({}, [
-    elm()
-  ])
+  const config = createConfig({}, [elm()])
 
   t.deepEqual(config.module.rules, [
     {
       test: /\.elm$/,
-      exclude: [ /elm-stuff/, /node_modules/ ],
+      exclude: [/elm-stuff/, /node_modules/],
       use: [
         {
           loader: 'elm-hot-loader'
@@ -29,14 +27,12 @@ test('Elm default options work', t => {
 })
 
 test('Elm default production options work', t => {
-  const config = createConfig({}, [
-    elm({}, true)
-  ])
+  const config = createConfig({}, [elm({}, true)])
 
   t.deepEqual(config.module.rules, [
     {
       test: /\.elm$/,
-      exclude: [ /elm-stuff/, /node_modules/ ],
+      exclude: [/elm-stuff/, /node_modules/],
       use: [
         {
           loader: 'elm-webpack-loader',

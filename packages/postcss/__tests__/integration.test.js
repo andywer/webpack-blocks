@@ -4,9 +4,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import postcss from '../index'
 
 test('Postcss works with defaults, without match()', t => {
-  const config = createConfig({}, [
-    postcss()
-  ])
+  const config = createConfig({}, [postcss()])
 
   t.deepEqual(config.module.rules, [
     {
@@ -30,10 +28,7 @@ test('Postcss works with defaults, without match()', t => {
 
 test('Postcss works with css() & match()', t => {
   const config = createConfig({}, [
-    match('*.css', { exclude: /node_modules/ }, [
-      css(),
-      postcss()
-    ])
+    match('*.css', { exclude: /node_modules/ }, [css(), postcss()])
   ])
 
   t.deepEqual(config.module.rules, [
@@ -61,9 +56,7 @@ test('Postcss works with css() & match()', t => {
 })
 
 test('Postcss should pass minimize option to css-loader', t => {
-  const config = createConfig({}, [
-    postcss({ minimize: true })
-  ])
+  const config = createConfig({}, [postcss({ minimize: true })])
 
   t.deepEqual(config.module.rules, [
     {
@@ -90,7 +83,7 @@ test('Postcss allows inline plugin config and custom options', t => {
 
   const config = createConfig({}, [
     postcss({
-      plugins: [ fakePostcssPlugin ],
+      plugins: [fakePostcssPlugin],
       parser: 'sugarss'
     })
   ])
@@ -109,7 +102,7 @@ test('Postcss allows inline plugin config and custom options', t => {
         {
           loader: 'postcss-loader',
           options: {
-            plugins: [ fakePostcssPlugin ],
+            plugins: [fakePostcssPlugin],
             parser: 'sugarss'
           }
         }

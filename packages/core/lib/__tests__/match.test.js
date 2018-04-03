@@ -5,7 +5,7 @@ import match from '../match'
 test('match() sets context.match', t => {
   const matchedLoaderBlock = context => config => {
     t.is(typeof context.match, 'object')
-    t.deepEqual(Object.keys(context.match), [ 'test' ])
+    t.deepEqual(Object.keys(context.match), ['test'])
     t.true(context.match.test instanceof RegExp)
     t.is(context.match.test.toString(), '/^.*\\.css$/')
     return config
@@ -25,17 +25,16 @@ test('match() sets context.match', t => {
     return config
   }
 
-  createConfig({}, [
-    match('*.css', [
-      matchedLoaderBlock
-    ]),
-    unmatchedLoaderBlock
-  ])
+  createConfig({}, [match('*.css', [matchedLoaderBlock]), unmatchedLoaderBlock])
 })
 
 test('match() supports options and extended regexps', t => {
   const loaderBlock = context => config => {
-    t.deepEqual(Object.keys(context.match).sort(), [ 'enforce', 'exclude', 'test' ])
+    t.deepEqual(Object.keys(context.match).sort(), [
+      'enforce',
+      'exclude',
+      'test'
+    ])
     t.is(context.match.test.toString(), '/^.*\\.(js|jsx)$/')
     t.is(context.match.exclude, 'node_modules')
     return config
@@ -53,17 +52,13 @@ test('match() supports options and extended regexps', t => {
 
 test('match() supports negations', t => {
   const loaderBlock = context => config => {
-    t.deepEqual(Object.keys(context.match).sort(), [ 'exclude', 'test' ])
+    t.deepEqual(Object.keys(context.match).sort(), ['exclude', 'test'])
     t.is(context.match.test.toString(), '/^.*\\.js$/')
     t.is(context.match.exclude.toString(), '/^.*node_modules.*$/')
     return config
   }
 
-  createConfig({}, [
-    match(['*.js', '!*node_modules*'], [
-      loaderBlock
-    ])
-  ])
+  createConfig({}, [match(['*.js', '!*node_modules*'], [loaderBlock])])
 })
 
 test('match() returns derived context that propagates mutations', t => {
@@ -77,16 +72,9 @@ test('match() returns derived context that propagates mutations', t => {
     return config
   }
 
-  createConfig({}, [
-    match([ '*.sass', '*.scss' ], [
-      mutatingBlock
-    ]),
-    readingBlock
-  ])
+  createConfig({}, [match(['*.sass', '*.scss'], [mutatingBlock]), readingBlock])
 })
 
 test('match() throws if `options` argument has `test`', t => {
-  t.throws(() => createConfig({}, [
-    match(['*.js'], {test: /\.jsx/}, [])
-  ]))
+  t.throws(() => createConfig({}, [match(['*.js'], { test: /\.jsx/ }, [])]))
 })

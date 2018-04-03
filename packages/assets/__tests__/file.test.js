@@ -3,11 +3,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import { file } from '../lib/index'
 
 test('file() works with match', t => {
-  const config = createConfig({}, [
-    match('*.jpg', [
-      file()
-    ])
-  ])
+  const config = createConfig({}, [match('*.jpg', [file()])])
 
   t.deepEqual(config.module.rules, [
     {
@@ -48,9 +44,7 @@ test('file() works with options and match()', t => {
 })
 
 test('deprecated file(<fileType>) still works', t => {
-  const config = createConfig({}, [
-    file('image')
-  ])
+  const config = createConfig({}, [file('image')])
 
   t.deepEqual(config.module.rules, [
     {
@@ -66,9 +60,7 @@ test('deprecated file(<fileType>) still works', t => {
 })
 
 test('deprecated file(<fileType>, { exclude }) still works', t => {
-  const config = createConfig({}, [
-    file('image', { exclude: /node_modules/ })
-  ])
+  const config = createConfig({}, [file('image', { exclude: /node_modules/ })])
 
   t.deepEqual(config.module.rules, [
     {

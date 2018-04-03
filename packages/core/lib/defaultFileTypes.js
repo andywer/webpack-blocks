@@ -4,11 +4,11 @@ module.exports = {
   'application/x-typescript': /\.(ts|tsx)$/,
   'application/x-elm': /\.elm$/,
   'application/json': /\.json$/,
-  'audio': /\.(aac|m4a|mp3|oga|ogg|wav)$/,
-  'image': /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
+  audio: /\.(aac|m4a|mp3|oga|ogg|wav)$/,
+  image: /\.(gif|ico|jpg|jpeg|png|svg|webp)$/,
   'text/css': /\.css$/,
   'text/html': /\.html$/,
   'text/x-less': /\.less$/,
   'text/x-sass': /\.(sass|scss)$/,
-  'video': /\.(mp4|webm)$/
+  video: /\.(mp4|webm)$/
 }
