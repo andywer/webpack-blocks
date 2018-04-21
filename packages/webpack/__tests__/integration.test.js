@@ -166,17 +166,10 @@ test('createConfig() creates a minimal configuration', t => {
 })
 
 test('context contains necessary properties', t => {
-  t.plan(10)
+  t.plan(5)
 
   createConfig([
     context => {
-      // context.fileType
-      t.is(typeof context.fileType, 'function')
-      t.is(typeof context.fileType.add, 'function')
-      t.is(typeof context.fileType.all, 'function')
-      t.is(typeof context.fileType.get, 'function')
-      t.is(typeof context.fileType.has, 'function')
-
       // context.webpack
       t.is(typeof context.webpack, 'function')
       t.is(typeof context.webpack.EnvironmentPlugin, 'function')

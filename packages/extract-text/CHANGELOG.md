@@ -1,5 +1,9 @@
 # @webpack-blocks/extract-text - Changelog
 
+## Next Release
+
+- Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))
+
 ## 1.0.0-rc
 
 - Breaking change: drop webpack 2 support, update extract-text-webpack-plugin to v3
