@@ -207,9 +207,9 @@ A small change in the block is required to support the new `match()`. Under the 
 
 The properties of `context.match` match the properties you would pass to a webpack loader to define the files the loader should be applied to. This way you can just merge `context.match` into your webpack loader configuration.
 
-### `context.fileType` has been removed
+### `context.fileType` is deprecated
 
-The `context.fileType()` function has been removed. Just use `context.match.test` and provide a hard-coded RegExp as a default.
+The `context.fileType()` function is now deprecated. Just use `context.match.test` and provide a hard-coded RegExp as a default.
 
 ### See "How to Write a Webpack Block" (`/docs/BLOCK-CREATION.md`)
 
