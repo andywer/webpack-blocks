@@ -1,8 +1,11 @@
 # @webpack-blocks/core - Changelog
 
+## Next Release
+
+- Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))
+
 ## 1.0.0
 
-- **Remove deprecated `fileType` API**
 - Added `when()` ([#242](https://github.com/andywer/webpack-blocks/issues/242))
 - Support negations in `match()` to set `exclude` ([#252](https://github.com/andywer/webpack-blocks/issues/252))
 - Change `match()` to pass all [webpack rule options](https://webpack.js.org/configuration/module/) to context. ([#250](https://github.com/andywer/webpack-blocks/pull/250))

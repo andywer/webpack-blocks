@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next Release
+
+- Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))
+
 ## 1.0.0
 
 - Added `when()` ([#242](https://github.com/andywer/webpack-blocks/issues/242))
