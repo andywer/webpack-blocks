@@ -19,7 +19,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "babel-loader": "^7.1.4"
+    "babel-loader": "^8.0.0-beta"
   },
   "devDependencies": {
     "@webpack-blocks/core": "^1.0.0"

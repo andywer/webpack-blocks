@@ -1,5 +1,9 @@
 # @webpack-blocks/babel - Changelog
 
+## Next Release
+
+- Add support for `babel-loader` 8.x
+
 ## 1.0.0-rc
 
 - Breaking change: Renamed package from `babel6` to `babel` and

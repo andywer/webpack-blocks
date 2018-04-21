@@ -20,6 +20,6 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "awesome-typescript-loader": "^3.5.0",
-    "typescript": "^2.8.1"
+    "typescript": "^2.8.3"
   }
 }
