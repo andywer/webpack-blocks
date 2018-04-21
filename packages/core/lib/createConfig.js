@@ -1,5 +1,3 @@
-const createFileTypesMapping = require('./createFileTypesMapping')
-const defaultFileTypes = require('./defaultFileTypes')
 const { assertConfigSetters, invokeConfigSetters } = require('./configSetters')
 const { invokePreHooks, invokePostHooks } = require('./hooks')
 
@@ -23,10 +21,6 @@ function createConfig (initialContext, configSetters) {
   }
   assertConfigSetters(configSetters)
 
-  /** @deprecated context.fileType */
-  const fileType = createFileTypesMapping(defaultFileTypes)
-  const context = Object.assign({ fileType }, initialContext)
-
   const baseConfig = {
     resolve: {
       // Explicitly define default extensions, otherwise blocks will overwrite them instead of extending
@@ -45,9 +39,9 @@ function createConfig (initialContext, configSetters) {
     plugins: []
   }
 
-  invokePreHooks(configSetters, context)
-  const config = invokeConfigSetters(configSetters, context, baseConfig)
-  const postProcessedConfig = invokePostHooks(configSetters, context, config)
+  invokePreHooks(configSetters, initialContext)
+  const config = invokeConfigSetters(configSetters, initialContext, baseConfig)
+  const postProcessedConfig = invokePostHooks(configSetters, initialContext, config)
 
   return postProcessedConfig
 }
