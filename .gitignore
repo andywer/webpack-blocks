@@ -1,4 +1,5 @@
 node_modules/
 packages/*/node_modules/
-lerna-debug.log
-npm-debug.log
+lerna-*.log
+npm-*.log
+yarn-*.log
