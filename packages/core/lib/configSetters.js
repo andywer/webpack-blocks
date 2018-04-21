@@ -28,15 +28,6 @@ function invokeConfigSetters (configSetters, context, baseConfig) {
   return configSetters.reduce(
     (config, setter) => {
       const updateFunction = setter(context, blockUtils)
-
-      if (typeof updateFunction !== 'function') {
-        throw new Error(
-          `Expected a function, instead got a ${typeof updateFunction}. ` +
-          'Beware that the block API changed since version 0.x.\n\n' +
-          `Dump of what should have been a function: ${JSON.stringify(updateFunction)}`
-        )
-      }
-
       return updateFunction(config)
     },
     baseConfig
