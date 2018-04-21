@@ -27,7 +27,7 @@ const commonConfig = {
   }
 }
 
-test('devServer() without options provides expected defaults', (t) => {
+test('devServer() without options provides expected defaults', t => {
   const config = createConfig({ webpack }, [
     entryPoint({
       main: ['./test.js']
@@ -35,23 +35,26 @@ test('devServer() without options provides expected defaults', (t) => {
     devServer()
   ])
 
-  t.deepEqual(config, Object.assign(commonConfig, {
-    entry: {
-      main: ['./test.js']
-    },
-    devServer: {
-      hot: true,
-      hotOnly: true,
-      historyApiFallback: true,
-      inline: true,
-      clientLogLevel: 'error',
-      stats: 'errors-only'
-    }
-  }))
+  t.deepEqual(
+    config,
+    Object.assign(commonConfig, {
+      entry: {
+        main: ['./test.js']
+      },
+      devServer: {
+        hot: true,
+        hotOnly: true,
+        historyApiFallback: true,
+        inline: true,
+        clientLogLevel: 'error',
+        stats: 'errors-only'
+      }
+    })
+  )
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
 
-test('devServer() uses custom options and can be composed', (t) => {
+test('devServer() uses custom options and can be composed', t => {
   const config = createConfig({ webpack }, [
     entryPoint({
       main: ['./test.js'],
@@ -63,25 +66,28 @@ test('devServer() uses custom options and can be composed', (t) => {
     devServer('some-entry-point')
   ])
 
-  t.deepEqual(config, Object.assign(commonConfig, {
-    entry: {
-      main: ['./test.js', 'some-entry-point'],
-      second: ['./second.js', 'some-entry-point']
-    },
-    devServer: {
-      hot: true,
-      hotOnly: true,
-      historyApiFallback: true,
-      inline: false,
-      clientLogLevel: 'error',
-      stats: 'errors-only'
-    }
-  }))
+  t.deepEqual(
+    config,
+    Object.assign(commonConfig, {
+      entry: {
+        main: ['./test.js', 'some-entry-point'],
+        second: ['./second.js', 'some-entry-point']
+      },
+      devServer: {
+        hot: true,
+        hotOnly: true,
+        historyApiFallback: true,
+        inline: false,
+        clientLogLevel: 'error',
+        stats: 'errors-only'
+      }
+    })
+  )
   t.true(config.plugins[0] instanceof webpack.HotModuleReplacementPlugin)
 })
 
 // Regression test for https://github.com/andywer/webpack-blocks/issues/76
-test('devServer block extends multiple entry points correctly', (t) => {
+test('devServer block extends multiple entry points correctly', t => {
   const config = createConfig({ webpack }, [
     entryPoint({
       a: './a',

@@ -14,9 +14,12 @@ module.exports = babel
  * @return {Function}
  */
 function babel (options = {}) {
-  options = Object.assign({
-    cacheDirectory: true
-  }, options)
+  options = Object.assign(
+    {
+      cacheDirectory: true
+    },
+    options
+  )
 
   const setter = context => prevConfig => {
     context.babel = context.babel || {}
@@ -26,8 +29,12 @@ function babel (options = {}) {
       {},
       context.babel,
       options,
-      options.plugins ? { plugins: (context.babel.plugins || []).concat(options.plugins) } : {},
-      options.presets ? { presets: (context.babel.presets || []).concat(options.presets) } : {}
+      options.plugins
+        ? { plugins: (context.babel.plugins || []).concat(options.plugins) }
+        : {},
+      options.presets
+        ? { presets: (context.babel.presets || []).concat(options.presets) }
+        : {}
     )
     return prevConfig
   }
@@ -36,13 +43,14 @@ function babel (options = {}) {
 }
 
 function postConfig (context, util) {
-  const ruleConfig = Object.assign({
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    use: [
-      { loader: 'babel-loader', options: context.babel }
-    ]
-  }, context.match)
+  const ruleConfig = Object.assign(
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [{ loader: 'babel-loader', options: context.babel }]
+    },
+    context.match
+  )
 
   return util.addLoader(ruleConfig)
 }

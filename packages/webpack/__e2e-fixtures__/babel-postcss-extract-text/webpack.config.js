@@ -14,22 +14,14 @@ const path = require('path')
 const precss = require('precss')
 
 module.exports = createConfig([
-  entryPoint(
-    path.join(__dirname, 'app.js')
-  ),
-  setOutput(
-    path.join(__dirname, 'build/bundle.js')
-  ),
+  entryPoint(path.join(__dirname, 'app.js')),
+  setOutput(path.join(__dirname, 'build/bundle.js')),
   babel(),
   match('*.css', [
     postcss({
-      plugins: [
-        precss
-      ]
+      plugins: [precss]
     }),
-    extractText(
-      'styles.css'
-    )
+    extractText('styles.css')
   ]),
   performance({
     maxAssetSize: 100000,

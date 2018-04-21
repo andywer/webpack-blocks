@@ -16,7 +16,7 @@ function createFileTypesMapping (initialMapping) {
       if (!(type in currentMapping)) {
         throw new Error(`FileTypes:get(): Type is not registered: ${type}`)
       }
-      return currentMapping[ type ]
+      return currentMapping[type]
     },
 
     /**
@@ -41,7 +41,9 @@ function createFileTypesMapping (initialMapping) {
       } else if (typeof type === 'object') {
         currentMapping = addMultiple(type)
       } else {
-        throw new Error(`FileTypes:add(): Expected 1st param to be a string or object, but got: ${typeof type}`)
+        throw new Error(
+          `FileTypes:add(): Expected 1st param to be a string or object, but got: ${typeof type}`
+        )
       }
       return mapper
     }
@@ -53,10 +55,12 @@ function createFileTypesMapping (initialMapping) {
 
   function addOne (type, condition) {
     if (!condition) {
-      throw new Error(`FileTypes:add(): Expected a 'condition' as 2nd param if 1st param is a string.`)
+      throw new Error(
+        `FileTypes:add(): Expected a 'condition' as 2nd param if 1st param is a string.`
+      )
     }
     return Object.assign({}, currentMapping, {
-      [ type ]: condition
+      [type]: condition
     })
   }
 

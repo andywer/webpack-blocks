@@ -1,16 +1,18 @@
-const { createConfig, defineConstants, entryPoint, performance, setOutput } = require('../../index')
+const {
+  createConfig,
+  defineConstants,
+  entryPoint,
+  performance,
+  setOutput
+} = require('../../index')
 
 const typescript = require('@webpack-blocks/typescript')
 const tslint = require('@webpack-blocks/tslint')
 const path = require('path')
 
 module.exports = createConfig([
-  entryPoint(
-    path.join(__dirname, 'app.ts')
-  ),
-  setOutput(
-    path.join(__dirname, 'build/bundle.js')
-  ),
+  entryPoint(path.join(__dirname, 'app.ts')),
+  setOutput(path.join(__dirname, 'build/bundle.js')),
   typescript({ configFileName: path.resolve('./tsconfig.json') }),
   tslint({
     emitErrors: true

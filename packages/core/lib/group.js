@@ -16,7 +16,8 @@ function group (configSetters) {
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
-  const groupBlock = context => config => invokeConfigSetters(configSetters, context, config)
+  const groupBlock = context => config =>
+    invokeConfigSetters(configSetters, context, config)
 
   return Object.assign(groupBlock, { pre, post })
 }

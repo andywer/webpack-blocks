@@ -6,8 +6,8 @@ const { invokePreHooks, invokePostHooks } = require('./hooks')
 module.exports = match
 
 const regexify = glob => globToRegex(glob, { extended: true })
-const stripArrayConditionally = array => array.length === 1 ? array[0] : array
-const toArray = thing => Array.isArray(thing) ? thing : [ thing ]
+const stripArrayConditionally = array => (array.length === 1 ? array[0] : array)
+const toArray = thing => (Array.isArray(thing) ? thing : [thing])
 
 /**
  * State on which files to apply the loader blocks passed in this call. Works
@@ -27,7 +27,9 @@ function match (test, options, configSetters) {
   assertConfigSetters(configSetters)
 
   if (options.test) {
-    throw new Error(`match(): Setting 'test' in options is not supported; use the argument instead.`)
+    throw new Error(
+      `match(): Setting 'test' in options is not supported; use the argument instead.`
+    )
   }
 
   const { inclusions, exclusions } = splitPatterns(toArray(test))
@@ -43,11 +45,22 @@ function match (test, options, configSetters) {
     )
   }
 
-  const groupBlock = context => config => invokeConfigSetters(configSetters, deriveContextWithMatch(context, match), config)
+  const groupBlock = context => config =>
+    invokeConfigSetters(
+      configSetters,
+      deriveContextWithMatch(context, match),
+      config
+    )
 
   return Object.assign(groupBlock, {
-    pre: context => invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
-    post: context => config => invokePostHooks(configSetters, deriveContextWithMatch(context, match), config)
+    pre: context =>
+      invokePreHooks(configSetters, deriveContextWithMatch(context, match)),
+    post: context => config =>
+      invokePostHooks(
+        configSetters,
+        deriveContextWithMatch(context, match),
+        config
+      )
   })
 }
 
@@ -61,11 +74,15 @@ function normalizeMatchers (fileMatchTests) {
 }
 
 function splitPatterns (patterns) {
-  const isNegation = pattern => typeof pattern === 'string' && pattern.startsWith('!')
-  const stripLeadingExclam = pattern => pattern.startsWith('!') ? pattern.substr(1) : pattern
+  const isNegation = pattern =>
+    typeof pattern === 'string' && pattern.startsWith('!')
+  const stripLeadingExclam = pattern =>
+    pattern.startsWith('!') ? pattern.substr(1) : pattern
   return {
     inclusions: patterns.filter(pattern => !isNegation(pattern)),
-    exclusions: patterns.filter(pattern => isNegation(pattern)).map(stripLeadingExclam)
+    exclusions: patterns
+      .filter(pattern => isNegation(pattern))
+      .map(stripLeadingExclam)
   }
 }
 
@@ -75,7 +92,7 @@ function deriveContextWithMatch (context, match) {
   // since we have now got a global context object and local ones.
   return new Proxy(context, {
     has (target, propName) {
-      return propName === 'match' ? true : (propName in target)
+      return propName === 'match' ? true : propName in target
     },
     get (target, propName) {
       return propName === 'match' ? match : target[propName]

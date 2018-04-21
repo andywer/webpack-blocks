@@ -19,23 +19,27 @@ module.exports = sass
  */
 function sass (options = {}) {
   const sassOptions = _.omit(options, 'minimize')
-  return (context, util) => util.addLoader(
-    Object.assign({
-      test: /\.(sass|scss)$/,
-      use: [
-        'style-loader',
+  return (context, util) =>
+    util.addLoader(
+      Object.assign(
         {
-          loader: 'css-loader',
-          options: {
-            sourceMap: Boolean(options.sourceMap),
-            minimize: options.minimize
-          }
+          test: /\.(sass|scss)$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: Boolean(options.sourceMap),
+                minimize: options.minimize
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: sassOptions
+            }
+          ]
         },
-        {
-          loader: 'sass-loader',
-          options: sassOptions
-        }
-      ]
-    }, context.match)
-  )
+        context.match
+      )
+    )
 }

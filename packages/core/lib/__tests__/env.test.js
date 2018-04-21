@@ -4,11 +4,8 @@ import env from '../env'
 
 process.env.NODE_ENV = 'testing'
 
-test('env() merges correctly', (t) => {
-  const envBlock = env(process.env.NODE_ENV, [
-    entryPoint1(),
-    entryPoint2()
-  ])
+test('env() merges correctly', t => {
+  const envBlock = env(process.env.NODE_ENV, [entryPoint1(), entryPoint2()])
 
   t.deepEqual(envBlock(null, {})({}), {
     entry: {
@@ -18,17 +15,14 @@ test('env() merges correctly', (t) => {
   })
 })
 
-test('env() respects the NODE_ENV', (t) => {
-  const envBlock = env('foo-bar', [
-    entryPoint1(),
-    entryPoint2()
-  ])
+test('env() respects the NODE_ENV', t => {
+  const envBlock = env('foo-bar', [entryPoint1(), entryPoint2()])
 
   const emptyConfig = { entry: {} }
   t.deepEqual(envBlock(null, {})(emptyConfig), emptyConfig)
 })
 
-test('env() block passes complete config to child blocks', (t) => {
+test('env() block passes complete config to child blocks', t => {
   const spyBlock1 = sinon.spy(() => prevConfig => ({
     ...prevConfig,
     entry: {
@@ -38,7 +32,7 @@ test('env() block passes complete config to child blocks', (t) => {
   }))
   const spyBlock2 = sinon.spy(() => prevConfig => prevConfig)
 
-  const envBlock = env(process.env.NODE_ENV, [ spyBlock1, spyBlock2 ])
+  const envBlock = env(process.env.NODE_ENV, [spyBlock1, spyBlock2])
 
   const createdConfig = envBlock({}, {})({
     entry: { baz: 'baz' }

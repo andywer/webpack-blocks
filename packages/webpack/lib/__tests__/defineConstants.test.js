@@ -8,17 +8,17 @@ const webpack = {
   }
 }
 
-test('defineConstants() creates a single DefinePlugin instance only', (t) => {
+test('defineConstants() creates a single DefinePlugin instance only', t => {
   const config = createConfig({ webpack }, [
     defineConstants({ a: 'a' }),
     defineConstants({ b: 'b' })
   ])
 
   t.is(Object.keys(config.plugins).length, 1)
-  t.deepEqual(Object.keys(config.plugins[0].definitions), [ 'a', 'b' ])
+  t.deepEqual(Object.keys(config.plugins[0].definitions), ['a', 'b'])
 })
 
-test('defineConstants() encodes the values', (t) => {
+test('defineConstants() encodes the values', t => {
   const config = createConfig({ webpack }, [
     defineConstants({
       foo: 'foo',

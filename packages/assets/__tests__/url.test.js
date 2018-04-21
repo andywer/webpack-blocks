@@ -3,11 +3,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import { url } from '../lib/index'
 
 test('url() works with match', t => {
-  const config = createConfig({}, [
-    match('*.jpg', [
-      url()
-    ])
-  ])
+  const config = createConfig({}, [match('*.jpg', [url()])])
 
   t.deepEqual(config.module.rules, [
     {
@@ -48,9 +44,7 @@ test('url() works with options and match()', t => {
 })
 
 test('deprecated url(<fileType>) still works', t => {
-  const config = createConfig({}, [
-    url('image')
-  ])
+  const config = createConfig({}, [url('image')])
 
   t.deepEqual(config.module.rules, [
     {
@@ -66,9 +60,7 @@ test('deprecated url(<fileType>) still works', t => {
 })
 
 test('deprecated url(<fileType>, { exclude }) still works', t => {
-  const config = createConfig({}, [
-    url('image', { exclude: /node_modules/ })
-  ])
+  const config = createConfig({}, [url('image', { exclude: /node_modules/ })])
 
   t.deepEqual(config.module.rules, [
     {

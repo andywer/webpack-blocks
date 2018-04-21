@@ -21,12 +21,14 @@ test('it exports the production config', t => {
   delete require.cache['../webpack.config.babel.js']
   const originalConfig = requireConfig()
   const module = Object.assign({}, originalConfig.module, {
-    rules: originalConfig.module.rules.map((rule) => {
+    rules: originalConfig.module.rules.map(rule => {
       if (rule.test.toString() === /\.css$/.toString()) {
         return Object.assign({}, rule, {
-          use: rule.use.map(use => Object.assign({}, use, {
-            loader: path.basename(use.loader)
-          }))
+          use: rule.use.map(use =>
+            Object.assign({}, use, {
+              loader: path.basename(use.loader)
+            })
+          )
         })
       }
 
@@ -58,23 +60,33 @@ test.skip('it builds', t => {
   })
 
   function testHtml () {
-    const html = fs.readFileSync(path.join(buildLocation, 'index.html'), { encoding: 'utf8' })
+    const html = fs.readFileSync(path.join(buildLocation, 'index.html'), {
+      encoding: 'utf8'
+    })
     const re = /<link href="css\/main.*.css" rel="stylesheet">/
 
     t.true(re.test(html))
-    t.true(html.includes('<script type="text/javascript" src="bundle.js"></script>'))
+    t.true(
+      html.includes('<script type="text/javascript" src="bundle.js"></script>')
+    )
   }
 
   function testJs () {
-    const js = fs.readFileSync(path.join(buildLocation, 'bundle.js'), { encoding: 'utf8' })
+    const js = fs.readFileSync(path.join(buildLocation, 'bundle.js'), {
+      encoding: 'utf8'
+    })
     t.true(js.includes('No content here. We only test the build process 😉'))
   }
 
   function testCss () {
-    const files = fs.readdirSync(path.join(buildLocation, 'css'), { encoding: 'utf8' })
+    const files = fs.readdirSync(path.join(buildLocation, 'css'), {
+      encoding: 'utf8'
+    })
     t.is(files.length, 1)
 
-    const css = fs.readFileSync(path.join(buildLocation, 'css', files[0]), { encoding: 'utf8' })
+    const css = fs.readFileSync(path.join(buildLocation, 'css', files[0]), {
+      encoding: 'utf8'
+    })
     t.true(css.startsWith('.'))
     t.true(css.endsWith('{margin:30px auto;text-align:center}'))
   }

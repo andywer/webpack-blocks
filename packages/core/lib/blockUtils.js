@@ -13,17 +13,17 @@ function merge (configSnippet) {
 
 function addLoader (loaderDef) {
   const cleanedLoaderDef = _.omitBy(loaderDef, _.isUndefined)
-  return prevConfig => webpackMerge.smart(prevConfig, {
-    module: {
-      rules: [ cleanedLoaderDef ]
-    }
-  })
+  return prevConfig =>
+    webpackMerge.smart(prevConfig, {
+      module: {
+        rules: [cleanedLoaderDef]
+      }
+    })
 }
 
 function addPlugin (plugin) {
-  return prevConfig => Object.assign(
-    {},
-    prevConfig,
-    { plugins: prevConfig.plugins.concat([ plugin ]) }
-  )
+  return prevConfig =>
+    Object.assign({}, prevConfig, {
+      plugins: prevConfig.plugins.concat([plugin])
+    })
 }

@@ -44,7 +44,10 @@ exports.sourceMaps = sourceMaps
  * @return {object}                   Webpack config object.
  */
 function createConfig (configSetters) {
-  return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
+  return core.createConfig(
+    { webpack, webpackVersion },
+    [createEmptyConfig].concat(configSetters)
+  )
 }
 
 function createEmptyConfig (context, util) {
@@ -64,9 +67,10 @@ function createEmptyConfig (context, util) {
  * @see https://webpack.github.io/docs/configuration.html#entry
  */
 function entryPoint (entry) {
-  return (context, util) => util.merge({
-    entry: normalizeEntry(entry)
-  })
+  return (context, util) =>
+    util.merge({
+      entry: normalizeEntry(entry)
+    })
 }
 
 function normalizeEntry (entry) {
@@ -76,17 +80,19 @@ function normalizeEntry (entry) {
     }
   } else if (typeof entry === 'string') {
     return {
-      main: [ entry ]
+      main: [entry]
     }
   } else if (typeof entry === 'object') {
-    Object.keys(entry).forEach((entryName) => {
+    Object.keys(entry).forEach(entryName => {
       if (!Array.isArray(entry[entryName])) {
-        entry[entryName] = [ entry[entryName] ]
+        entry[entryName] = [entry[entryName]]
       }
     })
     return entry
   } else {
-    throw new Error(`Expected entry point to be object, array or string. Instead got: ${entry}`)
+    throw new Error(
+      `Expected entry point to be object, array or string. Instead got: ${entry}`
+    )
   }
 }
 
@@ -108,9 +114,10 @@ function customConfig (wpConfig) {
  * @param {string} performanceBudget.hints              'warning' or 'error'
  */
 function performance (performanceBudget) {
-  return (context, util) => util.merge({
-    performance: performanceBudget
-  })
+  return (context, util) =>
+    util.merge({
+      performance: performanceBudget
+    })
 }
 
 /**
@@ -120,9 +127,10 @@ function resolve (config) {
   const strategy = { 'resolve.extensions': 'prepend' }
   const merge = webpackMerge.smartStrategy(strategy)
 
-  return () => prevConfig => merge(prevConfig, {
-    resolve: config
-  })
+  return () => prevConfig =>
+    merge(prevConfig, {
+      resolve: config
+    })
 }
 
 /**
@@ -130,21 +138,25 @@ function resolve (config) {
  * @see https://webpack.github.io/docs/configuration.html#resolve-alias
  */
 function resolveAliases (aliases) {
-  console.warn(`[webpack-blocks] resolveAliases is deprecated. Please, use resolve({ alias: '' }) instead.`)
-  return (context, util) => util.merge({
-    resolve: {
-      alias: aliases
-    }
-  })
+  console.warn(
+    `[webpack-blocks] resolveAliases is deprecated. Please, use resolve({ alias: '' }) instead.`
+  )
+  return (context, util) =>
+    util.merge({
+      resolve: {
+        alias: aliases
+      }
+    })
 }
 
 /**
  * @see https://webpack.github.io/docs/configuration.html#context
  */
 function setContext (contextPath) {
-  return (context, util) => util.merge({
-    context: path.resolve(contextPath)
-  })
+  return (context, util) =>
+    util.merge({
+      context: path.resolve(contextPath)
+    })
 }
 
 /**

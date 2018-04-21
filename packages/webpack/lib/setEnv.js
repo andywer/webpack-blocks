@@ -20,9 +20,7 @@ function setEnv (constants) {
 }
 
 function addEnvironmentPlugin (context, util) {
-  return util.addPlugin(
-    new context.webpack.EnvironmentPlugin(context.setEnv)
-  )
+  return util.addPlugin(new context.webpack.EnvironmentPlugin(context.setEnv))
 }
 
 function toObject (constants) {
