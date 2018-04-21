@@ -1,6 +1,6 @@
 # @webpack-blocks/webpack - Changelog
 
-## Next version
+## 1.0.0
 
 - Added `when()` ([#242](https://github.com/andywer/webpack-blocks/issues/242))
 

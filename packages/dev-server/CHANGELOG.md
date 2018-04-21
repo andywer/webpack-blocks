@@ -1,6 +1,6 @@
 # @webpack-blocks/dev-server - Changelog
 
-## Next version
+## 1.0.0
 
 - Removed `proxy()` ([#251](https://github.com/andywer/webpack-blocks/pull/251))
 
