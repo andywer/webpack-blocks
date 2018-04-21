@@ -10,20 +10,21 @@
     "node": ">= 6.0"
   },
   "devDependencies": {
-    "@types/node": "^7.0.0",
-    "@types/react": "^15.0.0",
+    "@types/node": "^7.0.58",
+    "@types/react": "^15.6.15",
     "ava": "^0.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "cross-env": "^5.0.5",
+    "cross-env": "^5.1.4",
     "html-webpack-plugin": "^2.30.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-hot-loader": "^3.0.0-beta.5",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-hot-loader": "^3.1.3",
     "rimraf": "^2.6.2",
     "standard": "^10.0.3",
-    "webpack": "^3.5.3",
-    "webpack-blocks": "^1.0.0-rc",
-    "webpack-dev-server": "^2.7.1"
-  }
+    "webpack": "^3.11.0",
+    "webpack-blocks": "^1.0.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "version": "1.0.0"
 }

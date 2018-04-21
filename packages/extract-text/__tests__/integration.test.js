@@ -100,27 +100,6 @@ test('fails properly if nothing to extract can be found', t => {
   ]), /No loaders found to extract contents from/)
 })
 
-test('deprecated fileType parameter does still work', t => {
-  const config = createConfig({}, [
-    sass(),
-    extractText('css/styles.css', 'text/x-sass')
-  ])
-
-  const id = config.plugins[0].id
-  const plugin = Object.assign(new ExtractTextPlugin('css/styles.css'), { id })
-
-  t.deepEqual(config.plugins, [ plugin ])
-  t.deepEqual(config.module.rules, [
-    {
-      test: /\.(sass|scss)$/,
-      use: plugin.extract({
-        fallback: [ 'style-loader' ],
-        use: [ 'css-loader', 'sass-loader' ]
-      })
-    }
-  ])
-})
-
 function css () {
   return (context, util) => util.addLoader(
     Object.assign({

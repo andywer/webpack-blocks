@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/eslint",
-  "version": "1.0.0-rc",
+  "version": "1.0.0",
   "description": "Webpack block for JavaScript linting.",
   "main": "index.js",
   "license": "MIT",
@@ -22,9 +22,9 @@
     "eslint-loader": "^1.9.0"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^1.0.0-rc"
+    "@webpack-blocks/core": "^1.0.0"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^1.0.0-rc"
+    "@webpack-blocks/core": "^1.0.0"
   }
 }
