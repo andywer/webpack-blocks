@@ -3,6 +3,7 @@
 ## Next Release
 
 - Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))
+- Remove deprecated `resolveAliases` block ([#267](https://github.com/andywer/webpack-blocks/issues/267))
 
 ## 1.0.0
 
