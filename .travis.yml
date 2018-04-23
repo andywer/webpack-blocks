@@ -2,8 +2,5 @@ language: node_js
 node_js:
   - node    # latest
   - 6
-cache:
-  directories:
-    - $HOME/.npm
-script:
-  - travis_wait 15 npm test   # Increase "no output received" timeout
+cache: yarn
+script: travis_wait 15 yarn test   # Increase "no output received" timeout
