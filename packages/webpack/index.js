@@ -19,12 +19,14 @@ exports.when = core.when
 
 exports.createConfig = createConfig
 
+exports.setMode = setMode
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
 exports.setEnv = require('./lib/setEnv')
 exports.entryPoint = entryPoint
 exports.performance = performance
+exports.optimization = optimization
 exports.resolve = resolve
 exports.setContext = setContext
 exports.setDevTool = setDevTool
@@ -53,6 +55,16 @@ function createEmptyConfig (context, util) {
     },
     plugins: []
   })
+}
+
+/**
+ * @see https://webpack.js.org/concepts/mode
+ */
+function setMode (mode) {
+  return (context, util) => {
+    context.mode = mode
+    return util.merge({ mode })
+  }
 }
 
 /**
@@ -109,6 +121,16 @@ function customConfig (wpConfig) {
 function performance (performanceBudget) {
   return (context, util) => util.merge({
     performance: performanceBudget
+  })
+}
+
+/**
+ * @param {object} optimizationOptions
+ * @see https://github.com/webpack/webpack/releases/tag/v4.0.0
+ */
+function optimization (optimizationOptions) {
+  return (context, util) => util.merge({
+    optimization: optimizationOptions
   })
 }
 

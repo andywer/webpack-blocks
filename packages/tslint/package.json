@@ -21,9 +21,9 @@
   "dependencies": {
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.1"
+    "typescript": "^2.8.3"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": ">= 0.4.0 || >= 1.0.0-alpha"
+    "@webpack-blocks/core": "^1.0.0"
   }
 }

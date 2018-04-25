@@ -1,6 +1,6 @@
 import test from 'ava'
 import path from 'path'
-import { createConfig, entryPoint, match, setOutput, sourceMaps, resolve } from '../index'
+import { createConfig, entryPoint, match, setOutput, sourceMaps, resolve, setMode, optimization } from '../index'
 import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel'
 import devServer from '@webpack-blocks/dev-server'
@@ -12,6 +12,7 @@ test('complete webpack config creation', t => {
   const fonts = ['*.eot', '*.ttf', '*.woff', '*.woff2']
 
   const webpackConfig = createConfig([
+    setMode('development'),
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js'),
     babel(),
@@ -35,7 +36,10 @@ test('complete webpack config creation', t => {
     ]),
     match(fonts, [
       file()
-    ])
+    ]),
+    optimization({
+      splitChunks: 'all'
+    })
   ])
 
   t.is(webpackConfig.module.rules.length, 4)
@@ -109,6 +113,8 @@ test('complete webpack config creation', t => {
     } ]
   })
 
+  t.is(webpackConfig.mode, 'development')
+
   t.deepEqual(webpackConfig.entry, { main: [ './src/main.js' ] })
 
   t.deepEqual(webpackConfig.devServer, {
@@ -130,8 +136,12 @@ test('complete webpack config creation', t => {
 
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
+  t.deepEqual(webpackConfig.optimization, {
+    splitChunks: 'all'
+  })
+
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve', 'stats'
+    'devServer', 'devtool', 'entry', 'mode', 'module', 'optimization', 'output', 'plugins', 'resolve', 'stats'
   ])
 })
 
