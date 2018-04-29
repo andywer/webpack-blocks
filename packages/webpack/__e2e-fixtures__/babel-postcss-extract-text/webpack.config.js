@@ -4,8 +4,6 @@ const {
   entryPoint,
   match,
   performance,
-  setDevTool,
-  setMode,
   setOutput
 } = require('../../index')
 
@@ -16,8 +14,6 @@ const path = require('path')
 const precss = require('precss')
 
 module.exports = createConfig([
-  setMode('development'),
-  setDevTool(false),
   entryPoint(
     path.join(__dirname, 'app.js')
   ),

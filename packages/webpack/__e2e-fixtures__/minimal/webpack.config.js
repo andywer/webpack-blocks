@@ -1,9 +1,8 @@
-const { createConfig, customConfig, entryPoint, setMode, setOutput } = require('../../index')
+const { createConfig, customConfig, entryPoint, setOutput } = require('../../index')
 
 const path = require('path')
 
 module.exports = createConfig([
-  setMode('development'),
   entryPoint(
     path.join(__dirname, 'app.js')
   ),
