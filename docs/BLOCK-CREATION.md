@@ -221,7 +221,7 @@ So you have written your first webpack block. Now what to do with it?
 
 1. Write a small README
 2. Add a `package.json` (add dependencies here, like loaders/plugins your block configures)
-3. Open a pull request on webpack-blocks or `npm publish` your block
+3. Open a pull request on webpack-blocks or `yarn publish` your block
 
 If you aren't sure whether your block should become part of the official webpack-blocks repository feel free to just open an issue and ask us!
 
