@@ -7,7 +7,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
     "test": "ava && standard",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "yarn test"
   },
   "keywords": [
     "webpack",

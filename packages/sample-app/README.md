@@ -7,8 +7,8 @@ A very basic React app featuring Babel and HMR. Performs all the nifty optimizat
 
 ```sh
 git clone https://github.com/andywer/webpack-blocks.git
-cd webpack-blocks/test-app
-npm install
+yarn install
+cd packages/sample-app
 ```
 
 
@@ -16,10 +16,10 @@ npm install
 
 To run the webpack dev server:
 ```sh
-npm start
+yarn start
 ```
 
 To create a production build:
 ```sh
-npm run build
+yarn build
 ```

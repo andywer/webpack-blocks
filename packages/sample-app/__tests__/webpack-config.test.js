@@ -49,7 +49,7 @@ test('it exports the production config', t => {
 test.skip('it builds', t => {
   const buildLocation = './build'
   rimraf(buildLocation, () => {})
-  exec('npm run build', (err, stdout, stderr) => {
+  exec('yarn build', (err, stdout, stderr) => {
     t.is(err, null)
     testHtml()
     testCss()
