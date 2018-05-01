@@ -5,27 +5,33 @@
 Fork and clone this repository, then run
 
 ```bash
-npm install
+yarn install
 ```
 
 Run tests:
 
 ```bash
-npm test
+yarn test
 ```
 
 ## Code
 
-This repository is a monorepo which means that it contains multiple npm packages.
+This repository is a monorepo which means it contains multiple NPM
+packages. We use [Yarn workspaces](https://yarnpkg.com/en/docs/workspaces)
+architecture to install dependencies and link local packages between
+each other, and [`lerna`](https://github.com/lerna/lerna) to run
+commands for one or more packages from the root directory.
 
-Running `npm install` in the repository's root directory will install the dependencies of all packages and link the packages that depend on each other.
+Running `yarn install` in the repository's root directory will install
+the dependencies of all packages and link the packages that depend on
+each other.
 
-Running `npm test` in the repository's root directory will run all packages' tests. Run `npm test` in a package to test this package only.
+Running `yarn test` will run all packages' tests. Run `yarn test`
+inside a package directory to test this package only.
 
-Just edit the code like you always do. Be aware that we automatically lint the code according to [JavaScript standard code style](https://github.com/feross/standard).
-
-When adding a new package you might need to run `npm run postinstall` in the repository's root directory to update the links between packages depending on each other.
-
+Just edit the code like you always do. Be aware that we automatically
+lint the code according to [standard](https://github.com/feross/standard)
+code style.
 
 ## Share
 
@@ -33,7 +39,8 @@ When adding a new package you might need to run `npm run postinstall` in the rep
 2. Create a new branch from `master`.
 3. Do something awesome.
 4. Add / update tests.
-5. Update changelogs of all packages that you change. Use *Next release* as a version number.
+5. Update changelogs of all packages that you change. Use *Next release*
+   as a version number.
 6. Push them and open a pull request. 
 
 
