@@ -49,7 +49,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
-    "sinon": "^4.5.0",
+    "sinon": "^5.0.2",
     "webpack": "^4.6.0"
   },
   "peerDependencies": {
