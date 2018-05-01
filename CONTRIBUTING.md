@@ -5,7 +5,7 @@
 Fork and clone this repository, then run
 
 ```bash
-yarn
+yarn install
 ```
 
 Run tests:
@@ -16,13 +16,22 @@ yarn test
 
 ## Code
 
-This repository is a monorepo which means that it contains multiple npm packages.
+This repository is a monorepo which means it contains multiple NPM
+packages. We use [Yarn workspaces](https://yarnpkg.com/en/docs/workspaces)
+architecture to install dependencies and link local packages between
+each other, and [`lerna`](https://github.com/lerna/lerna) to run
+commands for one or more packages from the root directory.
 
-Running `yarn` in the repository's root directory will install the dependencies of all packages and link the packages that depend on each other.
+Running `yarn install` in the repository's root directory will install
+the dependencies of all packages and link the packages that depend on
+each other.
 
-Running `yarn test` in the repository's root directory will run all packages' tests. Run `yarn test` in a package to test this package only.
+Running `yarn test` will run all packages' tests. Run `yarn test`
+inside a package directory to test this package only.
 
-Just edit the code like you always do. Be aware that we automatically lint the code according to [JavaScript standard code style](https://github.com/feross/standard).
+Just edit the code like you always do. Be aware that we automatically
+lint the code according to [standard](https://github.com/feross/standard)
+code style.
 
 ## Share
 
@@ -30,7 +39,8 @@ Just edit the code like you always do. Be aware that we automatically lint the c
 2. Create a new branch from `master`.
 3. Do something awesome.
 4. Add / update tests.
-5. Update changelogs of all packages that you change. Use *Next release* as a version number.
+5. Update changelogs of all packages that you change. Use *Next release*
+   as a version number.
 6. Push them and open a pull request. 
 
 

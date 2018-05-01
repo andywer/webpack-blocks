@@ -7,7 +7,7 @@ A very basic React app featuring Babel and HMR. Performs all the nifty optimizat
 
 ```sh
 git clone https://github.com/andywer/webpack-blocks.git
-yarn
+yarn install
 cd packages/sample-app
 ```
 
