@@ -1,5 +1,9 @@
 # @webpack-blocks/babel - Changelog
 
+## Next Release
+
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+
 ## 1.0.0-rc
 
 - Breaking change: Renamed package from `babel6` to `babel` and

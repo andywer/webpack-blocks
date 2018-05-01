@@ -2,7 +2,7 @@
 
 ## Next Release
 
-- Removed `NamedModulesPlugin` because webpack 4 automatically adds it in the `development` mode ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
 
 ## 1.0.0
 
