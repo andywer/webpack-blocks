@@ -30,8 +30,7 @@ Running `yarn test` will run all packages' tests. Run `yarn test`
 inside a package directory to test this package only.
 
 Just edit the code like you always do. Be aware that we automatically
-lint the code according to [standard](https://github.com/feross/standard)
-code style.
+lint and format code with [prettier](https://prettier.io/).
 
 ## Share
 
