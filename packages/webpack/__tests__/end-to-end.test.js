@@ -1,10 +1,10 @@
 import test from 'ava'
 import fs from 'mz/fs'
-import jsdom from 'jsdom'
+import {JSDOM} from 'jsdom'
 import path from 'path'
 import webpack from 'webpack'
 
-const fixturesPath = path.join(__dirname, '..', '__e2e-fixtures__')
+const fixturesPath = path.join(__dirname, '../__e2e-fixtures__')
 
 test('building a minimal webpack project works', async (t) => {
   const projectPath = path.join(fixturesPath, 'minimal')
@@ -28,7 +28,7 @@ test('building the babel/postcss/extract-text project works', async (t) => {
 
   // Check if bundle contains injected process.env.TEST
   const bundleContents = await fs.readFile(path.join(buildPath, 'bundle.js'), { encoding: 'utf8' })
-  t.true(bundleContents.indexOf('module.exports = "This is the injected process.env.TEST!"') > -1)
+  t.true(bundleContents.indexOf('.exports="This is the injected process.env.TEST!"') > -1)
 
   // Check if CSS file contains correct content
   const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
@@ -42,7 +42,7 @@ test('building the sass/extract-text project works', async (t) => {
   const config = require(path.join(projectPath, 'webpack.config.js'))
   await runWebpack(config)
 
-  global.window = await setUpJsdomEnv()
+  global.window = new JSDOM('<html><body></body></html>')
   global.document = global.window.document
   require(path.join(buildPath, 'bundle.js'))
 
@@ -58,13 +58,13 @@ test('building the typescript project works', async (t) => {
   const config = require(path.join(projectPath, 'webpack.config.js'))
   await runWebpack(config)
 
-  global.window = await setUpJsdomEnv()
+  global.window = new JSDOM('<html><body></body></html>')
   global.document = global.window.document
   require(path.join(buildPath, 'bundle.js'))
 
   // Check if bundle contains injected process.env.TEST
   const bundleContents = await fs.readFile(path.join(buildPath, 'bundle.js'), { encoding: 'utf8' })
-  t.true(bundleContents.indexOf('module.exports = "This is the injected process.env.TEST!"') > -1)
+  t.true(bundleContents.indexOf('.exports="This is the injected process.env.TEST!"') > -1)
 })
 
 test('the postcss/sass/source-maps project build does not fail', async (t) => {
@@ -85,7 +85,7 @@ test('building the sass/css-modules project works', async (t) => {
   const config = require(path.join(projectPath, 'webpack.config.js'))
   await runWebpack(config)
 
-  global.window = await setUpJsdomEnv()
+  global.window = new JSDOM('<html><body></body></html>')
   global.document = global.window.document
   require(path.join(buildPath, 'bundle.js'))
 
@@ -105,18 +105,6 @@ function runWebpack (config) {
         reject(new Error('Webpack soft error occured. See stderr output.'))
       } else {
         resolve(stats)
-      }
-    })
-  })
-}
-
-function setUpJsdomEnv () {
-  return new Promise((resolve, reject) => {
-    jsdom.env('<html><body></body></html>', (error, window) => {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(window)
       }
     })
   })

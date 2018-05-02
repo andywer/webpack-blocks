@@ -8,6 +8,7 @@ This block provides UglifyJS webpack plugin configuration for [webpack-blocks](h
 
 Based on [uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-webpack-plugin) (not `webpack.optimize.UglifyJsPlugin`) which uses UglifyJS v3 (uglify-es) that supports ECMAScript 2015.
 
+**This block will only work in the `production` mode.**
 
 ## Usage
 
@@ -15,9 +16,7 @@ Based on [uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-w
 const { createConfig, env, uglify } = require('webpack-blocks')
 
 module.exports = createConfig([
-  env('production', [
-    uglify(/* options */)
-  ])
+  uglify(/* options */)
 ])
 ```
 
@@ -31,17 +30,19 @@ By default generates this configuration:
 
 ```js
 {
-  plugins: [
-    new UglifyJSPlugin({
-      parallel: true,
-      cache: true,
-      uglifyOptions: {
-        compress: {
-          warnings: false
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({
+        parallel: true,
+        cache: true,
+        uglifyOptions: {
+          compress: {
+            warnings: false
+          }
         }
-      }
-    })
-  ]
+      })
+    ]
+  }
 }
 ```
 

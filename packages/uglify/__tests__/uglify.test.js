@@ -8,7 +8,7 @@ test('Uglify default options work', t => {
     uglify()
   ])
 
-  t.true(config.plugins[0] instanceof UglifyJSPlugin)
+  t.true(config.optimization.minimizer[0] instanceof UglifyJSPlugin)
 })
 
 test('Uglify options work', t => {
@@ -18,8 +18,8 @@ test('Uglify options work', t => {
     })
   ])
 
-  t.truthy(config.plugins[0].options.parallel)
-  t.truthy(config.plugins[0].options.cache)
-  t.deepEqual(config.plugins[0].options.parallel, 42)
-  t.deepEqual(config.plugins[0].options.cache, true)
+  t.truthy(config.optimization.minimizer[0].options.parallel)
+  t.truthy(config.optimization.minimizer[0].options.cache)
+  t.deepEqual(config.optimization.minimizer[0].options.parallel, 42)
+  t.deepEqual(config.optimization.minimizer[0].options.cache, true)
 })
