@@ -9,7 +9,12 @@ module.exports = createConfig([
   setOutput(path.join(__dirname, 'build/bundle.js')),
   typescript({ configFileName: path.resolve('./tsconfig.json') }),
   tslint({
-    emitErrors: true
+    emitErrors: true,
+    configuration: {
+      rules: {
+        'typedef-whitespace': false
+      }
+    }
   }),
   performance({
     maxAssetSize: 100000,
