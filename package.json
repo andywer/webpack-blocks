@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "yarn prettier --debug-check && lerna run test",
+    "test": "lerna run test",
     "format": "yarn prettier --write",
     "prettier": "prettier '**/*.{js,ts,tsx}' --loglevel warn"
   },
