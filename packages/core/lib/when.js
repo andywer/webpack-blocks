@@ -10,7 +10,7 @@ module.exports = when
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function when (condition, configSetters) {
+function when(condition, configSetters) {
   assertConfigSetters(configSetters)
 
   if (condition) {

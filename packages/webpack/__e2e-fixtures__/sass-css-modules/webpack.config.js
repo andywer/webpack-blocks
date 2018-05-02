@@ -7,9 +7,5 @@ const path = require('path')
 module.exports = createConfig([
   entryPoint(path.join(__dirname, 'src/index.js')),
   setOutput(path.join(__dirname, 'build/bundle.js')),
-  match('*.scss', [
-    css.modules(),
-    sass(),
-    extractText('./styles.css')
-  ])
+  match('*.scss', [css.modules(), sass(), extractText('./styles.css')])
 ])

@@ -15,7 +15,7 @@ module.exports = createConfig
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {object}                   Webpack config object.
  */
-function createConfig (initialContext, configSetters) {
+function createConfig(initialContext, configSetters) {
   if (!initialContext) {
     throw new Error(`No initial context passed.`)
   }

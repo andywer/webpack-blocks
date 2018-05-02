@@ -3,9 +3,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import { css } from '../lib/index'
 
 test('css() works', t => {
-  const config = createConfig({}, [
-    css()
-  ])
+  const config = createConfig({}, [css()])
 
   t.deepEqual(config.module.rules, [
     {
@@ -14,7 +12,8 @@ test('css() works', t => {
         {
           loader: 'style-loader',
           options: {}
-        }, {
+        },
+        {
           loader: 'css-loader',
           options: {}
         }
@@ -40,7 +39,8 @@ test('css() works with options and match()', t => {
         {
           loader: 'style-loader',
           options: {}
-        }, {
+        },
+        {
           loader: 'css-loader',
           options: {
             minimize: true
@@ -63,15 +63,17 @@ test('style-loader can take options', t => {
   t.deepEqual(config.module.rules, [
     {
       test: /\.css$/,
-      use: [{
-        loader: 'style-loader',
-        options: {
-          hmr: true
+      use: [
+        {
+          loader: 'style-loader',
+          options: {
+            hmr: true
+          }
+        },
+        {
+          loader: 'css-loader',
+          options: {}
         }
-      }, {
-        loader: 'css-loader',
-        options: {}
-      }
       ]
     }
   ])

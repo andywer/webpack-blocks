@@ -4,9 +4,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import sass from '../index'
 
 test('Sass works with defaults, without match()', t => {
-  const config = createConfig({}, [
-    sass()
-  ])
+  const config = createConfig({}, [sass()])
 
   t.deepEqual(config.module.rules, [
     {
@@ -30,12 +28,7 @@ test('Sass works with defaults, without match()', t => {
 })
 
 test('Sass works with css() & match()', t => {
-  const config = createConfig({}, [
-    match('*.sass', { exclude: /node_modules/ }, [
-      css(),
-      sass()
-    ])
-  ])
+  const config = createConfig({}, [match('*.sass', { exclude: /node_modules/ }, [css(), sass()])])
 
   t.deepEqual(config.module.rules, [
     {
@@ -63,9 +56,7 @@ test('Sass works with css() & match()', t => {
 })
 
 test('Sass should pass sourceMap option to sass-loader and css-loader', t => {
-  const config = createConfig({}, [
-    sass({ sourceMap: true })
-  ])
+  const config = createConfig({}, [sass({ sourceMap: true })])
 
   t.deepEqual(config.module.rules, [
     {
@@ -91,9 +82,7 @@ test('Sass should pass sourceMap option to sass-loader and css-loader', t => {
 })
 
 test('Sass should pass minimize option to css-loader', t => {
-  const config = createConfig({}, [
-    sass({ minimize: true })
-  ])
+  const config = createConfig({}, [sass({ minimize: true })])
 
   t.deepEqual(config.module.rules, [
     {

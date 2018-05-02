@@ -11,7 +11,7 @@ module.exports = env
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function env (envName, configSetters) {
+function env(envName, configSetters) {
   assertConfigSetters(configSetters)
 
   const currentEnv = process.env.NODE_ENV || 'development'

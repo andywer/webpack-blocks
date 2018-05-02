@@ -33,9 +33,7 @@ test('complete webpack config creation', t => {
         limit: 10000
       })
     ]),
-    match(fonts, [
-      file()
-    ])
+    match(fonts, [file()])
   ])
 
   t.is(webpackConfig.module.rules.length, 4)
@@ -67,13 +65,7 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[1], {
-    test: [
-      /^.*\.gif$/,
-      /^.*\.jpg$/,
-      /^.*\.jpeg$/,
-      /^.*\.png$/,
-      /^.*\.webp$/
-    ],
+    test: [/^.*\.gif$/, /^.*\.jpg$/, /^.*\.jpeg$/, /^.*\.png$/, /^.*\.webp$/],
     exclude: /node_modules/,
     use: [
       {
@@ -85,12 +77,7 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[2], {
-    test: [
-      /^.*\.eot$/,
-      /^.*\.ttf$/,
-      /^.*\.woff$/,
-      /^.*\.woff2$/
-    ],
+    test: [/^.*\.eot$/, /^.*\.ttf$/, /^.*\.woff$/, /^.*\.woff2$/],
     use: [
       {
         loader: 'file-loader',
@@ -101,15 +88,17 @@ test('complete webpack config creation', t => {
   t.deepEqual(webpackConfig.module.rules[3], {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    use: [ {
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
       }
-    } ]
+    ]
   })
 
-  t.deepEqual(webpackConfig.entry, { main: [ './src/main.js' ] })
+  t.deepEqual(webpackConfig.entry, { main: ['./src/main.js'] })
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
@@ -131,19 +120,23 @@ test('complete webpack config creation', t => {
   t.is(webpackConfig.devtool, 'cheap-module-source-map')
 
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve', 'stats'
+    'devServer',
+    'devtool',
+    'entry',
+    'module',
+    'output',
+    'plugins',
+    'resolve',
+    'stats'
   ])
 })
 
 test('createConfig() creates a minimal configuration', t => {
-  const webpackConfig = createConfig([
-    entryPoint('./src/main.js'),
-    setOutput('./build/bundle.js')
-  ])
+  const webpackConfig = createConfig([entryPoint('./src/main.js'), setOutput('./build/bundle.js')])
 
   t.deepEqual(webpackConfig, {
     entry: {
-      main: [ './src/main.js' ]
+      main: ['./src/main.js']
     },
     module: {
       rules: []
@@ -187,9 +180,7 @@ test('context contains necessary properties', t => {
 test('prepends custom extension to default ones', t => {
   const expectedExtensionOrder = ['.custom.js', '.js', '.json']
 
-  const webpackConfig = createConfig([
-    resolve({ extensions: ['.custom.js'] })
-  ])
+  const webpackConfig = createConfig([resolve({ extensions: ['.custom.js'] })])
 
   const actualExtensions = webpackConfig.resolve.extensions
 

@@ -4,9 +4,7 @@ import { createConfig } from '@webpack-blocks/core'
 import uglify from '../index'
 
 test('Uglify default options work', t => {
-  const config = createConfig({}, [
-    uglify()
-  ])
+  const config = createConfig({}, [uglify()])
 
   t.true(config.optimization.minimizer[0] instanceof UglifyJSPlugin)
 })
