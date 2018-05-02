@@ -5,8 +5,7 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "lerna": "^2.10.2",
-    "standard": "^10.0.3"
+    "lerna": "^2.10.2"
   },
   "workspaces": [
     "packages/*"

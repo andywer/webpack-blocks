@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Artem Sapegin <artem@sapegin.ru>",
   "scripts": {
-    "test": "ava && standard",
+    "test": "ava",
     "prepublishOnly": "yarn test"
   },
   "engines": {

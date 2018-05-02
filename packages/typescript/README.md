@@ -1,7 +1,6 @@
 # webpack-blocks - TypeScript
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/typescript.svg)](https://www.npmjs.com/package/@webpack-blocks/typescript)
 
 This is the `typescript` block providing TypeScript support for webpack. Uses `awesome-typescript-loader`.
