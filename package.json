@@ -1,13 +1,21 @@
 {
   "private": true,
   "scripts": {
-    "test": "lerna run test"
+    "test": "yarn prettier --debug-check && lerna run test",
+    "format": "yarn prettier --write",
+    "prettier": "prettier \"**/*.js\" --loglevel warn"
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "lerna": "^2.10.2"
+    "lerna": "^2.10.2",
+    "prettier": "^1.12.1"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  }
 }
