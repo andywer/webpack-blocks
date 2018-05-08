@@ -94,11 +94,11 @@ test('building the sass/css-modules project works', async t => {
   // Check if CSS file contains correct content
   const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
   t.truthy(
-    removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+\{margin:10px;\}/)
+    removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+{margin:10px;}/)
   )
   t.truthy(
     removeWhitespaces(styleContents).match(
-      /\.styles--myClass--[0-9a-zA-Z]+:hover\{color:#ff0000;\}/
+      /\.styles--myClass--[0-9a-zA-Z]+:hover{color:#ff0000;}/
     )
   )
 })
@@ -109,6 +109,7 @@ function runWebpack(config) {
       if (error) {
         reject(error)
       } else if (stats.hasErrors()) {
+        // eslint-disable-next-line no-console
         stats.toJson().errors.forEach(error => console.error(error, '\n'))
         reject(new Error('Webpack soft error occured. See stderr output.'))
       } else {
