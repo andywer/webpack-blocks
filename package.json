@@ -1,10 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "test": "yarn prettier --list-different && yarn lint && lerna run test",
     "lint": "eslint \"**/*.js\"",
-    "format": "yarn prettier --write",
-    "prettier": "prettier \"**/*.{js,ts,tsx}\" --loglevel warn"
+    "format": "prettier \"**/*.{js,ts,tsx}\" --write --loglevel warn",
+    "test": "prettier \"**/*.{js,ts,tsx}\" --list-different && yarn lint && lerna run test"
   },
   "devDependencies": {
     "ava": "^0.22.0",

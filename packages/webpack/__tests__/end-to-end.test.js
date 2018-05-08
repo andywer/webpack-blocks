@@ -93,13 +93,9 @@ test('building the sass/css-modules project works', async t => {
 
   // Check if CSS file contains correct content
   const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
+  t.truthy(removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+{margin:10px;}/))
   t.truthy(
-    removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+{margin:10px;}/)
-  )
-  t.truthy(
-    removeWhitespaces(styleContents).match(
-      /\.styles--myClass--[0-9a-zA-Z]+:hover{color:#ff0000;}/
-    )
+    removeWhitespaces(styleContents).match(/\.styles--myClass--[0-9a-zA-Z]+:hover{color:#ff0000;}/)
   )
 })
 
