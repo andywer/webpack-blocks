@@ -3,11 +3,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import { url } from '../lib/index'
 
 test('url() works with match', t => {
-  const config = createConfig({}, [
-    match('*.jpg', [
-      url()
-    ])
-  ])
+  const config = createConfig({}, [match('*.jpg', [url()])])
 
   t.deepEqual(config.module.rules, [
     {

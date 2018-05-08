@@ -2,11 +2,8 @@ import test from 'ava'
 import sinon from 'sinon'
 import when from '../when'
 
-test('when() merges correctly', (t) => {
-  const whenBlock = when(true, [
-    entryPoint1(),
-    entryPoint2()
-  ])
+test('when() merges correctly', t => {
+  const whenBlock = when(true, [entryPoint1(), entryPoint2()])
 
   t.deepEqual(whenBlock(null, {})({}), {
     entry: {
@@ -16,17 +13,14 @@ test('when() merges correctly', (t) => {
   })
 })
 
-test('when() respects the condition', (t) => {
-  const whenBlock = when(false, [
-    entryPoint1(),
-    entryPoint2()
-  ])
+test('when() respects the condition', t => {
+  const whenBlock = when(false, [entryPoint1(), entryPoint2()])
 
   const emptyConfig = { entry: {} }
   t.deepEqual(whenBlock(null, {})(emptyConfig), emptyConfig)
 })
 
-test('when() block passes complete config to child blocks', (t) => {
+test('when() block passes complete config to child blocks', t => {
   const spyBlock1 = sinon.spy(() => prevConfig => ({
     ...prevConfig,
     entry: {
@@ -36,7 +30,7 @@ test('when() block passes complete config to child blocks', (t) => {
   }))
   const spyBlock2 = sinon.spy(() => prevConfig => prevConfig)
 
-  const whenBlock = when(true, [ spyBlock1, spyBlock2 ])
+  const whenBlock = when(true, [spyBlock1, spyBlock2])
 
   const createdConfig = whenBlock({}, {})({
     entry: { baz: 'baz' }
@@ -53,7 +47,7 @@ test('when() block passes complete config to child blocks', (t) => {
   })
 })
 
-function entryPoint1 () {
+function entryPoint1() {
   return () => prevConfig => ({
     ...prevConfig,
     entry: {
@@ -63,7 +57,7 @@ function entryPoint1 () {
   })
 }
 
-function entryPoint2 () {
+function entryPoint2() {
   return () => prevConfig => ({
     ...prevConfig,
     entry: {

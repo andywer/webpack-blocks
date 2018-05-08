@@ -5,7 +5,6 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard",
     "prepublishOnly": "yarn test"
   },
   "engines": {

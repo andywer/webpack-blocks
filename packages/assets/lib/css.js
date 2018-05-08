@@ -9,7 +9,7 @@ module.exports.modules = cssModules
  * @return {Function}
  * @see https://github.com/webpack-contrib/css-loader
  */
-function css (options = {}) {
+function css(options = {}) {
   const cssOptions = _.omit(options, ['styleLoader'])
   const loaders = [{ loader: 'css-loader', options: cssOptions }]
 
@@ -17,15 +17,16 @@ function css (options = {}) {
     loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
   }
 
-  return (context, util) => util.addLoader(
-    Object.assign(
-      {
-        test: /\.css$/,
-        use: loaders
-      },
-      context.match
+  return (context, util) =>
+    util.addLoader(
+      Object.assign(
+        {
+          test: /\.css$/,
+          use: loaders
+        },
+        context.match
+      )
     )
-  )
 }
 
 /**
@@ -36,28 +37,33 @@ function css (options = {}) {
  * @return {Function}
  * @see https://github.com/webpack-contrib/css-loader
  */
-function cssModules (options = {}) {
+function cssModules(options = {}) {
   const defaultCssOptions = {
     modules: true,
     importLoaders: 1,
-    localIdentName: String(process.env.NODE_ENV) === 'production'
-      ? '[hash:base64:10]'
-      : '[name]--[local]--[hash:base64:5]'
+    localIdentName:
+      String(process.env.NODE_ENV) === 'production'
+        ? '[hash:base64:10]'
+        : '[name]--[local]--[hash:base64:5]'
   }
-  const cssOptions = Object.assign(defaultCssOptions, _.omit(options, ['exclude', 'include', 'styleLoader']))
+  const cssOptions = Object.assign(
+    defaultCssOptions,
+    _.omit(options, ['exclude', 'include', 'styleLoader'])
+  )
   const loaders = [{ loader: 'css-loader', options: cssOptions }]
 
   if (options.styleLoader !== false) {
     loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
   }
 
-  return (context, util) => util.addLoader(
-    Object.assign(
-      {
-        test: /\.css$/,
-        use: loaders
-      },
-      context.match
+  return (context, util) =>
+    util.addLoader(
+      Object.assign(
+        {
+          test: /\.css$/,
+          use: loaders
+        },
+        context.match
+      )
     )
-  )
 }

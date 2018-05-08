@@ -1,7 +1,7 @@
 const test = require('ava')
 const parseVersion = require('../parseVersion')
 
-test('parseVersion() works', (t) => {
+test('parseVersion() works', t => {
   t.deepEqual(parseVersion('1.2.3'), {
     major: 1,
     minor: 2,

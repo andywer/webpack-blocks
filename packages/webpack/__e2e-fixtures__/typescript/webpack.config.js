@@ -5,15 +5,16 @@ const tslint = require('@webpack-blocks/tslint')
 const path = require('path')
 
 module.exports = createConfig([
-  entryPoint(
-    path.join(__dirname, 'app.ts')
-  ),
-  setOutput(
-    path.join(__dirname, 'build/bundle.js')
-  ),
+  entryPoint(path.join(__dirname, 'app.ts')),
+  setOutput(path.join(__dirname, 'build/bundle.js')),
   typescript({ configFileName: path.resolve('./tsconfig.json') }),
   tslint({
-    emitErrors: true
+    emitErrors: true,
+    configuration: {
+      rules: {
+        'typedef-whitespace': false
+      }
+    }
   }),
   performance({
     maxAssetSize: 100000,
