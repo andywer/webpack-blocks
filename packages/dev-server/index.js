@@ -11,14 +11,14 @@ module.exports = devServer
  * @param {string|string[]} [entry]
  * @return {Function}
  */
-function devServer (options = {}, entry = []) {
+function devServer(options = {}, entry = []) {
   if (options && (typeof options === 'string' || Array.isArray(options))) {
     entry = options
     options = {}
   }
 
   if (!Array.isArray(entry)) {
-    entry = entry ? [ entry ] : []
+    entry = entry ? [entry] : []
   }
 
   const setter = context => prevConfig => {
@@ -32,36 +32,37 @@ function devServer (options = {}, entry = []) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, util) {
+function postConfig(context, util) {
   const entryPointsToAdd = context.devServer.entry
 
   return prevConfig => {
     return util.merge({
-      devServer: Object.assign({
-        hot: true,
-        hotOnly: true,
-        historyApiFallback: true,
-        inline: true,
-        // Disable verbose logging in browser’s console, only print errors
-        clientLogLevel: 'error',
-        // Do not print chunks list on every compilation, only print errors
-        stats: 'errors-only'
-      }, context.devServer.options),
+      devServer: Object.assign(
+        {
+          hot: true,
+          hotOnly: true,
+          historyApiFallback: true,
+          inline: true,
+          // Disable verbose logging in browser’s console, only print errors
+          clientLogLevel: 'error',
+          // Do not print chunks list on every compilation, only print errors
+          stats: 'errors-only'
+        },
+        context.devServer.options
+      ),
       entry: addDevEntryToAll(prevConfig.entry || {}, entryPointsToAdd),
-      plugins: [
-        new context.webpack.HotModuleReplacementPlugin()
-      ]
+      plugins: [new context.webpack.HotModuleReplacementPlugin()]
     })(prevConfig)
   }
 }
 
-function addDevEntryToAll (presentEntryPoints, devServerEntry) {
+function addDevEntryToAll(presentEntryPoints, devServerEntry) {
   const newEntryPoints = {}
 
   Object.keys(presentEntryPoints).forEach(chunkName => {
     // It's fine to just set the `devServerEntry`, instead of concat()-ing the present ones.
     // Will be concat()-ed by webpack-merge (see `createConfig()`)
-    newEntryPoints[ chunkName ] = devServerEntry
+    newEntryPoints[chunkName] = devServerEntry
   })
 
   return newEntryPoints

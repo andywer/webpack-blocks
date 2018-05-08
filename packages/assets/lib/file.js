@@ -5,21 +5,19 @@ module.exports = file
  * @return {Function}
  * @see https://github.com/webpack-contrib/file-loader
  */
-function file (options = {}) {
+function file(options = {}) {
   return (context, util) => {
     if (!context.match) {
       throw new Error(
         `The file() block can only be used in combination with match(). ` +
-        `Use match() to state on which files to apply the file loader.`
+          `Use match() to state on which files to apply the file loader.`
       )
     }
 
     return util.addLoader(
       Object.assign(
         {
-          use: [
-            { loader: 'file-loader', options }
-          ]
+          use: [{ loader: 'file-loader', options }]
         },
         context.match
       )

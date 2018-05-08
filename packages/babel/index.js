@@ -13,10 +13,13 @@ module.exports = babel
  * @param {string[]}                [options.presets]         Babel presets to use.
  * @return {Function}
  */
-function babel (options = {}) {
-  options = Object.assign({
-    cacheDirectory: true
-  }, options)
+function babel(options = {}) {
+  options = Object.assign(
+    {
+      cacheDirectory: true
+    },
+    options
+  )
 
   const setter = context => prevConfig => {
     context.babel = context.babel || {}
@@ -35,14 +38,15 @@ function babel (options = {}) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig (context, util) {
-  const ruleConfig = Object.assign({
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    use: [
-      { loader: 'babel-loader', options: context.babel }
-    ]
-  }, context.match)
+function postConfig(context, util) {
+  const ruleConfig = Object.assign(
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [{ loader: 'babel-loader', options: context.babel }]
+    },
+    context.match
+  )
 
   return util.addLoader(ruleConfig)
 }

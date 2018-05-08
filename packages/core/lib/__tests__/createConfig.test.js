@@ -23,7 +23,7 @@ const defaultConfig = {
   plugins: []
 }
 
-test('createConfig() invokes blocks (config setters)', (t) => {
+test('createConfig() invokes blocks (config setters)', t => {
   const block1 = () => prevConfig => ({
     ...prevConfig,
     distinct1: 'distinct1',
@@ -40,12 +40,12 @@ test('createConfig() invokes blocks (config setters)', (t) => {
     shared: 'shared3'
   })
 
-  const resultingConfig = createConfig({}, [ block1, block2, block3 ])
+  const resultingConfig = createConfig({}, [block1, block2, block3])
 
   t.deepEqual(resultingConfig, defaultConfig)
 })
 
-test('createConfig() invokes pre hooks', (t) => {
+test('createConfig() invokes pre hooks', t => {
   const block1 = Object.assign(() => config => config, {
     pre: sinon.spy(() => {})
   })
@@ -56,7 +56,7 @@ test('createConfig() invokes pre hooks', (t) => {
     pre: sinon.spy(() => {})
   })
 
-  createConfig({}, [ block1, block2, block3 ])
+  createConfig({}, [block1, block2, block3])
 
   t.is(block1.pre.callCount, 1)
   t.is(block2.pre.callCount, 1)
@@ -73,7 +73,7 @@ test('createConfig() invokes pre hooks', (t) => {
   t.is(block3.pre.lastCall.args[0], context)
 })
 
-test('createConfig() invokes post hooks', (t) => {
+test('createConfig() invokes post hooks', t => {
   const block1 = Object.assign(() => config => config, {
     post: sinon.spy(() => prevConfig => ({
       ...prevConfig,
@@ -96,7 +96,7 @@ test('createConfig() invokes post hooks', (t) => {
     }))
   })
 
-  const resultingConfig = createConfig({}, [ block1, block2, block3 ])
+  const resultingConfig = createConfig({}, [block1, block2, block3])
   t.deepEqual(resultingConfig, defaultConfig)
 
   t.is(block1.post.callCount, 1)
@@ -108,31 +108,25 @@ test('createConfig() invokes post hooks', (t) => {
   t.is(block1.post.lastCall.args[1], blockHelpers)
   const context = block1.post.lastCall.args[0]
 
-  t.deepEqual(block2.post.lastCall.args, [ context, blockHelpers ])
-  t.deepEqual(block3.post.lastCall.args, [ context, blockHelpers ])
+  t.deepEqual(block2.post.lastCall.args, [context, blockHelpers])
+  t.deepEqual(block3.post.lastCall.args, [context, blockHelpers])
 })
 
-test('createConfig() invokes hooks and setters in the right order', (t) => {
+test('createConfig() invokes hooks and setters in the right order', t => {
   const block1 = Object.assign(sinon.spy(() => config => config), {
     pre: sinon.spy(() => config => config),
     post: sinon.spy(() => config => config)
   })
   const block2 = Object.assign(sinon.spy(() => config => config), {
-    pre: [
-      sinon.spy(() => config => config),
-      sinon.spy(() => config => config)
-    ],
-    post: [
-      sinon.spy(() => config => config),
-      sinon.spy(() => config => config)
-    ]
+    pre: [sinon.spy(() => config => config), sinon.spy(() => config => config)],
+    post: [sinon.spy(() => config => config), sinon.spy(() => config => config)]
   })
   const block3 = Object.assign(sinon.spy(() => config => config), {
     pre: sinon.spy(() => config => config),
     post: sinon.spy(() => config => config)
   })
 
-  createConfig({}, [ block1, block2, block3 ])
+  createConfig({}, [block1, block2, block3])
 
   t.true(block1.pre.called)
   t.true(block1.pre.calledBefore(block2.pre[0]))
@@ -159,21 +153,21 @@ test('createConfig() invokes hooks and setters in the right order', (t) => {
   t.true(block3.post.called)
 })
 
-test('createConfig() ignores duplicate hooks', (t) => {
+test('createConfig() ignores duplicate hooks', t => {
   const block1 = Object.assign(sinon.spy(() => config => config), {
     pre: sinon.spy(() => config => config),
     post: sinon.spy(() => config => config)
   })
   const block2 = Object.assign(sinon.spy(() => config => config), {
-    pre: [ sinon.spy(() => config => config), block1.pre ],
-    post: [ sinon.spy(() => config => config), block1.post ]
+    pre: [sinon.spy(() => config => config), block1.pre],
+    post: [sinon.spy(() => config => config), block1.post]
   })
   const block3 = Object.assign(sinon.spy(() => config => config), {
     pre: block1.pre,
     post: block1.post
   })
 
-  createConfig({}, [ block1, block2, block3 ])
+  createConfig({}, [block1, block2, block3])
 
   t.is(block1.pre.callCount, 1)
   t.is(block1.post.callCount, 1)

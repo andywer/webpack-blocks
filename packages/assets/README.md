@@ -1,7 +1,6 @@
 # webpack-blocks - assets
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/assets.svg)](https://www.npmjs.com/package/@webpack-blocks/assets)
 
 This is the `assets` block providing configuration for the style loader, file loader, URL loader and friends.

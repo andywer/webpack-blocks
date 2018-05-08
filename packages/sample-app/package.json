@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "test": "ava && standard",
+    "test": "ava",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.babel.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.babel.js"
   },
@@ -16,6 +16,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.4",
+    "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^3.2.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",

@@ -21,12 +21,14 @@ test('it exports the production config', t => {
   delete require.cache['../webpack.config.babel.js']
   const originalConfig = requireConfig()
   const module = Object.assign({}, originalConfig.module, {
-    rules: originalConfig.module.rules.map((rule) => {
+    rules: originalConfig.module.rules.map(rule => {
       if (rule.test.toString() === /\.css$/.toString()) {
         return Object.assign({}, rule, {
-          use: rule.use.map(use => Object.assign({}, use, {
-            loader: path.basename(use.loader)
-          }))
+          use: rule.use.map(use =>
+            Object.assign({}, use, {
+              loader: path.basename(use.loader)
+            })
+          )
         })
       }
 
@@ -49,7 +51,7 @@ test('it exports the production config', t => {
 test.skip('it builds', t => {
   const buildLocation = './build'
   rimraf(buildLocation, () => {})
-  exec('yarn build', (err, stdout, stderr) => {
+  exec('yarn build', err => {
     t.is(err, null)
     testHtml()
     testCss()
@@ -57,7 +59,7 @@ test.skip('it builds', t => {
     t.end()
   })
 
-  function testHtml () {
+  function testHtml() {
     const html = fs.readFileSync(path.join(buildLocation, 'index.html'), { encoding: 'utf8' })
     const re = /<link href="css\/main.*.css" rel="stylesheet">/
 
@@ -65,12 +67,12 @@ test.skip('it builds', t => {
     t.true(html.includes('<script type="text/javascript" src="bundle.js"></script>'))
   }
 
-  function testJs () {
+  function testJs() {
     const js = fs.readFileSync(path.join(buildLocation, 'bundle.js'), { encoding: 'utf8' })
     t.true(js.includes('No content here. We only test the build process 😉'))
   }
 
-  function testCss () {
+  function testCss() {
     const files = fs.readdirSync(path.join(buildLocation, 'css'), { encoding: 'utf8' })
     t.is(files.length, 1)
 
@@ -80,7 +82,7 @@ test.skip('it builds', t => {
   }
 })
 
-function requireConfig () {
+function requireConfig() {
   if (require.cache[configFile]) {
     delete require.cache[configFile]
   }

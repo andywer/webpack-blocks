@@ -13,16 +13,19 @@ module.exports = uglify
  * @param {object} [options] UglifyJS options
  * @return {Function}
  */
-function uglify (options = {}) {
-  options = webpackMerge({
-    parallel: true,
-    cache: true,
-    uglifyOptions: {
-      compress: {
-        warnings: false
+function uglify(options = {}) {
+  options = webpackMerge(
+    {
+      parallel: true,
+      cache: true,
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
       }
-    }
-  }, options)
+    },
+    options
+  )
 
   const postHook = (context, util) => {
     const plugin = new UglifyJSPlugin(options)
@@ -33,8 +36,5 @@ function uglify (options = {}) {
     })
   }
 
-  return Object.assign(
-    () => prevConfig => prevConfig,
-    { post: postHook }
-  )
+  return Object.assign(() => prevConfig => prevConfig, { post: postHook })
 }

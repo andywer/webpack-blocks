@@ -1,14 +1,22 @@
 {
   "private": true,
   "scripts": {
-    "test": "lerna run test"
+    "lint": "eslint \"**/*.js\"",
+    "format": "prettier \"**/*.{js,ts,tsx}\" --write --loglevel warn",
+    "test": "prettier \"**/*.{js,ts,tsx}\" --list-different && yarn lint && lerna run test"
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "eslint": "^5.0.0-alpha.2",
     "lerna": "^2.10.2",
-    "standard": "^10.0.3"
+    "prettier": "^1.12.1"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  }
 }
