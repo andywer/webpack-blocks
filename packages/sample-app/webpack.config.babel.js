@@ -22,6 +22,7 @@ const {
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const path = require('path')
 
 const developmentConfig = () =>
   group([
@@ -52,7 +53,7 @@ const productionConfig = () =>
 
 module.exports = createConfig([
   babel(),
-  typescript(),
+  typescript({ configFileName: path.resolve(__dirname, './tsconfig.json') }),
   css.modules(),
   addPlugins([
     new HtmlWebpackPlugin({

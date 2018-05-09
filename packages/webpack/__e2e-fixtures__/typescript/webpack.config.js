@@ -7,7 +7,7 @@ const path = require('path')
 module.exports = createConfig([
   entryPoint(path.join(__dirname, 'app.ts')),
   setOutput(path.join(__dirname, 'build/bundle.js')),
-  typescript({ configFileName: path.resolve('./tsconfig.json') }),
+  typescript({ configFileName: path.resolve(__dirname, './tsconfig.json') }),
   tslint({
     emitErrors: true,
     configuration: {
