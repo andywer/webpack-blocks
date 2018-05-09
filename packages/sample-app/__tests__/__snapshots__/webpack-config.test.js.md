@@ -1,4 +1,4 @@
-# Snapshot report for `packages\sample-app\__tests__\webpack-config.test.js`
+# Snapshot report for `packages/sample-app/__tests__/webpack-config.test.js`
 
 The actual snapshot is saved in `webpack-config.test.js.snap`.
 
