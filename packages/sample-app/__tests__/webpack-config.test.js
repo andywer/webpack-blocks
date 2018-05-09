@@ -7,11 +7,32 @@ import test from 'ava'
 const configFile = require.resolve('../webpack.config.babel')
 
 test('it exports the development config', t => {
+  const { NODE_ENV } = process.env
+  process.env.NODE_ENV = 'development'
+
   const originalConfig = requireConfig()
+  const module = Object.assign({}, originalConfig.module, {
+    rules: originalConfig.module.rules.map(rule => {
+      if (rule.test.toString() === /\.(ts|tsx)$/.toString()) {
+        return Object.assign({}, rule, {
+          use: rule.use.map(use =>
+            Object.assign({}, use, {
+              options: { configFileName: '<REPLACED>' }
+            })
+          )
+        })
+      }
+
+      return rule
+    })
+  })
   const config = Object.assign({}, originalConfig, {
+    module,
     plugins: originalConfig.plugins.map(p => p.constructor.name)
   })
   t.snapshot(config)
+
+  process.env.NODE_ENV = NODE_ENV
 })
 
 test('it exports the production config', t => {
@@ -27,6 +48,16 @@ test('it exports the production config', t => {
           use: rule.use.map(use =>
             Object.assign({}, use, {
               loader: path.basename(use.loader)
+            })
+          )
+        })
+      }
+
+      if (rule.test.toString() === /\.(ts|tsx)$/.toString()) {
+        return Object.assign({}, rule, {
+          use: rule.use.map(use =>
+            Object.assign({}, use, {
+              options: { configFileName: '<REPLACED>' }
             })
           )
         })

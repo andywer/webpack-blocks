@@ -5,10 +5,6 @@
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
-  "scripts": {
-    "test": "ava",
-    "prepublishOnly": "yarn test"
-  },
   "keywords": [
     "webpack",
     "webpack-blocks",
@@ -19,24 +15,6 @@
   "engines": {
     "node": ">= 6.0"
   },
-  "ava": {
-    "babel": {
-      "plugins": [
-        [
-          "transform-object-rest-spread",
-          {
-            "useBuiltIns": true
-          }
-        ]
-      ],
-      "presets": [
-        "@ava/stage-4"
-      ]
-    },
-    "require": [
-      "babel-register"
-    ]
-  },
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
@@ -45,10 +23,6 @@
     "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
-    "@ava/babel-preset-stage-4": "^1.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
     "sinon": "^5.0.2",
     "webpack": "^4.6.0"
   },

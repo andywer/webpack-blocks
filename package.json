@@ -3,11 +3,11 @@
   "scripts": {
     "lint": "eslint \"**/*.js\"",
     "format": "prettier \"**/*.{js,ts,tsx}\" --write --loglevel warn",
-    "test": "prettier \"**/*.{js,ts,tsx}\" --list-different && yarn lint && lerna run test"
+    "test": "prettier \"**/*.{js,ts,tsx}\" --list-different && yarn lint && ava"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "eslint": "^5.0.0-alpha.2",
+    "ava": "1.0.0-beta.4",
+    "eslint": "5.0.0-alpha.2",
     "lerna": "^2.10.2",
     "prettier": "^1.12.1"
   },

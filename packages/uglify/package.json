@@ -5,10 +5,6 @@
   "main": "index",
   "license": "MIT",
   "author": "Artem Sapegin <artem@sapegin.ru>",
-  "scripts": {
-    "test": "ava",
-    "prepublishOnly": "yarn test"
-  },
   "engines": {
     "node": ">= 6.0"
   },

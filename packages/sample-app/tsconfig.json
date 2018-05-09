@@ -6,7 +6,8 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "target": "es5",
-    "jsx": "react"
+    "jsx": "react",
+    "typeRoots": ["../../node_modules/@types"]
   },
   "compileOnSave": false
 }
