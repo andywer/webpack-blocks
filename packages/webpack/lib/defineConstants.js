@@ -20,11 +20,11 @@ function defineConstants(constants) {
   return Object.assign(setter, { post: addDefinePlugin })
 }
 
-function addDefinePlugin(context, util) {
+function addDefinePlugin(context) {
   const stringify = value => JSON.stringify(value, null, 2)
   const stringifiedConstants = mapProps(context.defineConstants, stringify)
 
-  return util.addPlugin(new context.webpack.DefinePlugin(stringifiedConstants))
+  return context.addPlugin(new context.webpack.DefinePlugin(stringifiedConstants))
 }
 
 function mapProps(object, valueMapper) {

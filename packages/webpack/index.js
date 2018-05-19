@@ -46,8 +46,8 @@ function createConfig(configSetters) {
   return core.createConfig({ webpack, webpackVersion }, [createEmptyConfig].concat(configSetters))
 }
 
-function createEmptyConfig(context, util) {
-  return util.merge({
+function createEmptyConfig(context) {
+  return context.merge({
     module: {
       rules: []
     },
@@ -63,8 +63,8 @@ function createEmptyConfig(context, util) {
  * @see https://webpack.github.io/docs/configuration.html#entry
  */
 function entryPoint(entry) {
-  return (context, util) =>
-    util.merge({
+  return context =>
+    context.merge({
       entry: normalizeEntry(entry)
     })
 }
@@ -94,11 +94,11 @@ function normalizeEntry(entry) {
  * @see https://webpack.github.io/docs/configuration.html#plugins
  */
 function addPlugins(plugins) {
-  return (context, util) => util.merge({ plugins })
+  return context => context.merge({ plugins })
 }
 
 function customConfig(wpConfig) {
-  return (context, util) => util.merge(wpConfig)
+  return context => context.merge(wpConfig)
 }
 
 /**
@@ -108,8 +108,8 @@ function customConfig(wpConfig) {
  * @param {string} performanceBudget.hints              'warning' or 'error'
  */
 function performance(performanceBudget) {
-  return (context, util) =>
-    util.merge({
+  return context =>
+    context.merge({
       performance: performanceBudget
     })
 }
@@ -131,8 +131,8 @@ function resolve(config) {
  * @see https://webpack.github.io/docs/configuration.html#context
  */
 function setContext(contextPath) {
-  return (context, util) =>
-    util.merge({
+  return context =>
+    context.merge({
       context: path.resolve(contextPath)
     })
 }
@@ -141,7 +141,7 @@ function setContext(contextPath) {
  * @see https://webpack.github.io/docs/configuration.html#devtool
  */
 function setDevTool(devtool) {
-  return (context, util) => util.merge({ devtool })
+  return context => context.merge({ devtool })
 }
 
 /**
@@ -155,7 +155,7 @@ function setOutput(output) {
     }
   }
 
-  return (context, util) => util.merge({ output })
+  return context => context.merge({ output })
 }
 
 /**
@@ -168,9 +168,9 @@ function setOutput(output) {
  * @return {Function}
  */
 function sourceMaps(devtool = 'cheap-module-source-map') {
-  return (context, util) => {
+  return context => {
     context.sourceMaps = true
 
-    return util.merge({ devtool })
+    return context.merge({ devtool })
   }
 }

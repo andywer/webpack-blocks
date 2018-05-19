@@ -28,7 +28,6 @@ function assertConfigSetters(configSetters) {
 
 function invokeConfigSetters(configSetters, context, baseConfig) {
   return configSetters.reduce((config, setter) => {
-    const updateFunction = setter(context, blockUtils)
-    return updateFunction(config)
+    return setter(Object.assign(context, blockUtils))(config)
   }, baseConfig)
 }

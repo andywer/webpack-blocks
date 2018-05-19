@@ -5,7 +5,7 @@ import when from '../when'
 test('when() merges correctly', t => {
   const whenBlock = when(true, [entryPoint1(), entryPoint2()])
 
-  t.deepEqual(whenBlock(null, {})({}), {
+  t.deepEqual(whenBlock({})({}), {
     entry: {
       foo: './src/foo',
       bar: './src/bar'
@@ -17,7 +17,7 @@ test('when() respects the condition', t => {
   const whenBlock = when(false, [entryPoint1(), entryPoint2()])
 
   const emptyConfig = { entry: {} }
-  t.deepEqual(whenBlock(null, {})(emptyConfig), emptyConfig)
+  t.deepEqual(whenBlock({})(emptyConfig), emptyConfig)
 })
 
 test('when() block passes complete config to child blocks', t => {

@@ -11,8 +11,8 @@ module.exports = tslint
  * @return {Function}
  */
 function tslint(options = {}) {
-  return (context, util) => prevConfig => {
-    let nextConfig = util.addLoader(
+  return context => prevConfig => {
+    let nextConfig = context.addLoader(
       Object.assign(
         {
           test: /\.(ts|tsx)$/,
@@ -23,7 +23,7 @@ function tslint(options = {}) {
       )
     )(prevConfig)
 
-    nextConfig = util.addPlugin(
+    nextConfig = context.addPlugin(
       new context.webpack.LoaderOptionsPlugin({
         options: {
           tslint: options

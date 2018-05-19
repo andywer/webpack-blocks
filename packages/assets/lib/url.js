@@ -6,7 +6,7 @@ module.exports = url
  * @see https://github.com/webpack-contrib/url-loader
  */
 function url(options = {}) {
-  return (context, util) => {
+  return context => {
     if (!context.match) {
       throw new Error(
         `The url() block can only be used in combination with match(). ` +
@@ -14,7 +14,7 @@ function url(options = {}) {
       )
     }
 
-    return util.addLoader(
+    return context.addLoader(
       Object.assign(
         {
           use: [{ loader: 'url-loader', options }]

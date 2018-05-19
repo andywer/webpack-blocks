@@ -19,8 +19,8 @@ module.exports = sass
  */
 function sass(options = {}) {
   const sassOptions = _.omit(options, 'minimize')
-  return (context, util) =>
-    util.addLoader(
+  return context =>
+    context.addLoader(
       Object.assign(
         {
           test: /\.(sass|scss)$/,

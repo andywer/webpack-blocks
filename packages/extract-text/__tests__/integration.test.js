@@ -83,8 +83,8 @@ test('fails properly if nothing to extract can be found', t => {
 })
 
 function css() {
-  return (context, util) =>
-    util.addLoader(
+  return context =>
+    context.addLoader(
       Object.assign(
         {
           test: /\.css$/,
@@ -96,8 +96,8 @@ function css() {
 }
 
 function sass() {
-  return (context, util) =>
-    util.addLoader(
+  return context =>
+    context.addLoader(
       Object.assign(
         {
           test: /\.(sass|scss)$/,
@@ -109,8 +109,8 @@ function sass() {
 }
 
 function html() {
-  return (context, util) =>
-    util.addLoader(
+  return context =>
+    context.addLoader(
       Object.assign(
         {
           test: /\.html$/,

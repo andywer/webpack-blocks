@@ -15,7 +15,7 @@ module.exports = extractText
 function extractText(outputFilePattern = 'css/[name].[contenthash:8].css') {
   const plugin = new ExtractTextPlugin(outputFilePattern)
 
-  const postHook = (context, util) => prevConfig => {
+  const postHook = context => prevConfig => {
     let nextConfig = prevConfig
 
     // Only apply to loaders in the same `match()` group or css loaders if there is no `match()`
@@ -43,8 +43,8 @@ function extractText(outputFilePattern = 'css/[name].[contenthash:8].css') {
       nextConfig = removeLoaderRule(ruleToRemove)(nextConfig)
     }
 
-    nextConfig = util.addPlugin(plugin)(nextConfig)
-    nextConfig = util.addLoader(newLoaderDef)(nextConfig)
+    nextConfig = context.addPlugin(plugin)(nextConfig)
+    nextConfig = context.addLoader(newLoaderDef)(nextConfig)
 
     return nextConfig
   }

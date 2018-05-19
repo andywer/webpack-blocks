@@ -6,7 +6,7 @@ module.exports = file
  * @see https://github.com/webpack-contrib/file-loader
  */
 function file(options = {}) {
-  return (context, util) => {
+  return context => {
     if (!context.match) {
       throw new Error(
         `The file() block can only be used in combination with match(). ` +
@@ -14,7 +14,7 @@ function file(options = {}) {
       )
     }
 
-    return util.addLoader(
+    return context.addLoader(
       Object.assign(
         {
           use: [{ loader: 'file-loader', options }]

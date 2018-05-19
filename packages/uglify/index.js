@@ -27,9 +27,9 @@ function uglify(options = {}) {
     options
   )
 
-  const postHook = (context, util) => {
+  const postHook = context => {
     const plugin = new UglifyJSPlugin(options)
-    return util.merge({
+    return context.merge({
       optimization: {
         minimizer: [plugin]
       }

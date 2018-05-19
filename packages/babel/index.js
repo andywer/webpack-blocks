@@ -38,7 +38,7 @@ function babel(options = {}) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig(context, util) {
+function postConfig(context) {
   const ruleConfig = Object.assign(
     {
       test: /\.(js|jsx)$/,
@@ -48,5 +48,5 @@ function postConfig(context, util) {
     context.match
   )
 
-  return util.addLoader(ruleConfig)
+  return context.addLoader(ruleConfig)
 }

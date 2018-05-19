@@ -1,7 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
 import createConfig from '../createConfig'
-import blockHelpers from '../blockUtils'
 
 const defaultConfig = {
   distinct1: 'distinct1',
@@ -103,13 +102,12 @@ test('createConfig() invokes post hooks', t => {
   t.is(block2.post.callCount, 1)
   t.is(block3.post.callCount, 1)
 
-  t.is(block1.post.lastCall.args.length, 2)
+  t.is(block1.post.lastCall.args.length, 1)
   t.is(typeof block1.post.lastCall.args[0], 'object')
-  t.is(block1.post.lastCall.args[1], blockHelpers)
   const context = block1.post.lastCall.args[0]
 
-  t.deepEqual(block2.post.lastCall.args, [context, blockHelpers])
-  t.deepEqual(block3.post.lastCall.args, [context, blockHelpers])
+  t.deepEqual(block2.post.lastCall.args, [context])
+  t.deepEqual(block3.post.lastCall.args, [context])
 })
 
 test('createConfig() invokes hooks and setters in the right order', t => {

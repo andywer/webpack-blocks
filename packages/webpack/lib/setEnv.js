@@ -19,8 +19,8 @@ function setEnv(constants) {
   return Object.assign(setter, { post: addEnvironmentPlugin })
 }
 
-function addEnvironmentPlugin(context, util) {
-  return util.addPlugin(new context.webpack.EnvironmentPlugin(context.setEnv))
+function addEnvironmentPlugin(context) {
+  return context.addPlugin(new context.webpack.EnvironmentPlugin(context.setEnv))
 }
 
 function toObject(constants) {

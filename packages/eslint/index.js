@@ -11,8 +11,8 @@ module.exports = eslint
  * @return {Function}
  */
 function eslint(options = {}) {
-  return (context, util) =>
-    util.addLoader(
+  return context =>
+    context.addLoader(
       Object.assign(
         {
           test: /\.(js|jsx)$/,

@@ -32,11 +32,11 @@ function devServer(options = {}, entry = []) {
   return Object.assign(setter, { post: postConfig })
 }
 
-function postConfig(context, util) {
+function postConfig(context) {
   const entryPointsToAdd = context.devServer.entry
 
   return prevConfig => {
-    return util.merge({
+    return context.merge({
       devServer: Object.assign(
         {
           hot: true,

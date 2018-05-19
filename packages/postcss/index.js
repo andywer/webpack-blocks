@@ -25,7 +25,7 @@ function postcss(options = {}) {
   }
 
   const postcssOptions = _.omit(options, 'minimize')
-  return (context, util) => prevConfig => {
+  return context => prevConfig => {
     const ruleDef = Object.assign(
       {
         test: /\.css$/,
@@ -44,7 +44,7 @@ function postcss(options = {}) {
       context.match
     )
 
-    let nextConfig = util.addLoader(ruleDef)(prevConfig)
+    let nextConfig = context.addLoader(ruleDef)(prevConfig)
 
     return nextConfig
   }
