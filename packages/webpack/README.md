@@ -10,10 +10,11 @@ This is the `webpack` block providing webpack core functionality. Also provides 
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { addPlugins, createConfig, defineConstants, entryPoint, env, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
+const { addPlugins, createConfig, entryPoint, env, setMode, setOutput, sourceMaps } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 
 module.exports = createConfig([
+  setMode(process.env.NODE_ENV || 'development'),
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   css(),
@@ -23,9 +24,6 @@ module.exports = createConfig([
       template: './index.html'
     })
   ]),
-  defineConstants({
-    'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
-  }),
   env('development', [
     // will only enable source maps if `NODE_ENV === 'development'`
     sourceMaps()
@@ -139,6 +137,10 @@ module.exports = createConfig([
 
 Adds one or multiple entry points. If the parameter is not an object the entry point(s) will be added to the default chunk named `main`. This way we make sure that the resulting [https://webpack.github.io/docs/configuration.html#entry](entry) configuration property will always be an object.
 
+#### optimization(optimizationOptions: object)
+
+Set the optimization [settings](https://webpack.js.org/configuration/optimization/).
+
 #### performance(perfBudgetOptions: object)
 
 Set a performance budget. Performance budgets are custom limits (like max bundle size) you can set to make webpack warn you or throw an error if the application exceeds those limits.
@@ -174,6 +176,10 @@ Sets the webpack [context](https://webpack.github.io/docs/configuration.html#con
 #### setDevTool(devtool: string)
 
 Use it to manually set the webpack [devtool](https://webpack.github.io/docs/configuration.html#devtool) property, like `'eval'`, `'source-map'` and such.
+
+#### setMode(mode: string)
+
+Sets the webpack [mode](https://webpack.js.org/concepts/mode).
 
 #### setOutput(output: string|object)
 

@@ -28,7 +28,7 @@ test('building the babel/postcss/extract-text project works', async t => {
 
   // Check if bundle contains injected process.env.TEST
   const bundleContents = await fs.readFile(path.join(buildPath, 'bundle.js'), { encoding: 'utf8' })
-  t.true(bundleContents.indexOf('.exports="This is the injected process.env.TEST!"') > -1)
+  t.true(bundleContents.indexOf('module.exports = "This is the injected process.env.TEST!"') > -1)
 
   // Check if CSS file contains correct content
   const styleContents = await fs.readFile(path.join(buildPath, 'styles.css'), { encoding: 'utf8' })
@@ -66,7 +66,7 @@ test('building the typescript project works', async t => {
 
   // Check if bundle contains injected process.env.TEST
   const bundleContents = await fs.readFile(path.join(buildPath, 'bundle.js'), { encoding: 'utf8' })
-  t.true(bundleContents.indexOf('.exports="This is the injected process.env.TEST!"') > -1)
+  t.true(bundleContents.indexOf('module.exports = "This is the injected process.env.TEST!"') > -1)
 })
 
 test('the postcss/sass/source-maps project build does not fail', async t => {
