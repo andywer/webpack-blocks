@@ -3,11 +3,11 @@ const {
 
   // Feature blocks
   addPlugins,
-  defineConstants,
   entryPoint,
   env,
   group,
   performance,
+  setMode,
   setOutput,
   sourceMaps,
 
@@ -16,8 +16,7 @@ const {
   css,
   devServer,
   extractText,
-  typescript,
-  uglify
+  typescript
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -42,7 +41,6 @@ const developmentConfig = () =>
 const productionConfig = () =>
   group([
     extractText(),
-    uglify(),
     addPlugins([
       new webpack.LoaderOptionsPlugin({
         minimize: true,
@@ -52,6 +50,7 @@ const productionConfig = () =>
   ])
 
 module.exports = createConfig([
+  setMode(process.env.NODE_ENV || 'development'),
   babel(),
   typescript({ configFileName: path.resolve(__dirname, './tsconfig.json') }),
   css.modules(),
@@ -61,9 +60,6 @@ module.exports = createConfig([
       template: './index.html'
     })
   ]),
-  defineConstants({
-    'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
-  }),
   env('development', [entryPoint('./src/index.dev.js'), developmentConfig()]),
   env('production', [
     entryPoint('./src/index.js'),
