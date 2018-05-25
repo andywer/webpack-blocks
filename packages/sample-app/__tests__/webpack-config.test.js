@@ -82,7 +82,7 @@ test('it exports the production config', t => {
 test('it builds', async t => {
   const buildLocation = path.resolve(__dirname, '../build')
   rimraf(buildLocation, () => {})
-  await execa('yarn', ['build'], { cwd: path.resolve(__dirname, '..') });
+  await execa('yarn', ['build'], { cwd: path.resolve(__dirname, '..') })
 
   testHtml()
   testCss()

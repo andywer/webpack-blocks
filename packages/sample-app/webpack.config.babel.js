@@ -39,10 +39,7 @@ const developmentConfig = () =>
   ])
 
 const productionConfig = () =>
-  group([
-    css.modules({ minimize: true }),
-    extractText('css/[name].[contenthash:hex:8].css')
-  ])
+  group([css.modules({ minimize: true }), extractText('css/[name].[contenthash:hex:8].css')])
 
 module.exports = createConfig([
   setMode(process.env.NODE_ENV || 'development'),
@@ -54,10 +51,7 @@ module.exports = createConfig([
       template: './index.html'
     })
   ]),
-  env('development', [
-    entryPoint('./src/index.dev.js'),
-    developmentConfig()
-  ]),
+  env('development', [entryPoint('./src/index.dev.js'), developmentConfig()]),
   env('production', [
     entryPoint('./src/index.js'),
     setOutput('./build/bundle.js'),
