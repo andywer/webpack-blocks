@@ -20,7 +20,6 @@ const {
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
 const path = require('path')
 
 const developmentConfig = () =>
@@ -35,25 +34,17 @@ const developmentConfig = () =>
       // Increase performance budget thresholds for development mode
       maxAssetSize: 1500000,
       maxEntrypointSize: 1500000
-    })
+    }),
+    css.modules()
   ])
 
 const productionConfig = () =>
-  group([
-    extractText(),
-    addPlugins([
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false
-      })
-    ])
-  ])
+  group([css.modules({ minimize: true }), extractText('css/[name].[contenthash:hex:8].css')])
 
 module.exports = createConfig([
   setMode(process.env.NODE_ENV || 'development'),
   babel(),
   typescript({ configFileName: path.resolve(__dirname, './tsconfig.json') }),
-  css.modules(),
   addPlugins([
     new HtmlWebpackPlugin({
       inject: true,

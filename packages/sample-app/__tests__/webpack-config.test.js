@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { exec } from 'child_process'
 import rimraf from 'rimraf'
+import execa from 'execa'
 import test from 'ava'
 
 const configFile = require.resolve('../webpack.config.babel')
@@ -79,19 +79,17 @@ test('it exports the production config', t => {
   process.env.NODE_ENV = NODE_ENV
 })
 
-test.skip('it builds', t => {
-  const buildLocation = './build'
+test('it builds', async t => {
+  const buildLocation = path.resolve(__dirname, '../build')
   rimraf(buildLocation, () => {})
-  exec('yarn build', err => {
-    t.is(err, null)
-    testHtml()
-    testCss()
-    testJs()
-    t.end()
-  })
+  await execa('yarn', ['build'], { cwd: path.resolve(__dirname, '..') })
+
+  testHtml()
+  testCss()
+  testJs()
 
   function testHtml() {
-    const html = fs.readFileSync(path.join(buildLocation, 'index.html'), { encoding: 'utf8' })
+    const html = fs.readFileSync(path.resolve(buildLocation, 'index.html'), { encoding: 'utf8' })
     const re = /<link href="css\/main.*.css" rel="stylesheet">/
 
     t.true(re.test(html))
@@ -99,15 +97,15 @@ test.skip('it builds', t => {
   }
 
   function testJs() {
-    const js = fs.readFileSync(path.join(buildLocation, 'bundle.js'), { encoding: 'utf8' })
+    const js = fs.readFileSync(path.resolve(buildLocation, 'bundle.js'), { encoding: 'utf8' })
     t.true(js.includes('No content here. We only test the build process 😉'))
   }
 
   function testCss() {
-    const files = fs.readdirSync(path.join(buildLocation, 'css'), { encoding: 'utf8' })
+    const files = fs.readdirSync(path.resolve(buildLocation, 'css'), { encoding: 'utf8' })
     t.is(files.length, 1)
 
-    const css = fs.readFileSync(path.join(buildLocation, 'css', files[0]), { encoding: 'utf8' })
+    const css = fs.readFileSync(path.resolve(buildLocation, 'css', files[0]), { encoding: 'utf8' })
     t.true(css.startsWith('.'))
     t.true(css.endsWith('{margin:30px auto;text-align:center}'))
   }
