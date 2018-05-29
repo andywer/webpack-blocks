@@ -8,12 +8,16 @@ This is the `typescript` block providing TypeScript support for webpack. Uses
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig } = require('@webpack-blocks/webpack')
 const typescript = require('@webpack-blocks/typescript')
 
-module.exports = createConfig([typescript(/* options, optional */)])
+module.exports = createConfig([
+  typescript(/* options, optional */)
+])
 ```
+<!-- prettier-ignore-end -->
 
 Use `match()` to explicitly specify the files to load using the TypeScript loader.
 

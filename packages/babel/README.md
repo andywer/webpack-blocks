@@ -16,12 +16,18 @@ yarn add --dev babel-core @webpack-blocks/babel
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel')
 
-module.exports = createConfig([match(['*.js', '!*node_modules*'], [babel(/* options */)])])
+module.exports = createConfig([
+  match(['*.js', '!*node_modules*'], [
+    babel(/* options */)
+  ])
+])
 ```
+<!-- prettier-ignore-end -->
 
 You can also use the babel block without `match()`. It will by default match `*.js` and `*.jsx`
 files while excluding everything in `node_modules/`.

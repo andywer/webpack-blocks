@@ -7,23 +7,31 @@ This is the `sass` block providing Sass support for webpack. Uses `node-sass` vi
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 
-module.exports = createConfig([sass(/* node-sass options */)])
+module.exports = createConfig([
+  sass(/* node-sass options */)
+])
 ```
+<!-- prettier-ignore-end -->
 
 Use `match()` to explicitly specify on which files to apply the block:
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
-  match(['*.scss', '!*node_modules*'], [sass(/* node-sass options */)])
+  match(['*.scss', '!*node_modules*'], [
+    sass(/* node-sass options */)
+  ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
 ## Options
 
@@ -42,15 +50,20 @@ object to the `sass` block.
 
 Use the `extract-text` block to extract the compiled SASS/SCSS styles into a separate CSS file:
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match, env } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
-  match('*.scss', [sass({ minimize: true }), env('production', [extractText()])])
+  match('*.scss', [
+    sass({ minimize: true }),
+    env('production', [extractText()])
+  ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
 Make sure you use the `extract-text` block _after_ the `sass` block.
 
@@ -58,27 +71,41 @@ Make sure you use the `extract-text` block _after_ the `sass` block.
 
 You can use SASS/SCSS in combination with CSS modules.
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 const { css } = require('@webpack-blocks/assets')
 
-module.exports = createConfig([match('*.scss', [sass(), css.modules()])])
+module.exports = createConfig([
+  match('*.scss', [
+    sass(),
+    css.modules()
+  ])
+])
 ```
+<!-- prettier-ignore-end -->
 
 ### PostCSS
 
 You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like
 the Autoprefixer.
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
-module.exports = createConfig([match('*.scss', [sass(), postcss([autoprefixer()])])])
+module.exports = createConfig([
+  match('*.scss', [
+    sass(),
+    postcss([autoprefixer()])
+  ])
+])
 ```
+<!-- prettier-ignore-end -->
 
 ## webpack-blocks
 

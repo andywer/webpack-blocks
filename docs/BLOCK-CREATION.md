@@ -8,7 +8,7 @@ them.
 Read the _Basics_. You can come back and read more if you are stuck or wondering why it works this
 way.
 
-## Table of contents
+## Table of Contents
 
 <!-- To update run: npx markdown-toc --maxdepth 2 -i docs/BLOCK-CREATION.md -->
 
@@ -93,7 +93,9 @@ like this:
 
 ```js
 function sampleBlock() {
-  return (context, { addPlugin }) => addPlugin(new webpack.DefinePlugin({ DEBUG: 'true' }))
+  return (context, { addPlugin }) => {
+    return addPlugin(new webpack.DefinePlugin({ DEBUG: 'true' }))
+  }
 }
 ```
 

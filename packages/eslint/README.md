@@ -8,12 +8,16 @@ This is the `eslint` block providing JavaScript linting support for webpack. Use
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig } = require('@webpack-blocks/webpack')
 const eslint = require('@webpack-blocks/eslint')
 
-module.exports = createConfig([eslint(/* eslint options */)])
+module.exports = createConfig([
+  eslint(/* eslint options */)
+])
 ```
+<!-- prettier-ignore-end -->
 
 Use `match()` to explicitly specify the files to lint.
 

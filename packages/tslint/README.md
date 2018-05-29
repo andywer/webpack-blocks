@@ -8,12 +8,16 @@ This is the `tslint` block providing TypeScript linting support for webpack. Use
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig } = require('@webpack-blocks/webpack')
 const tslint = require('@webpack-blocks/tslint')
 
-module.exports = createConfig([tslint(/* tslint options */)])
+module.exports = createConfig([
+  tslint(/* tslint options */)
+])
 ```
+<!-- prettier-ignore-end -->
 
 Use `match()` to explicitly specify the files to lint.
 

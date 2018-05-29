@@ -7,13 +7,20 @@ This is the `postcss` block providing [PostCSS](http://postcss.org/) configurati
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 const postcss = require('@webpack-blocks/postcss')
 
-module.exports = createConfig([match(['*.css', '!*node_modules*'], [css(), postcss()])])
+module.exports = createConfig([
+  match(['*.css', '!*node_modules*'], [
+    css(),
+    postcss()
+  ])
+])
 ```
+<!-- prettier-ignore-end -->
 
 We recommend you to configure PostCSS using the `postcss.config.js` file (see
 [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):

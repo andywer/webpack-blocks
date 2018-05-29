@@ -13,16 +13,20 @@ Based on [uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-w
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, env, uglify } = require('webpack-blocks')
 
-module.exports = createConfig([uglify(/* options */)])
+module.exports = createConfig([
+  uglify(/* options */)
+])
 ```
+<!-- prettier-ignore-end -->
 
 ## Options
 
 You can pass any `uglifyjs-webpack-plugin` and UglifyJS options, see the
-[uglifyjs-webpack-plugin docs for details](https://github.com/webpack-contrib/uglifyjs-webpack-plugin#options).
+[`uglifyjs-webpack-plugin` docs for details](https://github.com/webpack-contrib/uglifyjs-webpack-plugin#options).
 
 ## Generated webpack config
 

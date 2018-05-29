@@ -30,13 +30,18 @@ possibly other blocks to check if the created configuration matches the expected
 
 It is also quite simple to write one. Here is a short example:
 
+<!-- prettier-ignore-start -->
 ```js
 import test from 'ava'
 import { createConfig, match } from 'webpack-blocks'
 import myBlock from '../my-block'
 
 test('my block works with match()', t => {
-  const output = createConfig([match('*.myext', { exclude: /node_modules/ }, [myBlock()])])
+  const output = createConfig([
+    match('*.myext', { exclude: /node_modules/ }, [
+      myBlock()
+    ])
+  ])
 
   t.deepEqual(output, {
     module: {
@@ -51,6 +56,7 @@ test('my block works with match()', t => {
   })
 })
 ```
+<!-- prettier-ignore-end -->
 
 Even if you feed `createConfig()` nothing more than your block it is still an integration test,
 since you also test if your block is actually compatible with `createConfig`.
@@ -68,9 +74,9 @@ This is where end-to-end tests are useful: they actually run webpack on a minima
 that uses the block.
 
 You can have a look at webpack-block's end-to-end tests in
-[../packages/webpack/**tests**/end-to-end.test.js](packages/webpack/__tests__/end-to-end.test.js)
-(the test file) and [../packages/webpack/**e2e-fixtures**/](packages/webpack/__e2e-fixtures__/) (the
-test projects).
+[`../packages/webpack/**tests**/end-to-end.test.js`](packages/webpack/__tests__/end-to-end.test.js)
+(the test file) and [`../packages/webpack/**e2e-fixtures**/`](packages/webpack/__e2e-fixtures__/)
+(the test projects).
 
 Those test projects consist of a `webpack.config.js`, an `app.js` and whatever source files are
 supposed to be tested.

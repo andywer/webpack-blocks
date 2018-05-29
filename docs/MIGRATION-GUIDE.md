@@ -34,7 +34,7 @@ const { createConfig, css, file, match, postcss, url } = require('webpack-blocks
 const path = require('path')
 
 module.exports = createConfig([
-  // Matches *.js, *.jsx outside node_modules/ by default
+  // Matches *.js and *.jsx outside node_modules/ by default
   babel(),
 
   match(['*.css', '!*node_modules*'], [css(), postcss()]),

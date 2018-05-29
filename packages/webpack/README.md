@@ -60,9 +60,14 @@ Applies an array of webpack blocks only if `process.env.NODE_ENV` matches the gi
 
 Use like this:
 
+<!-- prettier-ignore-start -->
 ```js
-module.exports = createConfig([css(), env('production', [extractText()])])
+module.exports = createConfig([
+  css(),
+  env('production', [extractText()])
+])
 ```
+<!-- prettier-ignore-end -->
 
 #### match(test: string|RegExp|Array, options: ?object, configSetters: Function[]): Function
 
@@ -72,24 +77,28 @@ parameter is optional.
 
 Use like this:
 
+<!-- prettier-ignore-start -->
 ```js
 module.exports = createConfig([
-  match(['*.scss', '!*node_modules*'], [sass(), extractText('css/[name].css')])
+  match(['*.scss', '!*node_modules*'], [
+    sass(),
+    extractText('css/[name].css')
+  ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
 To match multiple file patterns you can pass a pattern array:
 
+<!-- prettier-ignore-start -->
 ```js
 module.exports = createConfig([
-  match(
-    ['*.sass', '*.scss'],
-    [
-      /* blocks */
-    ]
-  )
+  match(['*.sass', '*.scss'], [
+    /* blocks */
+  ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
 #### when(condition: boolean, configSetters: Function[]): Function
 
@@ -97,9 +106,13 @@ Applies an array of webpack blocks only if `condition` is true (or truthy).
 
 Use like this:
 
+<!-- prettier-ignore-start -->
 ```js
-module.exports = createConfig([when(process.env.CI, [reportBuildStatsPlugin()])])
+module.exports = createConfig([
+  when(process.env.CI, [reportBuildStatsPlugin()])
+])
 ```
+<!-- prettier-ignore-end -->
 
 ### Shorthand setters
 
@@ -183,7 +196,8 @@ Example:
 
 ```js
 resolve({
-  alias: { Utilities: path.resolve(__dirname, 'src/utilities/') }, // resolve `import 'Utilities'` to correct path
+  // resolve `import 'Utilities'` to correct path
+  alias: { Utilities: path.resolve(__dirname, 'src/utilities/') },
   extensions: ['.js', '.json'],
   modules: [path.resolve(__dirname, 'src'), 'node_modules']
 })
