@@ -55,6 +55,7 @@ Check out our [migration guide](./docs/MIGRATION-GUIDE.md) to get started with v
 The following sample shows how to create a webpack config with Babel support, dev server and
 Autoprefixer.
 
+<!-- prettier-ignore-start -->
 ```js
 const webpack = require('webpack')
 const {
@@ -84,11 +85,15 @@ module.exports = createConfig([
   entryPoint('./src/main.js'),
   setOutput('./build/bundle.js'),
   babel(),
-  match(
-    ['*.css', '!*node_modules*'],
-    [css(), postcss([autoprefixer({ browsers: ['last 2 versions'] })])]
-  ),
-  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp'], [file()]),
+  match(['*.css', '!*node_modules*'], [
+    css(),
+    postcss([
+      autoprefixer({ browsers: ['last 2 versions'] })
+    ])
+  ]),
+  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp'], [
+    file()
+  ]),
   setEnv({
     NODE_ENV: process.env.NODE_ENV
   }),
@@ -99,9 +104,13 @@ module.exports = createConfig([
     }),
     sourceMaps()
   ]),
-  env('production', [uglify(), addPlugins([new webpack.LoaderOptionsPlugin({ minimize: true })])])
+  env('production', [
+    uglify(),
+    addPlugins([new webpack.LoaderOptionsPlugin({ minimize: true })])
+  ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
 See shorthand setters and helpers [documentation](packages/webpack#exports).
 
