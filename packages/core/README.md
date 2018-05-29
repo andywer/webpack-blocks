@@ -7,7 +7,6 @@
 
 This is the core library. Not meant to be used manually.
 
-
 ## webpack-blocks
 
 Check out the
