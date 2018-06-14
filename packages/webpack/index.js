@@ -177,7 +177,7 @@ function setOutput (output) {
  * @param {string} [devtool]
  * @return {Function}
  */
-function sourceMaps (devtool = 'cheap-module-source-map') {
+function sourceMaps (devtool = 'cheap-module-eval-source-map') {
   return (context, util) => {
     context.sourceMaps = true
 
