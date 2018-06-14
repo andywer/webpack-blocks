@@ -295,16 +295,17 @@ Take the `babel` webpack block for instance:
  * @param {RegExp|Function|string}  [options.exclude]   Directories to exclude.
  * @return {Function}
  */
-function babel (options = { cacheDirectory: true }) {
+function babel(options = { cacheDirectory: true }) {
   return (context, util) => util.addLoader(
-    Object.assign({
+    {
       // we use a `MIME type => RegExp` abstraction here in order to have consistent regexs
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       use: [
         { loader: 'babel-loader', options }
-      ]
-    }, context.match)
+      ],
+      ...context.match
+    }
   )
 }
 ```
