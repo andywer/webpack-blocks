@@ -132,7 +132,7 @@ test('complete webpack config creation', t => {
     path: path.resolve('./build')
   })
 
-  t.is(webpackConfig.devtool, 'cheap-module-source-map')
+  t.is(webpackConfig.devtool, 'cheap-module-eval-source-map')
 
   t.deepEqual(webpackConfig.optimization, {
     splitChunks: 'all'
