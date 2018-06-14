@@ -1,9 +1,13 @@
 # @webpack-blocks/babel - Changelog
 
+## Next Release
+
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+
 ## 1.0.0-rc
 
-- Breaking change: Renamed package from `babel6` to `babel` and
-moved `babel-core` to be a peer dependency ([#217](https://github.com/andywer/webpack-blocks/issues/217))
+- Breaking change: Renamed package from `babel6` to `babel` and moved `babel-core` to be a peer
+  dependency ([#217](https://github.com/andywer/webpack-blocks/issues/217))
 
 ## 1.0.0-beta.2
 
@@ -21,7 +25,8 @@ moved `babel-core` to be a peer dependency ([#217](https://github.com/andywer/we
 
 ## 0.4.1
 
-- Fix default `node_modules/` exclusion, so it works on windows ([#108](https://github.com/andywer/webpack-blocks/pull/108))
+- Fix default `node_modules/` exclusion, so it works on windows
+  ([#108](https://github.com/andywer/webpack-blocks/pull/108))
 
 ## 0.4.0
 

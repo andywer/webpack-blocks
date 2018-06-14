@@ -1,4 +1,5 @@
-declare var module : any
-declare var process : any
+function add(a: number, b: number) {
+  return a + b
+}
 
 module.exports = process.env.TEST

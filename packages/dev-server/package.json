@@ -6,8 +6,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "scripts": {
-    "test": "standard",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "yarn test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -19,9 +18,9 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "webpack-dev-server": "^2.11.2"
+    "webpack-dev-server": "^3.1.3"
   },
   "peerDependencies": {
-    "webpack": "2.x || 3.x"
+    "@webpack-blocks/core": "^1.0.0"
   }
 }

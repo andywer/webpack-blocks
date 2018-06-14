@@ -3,9 +3,7 @@ import { createConfig, match } from '@webpack-blocks/core'
 import babel from '../index'
 
 test('Babel default options work', t => {
-  const config = createConfig({}, [
-    babel()
-  ])
+  const config = createConfig({}, [babel()])
 
   t.deepEqual(config.module.rules, [
     {

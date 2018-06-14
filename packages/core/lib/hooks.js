@@ -7,26 +7,24 @@ module.exports = {
   invokePostHooks
 }
 
-function getHooks (configSetters, type) {
+function getHooks(configSetters, type) {
   // Get all the blocks' pre/post hooks
-  const hooks = configSetters
-    .filter(setter => Boolean(setter[type]))
-    .map(setter => setter[type])
+  const hooks = configSetters.filter(setter => Boolean(setter[type])).map(setter => setter[type])
 
   // Flatten the array (since each item might be an array as well)
   const flattenedHooks = hooks
-    .map(hook => Array.isArray(hook) ? hook : [ hook ])
+    .map(hook => (Array.isArray(hook) ? hook : [hook]))
     .reduce((allHooks, someHooks) => allHooks.concat(someHooks), [])
 
   return _.uniq(flattenedHooks)
 }
 
-function invokePreHooks (configSetters, context) {
+function invokePreHooks(configSetters, context) {
   const preHooks = getHooks(configSetters, 'pre')
   preHooks.forEach(hook => hook(context))
 }
 
-function invokePostHooks (configSetters, context, config) {
+function invokePostHooks(configSetters, context, config) {
   const postHooks = getHooks(configSetters, 'post')
   return invokeConfigSetters(postHooks, context, config)
 }

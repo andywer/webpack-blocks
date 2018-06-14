@@ -1,10 +1,10 @@
 # webpack-blocks - Babel 6+
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/babel.svg)](https://www.npmjs.com/package/@webpack-blocks/babel)
 
-This is the `babel` block providing Babel (Version 6+) configuration using the [babel-loader](https://github.com/babel/babel-loader).
+This is the `babel` block providing Babel (Version 6+) configuration using the
+[babel-loader](https://github.com/babel/babel-loader).
 
 ## Installation
 
@@ -16,6 +16,7 @@ yarn add --dev babel-core @webpack-blocks/babel
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const babel = require('@webpack-blocks/babel')
@@ -26,21 +27,24 @@ module.exports = createConfig([
   ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
-You can also use the babel block without `match()`. It will by default match `*.js` and `*.jsx` files while excluding everything in `node_modules/`.
-
+You can also use the babel block without `match()`. It will by default match `*.js` and `*.jsx`
+files while excluding everything in `node_modules/`.
 
 ## Options
 
-#### cacheDirectory *(optional)*
+#### cacheDirectory _(optional)_
+
 Uses a cache directory if set to true. Defaults to true.
 
-#### plugins *(optional)*
+#### plugins _(optional)_
+
 Array of Babel plugins to use. Babel will read them from `.babelrc` or `package.json` if omitted.
 
-#### presets *(optional)*
-Array of Babel presets to use. Babel will read them from `.babelrc` or `package.json` if omitted.
+#### presets _(optional)_
 
+Array of Babel presets to use. Babel will read them from `.babelrc` or `package.json` if omitted.
 
 ## webpack-blocks
 

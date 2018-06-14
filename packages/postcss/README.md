@@ -1,14 +1,13 @@
 # webpack-blocks - PostCSS
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/postcss.svg)](https://www.npmjs.com/package/@webpack-blocks/postcss)
 
 This is the `postcss` block providing [PostCSS](http://postcss.org/) configuration.
 
-
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
@@ -21,17 +20,17 @@ module.exports = createConfig([
   ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
-We recommend you to configure PostCSS using the `postcss.config.js` file (see [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
+We recommend you to configure PostCSS using the `postcss.config.js` file (see
+[PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
 
 ```js
 // postcss.config.js
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
-  plugins: [
-    autoprefixer({ browsers: ['last 2 versions'] })
-  ]
+  plugins: [autoprefixer({ browsers: ['last 2 versions'] })]
 }
 ```
 
@@ -45,34 +44,37 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = createConfig([
   postcss({
-    plugins: [
-      autoprefixer({ browsers: ['last 2 versions'] })
-    ]
+    plugins: [autoprefixer({ browsers: ['last 2 versions'] })]
     /* Other PostCSS options */
   })
 ])
 ```
 
-
 ## Options
 
-#### minimize *(optional)*
+#### minimize _(optional)_
+
 Enable CSS minification (by passing this option to `css-loader`).
 
 ### PostCSS options
 
-#### parser *(optional)*
-Package name of a custom PostCSS parser to use. Pass for instance `'sugarss'` to be able to write indent-based CSS.
+#### parser _(optional)_
 
-#### stringifier *(optional)*
+Package name of a custom PostCSS parser to use. Pass for instance `'sugarss'` to be able to write
+indent-based CSS.
+
+#### stringifier _(optional)_
+
 Package name of a custom PostCSS stringifier to use.
 
-#### syntax *(optional)*
-Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify` function.
+#### syntax _(optional)_
 
-#### plugins *(optional)*
+Package name of a custom PostCSS syntax to use. The package must export a `parse` and a `stringify`
+function.
+
+#### plugins _(optional)_
+
 Array of PostCSS plugins.
-
 
 ## webpack-blocks
 

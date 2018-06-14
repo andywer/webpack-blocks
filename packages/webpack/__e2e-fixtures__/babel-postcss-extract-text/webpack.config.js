@@ -4,6 +4,8 @@ const {
   entryPoint,
   match,
   performance,
+  setDevTool,
+  setMode,
   setOutput
 } = require('../../index')
 
@@ -14,22 +16,16 @@ const path = require('path')
 const precss = require('precss')
 
 module.exports = createConfig([
-  entryPoint(
-    path.join(__dirname, 'app.js')
-  ),
-  setOutput(
-    path.join(__dirname, 'build/bundle.js')
-  ),
+  setMode('development'),
+  setDevTool(false),
+  entryPoint(path.join(__dirname, 'app.js')),
+  setOutput(path.join(__dirname, 'build/bundle.js')),
   babel(),
   match('*.css', [
     postcss({
-      plugins: [
-        precss
-      ]
+      plugins: [precss]
     }),
-    extractText(
-      'styles.css'
-    )
+    extractText('styles.css')
   ]),
   performance({
     maxAssetSize: 100000,

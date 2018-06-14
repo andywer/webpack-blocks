@@ -10,7 +10,7 @@ module.exports = eslint
  * @param {object}    [options] See https://github.com/webpack-contrib/eslint-loader#options
  * @return {Function}
  */
-function eslint (options = {}) {
+function eslint(options = {}) {
   return (context, util) =>
     util.addLoader(
       Object.assign(

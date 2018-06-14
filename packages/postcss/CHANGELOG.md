@@ -1,5 +1,9 @@
 # @webpack-blocks/postcss - Changelog
 
+## Next Release
+
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+
 ## 1.0.0-rc
 
 - Breaking change: Remove `plugins` argument
@@ -16,11 +20,13 @@
 
 ## 0.4.3
 
-- Bug fix: Fix loading of `postcss.config.js` ([#137](https://github.com/andywer/webpack-blocks/pull/137))
+- Bug fix: Fix loading of `postcss.config.js`
+  ([#137](https://github.com/andywer/webpack-blocks/pull/137))
 
 ## 0.4.2
 
-- Bug fix: Fix `postcss`/`sass` crash when using webpack 2 and source maps ([#116](https://github.com/andywer/webpack-blocks/issues/116))
+- Bug fix: Fix `postcss`/`sass` crash when using webpack 2 and source maps
+  ([#116](https://github.com/andywer/webpack-blocks/issues/116))
 
 ## 0.4.1
 
@@ -32,7 +38,8 @@
 
 ## 0.3.2
 
-- Bug fix: PostCSS plugin configuration now works with webpack 2 ([#68](https://github.com/andywer/webpack-blocks/issues/68))
+- Bug fix: PostCSS plugin configuration now works with webpack 2
+  ([#68](https://github.com/andywer/webpack-blocks/issues/68))
 
 ## 0.3.1
 
