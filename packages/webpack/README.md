@@ -235,8 +235,8 @@ Instead of passing the destination file path you can also
 #### sourceMaps(devtool: ?string)
 
 Just a convenience wrapper to enable sourcemaps in an easier-to-read fashion than `setDevTool()`.
-Will set webpack's `devtool` to `'cheap-module-eval-source-map'` if no explicit `devtool` is passed as
-parameter.
+Will set webpack's `devtool` to `'cheap-module-eval-source-map'` if no explicit `devtool` is passed
+as parameter.
 
 ## webpack-blocks
 
