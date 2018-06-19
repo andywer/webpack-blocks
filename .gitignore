@@ -1,4 +1,5 @@
 node_modules/
 packages/**/build/
+packages/webpack/__e2e-fixtures__/elm/elm-stuff
 package-lock.json
 *.log
