@@ -4,7 +4,7 @@
  * @see https://github.com/s-panferov/awesome-typescript-loader
  */
 
-const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = typescript
 
@@ -34,9 +34,6 @@ function typescript(options = {}) {
           )
         ]
       },
-      plugins: [
-        new CheckerPlugin(),
-        new TsConfigPathsPlugin({ tsconfig: options.configFileName, compiler: options.compiler }) // This hooks into webpacks module resolution, configure via tsconfig.json
-      ]
+      plugins: [new CheckerPlugin()]
     })
 }
