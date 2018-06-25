@@ -20,11 +20,11 @@
   "dependencies": {
     "glob-to-regexp": "^0.4.0",
     "lodash": "^4.17.10",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.3"
   },
   "devDependencies": {
-    "sinon": "^5.0.2",
-    "webpack": "^4.6.0"
+    "sinon": "^6.0.1",
+    "webpack": "^4.12.1"
   },
   "peerDependencies": {
     "webpack": "^4.0.0"
