@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/typescript",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "Webpack block for Typescript.",
   "main": "lib/index",
   "license": "MIT",
@@ -22,6 +22,6 @@
     "typescript": "^2.9.2"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^1.0.0"
+    "@webpack-blocks/core": "^2.0.0-alpha"
   }
 }

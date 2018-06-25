@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/assets",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "Webpack block for style loader, file loader, url loader and friends.",
   "main": "lib/index",
   "license": "MIT",
@@ -25,6 +25,6 @@
     "@webpack-blocks/core": "^1.0.0"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^1.0.0"
+    "@webpack-blocks/core": "^2.0.0-alpha"
   }
 }

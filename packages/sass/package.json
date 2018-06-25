@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/sass",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "Webpack block for SASS.",
   "main": "lib/index",
   "license": "MIT",
@@ -22,10 +22,10 @@
     "style-loader": "^0.21.0"
   },
   "devDependencies": {
-    "@webpack-blocks/assets": "^1.0.0",
-    "@webpack-blocks/core": "^1.0.0"
+    "@webpack-blocks/assets": "^2.0.0-alpha",
+    "@webpack-blocks/core": "^2.0.0-alpha"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^1.0.0"
+    "@webpack-blocks/core": "^2.0.0-alpha"
   }
 }
