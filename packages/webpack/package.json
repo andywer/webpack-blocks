@@ -15,10 +15,10 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "@webpack-blocks/core": "^1.0.0",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.3"
   },
   "devDependencies": {
-    "@types/node": "^9.6.8",
+    "@types/node": "^10.3.5",
     "@webpack-blocks/assets": "^1.0.0",
     "@webpack-blocks/babel": "^1.0.0",
     "@webpack-blocks/dev-server": "^1.0.0",
@@ -27,22 +27,22 @@
     "@webpack-blocks/sass": "^1.0.0",
     "@webpack-blocks/tslint": "^1.0.0",
     "@webpack-blocks/typescript": "^1.0.0",
-    "awesome-typescript-loader": "^5.0.0",
+    "awesome-typescript-loader": "^5.2.0",
     "babel-loader": "^7.1.4",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.2",
-    "jsdom": "^11.10.0",
+    "jsdom": "^11.11.0",
     "mz": "^2.7.0",
     "node-sass": "^4.8.3",
-    "postcss-loader": "^2.1.4",
+    "postcss-loader": "^2.1.5",
     "precss": "^3.1.2",
-    "sass-loader": "^7.0.1",
-    "sinon": "^5.0.2",
+    "sass-loader": "^7.0.3",
+    "sinon": "^6.0.1",
     "style-loader": "^0.21.0",
-    "tslint": "^5.9.1",
+    "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.3",
-    "webpack": "^4.6.0"
+    "typescript": "^2.9.2",
+    "webpack": "^4.12.1"
   },
   "peerDependencies": {
     "webpack": "^4.0.0"
