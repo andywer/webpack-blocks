@@ -4,13 +4,10 @@
  * @see https://github.com/jtangelder/sass-loader
  */
 
-const _ = require('lodash')
-
 module.exports = sass
 
 /**
  * @param {object}   [options]                  See https://github.com/sass/node-sass#options
- * @param {bool}     [options.minimize]         Enable minification.
  * @param {string[]} [options.includePaths]
  * @param {bool}     [options.indentedSyntax]
  * @param {string}   [options.outputStyle]
@@ -18,7 +15,6 @@ module.exports = sass
  * @return {Function}
  */
 function sass(options = {}) {
-  const sassOptions = _.omit(options, 'minimize')
   return (context, util) =>
     util.addLoader(
       Object.assign(
@@ -30,12 +26,12 @@ function sass(options = {}) {
               loader: 'css-loader',
               options: {
                 sourceMap: Boolean(options.sourceMap),
-                minimize: options.minimize
+                importLoaders: options.importLoaders || 1 // 1 => sass-loader
               }
             },
             {
               loader: 'sass-loader',
-              options: sassOptions
+              options: options
             }
           ]
         },

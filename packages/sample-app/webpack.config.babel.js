@@ -39,7 +39,7 @@ const developmentConfig = () =>
   ])
 
 const productionConfig = () =>
-  group([css.modules({ minimize: true }), extractText('css/[name].[contenthash:hex:8].css')])
+  group([css.modules(), extractText('css/[name].[contenthash:hex:8].css')])
 
 module.exports = createConfig([
   setMode(process.env.NODE_ENV || 'development'),

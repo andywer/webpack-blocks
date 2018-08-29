@@ -62,7 +62,6 @@ test('complete webpack config creation', t => {
         options: {
           importLoaders: 1,
           localIdentName: '[name]--[local]--[hash:base64:5]',
-          minimize: undefined,
           modules: true,
           sourceMap: false
         }

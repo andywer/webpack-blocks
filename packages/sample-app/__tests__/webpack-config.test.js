@@ -107,7 +107,8 @@ test('it builds', async t => {
 
     const css = fs.readFileSync(path.resolve(buildLocation, 'css', files[0]), { encoding: 'utf8' })
     t.true(css.startsWith('.'))
-    t.true(css.endsWith('{margin:30px auto;text-align:center}'))
+    t.true(css.includes('margin: 30px auto;'))
+    t.true(css.includes('text-align: center;'))
   }
 })
 

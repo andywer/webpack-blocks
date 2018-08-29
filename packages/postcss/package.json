@@ -16,7 +16,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "lodash": "^4.17.10",
-    "postcss-loader": "^2.1.5"
+    "postcss-loader": "^3.0.0"
   },
   "devDependencies": {
     "@webpack-blocks/assets": "^2.0.0-alpha",

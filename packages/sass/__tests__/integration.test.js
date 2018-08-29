@@ -15,7 +15,7 @@ test('Sass works with defaults, without match()', t => {
           loader: 'css-loader',
           options: {
             sourceMap: false,
-            minimize: undefined
+            importLoaders: 1
           }
         },
         {
@@ -43,7 +43,7 @@ test('Sass works with css() & match()', t => {
           loader: 'css-loader',
           options: {
             sourceMap: false,
-            minimize: undefined
+            importLoaders: 1
           }
         },
         {
@@ -67,7 +67,7 @@ test('Sass should pass sourceMap option to sass-loader and css-loader', t => {
           loader: 'css-loader',
           options: {
             sourceMap: true,
-            minimize: undefined
+            importLoaders: 1
           }
         },
         {
@@ -75,30 +75,6 @@ test('Sass should pass sourceMap option to sass-loader and css-loader', t => {
           options: {
             sourceMap: true
           }
-        }
-      ]
-    }
-  ])
-})
-
-test('Sass should pass minimize option to css-loader', t => {
-  const config = createConfig({}, [sass({ minimize: true })])
-
-  t.deepEqual(config.module.rules, [
-    {
-      test: /\.(sass|scss)$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: false,
-            minimize: true
-          }
-        },
-        {
-          loader: 'sass-loader',
-          options: {}
         }
       ]
     }

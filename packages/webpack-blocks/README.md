@@ -36,10 +36,7 @@ module.exports = createConfig([
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
-  match('*.css', { exclude: /node_modules/ }, [
-    css({ minimize: true }),
-    env('production', [extractText()])
-  ]),
+  match('*.css', { exclude: /node_modules/ }, [css(), env('production', [extractText()])]),
   env('production', [uglify()])
 ])
 ```

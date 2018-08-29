@@ -35,12 +35,6 @@ module.exports = createConfig([
 
 ## Options
 
-#### minimize _(optional)_
-
-Enable CSS minification (by passing this option to `css-loader`).
-
-#### Sass options
-
 You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an
 object to the `sass` block.
 
@@ -58,7 +52,7 @@ const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass({ minimize: true }),
+    sass(),
     env('production', [extractText()])
   ])
 ])
@@ -89,7 +83,8 @@ module.exports = createConfig([
 ### PostCSS
 
 You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like
-the Autoprefixer.
+the [Autoprefixer](https://github.com/postcss/autoprefixer), or
+[cssnano](https://github.com/cssnano/cssnano) if you want css minification.
 
 <!-- prettier-ignore-start -->
 ```js
@@ -97,11 +92,12 @@ const { createConfig, match } = require('@webpack-blocks/webpack')
 const sass = require('@webpack-blocks/sass')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
+const cssnano = require('cssnano')
 
 module.exports = createConfig([
   match('*.scss', [
     sass(),
-    postcss([autoprefixer()])
+    postcss([autoprefixer(), cssnano()])
   ])
 ])
 ```
