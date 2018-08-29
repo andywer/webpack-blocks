@@ -52,10 +52,6 @@ module.exports = createConfig([
 
 ## Options
 
-#### minimize _(optional)_
-
-Enable CSS minification (by passing this option to `css-loader`).
-
 ### PostCSS options
 
 #### parser _(optional)_
