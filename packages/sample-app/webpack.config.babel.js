@@ -16,11 +16,13 @@ const {
   css,
   devServer,
   extractText,
-  typescript
+  typescript,
+  postcss
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const cssnano = require('cssnano')
 
 const developmentConfig = () =>
   group([
@@ -39,7 +41,13 @@ const developmentConfig = () =>
   ])
 
 const productionConfig = () =>
-  group([css.modules(), extractText('css/[name].[contenthash:hex:8].css')])
+  group([
+    css.modules(),
+    postcss({
+      plugins: [cssnano()]
+    }),
+    extractText('css/[name].[contenthash:hex:8].css')
+  ])
 
 module.exports = createConfig([
   setMode(process.env.NODE_ENV || 'development'),

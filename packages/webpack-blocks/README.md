@@ -26,8 +26,10 @@ const {
   extractText,
   match,
   setOutput,
-  uglify
+  uglify,
+  postcss
 } = require('webpack-blocks')
+const cssnano = require('cssnano')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
@@ -36,7 +38,15 @@ module.exports = createConfig([
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
-  match('*.css', { exclude: /node_modules/ }, [css(), env('production', [extractText()])]),
+  match('*.css', { exclude: /node_modules/ }, [
+    css(),
+    env('production', [
+      extractText(),
+      postcss({
+        plugins: [cssnano()]
+      })
+    ])
+  ]),
   env('production', [uglify()])
 ])
 ```
