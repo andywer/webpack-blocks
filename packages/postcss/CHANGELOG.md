@@ -1,5 +1,14 @@
 # @webpack-blocks/postcss - Changelog
 
+## 2.0.0-alpha.1
+
+- Major version upgrade of `postcss-loader` to the
+  [3.0.0](https://github.com/postcss/postcss-loader/releases/tag/v3.0.0)
+  ([#291](https://github.com/andywer/webpack-blocks/pull/291))
+- Deprecate `minimize` option after
+  [the css-loader removed it](https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0)
+  ([#291](https://github.com/andywer/webpack-blocks/pull/291))
+
 ## 2.0.0-alpha
 
 - Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
