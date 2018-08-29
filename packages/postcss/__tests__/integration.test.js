@@ -10,8 +10,6 @@ test('Postcss works with defaults, without match()', t => {
     {
       test: /\.css$/,
       use: [
-        'style-loader',
-        'css-loader',
         {
           loader: 'postcss-loader',
           options: {}
@@ -60,8 +58,6 @@ test('Postcss allows inline plugin config and custom options', t => {
     {
       test: /\.css$/,
       use: [
-        'style-loader',
-        'css-loader',
         {
           loader: 'postcss-loader',
           options: {
