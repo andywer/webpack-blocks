@@ -28,7 +28,7 @@
     "@webpack-blocks/tslint": "^2.0.0-alpha",
     "@webpack-blocks/typescript": "^2.0.0-alpha",
     "awesome-typescript-loader": "^5.2.0",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^8.0.0",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.2",
     "jsdom": "^11.11.0",
