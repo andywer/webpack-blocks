@@ -10,11 +10,11 @@
     "node": ">= 6.0"
   },
   "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@types/node": "^10.3.5",
     "@types/react": "^16.4.1",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.0",
     "eslint-plugin-react": "^7.10.0",
