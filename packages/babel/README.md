@@ -3,7 +3,7 @@
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/babel.svg)](https://www.npmjs.com/package/@webpack-blocks/babel)
 
-This is the `babel` block providing Babel (Version 6+) configuration using the
+This is the `babel` block providing Babel (Version 7+) configuration using the
 [babel-loader](https://github.com/babel/babel-loader).
 
 ## Installation
