@@ -16,7 +16,11 @@ function typescript(options = {}) {
   return (context, util) =>
     util.merge({
       resolve: {
-        extensions: ['.ts', '.tsx']
+        extensions: ['.ts', '.tsx'],
+        plugins: [
+          // This hooks into webpacks module resolution, configure via tsconfig.json
+          new TsConfigPathsPlugin({ tsconfig: options.configFileName, compiler: options.compiler })
+        ]
       },
       module: {
         rules: [
@@ -26,7 +30,19 @@ function typescript(options = {}) {
               use: [
                 {
                   loader: 'awesome-typescript-loader',
-                  options
+                  options: Object.assign(
+                    {
+                      useCache: true,
+                      cacheDirectory: 'node_modules/.awcache',
+                      useBabel: true,
+                      babelCore: '@babel/core',
+                      babelOptions: {
+                        compact: process.env.NODE_ENV === 'production',
+                        highlightCode: true
+                      }
+                    },
+                    options
+                  )
                 }
               ]
             },
@@ -34,9 +50,6 @@ function typescript(options = {}) {
           )
         ]
       },
-      plugins: [
-        new CheckerPlugin(),
-        new TsConfigPathsPlugin({ tsconfig: options.configFileName, compiler: options.compiler }) // This hooks into webpacks module resolution, configure via tsconfig.json
-      ]
+      plugins: [new CheckerPlugin()]
     })
 }
