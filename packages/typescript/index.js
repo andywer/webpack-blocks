@@ -35,11 +35,6 @@ function typescript(options = {}) {
                       useCache: true,
                       cacheDirectory: 'node_modules/.awcache',
                       useBabel: true,
-                      babelCore: '@babel/core',
-                      babelOptions: {
-                        compact: process.env.NODE_ENV === 'production',
-                        highlightCode: true
-                      }
                     },
                     options
                   )
