@@ -44,31 +44,40 @@ test('it exports the production config', t => {
 
   delete require.cache['../webpack.config.babel.js']
   const originalConfig = requireConfig()
-  const module = Object.assign({}, originalConfig.module, {
-    rules: originalConfig.module.rules.map(rule => {
-      if (rule.test.toString() === /\.css$/.toString()) {
-        return Object.assign({}, rule, {
-          use: rule.use.map(use =>
-            Object.assign({}, use, {
-              loader: path.basename(use.loader)
-            })
-          )
-        })
-      }
+  const module = Object.assign(
+    {},
+    originalConfig.module,
+    {
+      rules: originalConfig.module.rules.map(rule => {
+        if (rule.test.toString() === /\.css$/.toString()) {
+          return Object.assign({}, rule, {
+            use: rule.use.map(use =>
+              Object.assign({}, use, {
+                loader: path.basename(use.loader)
+              })
+            )
+          })
+        }
 
-      if (rule.test.toString() === /\.(ts|tsx)$/.toString()) {
-        return Object.assign({}, rule, {
-          use: rule.use.map(use =>
-            Object.assign({}, use, {
-              options: { configFileName: '<REPLACED>' }
-            })
-          )
-        })
-      }
+        if (rule.test.toString() === /\.(ts|tsx)$/.toString()) {
+          return Object.assign({}, rule, {
+            use: rule.use.map(use =>
+              Object.assign({}, use, {
+                options: { configFileName: '<REPLACED>' }
+              })
+            )
+          })
+        }
 
-      return rule
-    })
-  })
+        return rule
+      })
+    },
+    {
+      resolve: Object.assign(originalConfig.resolve, {
+        plugins: originalConfig.resolve.plugins.map(p => p.constructor.name)
+      })
+    }
+  )
   const output = Object.assign({}, originalConfig.output, {
     path: path.basename(originalConfig.output.path)
   })
