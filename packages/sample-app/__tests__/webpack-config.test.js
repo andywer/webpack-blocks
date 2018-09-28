@@ -28,7 +28,10 @@ test('it exports the development config', t => {
   })
   const config = Object.assign({}, originalConfig, {
     module,
-    plugins: originalConfig.plugins.map(p => p.constructor.name)
+    plugins: originalConfig.plugins.map(p => p.constructor.name),
+    resolve: Object.assign(originalConfig.resolve, {
+      plugins: originalConfig.resolve.plugins.map(p => p.constructor.name)
+    })
   })
   t.snapshot(config)
 

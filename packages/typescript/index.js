@@ -33,8 +33,7 @@ function typescript(options = {}) {
                   options: Object.assign(
                     {
                       useCache: true,
-                      cacheDirectory: 'node_modules/.awcache',
-                      useBabel: true,
+                      cacheDirectory: 'node_modules/.awcache'
                     },
                     options
                   )
