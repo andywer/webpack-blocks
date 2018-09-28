@@ -9,29 +9,21 @@ This is the `sass` block providing Sass support for webpack. Uses `node-sass` vi
 
 <!-- prettier-ignore-start -->
 ```js
-const { createConfig } = require('@webpack-blocks/webpack')
-const sass = require('@webpack-blocks/sass')
-
-module.exports = createConfig([
-  sass(/* node-sass options */)
-])
-```
-<!-- prettier-ignore-end -->
-
-Use `match()` to explicitly specify on which files to apply the block:
-
-<!-- prettier-ignore-start -->
-```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
   match(['*.scss', '!*node_modules*'], [
+    css(),
     sass(/* node-sass options */)
   ])
 ])
 ```
 <!-- prettier-ignore-end -->
+
+**NOTE**: the `css()` block by default works on `.css` files, so you have to make it accept `.scss`
+files using the `match()` block.
 
 ## Options
 
@@ -47,11 +39,13 @@ Use the `extract-text` block to extract the compiled SASS/SCSS styles into a sep
 <!-- prettier-ignore-start -->
 ```js
 const { createConfig, match, env } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.scss', [
+    css(),
     sass(),
     env('production', [extractText()])
   ])
@@ -68,13 +62,13 @@ You can use SASS/SCSS in combination with CSS modules.
 <!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
-const sass = require('@webpack-blocks/sass')
 const { css } = require('@webpack-blocks/assets')
+const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass(),
-    css.modules()
+    css.modules(),
+    sass()
   ])
 ])
 ```
@@ -89,6 +83,7 @@ the [Autoprefixer](https://github.com/postcss/autoprefixer), or
 <!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
@@ -96,6 +91,7 @@ const cssnano = require('cssnano')
 
 module.exports = createConfig([
   match('*.scss', [
+    css(),
     sass(),
     postcss([autoprefixer(), cssnano()])
   ])
