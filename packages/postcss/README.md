@@ -22,6 +22,9 @@ module.exports = createConfig([
 ```
 <!-- prettier-ignore-end -->
 
+**NOTE**: the postcss block handles only the postcss transformation, you must use the css block if
+you want to require the css in your browser.
+
 We recommend you to configure PostCSS using the `postcss.config.js` file (see
 [PostCSS loader usage](https://github.com/postcss/postcss-loader#usage)):
 
@@ -43,6 +46,7 @@ const postcss = require('@webpack-blocks/postcss')
 const autoprefixer = require('autoprefixer')
 
 module.exports = createConfig([
+  css(),
   postcss({
     plugins: [autoprefixer({ browsers: ['last 2 versions'] })]
     /* Other PostCSS options */
