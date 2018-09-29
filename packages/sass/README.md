@@ -22,8 +22,7 @@ module.exports = createConfig([
 ```
 <!-- prettier-ignore-end -->
 
-**NOTE**: the `css()` block by default works on `.css` files, so you have to make it accept `.scss`
-files using the `match()` block.
+**NOTE**: Use match() here to apply the css() block to `.scss` files.
 
 ## Options
 
