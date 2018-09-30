@@ -15,7 +15,7 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "eslint-loader": "^2.1.0"
+    "eslint-loader": "^2.1.1"
   },
   "devDependencies": {
     "@webpack-blocks/core": "^2.0.0-alpha"
