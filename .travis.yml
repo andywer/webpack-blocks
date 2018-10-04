@@ -5,7 +5,7 @@ language: node_js
 node_js:
   - 10
   - 8
-  - 6
+  - 6.11.5
 
 cache:
   yarn: true
