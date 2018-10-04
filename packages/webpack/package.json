@@ -18,7 +18,7 @@
     "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
-    "@types/node": "^10.11.3",
+    "@types/node": "^10.11.4",
     "@webpack-blocks/assets": "^2.0.0-alpha",
     "@webpack-blocks/babel": "^2.0.0-alpha",
     "@webpack-blocks/dev-server": "^2.0.0-alpha",
@@ -37,11 +37,11 @@
     "postcss-loader": "^3.0.0",
     "postcss-simple-vars": "^5.0.1",
     "sass-loader": "^7.1.0",
-    "sinon": "^6.3.4",
+    "sinon": "^6.3.5",
     "style-loader": "^0.23.0",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.9.2",
+    "typescript": "^3.1.1",
     "webpack": "^4.20.2"
   },
   "peerDependencies": {
