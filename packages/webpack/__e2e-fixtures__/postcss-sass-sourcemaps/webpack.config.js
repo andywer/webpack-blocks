@@ -4,8 +4,8 @@ const path = require('path')
 const { match } = require('@webpack-blocks/webpack')
 const { css } = require('@webpack-blocks/assets')
 const postcss = require('@webpack-blocks/postcss')
-const precss = require('precss')
 const sass = require('@webpack-blocks/sass')
+const postcssVars = require('postcss-simple-vars')
 
 module.exports = createConfig([
   setMode('development'),
@@ -14,7 +14,7 @@ module.exports = createConfig([
   match('*.sass', [
     css({ sourceMap: true }),
     postcss({
-      plugins: [precss]
+      plugins: [postcssVars]
     }),
     sass({ indentSyntax: true, sourceMap: true })
   ])

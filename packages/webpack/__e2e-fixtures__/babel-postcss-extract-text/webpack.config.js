@@ -14,7 +14,7 @@ const postcss = require('@webpack-blocks/postcss')
 const extractText = require('@webpack-blocks/extract-text')
 const { css } = require('@webpack-blocks/assets')
 const path = require('path')
-const precss = require('precss')
+const postcssVars = require('postcss-simple-vars')
 
 module.exports = createConfig([
   setMode('development'),
@@ -25,7 +25,7 @@ module.exports = createConfig([
   match('*.css', [
     css(),
     postcss({
-      plugins: [precss]
+      plugins: [postcssVars]
     }),
     extractText('styles.css')
   ]),
