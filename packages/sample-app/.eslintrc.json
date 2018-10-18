@@ -7,5 +7,10 @@
   },
   "parserOptions": {
     "ecmaVersion": 8
+  },
+  "settings": {
+    "react": {
+      "version": "15.6"
+    }
   }
 }
