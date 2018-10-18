@@ -15,27 +15,26 @@ module.exports = sass
  * @return {Function}
  */
 function sass(options = {}) {
-  return (context, util) =>
-    util.addLoader(
+  return (context, util) => {
+    if (!context.match) {
+      throw Error(
+        'You cannot use the sass() block outside a match() block. You also need to use the css() block on sass files.'
+      )
+    }
+
+    return util.addLoader(
       Object.assign(
         {
           test: /\.(sass|scss)$/,
           use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: Boolean(options.sourceMap),
-                importLoaders: options.importLoaders || 1 // 1 => sass-loader
-              }
-            },
             {
               loader: 'sass-loader',
-              options: options
+              options
             }
           ]
         },
         context.match
       )
     )
+  }
 }
