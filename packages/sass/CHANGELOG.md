@@ -8,6 +8,8 @@
 - Deprecate `minimize` option after
   [the css-loader removed it](https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0)
   ([#291](https://github.com/andywer/webpack-blocks/pull/291))
+- Remove `css-loader` and `style-loader` from the `use` option
+  ([#294](https://github.com/andywer/webpack-blocks/pull/294))
 
 ## 2.0.0-alpha
 
