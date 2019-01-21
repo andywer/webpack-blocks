@@ -23,7 +23,6 @@ as well as best practices like extracting CSS — all with just one line of conf
 <!-- toc -->
 
 - [Installation](#installation)
-- [Upgrade from v0.4](#upgrade-from-v04)
 - [Example](#example)
 - [More examples](#more-examples)
 - [Custom blocks](#custom-blocks)
@@ -45,10 +44,6 @@ npm install --save-dev webpack webpack-blocks
 # or
 yarn add --dev webpack webpack-blocks
 ```
-
-## Upgrade from v0.4
-
-Check out our [migration guide](./docs/MIGRATION-GUIDE.md) to get started with v1.0 today.
 
 ## Example
 
