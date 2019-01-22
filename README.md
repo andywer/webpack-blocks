@@ -37,6 +37,7 @@ webpack 3 or older.
 - [Design principles](#design-principles)
 - [FAQ](#faq)
 - [Like what you see?](#like-what-you-see)
+- [Contributors](#contributors)
 - [License](#license)
 
 <!-- tocstop -->
@@ -409,7 +410,13 @@ combines all their functionality.
 ## Like what you see?
 
 Support webpack-blocks by giving [feedback](https://github.com/andywer/webpack-blocks/issues),
-publishing new webpack blocks or just by 🌟 starring the project!
+[contributing to this repository](https://github.com/andywer/webpack-blocks/pulls), publishing new
+webpack blocks or just by 🌟 starring the project!
+
+## Contributors
+
+[These awesome people](https://github.com/andywer/webpack-blocks/graphs/contributors) have helped
+webpack-blocks by adding features, fixing bugs and refactoring code. You can become one of them!
 
 ## License
 
