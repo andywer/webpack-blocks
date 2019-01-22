@@ -34,6 +34,7 @@ as well as best practices like extracting CSS — all with just one line of conf
 - [Design principles](#design-principles)
 - [FAQ](#faq)
 - [Like what you see?](#like-what-you-see)
+- [Contributors](#contributors)
 - [License](#license)
 
 <!-- tocstop -->
