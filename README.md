@@ -9,7 +9,9 @@ configuration between projects.
 Ready to use blocks to configure popular tools like _Babel_, _PostCSS_, _Sass_, _TypeScript_, etc.,
 as well as best practices like extracting CSS — all with just one line of configuration.
 
-Note: This is the documentation of webpack-blocks v2, compatible with webpack 4. Check out the [`v1` branch](https://github.com/andywer/webpack-blocks/tree/v1) if you need to be compatible with webpack 3 or older.
+Note: This is the documentation of webpack-blocks v2, compatible with webpack 4. Check out the
+[`v1` branch](https://github.com/andywer/webpack-blocks/tree/v1) if you need to be compatible with
+webpack 3 or older.
 
 > "Finally, webpack config done right. (...) Webpack clearly wants to stay low-level. So it makes
 > total sense to outsource configuring it to well designed blocks instead of copy-paste."
