@@ -38,9 +38,9 @@ Ready to use blocks to configure popular tools like *Babel*, *PostCSS*, *Sass*, 
 ## Installation
 
 ```sh
-npm install --save-dev webpack webpack-blocks
+npm install --save-dev webpack webpack-blocks@1
 # or
-yarn add --dev webpack webpack-blocks
+yarn add --dev webpack webpack-blocks@1
 ```
 
 
