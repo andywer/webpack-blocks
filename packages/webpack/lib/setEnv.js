@@ -10,7 +10,7 @@ module.exports = setEnv
  * @param {string[]|object} constants
  * @return {Function}
  */
-function setEnv (constants) {
+function setEnv(constants) {
   const setter = context => prevConfig => {
     context.setEnv = Object.assign({}, context.setEnv, toObject(constants))
     return prevConfig
@@ -19,13 +19,11 @@ function setEnv (constants) {
   return Object.assign(setter, { post: addEnvironmentPlugin })
 }
 
-function addEnvironmentPlugin (context, util) {
-  return util.addPlugin(
-    new context.webpack.EnvironmentPlugin(context.setEnv)
-  )
+function addEnvironmentPlugin(context, util) {
+  return util.addPlugin(new context.webpack.EnvironmentPlugin(context.setEnv))
 }
 
-function toObject (constants) {
+function toObject(constants) {
   if (Array.isArray(constants)) {
     return constants.reduce((result, constant) => {
       // Setting the default (fallback) value to `undefined`

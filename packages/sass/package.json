@@ -1,14 +1,10 @@
 {
   "name": "@webpack-blocks/sass",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "Webpack block for SASS.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
-  "scripts": {
-    "test": "ava && standard",
-    "prepublishOnly": "npm test"
-  },
   "engines": {
     "node": ">= 6.0"
   },
@@ -19,14 +15,17 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "css-loader": "^0.28.11",
-    "lodash": "^4.17.5",
-    "node-sass": "^4.8.3",
-    "sass-loader": "^6.0.7",
-    "style-loader": "^0.18.2"
+    "css-loader": "^1.0.0",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
-    "@webpack-blocks/assets": "^1.0.0",
-    "@webpack-blocks/core": "^1.0.0"
+    "@webpack-blocks/assets": "^2.0.0-alpha",
+    "@webpack-blocks/core": "^2.0.0-alpha"
+  },
+  "peerDependencies": {
+    "@webpack-blocks/core": "^2.0.0-alpha"
   }
 }

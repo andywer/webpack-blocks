@@ -1,6 +1,15 @@
 import test from 'ava'
 import path from 'path'
-import { createConfig, entryPoint, match, setOutput, sourceMaps, resolve } from '../index'
+import {
+  createConfig,
+  entryPoint,
+  match,
+  setOutput,
+  sourceMaps,
+  resolve,
+  setMode,
+  optimization
+} from '../index'
 import { css, file, url } from '@webpack-blocks/assets'
 import babel from '@webpack-blocks/babel'
 import devServer from '@webpack-blocks/dev-server'
@@ -12,6 +21,7 @@ test('complete webpack config creation', t => {
   const fonts = ['*.eot', '*.ttf', '*.woff', '*.woff2']
 
   const webpackConfig = createConfig([
+    setMode('development'),
     entryPoint('./src/main.js'),
     setOutput('./build/bundle.js'),
     babel(),
@@ -33,9 +43,10 @@ test('complete webpack config creation', t => {
         limit: 10000
       })
     ]),
-    match(fonts, [
-      file()
-    ])
+    match(fonts, [file()]),
+    optimization({
+      splitChunks: 'all'
+    })
   ])
 
   t.is(webpackConfig.module.rules.length, 4)
@@ -51,9 +62,7 @@ test('complete webpack config creation', t => {
         options: {
           importLoaders: 1,
           localIdentName: '[name]--[local]--[hash:base64:5]',
-          minimize: undefined,
-          modules: true,
-          sourceMap: false
+          modules: true
         }
       },
       {
@@ -67,13 +76,7 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[1], {
-    test: [
-      /^.*\.gif$/,
-      /^.*\.jpg$/,
-      /^.*\.jpeg$/,
-      /^.*\.png$/,
-      /^.*\.webp$/
-    ],
+    test: [/^.*\.gif$/, /^.*\.jpg$/, /^.*\.jpeg$/, /^.*\.png$/, /^.*\.webp$/],
     exclude: /node_modules/,
     use: [
       {
@@ -85,12 +88,7 @@ test('complete webpack config creation', t => {
     ]
   })
   t.deepEqual(webpackConfig.module.rules[2], {
-    test: [
-      /^.*\.eot$/,
-      /^.*\.ttf$/,
-      /^.*\.woff$/,
-      /^.*\.woff2$/
-    ],
+    test: [/^.*\.eot$/, /^.*\.ttf$/, /^.*\.woff$/, /^.*\.woff2$/],
     use: [
       {
         loader: 'file-loader',
@@ -101,15 +99,19 @@ test('complete webpack config creation', t => {
   t.deepEqual(webpackConfig.module.rules[3], {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    use: [ {
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
       }
-    } ]
+    ]
   })
 
-  t.deepEqual(webpackConfig.entry, { main: [ './src/main.js' ] })
+  t.is(webpackConfig.mode, 'development')
+
+  t.deepEqual(webpackConfig.entry, { main: ['./src/main.js'] })
 
   t.deepEqual(webpackConfig.devServer, {
     hot: true,
@@ -128,22 +130,32 @@ test('complete webpack config creation', t => {
     path: path.resolve('./build')
   })
 
-  t.is(webpackConfig.devtool, 'cheap-module-source-map')
+  t.is(webpackConfig.devtool, 'cheap-module-eval-source-map')
+
+  t.deepEqual(webpackConfig.optimization, {
+    splitChunks: 'all'
+  })
 
   t.deepEqual(Object.keys(webpackConfig).sort(), [
-    'devServer', 'devtool', 'entry', 'module', 'output', 'plugins', 'resolve', 'stats'
+    'devServer',
+    'devtool',
+    'entry',
+    'mode',
+    'module',
+    'optimization',
+    'output',
+    'plugins',
+    'resolve',
+    'stats'
   ])
 })
 
 test('createConfig() creates a minimal configuration', t => {
-  const webpackConfig = createConfig([
-    entryPoint('./src/main.js'),
-    setOutput('./build/bundle.js')
-  ])
+  const webpackConfig = createConfig([entryPoint('./src/main.js'), setOutput('./build/bundle.js')])
 
   t.deepEqual(webpackConfig, {
     entry: {
-      main: [ './src/main.js' ]
+      main: ['./src/main.js']
     },
     module: {
       rules: []
@@ -166,17 +178,10 @@ test('createConfig() creates a minimal configuration', t => {
 })
 
 test('context contains necessary properties', t => {
-  t.plan(10)
+  t.plan(5)
 
   createConfig([
     context => {
-      // context.fileType
-      t.is(typeof context.fileType, 'function')
-      t.is(typeof context.fileType.add, 'function')
-      t.is(typeof context.fileType.all, 'function')
-      t.is(typeof context.fileType.get, 'function')
-      t.is(typeof context.fileType.has, 'function')
-
       // context.webpack
       t.is(typeof context.webpack, 'function')
       t.is(typeof context.webpack.EnvironmentPlugin, 'function')
@@ -194,9 +199,7 @@ test('context contains necessary properties', t => {
 test('prepends custom extension to default ones', t => {
   const expectedExtensionOrder = ['.custom.js', '.js', '.json']
 
-  const webpackConfig = createConfig([
-    resolve({ extensions: ['.custom.js'] })
-  ])
+  const webpackConfig = createConfig([resolve({ extensions: ['.custom.js'] })])
 
   const actualExtensions = webpackConfig.resolve.extensions
 

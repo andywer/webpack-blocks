@@ -1,46 +1,33 @@
 # webpack-blocks - Sass
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/sass.svg)](https://www.npmjs.com/package/@webpack-blocks/sass)
 
 This is the `sass` block providing Sass support for webpack. Uses `node-sass` via `sass-loader`.
 
-
 ## Usage
 
-```js
-const { createConfig } = require('@webpack-blocks/webpack')
-const sass = require('@webpack-blocks/sass')
-
-module.exports = createConfig([
-  sass(/* node-sass options */)
-])
-```
-
-Use `match()` to explicitly specify on which files to apply the block:
-
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
   match(['*.scss', '!*node_modules*'], [
+    css(),
     sass(/* node-sass options */)
   ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
+**NOTE**: Use match() here to apply the css() block to `.scss` files.
 
 ## Options
 
-#### minimize *(optional)*
-Enable CSS minification (by passing this option to `css-loader`).
-
-#### Sass options
-
-You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an object to the `sass` block.
-
+You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an
+object to the `sass` block.
 
 ## Examples
 
@@ -48,58 +35,68 @@ You can pass any [sass-loader / node-sass options](https://github.com/sass/node-
 
 Use the `extract-text` block to extract the compiled SASS/SCSS styles into a separate CSS file:
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match, env } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 const extractText = require('@webpack-blocks/extract-text')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass({ minimize: true }),
+    css(),
+    sass(),
     env('production', [extractText()])
   ])
 ])
 ```
+<!-- prettier-ignore-end -->
 
-Make sure you use the `extract-text` block *after* the `sass` block.
-
+Make sure you use the `extract-text` block _after_ the `sass` block.
 
 ### CSS Modules
 
 You can use SASS/SCSS in combination with CSS modules.
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
-const sass = require('@webpack-blocks/sass')
 const { css } = require('@webpack-blocks/assets')
+const sass = require('@webpack-blocks/sass')
 
 module.exports = createConfig([
   match('*.scss', [
-    sass(),
-    css.modules()
+    css.modules(),
+    sass()
   ])
 ])
 ```
-
+<!-- prettier-ignore-end -->
 
 ### PostCSS
 
-You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like the Autoprefixer.
+You can use the SASS block together with PostCSS (using the `postcss` block) and its plugins, like
+the [Autoprefixer](https://github.com/postcss/autoprefixer), or
+[cssnano](https://github.com/cssnano/cssnano) if you want css minification.
 
+<!-- prettier-ignore-start -->
 ```js
 const { createConfig, match } = require('@webpack-blocks/webpack')
+const { css } = require('@webpack-blocks/assets')
 const sass = require('@webpack-blocks/sass')
 const postcss = require('@webpack-blocks/postcss')
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer')
+const cssnano = require('cssnano')
 
 module.exports = createConfig([
   match('*.scss', [
+    css(),
     sass(),
-    postcss([autoprefixer()])
+    postcss([autoprefixer(), cssnano()])
   ])
 ])
 ```
-
+<!-- prettier-ignore-end -->
 
 ## webpack-blocks
 
