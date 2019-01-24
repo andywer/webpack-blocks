@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/tslint",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-rc",
   "description": "Webpack block for typescript linting.",
   "main": "lib/index",
   "license": "MIT",

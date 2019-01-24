@@ -1,6 +1,6 @@
 {
   "name": "webpack-blocks",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-rc",
   "description": "Convenience package that includes all the most common webpack blocks.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -17,14 +17,14 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "@webpack-blocks/assets": "^2.0.0-alpha",
-    "@webpack-blocks/babel": "^2.0.0-alpha",
-    "@webpack-blocks/dev-server": "^2.0.0-alpha",
-    "@webpack-blocks/extract-text": "^2.0.0-alpha",
-    "@webpack-blocks/postcss": "^2.0.0-alpha",
-    "@webpack-blocks/sass": "^2.0.0-alpha",
-    "@webpack-blocks/typescript": "^2.0.0-alpha",
-    "@webpack-blocks/uglify": "^2.0.0-alpha",
-    "@webpack-blocks/webpack": "^2.0.0-alpha"
+    "@webpack-blocks/assets": "^2.0.0-rc",
+    "@webpack-blocks/babel": "^2.0.0-rc",
+    "@webpack-blocks/dev-server": "^2.0.0-rc",
+    "@webpack-blocks/extract-text": "^2.0.0-rc",
+    "@webpack-blocks/postcss": "^2.0.0-rc",
+    "@webpack-blocks/sass": "^2.0.0-rc",
+    "@webpack-blocks/typescript": "^2.0.0-rc",
+    "@webpack-blocks/uglify": "^2.0.0-rc",
+    "@webpack-blocks/webpack": "^2.0.0-rc"
   }
 }

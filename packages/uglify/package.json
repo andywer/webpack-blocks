@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/uglify",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-rc",
   "description": "Webpack block for UglifyJS",
   "main": "index",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^2.0.0-alpha"
+    "@webpack-blocks/core": "^2.0.0-rc"
   },
   "peerDependencies": {
     "@webpack-blocks/core": "^2.0.0-alpha"
