@@ -10,7 +10,7 @@ module.exports = group
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function group (configSetters) {
+function group(configSetters) {
   assertConfigSetters(configSetters)
 
   const pre = getHooks(configSetters, 'pre')

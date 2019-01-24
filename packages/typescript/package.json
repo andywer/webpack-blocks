@@ -1,13 +1,12 @@
 {
   "name": "@webpack-blocks/typescript",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "Webpack block for Typescript.",
   "main": "lib/index",
   "license": "MIT",
   "author": "Jan van Brügge <supermanitu@gmail.com>",
   "scripts": {
-    "test": "standard",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "yarn test"
   },
   "engines": {
     "node": ">= 6.0"
@@ -19,7 +18,10 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "awesome-typescript-loader": "^3.5.0",
-    "typescript": "^2.8.1"
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^3.1.2"
+  },
+  "peerDependencies": {
+    "@webpack-blocks/core": "^2.0.0-alpha"
   }
 }

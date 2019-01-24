@@ -7,23 +7,21 @@ module.exports = {
   addPlugin
 }
 
-function merge (configSnippet) {
+function merge(configSnippet) {
   return prevConfig => webpackMerge.smart(prevConfig, configSnippet)
 }
 
-function addLoader (loaderDef) {
+function addLoader(loaderDef) {
   const cleanedLoaderDef = _.omitBy(loaderDef, _.isUndefined)
-  return prevConfig => webpackMerge.smart(prevConfig, {
-    module: {
-      rules: [ cleanedLoaderDef ]
-    }
-  })
+  return prevConfig =>
+    webpackMerge.smart(prevConfig, {
+      module: {
+        rules: [cleanedLoaderDef]
+      }
+    })
 }
 
-function addPlugin (plugin) {
-  return prevConfig => Object.assign(
-    {},
-    prevConfig,
-    { plugins: prevConfig.plugins.concat([ plugin ]) }
-  )
+function addPlugin(plugin) {
+  return prevConfig =>
+    Object.assign({}, prevConfig, { plugins: prevConfig.plugins.concat([plugin]) })
 }

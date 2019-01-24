@@ -19,14 +19,15 @@ exports.when = core.when
 
 exports.createConfig = createConfig
 
+exports.setMode = setMode
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
 exports.setEnv = require('./lib/setEnv')
 exports.entryPoint = entryPoint
 exports.performance = performance
+exports.optimization = optimization
 exports.resolve = resolve
-exports.resolveAliases = resolveAliases
 exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
@@ -43,11 +44,11 @@ exports.sourceMaps = sourceMaps
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {object}                   Webpack config object.
  */
-function createConfig (configSetters) {
-  return core.createConfig({ webpack, webpackVersion }, [ createEmptyConfig ].concat(configSetters))
+function createConfig(configSetters) {
+  return core.createConfig({ webpack, webpackVersion }, [createEmptyConfig].concat(configSetters))
 }
 
-function createEmptyConfig (context, util) {
+function createEmptyConfig(context, util) {
   return util.merge({
     module: {
       rules: []
@@ -57,31 +58,42 @@ function createEmptyConfig (context, util) {
 }
 
 /**
+ * @see https://webpack.js.org/concepts/mode
+ */
+function setMode(mode) {
+  return (context, util) => {
+    context.mode = mode
+    return util.merge({ mode })
+  }
+}
+
+/**
  * Adds one or multiple entry points. If the parameter is not an object the
  * entry point(s) will be added to the default chunk named `main`.
  *
  * @param {object|string[]|string} entry
  * @see https://webpack.github.io/docs/configuration.html#entry
  */
-function entryPoint (entry) {
-  return (context, util) => util.merge({
-    entry: normalizeEntry(entry)
-  })
+function entryPoint(entry) {
+  return (context, util) =>
+    util.merge({
+      entry: normalizeEntry(entry)
+    })
 }
 
-function normalizeEntry (entry) {
+function normalizeEntry(entry) {
   if (Array.isArray(entry)) {
     return {
       main: entry
     }
   } else if (typeof entry === 'string') {
     return {
-      main: [ entry ]
+      main: [entry]
     }
   } else if (typeof entry === 'object') {
-    Object.keys(entry).forEach((entryName) => {
+    Object.keys(entry).forEach(entryName => {
       if (!Array.isArray(entry[entryName])) {
-        entry[entryName] = [ entry[entryName] ]
+        entry[entryName] = [entry[entryName]]
       }
     })
     return entry
@@ -93,11 +105,11 @@ function normalizeEntry (entry) {
 /**
  * @see https://webpack.github.io/docs/configuration.html#plugins
  */
-function addPlugins (plugins) {
+function addPlugins(plugins) {
   return (context, util) => util.merge({ plugins })
 }
 
-function customConfig (wpConfig) {
+function customConfig(wpConfig) {
   return (context, util) => util.merge(wpConfig)
 }
 
@@ -107,57 +119,58 @@ function customConfig (wpConfig) {
  * @param {number} performanceBudget.maxEntrypointSize
  * @param {string} performanceBudget.hints              'warning' or 'error'
  */
-function performance (performanceBudget) {
-  return (context, util) => util.merge({
-    performance: performanceBudget
-  })
+function performance(performanceBudget) {
+  return (context, util) =>
+    util.merge({
+      performance: performanceBudget
+    })
+}
+
+/**
+ * @param {object} optimizationOptions
+ * @see https://webpack.js.org/configuration/optimization/
+ */
+function optimization(optimizationOptions) {
+  return (context, util) =>
+    util.merge({
+      optimization: optimizationOptions
+    })
 }
 
 /**
  * @see https://webpack.js.org/configuration/resolve/
  */
-function resolve (config) {
+function resolve(config) {
   const strategy = { 'resolve.extensions': 'prepend' }
   const merge = webpackMerge.smartStrategy(strategy)
 
-  return () => prevConfig => merge(prevConfig, {
-    resolve: config
-  })
-}
-
-/**
- * @deprecated
- * @see https://webpack.github.io/docs/configuration.html#resolve-alias
- */
-function resolveAliases (aliases) {
-  console.warn(`[webpack-blocks] resolveAliases is deprecated. Please, use resolve({ alias: '' }) instead.`)
-  return (context, util) => util.merge({
-    resolve: {
-      alias: aliases
-    }
-  })
+  return () => prevConfig =>
+    merge(prevConfig, {
+      resolve: config
+    })
 }
 
 /**
  * @see https://webpack.github.io/docs/configuration.html#context
  */
-function setContext (contextPath) {
-  return (context, util) => util.merge({
-    context: path.resolve(contextPath)
-  })
+function setContext(contextPath) {
+  return (context, util) =>
+    util.merge({
+      context: path.resolve(contextPath)
+    })
 }
 
 /**
  * @see https://webpack.github.io/docs/configuration.html#devtool
  */
-function setDevTool (devtool) {
+function setDevTool(devtool) {
   return (context, util) => util.merge({ devtool })
 }
 
 /**
  * @see https://webpack.github.io/docs/configuration.html#output
  */
-function setOutput (output) {
+function setOutput(output) {
   if (typeof output === 'string') {
     output = {
       filename: path.basename(output) || 'bundle.js',
@@ -177,7 +190,7 @@ function setOutput (output) {
  * @param {string} [devtool]
  * @return {Function}
  */
-function sourceMaps (devtool = 'cheap-module-source-map') {
+function sourceMaps(devtool = 'cheap-module-eval-source-map') {
   return (context, util) => {
     context.sourceMaps = true
 

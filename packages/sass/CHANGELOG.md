@@ -1,5 +1,20 @@
 # @webpack-blocks/sass - Changelog
 
+## 2.0.0-alpha.1
+
+- Major version upgrade of `css-loader` to the
+  [1.0.0](https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0)
+  ([#291](https://github.com/andywer/webpack-blocks/pull/291))
+- Deprecate `minimize` option after
+  [the css-loader removed it](https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0)
+  ([#291](https://github.com/andywer/webpack-blocks/pull/291))
+- Remove `css-loader` and `style-loader` from the `use` option
+  ([#294](https://github.com/andywer/webpack-blocks/pull/294))
+
+## 2.0.0-alpha
+
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+
 ## 1.0.0-rc
 
 - Add `minimize` option
@@ -27,11 +42,13 @@
 
 ## 0.1.2
 
-- Allow setting custom `node-sass` options (see [#15](https://github.com/andywer/webpack-blocks/issues/15))
+- Allow setting custom `node-sass` options (see
+  [#15](https://github.com/andywer/webpack-blocks/issues/15))
 
 ## 0.1.1
 
-- `loaders: [ 'style', 'css', 'sass' ]` => `loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]`
+- `loaders: [ 'style', 'css', 'sass' ]` =>
+  `loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]`
 
 ## 0.1.0
 

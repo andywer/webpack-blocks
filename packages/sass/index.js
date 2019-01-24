@@ -4,38 +4,37 @@
  * @see https://github.com/jtangelder/sass-loader
  */
 
-const _ = require('lodash')
-
 module.exports = sass
 
 /**
  * @param {object}   [options]                  See https://github.com/sass/node-sass#options
- * @param {bool}     [options.minimize]         Enable minification.
  * @param {string[]} [options.includePaths]
  * @param {bool}     [options.indentedSyntax]
  * @param {string}   [options.outputStyle]
  * @param {bool}     [options.sourceMap]
  * @return {Function}
  */
-function sass (options = {}) {
-  const sassOptions = _.omit(options, 'minimize')
-  return (context, util) => util.addLoader(
-    Object.assign({
-      test: /\.(sass|scss)$/,
-      use: [
-        'style-loader',
+function sass(options = {}) {
+  return (context, util) => {
+    if (!context.match) {
+      throw Error(
+        'You cannot use the sass() block outside a match() block. You also need to use the css() block on sass files.'
+      )
+    }
+
+    return util.addLoader(
+      Object.assign(
         {
-          loader: 'css-loader',
-          options: {
-            sourceMap: Boolean(options.sourceMap),
-            minimize: options.minimize
-          }
+          test: /\.(sass|scss)$/,
+          use: [
+            {
+              loader: 'sass-loader',
+              options
+            }
+          ]
         },
-        {
-          loader: 'sass-loader',
-          options: sassOptions
-        }
-      ]
-    }, context.match)
-  )
+        context.match
+      )
+    )
+  }
 }

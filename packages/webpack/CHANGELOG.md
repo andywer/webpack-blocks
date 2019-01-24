@@ -1,5 +1,14 @@
 # @webpack-blocks/webpack - Changelog
 
+## 2.0.0-alpha
+
+- Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))
+- Remove deprecated `resolveAliases` block
+  ([#267](https://github.com/andywer/webpack-blocks/issues/267))
+- Support for webpack 4 ([#261](https://github.com/andywer/webpack-blocks/pull/261))
+- Added `setMode()` and `optimization()` blocks
+  ([#274](https://github.com/andywer/webpack-blocks/issues/274))
+
 ## 1.0.0
 
 - Added `when()` ([#242](https://github.com/andywer/webpack-blocks/issues/242))
@@ -10,8 +19,10 @@
 
 ## 1.0.0-beta.3
 
-- Make resolve() prepend custom extensions ([#177](https://github.com/andywer/webpack-blocks/issues/177))
-- Let core `createConfig()` validate the passed setters ([#171](https://github.com/andywer/webpack-blocks/issues/171))
+- Make resolve() prepend custom extensions
+  ([#177](https://github.com/andywer/webpack-blocks/issues/177))
+- Let core `createConfig()` validate the passed setters
+  ([#171](https://github.com/andywer/webpack-blocks/issues/171))
 
 ## 1.0.0-beta.2
 
@@ -26,7 +37,8 @@
 ## 1.0.0-alpha
 
 - Updated for new core API ([#125](https://github.com/andywer/webpack-blocks/issues/125))
-- Fail with meaningful message if `createConfig()` is called with invalid param ([#110](https://github.com/andywer/webpack-blocks/issues/110))
+- Fail with meaningful message if `createConfig()` is called with invalid param
+  ([#110](https://github.com/andywer/webpack-blocks/issues/110))
 - Added `text/html` file type (in `@webpack-blocks/core`)
 - Requires node 6+
 
@@ -40,7 +52,8 @@
 
 ## 0.3.1
 
-- Remove the `json-loader` config & depedency, since webpack 2 comes with a default json-loader config (#63)
+- Remove the `json-loader` config & depedency, since webpack 2 comes with a default json-loader
+  config (#63)
 
 ## 0.3.0
 
