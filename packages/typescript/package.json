@@ -5,9 +5,6 @@
   "main": "lib/index",
   "license": "MIT",
   "author": "Jan van Brügge <supermanitu@gmail.com>",
-  "scripts": {
-    "prepublishOnly": "yarn test"
-  },
   "engines": {
     "node": ">= 6.0"
   },

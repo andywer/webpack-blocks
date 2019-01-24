@@ -4,9 +4,6 @@
   "description": "Convenience package that includes all the most common webpack blocks.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
-  "scripts": {
-    "prepublishOnly": "yarn test"
-  },
   "engines": {
     "node": ">= 6.0"
   },
