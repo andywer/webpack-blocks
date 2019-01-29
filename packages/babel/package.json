@@ -18,10 +18,12 @@
     "babel-loader": "^8.0.4"
   },
   "devDependencies": {
-    "@webpack-blocks/core": "^2.0.0-rc"
+    "@babel/core": "^7.2.2",
+    "@webpack-blocks/core": "^2.0.0-rc",
+    "webpack": "^4.20.2"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^2.0.0-alpha",
+    "@webpack-blocks/core": "^2.0.0-rc",
     "babel-core": "^7.0.0"
   }
 }
