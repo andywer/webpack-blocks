@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/babel",
-  "version": "2.0.0-rc",
+  "version": "2.0.0",
   "description": "Webpack block for babel 6+.",
   "main": "lib/index",
   "license": "MIT",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@webpack-blocks/core": "^2.0.0-rc",
+    "@webpack-blocks/core": "^2.0.0",
     "webpack": "^4.20.2"
   },
   "peerDependencies": {
