@@ -22,6 +22,6 @@
     "webpack": "^4.20.2"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^2.0.0-rc"
+    "@webpack-blocks/core": "^2.0.0"
   }
 }
