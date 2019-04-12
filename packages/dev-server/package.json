@@ -19,6 +19,6 @@
     "webpack-dev-server": "^3.1.9"
   },
   "peerDependencies": {
-    "@webpack-blocks/core": "^2.0.0-rc"
+    "@webpack-blocks/core": "^2.0.0"
   }
 }
