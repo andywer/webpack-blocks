@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/postcss",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Webpack block for PostCSS.",
   "main": "lib/index",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "postcss-loader": "^3.0.0"
   },
   "devDependencies": {
-    "@webpack-blocks/assets": "^2.0.0",
+    "@webpack-blocks/assets": "^2.0.1",
     "@webpack-blocks/core": "^2.0.0"
   },
   "peerDependencies": {
