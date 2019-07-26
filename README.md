@@ -87,9 +87,11 @@ module.exports = createConfig([
   babel(),
   match(['*.css', '!*node_modules*'], [
     css(),
-    postcss([
-      autoprefixer({ browsers: ['last 2 versions'] })
-    ])
+    postcss({
+      plugins: [
+        autoprefixer({ browsers: ['last 2 versions'] })
+      ]
+    })
   ]),
   match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.webp'], [
     file()
