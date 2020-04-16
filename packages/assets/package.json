@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "engines": {
-    "node": ">= 6.0"
+    "node": ">= 10.13.0"
   },
   "keywords": [
     "webpack",
@@ -15,11 +15,11 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
+    "css-loader": "^3.5.2",
+    "file-loader": "^6.0.0",
     "lodash": "^4.17.11",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2"
+    "style-loader": "^1.1.4",
+    "url-loader": "^4.1.0"
   },
   "devDependencies": {
     "@webpack-blocks/core": "^2.0.0",
