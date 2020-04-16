@@ -16,9 +16,10 @@ test('css.modules() works', t => {
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
-            localIdentName: '[name]--[local]--[hash:base64:5]',
-            modules: true
+            modules: {
+              localIdentName: '[name]--[local]--[hash:base64:5]'
+            },
+            importLoaders: 1
           }
         }
       ]
@@ -30,7 +31,7 @@ test('css.modules() works with options and match()', t => {
   const config = createConfig({}, [
     match('*.pcss', { exclude: /node_modules/ }, [
       css.modules({
-        minimize: true
+        sourceMap: true
       })
     ])
   ])
@@ -47,10 +48,11 @@ test('css.modules() works with options and match()', t => {
         {
           loader: 'css-loader',
           options: {
+            modules: {
+              localIdentName: '[name]--[local]--[hash:base64:5]'
+            },
             importLoaders: 1,
-            localIdentName: '[name]--[local]--[hash:base64:5]',
-            modules: true,
-            minimize: true
+            sourceMap: true
           }
         }
       ]
@@ -62,7 +64,7 @@ test('style-loader can take options', t => {
   const config = createConfig({}, [
     css.modules({
       styleLoader: {
-        hmr: true
+        esModule: true
       }
     })
   ])
@@ -74,15 +76,16 @@ test('style-loader can take options', t => {
         {
           loader: 'style-loader',
           options: {
-            hmr: true
+            esModule: true
           }
         },
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
-            localIdentName: '[name]--[local]--[hash:base64:5]',
-            modules: true
+            modules: {
+              localIdentName: '[name]--[local]--[hash:base64:5]'
+            },
+            importLoaders: 1
           }
         }
       ]
@@ -104,9 +107,10 @@ test('style-loader can be disabled', t => {
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
-            localIdentName: '[name]--[local]--[hash:base64:5]',
-            modules: true
+            modules: {
+              localIdentName: '[name]--[local]--[hash:base64:5]'
+            },
+            importLoaders: 1
           }
         }
       ]

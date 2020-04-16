@@ -40,7 +40,9 @@ module.exports = createConfig([
     ['*.css', '!*node_modules*'],
     [
       css.modules({
-        localIdentName: '[name]--[local]--[hash:base64:5]'
+        modules: {
+          localIdentName: '[name]--[local]--[hash:base64:5]'
+        }
       })
     ]
   )
@@ -63,9 +65,9 @@ Will match `*.css` by default if not used with `match()`. You can pass all
 
 The difference to `css()` is that it sets the following `css-loader` options by default:
 
-- `modules: true`
+- `modules` option is enabled
 - `importLoaders` defaults to `1`
-- `localIdentName` defaults to `'[name]--[local]--[hash:base64:5]'` in development and
+- `modules.localIdentName` defaults to `'[name]--[local]--[hash:base64:5]'` in development and
   `'[hash:base64:10]'` in production
 
 ### file(options: ?object)

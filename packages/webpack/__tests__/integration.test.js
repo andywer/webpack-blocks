@@ -33,7 +33,9 @@ test('complete webpack config creation', t => {
     }),
     match('*.scss', [
       css.modules({
-        localIdentName: '[name]--[local]--[hash:base64:5]'
+        modules: {
+          localIdentName: '[name]--[local]--[hash:base64:5]'
+        }
       }),
       postcss(),
       sass()
@@ -60,9 +62,10 @@ test('complete webpack config creation', t => {
       {
         loader: 'css-loader',
         options: {
-          importLoaders: 1,
-          localIdentName: '[name]--[local]--[hash:base64:5]',
-          modules: true
+          modules: {
+            localIdentName: '[name]--[local]--[hash:base64:5]'
+          },
+          importLoaders: 1
         }
       },
       {
