@@ -16,7 +16,7 @@ const sass = require('@webpack-blocks/sass')
 module.exports = createConfig([
   match(['*.scss', '!*node_modules*'], [
     css(),
-    sass(/* node-sass options */)
+    sass({ sassOptions: {/* node-sass options */} })
   ])
 ])
 ```
@@ -26,8 +26,9 @@ module.exports = createConfig([
 
 ## Options
 
-You can pass any [sass-loader / node-sass options](https://github.com/sass/node-sass#options) as an
-object to the `sass` block.
+You can pass any [sass-loader](https://github.com/webpack-contrib/sass-loader) as an object to the
+`sass` block. For example you can pass
+[node-sass options](https://github.com/sass/node-sass#options) in the `sassOptions` property.
 
 ## Examples
 
