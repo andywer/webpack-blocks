@@ -1,6 +1,6 @@
 {
   "name": "@webpack-blocks/webpack",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Webpack block for the webpack 2.x base configuration.",
   "license": "MIT",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
@@ -14,17 +14,17 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "@webpack-blocks/core": "^2.0.0",
+    "@webpack-blocks/core": "^2.1.0",
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
     "@types/node": "^10.11.6",
-    "@webpack-blocks/assets": "^2.0.1",
-    "@webpack-blocks/babel": "^2.0.1",
-    "@webpack-blocks/dev-server": "^2.0.1",
-    "@webpack-blocks/extract-text": "^2.0.1",
-    "@webpack-blocks/postcss": "^2.0.1",
-    "@webpack-blocks/sass": "^2.0.1",
+    "@webpack-blocks/assets": "^2.1.0",
+    "@webpack-blocks/babel": "^2.1.0",
+    "@webpack-blocks/dev-server": "^2.1.0",
+    "@webpack-blocks/extract-text": "^2.1.0",
+    "@webpack-blocks/postcss": "^2.1.0",
+    "@webpack-blocks/sass": "^2.1.0",
     "@webpack-blocks/tslint": "^2.0.1",
     "@webpack-blocks/typescript": "^2.0.1",
     "awesome-typescript-loader": "^5.2.1",
