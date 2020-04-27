@@ -26,7 +26,7 @@ test('css() works with options and match()', t => {
   const config = createConfig({}, [
     match('*.pcss', { exclude: /node_modules/ }, [
       css({
-        minimize: true
+        sourceMaps: true
       })
     ])
   ])
@@ -43,7 +43,7 @@ test('css() works with options and match()', t => {
         {
           loader: 'css-loader',
           options: {
-            minimize: true
+            sourceMaps: true
           }
         }
       ]
@@ -55,7 +55,7 @@ test('style-loader can take options', t => {
   const config = createConfig({}, [
     css({
       styleLoader: {
-        hmr: true
+        esModule: true
       }
     })
   ])
@@ -67,7 +67,7 @@ test('style-loader can take options', t => {
         {
           loader: 'style-loader',
           options: {
-            hmr: true
+            esModule: true
           }
         },
         {

@@ -18,9 +18,9 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "glob-to-regexp": "^0.4.0",
-    "lodash": "^4.17.11",
-    "webpack-merge": "^4.1.4"
+    "glob-to-regexp": "^0.4.1",
+    "lodash": "^4.17.15",
+    "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
     "sinon": "^6.3.5",

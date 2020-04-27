@@ -8,9 +8,9 @@ module.exports = sass
 
 /**
  * @param {object}   [options]                  See https://github.com/sass/node-sass#options
- * @param {string[]} [options.includePaths]
- * @param {bool}     [options.indentedSyntax]
- * @param {string}   [options.outputStyle]
+ * @param {string[]} [options.sassOptions.includePaths]
+ * @param {bool}     [options.sassOptions.indentedSyntax]
+ * @param {string}   [options.sassOptions.outputStyle]
  * @param {bool}     [options.sourceMap]
  * @return {Function}
  */
