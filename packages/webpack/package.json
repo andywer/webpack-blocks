@@ -33,7 +33,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "jsdom": "^16.5.0",
     "mz": "^2.7.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^3.0.0",
     "postcss-simple-vars": "^5.0.1",
     "sass-loader": "^7.1.0",

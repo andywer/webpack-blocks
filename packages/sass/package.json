@@ -17,7 +17,7 @@
   "dependencies": {
     "css-loader": "^3.5.2",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.4"
   },
