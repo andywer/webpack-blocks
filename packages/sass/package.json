@@ -24,7 +24,7 @@
   "devDependencies": {
     "@webpack-blocks/assets": "^2.1.0",
     "@webpack-blocks/core": "^2.1.0",
-    "webpack": "^4.20.2"
+    "webpack": "^5.94.0"
   },
   "peerDependencies": {
     "@webpack-blocks/core": "^2.0.0"
