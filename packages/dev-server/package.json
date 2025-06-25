@@ -16,7 +16,7 @@
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
     "webpack": "^4.42.1",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^5.2.1"
   },
   "peerDependencies": {
     "@webpack-blocks/core": "^2.0.0"
