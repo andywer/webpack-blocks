@@ -28,6 +28,6 @@
     "webpack": "^4.20.2",
     "webpack-blocks": "^2.1.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-dev-server": "^5.2.1"
   }
 }
