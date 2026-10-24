@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next release
+
+- Fix the entry configuration documentation link.
+
 ## 2.0.0-alpha
 
 - Remove deprecated `fileType` API ([#260](https://github.com/andywer/webpack-blocks/issues/260))

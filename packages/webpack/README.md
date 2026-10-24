@@ -165,7 +165,7 @@ module.exports = createConfig([
 
 Adds one or multiple entry points. If the parameter is not an object the entry point(s) will be
 added to the default chunk named `main`. This way we make sure that the resulting
-[https://webpack.github.io/docs/configuration.html#entry](entry) configuration property will always
+[entry](https://webpack.github.io/docs/configuration.html#entry) configuration property will always
 be an object.
 
 #### optimization(optimizationOptions: object)
